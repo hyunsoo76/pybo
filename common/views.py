@@ -1,3 +1,5 @@
+from urllib import request
+
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from common.forms import UserForm
@@ -18,10 +20,5 @@ def signup(request):
             return redirect('index')
     else:
         form = UserForm()
-return render(request, 'common/signup.html', {'form': form})
+    return render(request, 'common/signup.html', {'form': form})
 
-def page_not_found(request, exception):
-    """
-        404 Page not found
-	    """
-	        return render(request, 'common/404.html', {})
