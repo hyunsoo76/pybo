@@ -46,7 +46,7 @@
             <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
             {% endif %}
             <td>{{question.author.username}}</td> <!-- 글쓴이 추가 -->
-            <td>{{ question.create_date}}</td>
+            <td style="font-size:0.75em">{{ question.create_date}}</td>
 
         </tr>
         {% endfor %}
