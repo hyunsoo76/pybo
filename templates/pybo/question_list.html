@@ -40,7 +40,7 @@
             <span class="badge badge-warning px-2 py-1">{{ question.voter.all.count }}</span>
             {% endif %}
             </td>
-            <td class="text-left" style="font-color:#000000" <a href="{% url 'pybo:detail' question.id %}">{{question.subject}} </a>
+            <td class="text-left" <a href="{% url 'pybo:detail' question.id %}">{{question.subject}} </a>
             {% if question.answer_set.count > 0 %}
             <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
             {% endif %}</td>
