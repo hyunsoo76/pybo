@@ -1,0 +1,19 @@
+
+{% extends 'base_paystub.html' %}
+<!--{% load pybo_filter %}-->
+{% block content %}
+
+{% if pay_list %}
+    <p>come on!!</p>
+
+
+
+        <li><a href="/paystub/{{ pay_list.2 }}/">{{ pay_list.1.name}}</a></li>
+
+
+    </ul>
+{% else %}
+    <p>질문이 없습니다.</p>
+{% endif %}
+{% endblock %}
+

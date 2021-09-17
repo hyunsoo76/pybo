@@ -1,0 +1,47 @@
+<!-- 네비게이션바 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+    <a class="navbar-brand" href="{% url 'pybo:index' %}">DaeJin</a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item ">
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'common:login' %}">로그인</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">1월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">2월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">3월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">4월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">5월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">6월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">7월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">8월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">9월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">10월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">11월</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-light">12월</button>
+
+
+</nav>
+
