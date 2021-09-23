@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Pay_list(models.Model):
-    # objects = models.Manager()
+    objects = models.Manager()
     name = models.CharField(max_length=30)
     base_pay = models.IntegerField()
     overtime_pay = models.IntegerField()

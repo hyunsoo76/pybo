@@ -139,12 +139,15 @@
 
 
 
-        <li><a href="/paystub/{{ pay_list.2 }}/">{{ pay_list.1.name}}</a></li>
+        <li><a href="/paystub/{{ pay_list.3 }}/">{{ pay_list.id.3.name}}</a></li>
+
+        {{ pay_list.1}}
 
 
     </ul>
 {% else %}
-    <p>질문이 없습니다.</p>
+
+    <p>database 없음.</p>
 {% endif %}
 {% endblock %}
 
