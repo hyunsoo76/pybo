@@ -22,5 +22,5 @@ def detail(request, pay_list_id):
 
     # pay_list = pay_list
     context = {'pay_list': pay_list}
-    return render(request, 'paystub/main_detail.html', context)
+    return render(request, 'paystub/main.html', context)
 
