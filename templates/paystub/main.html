@@ -21,7 +21,7 @@
             <th style="vertical-align:middle" rowspan="4" colspan="2" ><h1>급여명세서</h1></th>
 
             <td bgcolor="#eeeeee">성명</td>
-            <td>{{ pay_list.1}}</td>
+            <td>{{ pay_list.1.name}}</td>
 
         </tr>
         <tr align="center">
@@ -139,10 +139,10 @@
 
 
 
-        <li><a href="/paystub/{{ Pay_list.3 }}/">{{ pay_list.id.3.name}}</a></li>
+        <li><a href="/paystub/{{ Pay_list.1 }}/">{{ pay_list.id.1.name}}</a></li>
 
         {{ pay_list.1 }}
-        {{ pay_list.1.name }}
+        {{ Pay_list.1.name }}
         {{ pay_list.2.name }}
 
 {% else %}
