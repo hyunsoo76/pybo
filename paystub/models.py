@@ -22,5 +22,5 @@ class Pay_list(models.Model):
     payment = models.IntegerField()
     etc_explain = models.TextField()
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
