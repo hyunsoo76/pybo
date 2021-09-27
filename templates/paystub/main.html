@@ -143,7 +143,7 @@
 
 <!--        {{ Pay_list.name }}-->
         {{ pay_list.name }}
-        {{ pay_list.objects.filter(base_pay=50000).values('name') }}
+        {{ pay_list.filter(base_pay=50000).values('name') }}
 <!--        {{ Pay_list.1.name }}-->
 <!--        {{ Pay_list.1.name }}-->
 
