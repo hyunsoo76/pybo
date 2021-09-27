@@ -145,10 +145,10 @@
         {{ pay_list.name }}
         {{ pay_list.1.name }}
         {{ Pay_list.1.name }}
-        {{ pay_list.filter(id=1) }}
+        {{ pay_list.get(id=1) }}
 
-        {{ pay_list.filter(name='정현수') }}
-        {{ pay_list.filter(name=정현수) }}
+<!--        {{ pay_list.filter(name='정현수') }}-->
+<!--        {{ pay_list.filter(name=정현수) }}-->
 
 
 {% else %}
