@@ -8,9 +8,12 @@ def index(request):
     """
     # 조회
     pay_list = Pay_list.objects.order_by('-id')
-
     # pay_list = pay_list
+
+    # access = { pay_list.accesstoken }
+
     context = {'pay_list': pay_list}
+
     return render(request, 'paystub/main.html', context)
 
 def detail(request, pay_list_id):

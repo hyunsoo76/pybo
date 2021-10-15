@@ -33,6 +33,8 @@ class Migration(migrations.Migration):
                 ('deduction_sum', models.IntegerField()),
                 ('payment', models.IntegerField()),
                 ('etc_explain', models.TextField()),
+                ('accesstoken', models.CharField(max_length=200, default="charField")),
+                ('yymm', models.CharField(max_length=200, default="charField")),
             ],
         ),
     ]

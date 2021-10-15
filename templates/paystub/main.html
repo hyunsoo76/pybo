@@ -3,161 +3,196 @@
 {% load humanize %}
 <!--{% load pybo_filter %}-->
 {% block content %}
+<!--디비에서 조건 만족하는 low값을 찾아서 /paystub/찾은low/ 이런식으로 화면뿌려야 되나보네?-->
+{% if access != 9360 %}
+    {% if pay_list %}
 
-{% if pay_list %}
+        <table class="table table-bordered">
 
-    <table class="table table-bordered">
+            <thead align="center">
+            <tr>
+                <th scope="col" bgcolor="#eeeeee">귀속년월</th>
+                <th scope="col">{{ pay_list.yymm}}</th>
+                <th colspan="2" scope="col" bgcolor="#eeeeee">대진산업</th>
+    <!--            <th scope="col">Handle</th>-->
+            </tr>
+            </thead>
+            <tbody >
+            <tr align="center" >
+                <th style="vertical-align:middle" rowspan="4" colspan="2" ><h1>급여명세서</h1></th>
 
-        <thead align="center">
-        <tr>
-            <th scope="col" bgcolor="#eeeeee">귀속년월</th>
-            <th scope="col">변수_조회월</th>
-            <th colspan="2" scope="col" bgcolor="#eeeeee">대진산업</th>
-<!--            <th scope="col">Handle</th>-->
-        </tr>
-        </thead>
-        <tbody >
-        <tr align="center" >
-            <th style="vertical-align:middle" rowspan="4" colspan="2" ><h1>급여명세서</h1></th>
+                <td bgcolor="#eeeeee">성명</td>
+                <td>{{ pay_list.name}}</td>
 
-            <td bgcolor="#eeeeee">성명</td>
-            <td>{{ pay_list.name}}</td>
+            </tr>
+            <tr align="center">
+                <td scope="row" bgcolor="#eeeeee">생년월일</td>
+                <td></td>
 
-        </tr>
-        <tr align="center">
-            <td scope="row" bgcolor="#eeeeee">생년월일</td>
-            <td>변수_생년월일</td>
+            </tr>
+            <tr align="center">
+                <td scope="row" bgcolor="#eeeeee">입사일자</td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+        <p> </p>
 
-        </tr>
-        <tr align="center">
-            <td scope="row" bgcolor="#eeeeee">입사일자</td>
-            <td>변수_입사일자</td>
-        </tr>
-        </tbody>
-    </table>
-    <p> </p>
+        <table class="table table-bordered">
 
-    <table class="table table-bordered">
+            <thead align="center">
+            <tr>
+                <th colspan="3" scope="col" bgcolor="#eeeeee">지급내역</th>
+                <th colspan="3" scope="col" bgcolor="#eeeeee">공제내역</th>
+            </tr>
+            </thead>
 
-        <thead align="center">
-        <tr>
-            <th colspan="3" scope="col" bgcolor="#eeeeee">지급내역</th>
-            <th colspan="3" scope="col" bgcolor="#eeeeee">공제내역</th>
-        </tr>
-        </thead>
+            <tbody >
+            <tr align="center" >
+                <td style="vertical-align:middle"  bgcolor="#eeeeee">항목</td>
+                <td bgcolor="#eeeeee">금액</td>
+                <td bgcolor="#eeeeee">비고</td>
+                <td style="vertical-align:middle" bgcolor="#eeeeee">항목</td>
+                <td bgcolor="#eeeeee">금액</td>
+                <td bgcolor="#eeeeee">비고</td>
 
-        <tbody >
-        <tr align="center" >
-            <td style="vertical-align:middle"  bgcolor="#eeeeee">항목</td>
-            <td bgcolor="#eeeeee">금액</td>
-            <td bgcolor="#eeeeee">비고</td>
-            <td style="vertical-align:middle" bgcolor="#eeeeee">항목</td>
-            <td bgcolor="#eeeeee">금액</td>
-            <td bgcolor="#eeeeee">비고</td>
+            </tr>
 
-        </tr>
+            <tr align="center">
+                <td>기본급</td>
+                <td>{{ pay_list.base_pay|intcomma}}</td>
+                <td></td>
+                <td>갑근세</td>
+                <td>{{ pay_list.tax|intcomma}}</td>
+                <td></td>
+            </tr>
 
-        <tr align="center">
-            <td>기본급</td>
-            <td>{{ pay_list.base_pay|intcomma}}</td>
-            <td>(변수_비고)</td>
-            <td>갑근세</td>
-            <td>변수_갑근세</td>
-            <td>(변수_비고)</td>
-        </tr>
+            <tr align="center">
+                {% if pay_list.overtime_pay %}
+                <td>시간외수당</td>
+                <td>{{pay_list.overtime_pay|intcomma}}</td>
+                {% else %}
+                <td></td>
+                <td></td>
+                {% endif %}
+                <td></td>
+                <td>주민세</td>
+                <td>{{ pay_list.local_tax|intcomma}}</td>
+                <td></td>
+            </tr>
 
-        <tr align="center">
-            <td>(변수_급여명2)</td>
-            <td>변수_급여2</td>
-            <td>(변수_비고)</td>
-            <td>주민세</td>
-            <td>변수_주민세</td>
-            <td>(변수_비고)</td>
-        </tr>
+            <tr align="center">
+                {% if pay_list.holiday_pay %}
+                <td>연차수당</td>
+                <td>{{pay_list.holiday_pay|intcomma}}</td>
+                {% else %}
+                <td></td>
+                <td></td>
+                {% endif %}
+                <td></td>
+                <td>국민연금</td>
+                <td>{{pay_list.National_Pension|intcomma}}</td>
+                <td></td>
+            </tr>
 
-        <tr align="center">
-            <td>(변수_급여명3)</td>
-            <td>변수_급여3</td>
-            <td>(변수_비고)</td>
-            <td>국민연금</td>
-            <td>변수_국민연금</td>
-            <td>(변수_비고)</td>
-        </tr>
+            <tr align="center">
+                {% if pay_list.meal_cost %}
+                <td>식대</td>
+                <td>{{pay_list.meal_cost|intcomma}}</td>
+                {% else %}
+                <td></td>
+                <td></td>
+                {% endif %}
+                <td></td>
+                <td>건강보험</td>
+                <td>{{pay_list.health|intcomma}}</td>
+                <td></td>
+            </tr>
 
-        <tr align="center">
-            <td>(변수_급여명4)</td>
-            <td>변수_급여4</td>
-            <td>(변수_비고)</td>
-            <td>건강보험</td>
-            <td>변수_건강보험</td>
-            <td>(변수_비고)</td>
-        </tr>
+            <tr align="center">
+                {% if pay_list.car_fee %}
+                <td>차량유지비</td>
+                <td>{{pay_list.car_fee|intcomma}}</td>
+                {% else %}
+                <td></td>
+                <td></td>
+                {% endif %}
+                <td></td>
+                <td>장기요양</td>
+                <td>{{pay_list.longterm_care|intcomma}}</td>
+                <td></td>
+            </tr>
 
-        <tr align="center">
-            <td>(변수_급여명5)</td>
-            <td>변수_급여5</td>
-            <td>(변수_비고)</td>
-            <td>장기요양</td>
-            <td>변수_장기요양</td>
-            <td>(변수_비고)</td>
-        </tr>
+            <tr align="center">
+                {% if pay_list.incentive1 %}
+                <td>incentive1</td>
+                <td>{{pay_list.incentive1|intcomma}}</td>
+                {% else %}
+                <td></td>
+                <td></td>
+                {% endif %}
+                <td></td>
+                <td>고용보험</td>
+                <td>{{pay_list.Employment|intcomma}}</td>
+                <td></td>
+            </tr>
 
-        <tr align="center">
-            <td>(변수_급여명6)</td>
-            <td>변수_급여6</td>
-            <td>(변수_비고)</td>
-            <td>고용보험</td>
-            <td>변수_고용보험</td>
-            <td>(변수_비고)</td>
-        </tr>
+            <tr align="center">
+                {% if pay_list.incentive2 %}
+                <td>incentive2</td>
+                <td>{{pay_list.incentive2|intcomma}}</td>
+                {% else %}
+                <td></td>
+                <td></td>
+                {% endif %}
+                <td></td>
+                <td>기타</td>
+                <td></td>
+                <td></td>
+            </tr>
 
-        <tr align="center">
-            <td>(변수_급여명7)</td>
-            <td>변수_급여7</td>
-            <td>(변수_비고)</td>
-            <td>기타</td>
-            <td>변수_기타</td>
-            <td>(변수_비고)</td>
-        </tr>
-
-        <tr align="center">
-            <td style="vertical-align:middle"  bgcolor="#eeeeee">지급합계</td>
-            <td>변수_급여.sum()</td>
-            <td>(변수_비고)</td>
-            <td style="vertical-align:middle"  bgcolor="#eeeeee">공제합계</td>
-            <td>공제.sum()</td>
-            <td>(변수_비고)</td>
-        </tr>
-        <thead align="center">
-        <tr>
-            <th colspan="3" scope="col" bgcolor="#eeeeee">차인지급액</th>
-            <th colspan="3" scope="col" >=지급.sum()-공제.sum()</th>
-        </tr>
-
-
-    </table>
+            <tr align="center">
+                <td style="vertical-align:middle"  bgcolor="#eeeeee">지급합계</td>
+                <td>{{pay_list.total_pay|intcomma}}</td>
+                <td></td>
+                <td style="vertical-align:middle"  bgcolor="#eeeeee">공제합계</td>
+                <td>{{pay_list.deduction_sum|intcomma}}</td>
+                <td></td>
+            </tr>
+            <thead align="center">
+            <tr>
+                <th colspan="3" scope="col" bgcolor="#eeeeee">차인지급액</th>
+                <th colspan="3" scope="col" >{{pay_list.payment|intcomma}}</th>
+            </tr>
 
 
-
-        <li><a href="/paystub/{{ pay_list.1 }}/">{{ pay_list.1.name}}</a></li>
-
-<!--        {{ Pay_list.name }}-->
-        {{ pay_list.name }}
-        {{ pay_list.base_pay }}
-        {{ pay_list.local_tax }}
-
-<!--        {{ Pay_list.1.name }}-->
-<!--        {{ Pay_list.1.name }}-->
-
+        </table>
 
 
 
+            <li><a href="/paystub/{{ pay_list.1 }}/">{{ pay_list.name}}</a></li>
+
+    <!--        {{ Pay_list.name }}-->
+            {{ pay_list.name }}
+            {{ pay_list.base_pay }}
+            {{ pay_list.local_tax }}
+
+    <!--        {{ Pay_list.1.name }}-->
+    <!--        {{ Pay_list.1.name }}-->
+
+
+
+
+
+    {% else %}
+
+        <p>database 없음...</p>
+    {% endif %}
 
 {% else %}
 
-    <p>database 없음...</p>
+<a href="/paystub/">{{ retry }}</a>
+{{ access }}
 {% endif %}
-
-
 
 {% endblock %}

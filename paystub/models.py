@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import CharField
 
 
 class Pay_list(models.Model):
@@ -6,7 +7,7 @@ class Pay_list(models.Model):
     name = models.CharField(max_length=30)
     base_pay = models.IntegerField()
     overtime_pay = models.IntegerField(null=True, blank=True)
-    holiday_pay = models.IntegerField(null=True, blank=True)
+    holiday_pay = models.CharField(max_length=200, default="charField")
     meal_cost = models.IntegerField(null=True, blank=True)
     car_fee = models.IntegerField(null=True, blank=True)
     incentive1 = models.IntegerField(null=True, blank=True)
@@ -21,6 +22,8 @@ class Pay_list(models.Model):
     deduction_sum = models.IntegerField()
     payment = models.IntegerField()
     etc_explain = models.TextField()
+    accesstoken: CharField = models.CharField(max_length=200, default="charField")
+    yymm = models.CharField(max_length=200, default="charField")
 
     # def __str__(self):
     #     return self.name
