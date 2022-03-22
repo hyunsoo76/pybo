@@ -21,9 +21,37 @@
             <label for="subject">제목</label>
             <input type="text" class="form-control" name="subject" id="subject"
                    value="{{ form.subject.value|default_if_none:'' }}">
+            <table>
+                <tr>
+                    <td>no</td>
+                    <td>상호</td>
+                    <td>계좌번호</td>
+                    <td>예금주명</td>
+                    <td>금액</td>
+                    <td>출금계좌</td>
+                    <td>비고</td>
+                </tr>
+                <td>
+                    <td><input type="text" class="form-control" name="subject" id="no_insert"
+                   value="{{ form.subject.value|default_if_none:'' }}"></td>
+                    <td><input type="text" class="form-control" name="subject" id="sangho_insert"
+                   value="{{ form.subject.value|default_if_none:'' }}"></td>
+                    <td><input type="text" class="form-control" name="subject" id="bankingnumber_insert"
+                   value="{{ form.subject.value|default_if_none:'' }}"></td>
+                    <td><input type="text" class="form-control" name="subject" id="name_insert"
+                   value="{{ form.subject.value|default_if_none:'' }}"></td>
+                    <td><input type="text" class="form-control" name="subject" id="moneysum_insert"
+                   value="{{ form.subject.value|default_if_none:'' }}"></td>
+                    <td><input type="text" class="form-control" name="subject" id="howpay_insert"
+                   value="{{ form.subject.value|default_if_none:'' }}"></td>
+                    <td><input type="text" class="form-control" name="subject" id="etc_insert"
+                   value="{{ form.subject.value|default_if_none:'' }}"></td>
+                </tr>
+            </table>
         </div>
         <div class="form-group">
             <label for="content">내용</label>
+
             <textarea class="form-control" name="content"
                       id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
