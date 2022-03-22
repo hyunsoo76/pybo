@@ -3,6 +3,7 @@
 {% load humanize %}
 <!--{% load pybo_filter %}-->
 {% block content %}
+<!--from django.db.models import Q-->
 <!--디비에서 조건 만족하는 low값을 찾아서 /paystub/찾은low/ 이런식으로 화면뿌려야 되나보네?-->
 {% if access != 9360 %}
     {% if pay_list %}
@@ -176,6 +177,7 @@
             {{ pay_list.name }}
             {{ pay_list.base_pay }}
             {{ pay_list.local_tax }}
+
 
     <!--        {{ Pay_list.1.name }}-->
     <!--        {{ Pay_list.1.name }}-->
