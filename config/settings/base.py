@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'paystub.apps.PaystubConfig',
     'django.contrib.humanize',
+    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [
