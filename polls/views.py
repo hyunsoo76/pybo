@@ -2,5 +2,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def index1(request):
+def index(request):
     return render(request, 'polls/main.html')
