@@ -14,8 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include,re_path
-
+from django.urls import path, include
 from pybo.views import base_views
 
 urlpatterns = [
@@ -23,7 +22,7 @@ urlpatterns = [
     path('pybo/', include('pybo.urls')),
     path('paystub/', include('paystub.urls')),
     path('common/', include('common.urls')),
-    re_path(r'^$', include('polls.urls')),
+    path('polls/', include('polls.urls')),
     path('', base_views.index, name='index'),        # '/' 에 해당되는 path
     
 ]
