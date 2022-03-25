@@ -22,7 +22,7 @@ urlpatterns = [
     path('pybo/', include('pybo.urls')),
     path('paystub/', include('paystub.urls')),
     path('common/', include('common.urls')),
-    path('', include('polls.urls')),
+    path('polls', include('polls.urls')),
     path('', base_views.index, name='index'),        # '/' 에 해당되는 path
     
 ]
