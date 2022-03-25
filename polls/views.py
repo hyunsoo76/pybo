@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return render(request, 'paystub/main.html')
+    return render(request, 'polls/main.html')
