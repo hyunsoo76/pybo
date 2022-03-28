@@ -4,11 +4,11 @@ from .models import Question
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    templates = loader.get_templates('polls/index.html')
+    template = loader.get_template('polls/index.html')
     context = {
         'latest_question_list': latest_question_list,
     }
-    return HttpResponse(templates.render(context, request))
+    return HttpResponse(template.render(context, request))
 
 
 def detail(request, question_id):
