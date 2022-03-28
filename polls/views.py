@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
 from .models import Question
@@ -8,7 +9,8 @@ def index(request):
     context = {
         'latest_question_list': latest_question_list,
     }
-    return HttpResponse(template.render(context, request))
+    # return HttpResponse(template.render(context, request)) 아래 render 사용하면 똑같다.
+    return render(request, 'polls/index.html', context)
 
 
 def detail(request, question_id):
