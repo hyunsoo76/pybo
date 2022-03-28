@@ -4,6 +4,7 @@
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
+<!--    아래 포문 모델에서 모델명 쵸이스 스페링 잘못써서 chioce 하고 choice_text 구분 잘해야 ...-->
 {% for chioce in question.chioce_set.all %}
     <input type="radio" name="chioce" id="chioce{{ forloop.counter }}" value="{{ chioce.id }}">
     <label for="chioce{{ forloop.counter }}">{{ chioce.choice_text }}</label><br>
