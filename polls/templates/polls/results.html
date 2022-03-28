@@ -1,7 +1,7 @@
 <h1>{{ question.question_text }}</h1>
 
 <ul>
-{% for chioce in question.chiice_set.all %}
+{% for chioce in question.chioe_set.all %}
     <li>{{ chioce.choice_text }} -- {{ chioce.votes }} vote{{ chioce.votes|pluralize }}</li>
 {% endfor %}
 </ul>
