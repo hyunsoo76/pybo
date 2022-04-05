@@ -28,8 +28,16 @@
           </div>
           <div class="col align-items-bottom">2022년 4월 5일 09:22[모델]</div>
           <div class="col"></div>
-          <div class="col">
-              <table class="table table-bordered">
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+              <div class="input-group mb-3">
+              <span class="input-group-text" id="input_subject">제목</span>
+              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-4"><table class="table table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">구분</th>
@@ -43,48 +51,37 @@
                       <th scope="row">1</th>
                       <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
                       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <form>
-                                  <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
-                                  <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
+                                  <div class="modal-body">
+                                    <form>
+                                      <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Message:</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                      </div>
+                                    </form>
                                   </div>
-                                </form>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Send message</button>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div></td>
+                            </div></td>
                       <td>Otto</td>
                       <td>@mdo</td>
                     </tr>
 
                   </tbody>
-                </table>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-              <div class="input-group mb-3">
-              <span class="input-group-text" id="input_subject">제목</span>
-              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-            </div>
-          </div>
-          <div class="col-4">col-4</div>
+                </table></div>
         </div>
 </div>
   </body>
