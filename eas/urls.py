@@ -3,5 +3,5 @@ from.import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('/templates/eas/', views.detail, name='detail'),
+    path('/eas/', views.detail, name='detail'),
 ]
