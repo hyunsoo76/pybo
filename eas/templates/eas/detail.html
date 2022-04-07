@@ -48,6 +48,18 @@
                     <tr align="center">
                       <td height = "80px" width = "150px" bgcolor="#D8D8D8">
                           <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>
+                          <script>
+
+                            $('#openModalBtn').on('click', function(){
+                            $('#modalBox').modal('show');
+                            });
+
+                            $('#closeModalBtn').on('click', function(){
+                            $('#modalBox').modal('hide');
+                            });
+                          </script>
+
+
                           <!-- Button trigger modal -->
 <!--                        <div>-->
 <!--                            <button type="button" class="btn btn-outline-secondary btn-sm" id="noneDiv" data-bs-toggle="modal" data-bs-target="#exampleModal1">-->
