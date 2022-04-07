@@ -48,7 +48,7 @@
                     <tr align="center">
                       <td height = "80px" width = "150px" bgcolor="#D8D8D8">
                           <!-- Button trigger modal -->
-                        <div><button type="button" class="btn btn-outline-secondary btn-sm" id="noneDiv" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample"><button type="button" class="btn btn-outline-secondary btn-sm" id="noneDiv" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                           담당
                         </button>
                         </div>
@@ -65,7 +65,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
-                                <button type="button" class="btn btn-primary btn-lg">전송</button>
+                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#noneDiv" aria-expanded="false" aria-controls="collapseWidthExample">전송</button>
                               </div>
                             </div>
                           </div>
