@@ -9,10 +9,10 @@
 
     <script type="text/javascript">
 
-    function myModal(){
+
 	    var myModal = new bootstrap.Modal(document.getElementById('myModal'), options);
 
-    }
+
     </script>
 
 
@@ -48,17 +48,7 @@
                     <tr align="center">
                       <td height = "80px" width = "150px" bgcolor="#D8D8D8">
 <!--                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>-->
-                          <script>
-
-                            $('#openModalBtn').on('click', function(){
-                            $('#modalBox').modal('show');
-                            });
-
-                            $('#closeModalBtn').on('click', function(){
-                            $('#modalBox').modal('hide');
-                            });
-                          </script>
-
+                           myModal();
 
                           <!-- Button trigger modal -->
 <!--                        <div>-->
