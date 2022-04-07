@@ -11,8 +11,8 @@
             ('.modal-auto-clear').on('shown.bs.modal', function () {
 
                 var timer = $(this).data('timer') ? $(this).data('timer') : 7000;
-                $(this).delay(timer).fadeOut(200, function () {
-                    $(this).modal('hide');
+                (this).delay(timer).fadeOut(200, function () {
+                    (this).modal('hide');
                 });
             })
         </script>
