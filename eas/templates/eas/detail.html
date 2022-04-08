@@ -156,17 +156,16 @@
 
 
         <div class="row" align="center">
-          <div class="col">
+          <div class="col4">
             <select class="form-select" aria-label="Default select example">
               <option value="buy">매입결재</option>
               <option value="request">품의서</option>
               <option value="holiday">휴가원</option>
             </select>
-          <p></p>
+          <div class="col4 alert alert-dark" role="alert">합계</div>
+          <div class="col7 alert alert-primary" role="alert">
+              12,345,456
           </div>
-
-<!--          <div class="col"></div>-->
-<!--          <div class="col"></div>-->
         </div>
         <div class="row">
           <div class="col-8">
@@ -186,11 +185,7 @@
               </thead>
              </table>
           </div>
-          <div class="col-12">
-              <div class="input-group mb-3">
-              <span class="input-group-text" id="input_chamjo">참조사항</span>
-              <textarea class="form-control" id="chamjo1" rows="1"></textarea>
-          </div>
+
         </div>
 
 <!--입력창 타이틀-->
@@ -448,11 +443,16 @@
     </div>
     <p></p>
     <div class="row" align="center">
-        <div class="col-12">
+        <div class="col-6">
           <div class="mb-3 bg-secondary text-white">
           <label for="jisi1" class="form-label">지시사항</label>
           <textarea class="form-control" id="jisi1" rows="3"></textarea>
           </div>
+        </div>
+        <div class="col-6">
+              <div class="mb-3 bg-secondary text-white">
+              <span class="input-group-text" id="input_chamjo">참조사항</span>
+              <textarea class="form-control" id="chamjo1" rows="1"></textarea>
         </div>
     </div>
 </div>
