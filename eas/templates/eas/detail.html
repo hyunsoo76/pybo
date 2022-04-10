@@ -25,7 +25,7 @@
 
                 <h3 align="center">품 의 서</h3>
         <hr>
-            <div class="col align-items-bottom align=middle">2022-4-5 13:30</div>
+            <div class="col align-items-bottom align=middle" id="now_date">2022-4-5 13:30</div>
             </div>
 
             <div class="col-6">
@@ -66,10 +66,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
-                                <form method ="post">
-                                    {% csrf_token %}
                                 <button type="submit" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">전송</button>
-                                </form>
                               </div>
                             </div>
                           </div>
@@ -130,9 +127,9 @@
                             </div></td>
                     </tr>
                     <tr align="center" bgcolor="#E6E6E6">
-                      <td>4/6</td>
-                      <td>4/6</td>
-                      <td>4/6</td>
+                      <td id="data1">4/6</td>
+                      <td id="data2">4/6</td>
+                      <td id="data3">4/6</td>
                     </tr>
                   </tbody>
                 </table>
@@ -192,241 +189,241 @@
         <div class="row"  align="center" >
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">1</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">2</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">3</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">4</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">5</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">6</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">7</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">8</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">9</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i-7">
             </div>
         </div>
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">10</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j-1">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j-2">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j-3">
             </div>
             <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j-4">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j-5">
             </div>
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j-6">
             </div>
             <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j-7">
             </div>
         </div>
 
