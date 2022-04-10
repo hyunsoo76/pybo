@@ -72,9 +72,16 @@
                         </div>
 
 
-
+<!--이사 결재란-->
                       </td>
                       <td width = "150px">
+                          {% c = 1 %}
+                          {% if c == 1: %}
+                           <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">
+                          {% else %}
+                           사진 안나옴
+                          {% endif %}
+
                             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
