@@ -21,6 +21,22 @@
             <label for="subject">제목</label>
             <input type="text" class="form-control" name="subject" id="subject"
                    value="{{ form.subject.value|default_if_none:'' }}">
+        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="content">내용</label>-->
+
+<!--                <div class="input-group input-group-sm mb-3" name="content">-->
+<!--                  <span class="input-group-text" id="content">Small</span>-->
+<!--                  <input type="text" class="form-control" name="content" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">-->
+
+<!--                </div>-->
+
+
+
+<!--&lt;!&ndash;            <textarea class="form-control" name="content"&ndash;&gt;-->
+<!--&lt;!&ndash;                      id="content" rows="10">&ndash;&gt;-->
+<!--&lt;!&ndash;                               </textarea>&ndash;&gt;-->
+<!--아래두줄 기존 내용입력창 -->
             <textarea class="form-control" name="content"
                       id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
