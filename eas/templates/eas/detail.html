@@ -64,10 +64,8 @@
                                 검토 후 재가바랍니다.!
                               </div>
                               <div class="modal-footer">
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-secondary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" id="btntest">취소</button>
-                                </form>
+
+                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>
                                 <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
                                 <button type="submit" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">전송</button>
 
@@ -456,7 +454,7 @@
       document.getElementById("btnShow").addEventListener("click", function () {
         modal.show();
       });
-      document.getElementById("send").addEventListener("click", function () {
+      document.getElementById("btntest").addEventListener("click", function () {
         modal.hide();
       });
     </script>
