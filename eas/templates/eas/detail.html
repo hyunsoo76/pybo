@@ -40,9 +40,8 @@
                     <tr align="center">
                       <td height = "80px" width = "150px" bgcolor="#D8D8D8">
 <!--                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>-->
-<!--                          <div class="collapse collapse-horizontal" id="collapseWidthExample">-->
-                          <div id="imgshow">"클릭해봐"
-<!--                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">-->
+                          <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">
                           </div>
 
                           <!-- Button trigger modal -->
@@ -67,8 +66,8 @@
                               <div class="modal-footer">
 
 <!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
-                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
-                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">전송</button>
+                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">전송</button>
+                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">날인</button>
                               </div>
                             </div>
                           </div>
@@ -458,12 +457,10 @@
       document.getElementById("btnShow").addEventListener("click", function () {
         modal.show();
       });
-      document.getElementById("btntest").addEventListener("click", function () {
+      document.getElementById("sendbtn").addEventListener("click", function () {
         modal.hide();
       });
 
-      ("#imgshow").click(function(){
-        alert("클릭되었습니다");
 
       });
 
