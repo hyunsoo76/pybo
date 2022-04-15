@@ -67,7 +67,7 @@
 
 <!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
                                 <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
-                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">전송</button>
+                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send" onclick="tetst()">전송</button>
                               </div>
                             </div>
                           </div>
@@ -458,6 +458,10 @@
       document.getElementById("btntest").addEventListener("click", function () {
         modal.hide();
       });
+
+      funtion test(){
+        alert("눌렀냐");
+        }
     </script>
 
 <!--   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
