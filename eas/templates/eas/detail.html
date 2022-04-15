@@ -41,7 +41,7 @@
                       <td height = "80px" width = "150px" bgcolor="#D8D8D8">
 <!--                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>-->
 <!--                          <div class="collapse collapse-horizontal" id="collapseWidthExample">-->
-                          <div id="imgshow" onclick="show()">"클릭해봐"
+                          <div id="imgshow">"클릭해봐"
 <!--                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">-->
                           </div>
 
@@ -462,9 +462,10 @@
         modal.hide();
       });
 
-      function show(){
-      alert("hi);
-      }
+      $("#imgshow").click(function(){
+        alert("클릭되었습니다");
+
+      });
 
 
     </script>
