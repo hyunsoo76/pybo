@@ -501,9 +501,17 @@
 
                 });
 
-                function onDisplay(){
-                    $('#24').show();
-                    };
+
+                $(document).ready(function(){
+                    $('#exampleModal2').on('hidden.bs.modal', function () {
+                            $('#24').show();
+                    });
+
+                });
+
+
+
+                
 
 
              </script>
