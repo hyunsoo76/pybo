@@ -91,7 +91,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-footer row-3 ">
-                                    <div><button type="button" class="btn btn-danger btn-lg" id="send2" onclick="reject()">반려</button></div>
+                                    <div><button type="button" class="btn btn-danger btn-lg" id="send2">반려</button></div>
                                     <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>
                                     <div><button type="button" class="btn btn-primary btn-lg" id="24_send">승인</button></div>
                                   </div>
@@ -518,17 +518,15 @@
                 });
 
 
-<!--                $(function(){-->
-<!--                    $('#send2').click(function(){-->
-<!--                        if($("#24").css("display") == "none"){-->
-<!--                            document.getElementByld('24').innerHTML="반려"-->
+                $(function(){
+                    $('#send2').click(function(){
+                        if($("#24").css("display") == "none"){
+                            document.getElementByld('24').innerHTML="반려"
 
-<!--                        }-->
-<!--                    });-->
-<!--                });-->
-                  $function reject(){
-                     document.getElementByld('24').innerHTML = "반려"
-                  }
+                        }
+                    });
+                });
+
 
 
 
