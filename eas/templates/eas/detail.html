@@ -45,9 +45,10 @@
                     <tr align="center">
                       <td height = "80px" width = "150px" bgcolor="#D8D8D8">
 <!--                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>-->
-                          <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">
-                          </div>
+<!--                          <div class="collapse collapse-horizontal" id="collapseWidthExample">-->
+<!--                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">-->
+                          <div id="first_comfirm" style="display: none"><img src="/static/img/hyunsoo.JPG" class="img-fluid" alt="first_comfirm" id="firstcheck"></div>
+<!--                          </div>-->
 
                           <!-- Button trigger modal -->
 <!--                        <div>-->
@@ -71,8 +72,9 @@
                               <div class="modal-footer">
 
 <!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
-                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">전송</button>
-                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">날인</button>
+                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">취소</button>
+                                <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="first_check">상진</button></div>
+<!--                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">날인</button>-->
                               </div>
                             </div>
                           </div>
@@ -503,6 +505,8 @@
                 });
 
 
+
+
 <!--                $(document).ready(function(){-->
 <!--                    $('#exampleModal2').on('hidden.bs.modal', function () {-->
 <!--                            $('#24').show();-->
@@ -523,6 +527,15 @@
                     $('#send2').click(function(){
                         if($("#24_1").css("display") && $("#24").css("display") == "none"){
                             $('#24_1').show();
+
+                        }
+                    });
+                });
+
+                $(function(){
+                    $('#first_check').click(function(){
+                        if($("#first_comfirm").css("display") == "none"){
+                            $('#first_comfirm').show();
 
                         }
                     });
