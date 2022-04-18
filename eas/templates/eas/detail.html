@@ -82,7 +82,7 @@
 <!--이사 결재란-->
                       </td>
                       <td width = "150px">
-<!--                           <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">-->
+                           <div id="24" style="display: none"></div><img src="/static/img/24.JPG" class="img-fluid" alt="24" id="firstcheck"></div>
                             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -489,6 +489,13 @@
              <script>
                 $(document).ready(function(){
                     $('#exampleModal1').on('hidden.bs.modal', function () {
+                            alert("전송완료");
+                    });
+
+                });
+
+                $(document).ready(function(){
+                    $('#exampleModal2').on('shown.bs.modal', function () {
                             alert("전송완료");
                     });
 
