@@ -512,9 +512,8 @@
 
                 $(function(){
                     $('#24_send').click(function(){
-                        if($("#24").css("display") == "none"){
+                        if($("#24").css("display") && $("#24_1").css("display") == "none"){
                             $('#24').show();
-                            $('#exampleModal2').toggle()
                         }
                     });
                 });
@@ -522,7 +521,7 @@
 
                 $(function(){
                     $('#send2').click(function(){
-                        if($("#24_1").css("display") == "none"){
+                        if($("#24_1").css("display") && $("#24").css("display") == "none"){
                             $('#24_1').show();
 
                         }
