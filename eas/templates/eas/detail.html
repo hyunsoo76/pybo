@@ -93,7 +93,7 @@
                                   <div class="modal-footer row-3 ">
                                     <div><button type="button" class="btn btn-danger btn-lg" id="send2">반려</button></div>
                                     <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>
-                                    <div><button type="button" class="btn btn-primary btn-lg">승인</button></div>
+                                    <div><button type="button" class="btn btn-primary btn-lg" id="24_send">승인</button></div>
                                   </div>
                                   <div class="modal-body1">
                                       <p><u>검토 후 재가 바랍니다.</u></p>
@@ -509,9 +509,16 @@
 
                 });
 
+                $function(){
+                    $('#24_send').click(function(){
+                        if($("#24").css("display") == "none"){
+                            $('#24').show()
+                        }
+                    });
+                });
 
 
-                
+
 
 
              </script>
