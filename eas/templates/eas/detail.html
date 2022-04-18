@@ -82,7 +82,7 @@
 <!--이사 결재란-->
                       </td>
                       <td width = "150px">
-                           <div id="24" style="display: none"></div><img src="/static/img/24.JPG" class="img-fluid" alt="24" id="firstcheck"></div>
+                           <div id="24" style="display: none"><img src="/static/img/hyunsoo.JPG" class="img-fluid" alt="24" id="secondcheck"></div>
                             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -495,7 +495,7 @@
                 });
 
                 $(document).ready(function(){
-                    $('#exampleModal2').on('shown.bs.modal', function () {
+                    $('#exampleModal2').on('hidden.bs.modal', function () {
                             alert("전송완료");
                     });
 
