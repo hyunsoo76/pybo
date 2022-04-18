@@ -502,7 +502,7 @@
 
                 $(document).ready(function(){
                     $('#exampleModal2').on('hidden.bs.modal', function () {
-                            if($("#24").css("display") && $("#24_1").css("display") != "none"){
+                            if($("#24").css("display") || $("#24_1").css("display") != "none"){
                                 alert("전송완료");
                             }
                     });
