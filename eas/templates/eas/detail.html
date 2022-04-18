@@ -110,7 +110,10 @@
                                 </div>
                               </div>
                             </div></td>
+<!--   대표이사 결재란-->
                       <td width = "150px">
+                            <div id="director" style="display: none"><img src="/static/img/taewon.JPG" class="img-fluid" alt="director"></div>
+                            <div id="director_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="director_1"></div>
 <!--                          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap">반려</button>-->
 <!--                                          &nbsp;<button type="button" class="btn btn-outline-secondary btn-sm">승인</button>-->
                             <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,9 +124,9 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-footer row-3 ">
-                                    <div><button type="button" class="btn btn-danger btn-lg">반려</button></div>
+                                    <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
                                     <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button></div>
-                                    <div><button type="button" class="btn btn-primary btn-lg">승인</button></div>
+                                    <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="final">승인</button></div>
                                   </div>
                                   <div class="modal-body">
                                       <p><u>검토 후 재가 바랍니다.</u></p>
@@ -457,47 +460,18 @@
 
     </div>
 
-     <script>
-
-<!--      const container = document.getElementById("exampleModal1");-->
-<!--      const modal = new bootstrap.Modal(container);-->
-
-<!--      document.getElementById("btnShow").addEventListener("click", function () {-->
-<!--        modal.hide();-->
-<!--      });-->
-<!--      document.getElementById("send").addEventListener("click", function () {-->
-<!--        modal.hide();-->
-<!--        alert("확인");-->
-<!--      });-->
-
-<!--      var buttons = document.querySelectorAll('.btn')-->
-<!--        buttons.forEach(function (button) {-->
-<!--          var button = new bootstrap.Button(button)-->
-<!--          button.toggle()-->
-<!--        })-->
-
-<!--     $(document).ready(function(){-->
-<!--            $('#exampleModal1').on('hidde.bs.modal', function () {-->
-<!--                    alert("모탈닫힐때 액션");-->
-<!--            });-->
-
-<!--     });-->
-
-
-    </script>
-
 
 
            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
              <script>
-<!--             모달창 닫힐때 이벤트-->
+<!--  담당 모달창 닫힐때 이벤트-->
                 $(document).ready(function(){
                     $('#exampleModal1').on('hidden.bs.modal', function () {
                             if($("#first_comfirm").css("display") != "none"){
                               alert("전송완료");
                             }
                     });
-
+<!--이사결재란 모달 닫힐때 이벤트-->
                 });
 
                 $(document).ready(function(){
@@ -515,13 +489,32 @@
                                 alert("전송완료");
                                 }
                     });
+<!--대표결제란 모델 닫힐때 이벤트-->
+                });
+
+                $(document).ready(function(){
+                    $('#exampleModal3').on('hidden.bs.modal', function () {
+                            if($("#director").css("display")!= "none"){
+                                alert("전송완료");
+                                }
+                    });
+
+                });
+
+                $(document).ready(function(){
+                    $('#exampleModal3').on('hidden.bs.modal', function () {
+                            if($("#director_1").css("display") != "none"){
+                                alert("전송완료");
+                                }
+                    });
 
                 });
 
 
 
 
-<!-- 모달창 버튼 클릭시 이벤트-->
+
+<!-- 이사 모달창 버튼 클릭시 이벤트-->
 
                 $(function(){
                     $('#24_send').click(function(){
@@ -531,7 +524,6 @@
                     });
                 });
 
-
                 $(function(){
                     $('#send2').click(function(){
                         if($("#24_1").css("display") && $("#24").css("display") == "none"){
@@ -540,11 +532,28 @@
                         }
                     });
                 });
-
+<!-- 담당 모달창 버튼 클릭시 이벤트-->
                 $(function(){
                     $('#first_check').click(function(){
                         if($("#first_comfirm").css("display") == "none"){
                             $('#first_comfirm').show();
+
+                        }
+                    });
+                });
+<!-- 대표 모달창 버튼 클릭시 이벤트-->
+                $(function(){
+                    $('#final').click(function(){
+                        if($("#director").css("display") && $("#director_1").css("display") == "none"){
+                            $('#director').show();
+                        }
+                    });
+                });
+
+                $(function(){
+                    $('#reject_2').click(function(){
+                        if($("#director_1").css("display") && $("#director").css("display") == "none"){
+                            $('#director_1').show();
 
                         }
                     });
