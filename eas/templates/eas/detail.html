@@ -21,6 +21,7 @@
         <p></p>
 <div class="container">
     <form method="post">
+        {% csrf_token %}
         <!-- 오류표시 Start -->
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
