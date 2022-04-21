@@ -1,8 +1,8 @@
 from django.db import models
 
 class Request(models.Model):
-    create_date = models.DateTimeField()
-    select_form = models.CharField(max_length=200)
+    create_date = models.DateTimeField(blank=True)
+    select_form = models.CharField(max_length=200, blank=True)
     subject = models.CharField(max_length=200)
     a_1 = models.CharField(max_length=200)
     a_2 = models.CharField(max_length=200, blank=True)
@@ -83,11 +83,11 @@ class Request(models.Model):
     dojang1 = models.ImageField(blank = True)
     dojang2 = models.ImageField(blank = True)
     dojang3 = models.ImageField(blank = True)
-    aaa = models.CharField(max_length=200)
-    bbb = models.CharField(max_length=200)
-    ccc = models.CharField(max_length=200)
-    ddd = models.CharField(max_length=200)
-    eee = models.CharField(max_length=200)
+    aaa = models.CharField(max_length=200,blank=True)
+    bbb = models.CharField(max_length=200, blank=True)
+    ccc = models.CharField(max_length=200, blank=True)
+    ddd = models.CharField(max_length=200, blank=True)
+    eee = models.CharField(max_length=200, blank=True)
     fff = models.IntegerField(blank=True, null=True)
     ggg = models.IntegerField(blank=True, null=True)
     hhh = models.IntegerField(blank=True, null=True)
