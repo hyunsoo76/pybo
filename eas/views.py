@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from datetime import timezone
+
+from django.shortcuts import render, redirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from .models import Request
@@ -16,5 +18,14 @@ def detail(request, Request_id):
     return render(request, 'eas/detail.html', context)
 
 def Request_create(request):
-    form = RequestForm()
-    return render(request, 'eas/detail.html', {'form': form})
+    if request.method == 'POST':
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            new_Request = form.save(commit=False)
+            new_Request.create_date = timezone.now()
+            new_Request.save()
+            return redirect('pybo:index')
+    else:
+        form = RequestForm()
+    context = {'form': form}
+    return render(request, 'eas/detail.html', context)
