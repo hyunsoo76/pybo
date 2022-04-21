@@ -7,6 +7,7 @@ app_name = 'eas'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('<int:Request_id>/', views.detail),
     path('detail', views.detail, name='detail'),
 ]
 

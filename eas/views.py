@@ -10,6 +10,7 @@ def index(request):
     context = {'Request_list': Request_list}
     return render(request, 'eas/index.html', context)
 
-def detail(request):
-    question = get_object_or_404
-    return render(request, 'eas/detail.html')
+def detail(request, Request_id):
+    Request = Request.objects.get(id=Request_id)
+    context = {'Request': Request}
+    return render(request, 'eas/detail.html', context)
