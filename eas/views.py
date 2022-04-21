@@ -11,6 +11,6 @@ def index(request):
     return render(request, 'eas/index.html', context)
 
 def detail(request, Request_id):
-    new_Request = Request.objects.get(id=Request_id)
+    new_Request = get_object_or_404(Request, pk=Request_id)
     context = {'new_Request': new_Request}
     return render(request, 'eas/detail.html', context)
