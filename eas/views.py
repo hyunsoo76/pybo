@@ -11,6 +11,6 @@ def index(request):
     return render(request, 'eas/index.html', context)
 
 def detail(request, Request_id):
-    Request = Request.objects.get(id=Request_id)
-    context = {'Request': Request}
+    new_Request = Request.objects.get(id=Request_id)
+    context = {'new_Request': new_Request}
     return render(request, 'eas/detail.html', context)
