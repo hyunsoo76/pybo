@@ -20,7 +20,7 @@
 
         <p></p>
 <div class="container">
-    <form method="post" onsubmit="return false">
+    <form method="post" name="insertform">
         {% csrf_token %}
         <!-- 오류표시 Start -->
         {% if form.errors %}
@@ -577,7 +577,10 @@
                         });
                     });
 
-
+                    document.insertform.addEventListener("keydown", evt => {
+                      if (evt.code === "Enter")
+                      evt.preventDefault();
+                    });
 
 
                  </script>
