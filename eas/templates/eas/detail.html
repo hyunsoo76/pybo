@@ -578,7 +578,7 @@
                     });
 
                     document.insertform.addEventListener("keydown", evt => {
-                      if (evt.code === "Enter")
+                      if ((evt.keyCode || evt.which) === 13) {
                       evt.preventDefault();
                     });
 
