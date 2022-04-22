@@ -20,7 +20,7 @@
 
         <p></p>
 <div class="container">
-    <form method="post" name="insertform">
+    <form method="post" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <!-- 오류표시 Start -->
         {% if form.errors %}
@@ -577,10 +577,10 @@
                         });
                     });
 
-                    document.insertform.addEventListener("keydown", evt => {
-                      if ((evt.keyCode || evt.which) === 13) {
-                      evt.preventDefault();
-                    });
+<!--                    document.insertform.addEventListener("keydown", evt => {-->
+<!--                      if ((evt.keyCode || evt.which) === 13) {-->
+<!--                      evt.preventDefault();-->
+<!--                    });-->
 
 
                  </script>
