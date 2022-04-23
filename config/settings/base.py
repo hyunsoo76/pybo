@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'paystub.apps.PaystubConfig',
     'polls.apps.PollsConfig',
-    # 'django.contrib.humaniz',
+    'django.contrib.humaniz',
     'eas.apps.EasConfig',
 
 ]
