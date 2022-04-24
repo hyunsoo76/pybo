@@ -35,11 +35,12 @@ def detail_r_dojang(request, Request_id):
     if request.method == 'POST':
         form = RequestForm(request.POST)
         if form.is_valid():
-            new_detail = form.save(commit=False)
+            Request.aaa = "반려"
+            new_detail = get_object_or_404(Request, pk=Request_id)
             new_detail.create_date = timezone.now()
             new_detail.save()
             return redirect('eas:detail_r')
     else:
         form = RequestForm()
     context = {'form': form}
-    return render(request, 'eas/detail.html', context)
+    return render(request, 'eas/detail_r.html', context)

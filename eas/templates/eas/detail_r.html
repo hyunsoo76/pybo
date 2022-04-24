@@ -85,6 +85,7 @@
 <!--이사 결재란-->
                       </td>
                         <form method="post" onkeydown="return event.key != 'Enter';">
+                            {% csrf_token %}
                       <td width = "150px">
                            <div id="24" style="display: none"><img src="/static/img/hyunsoo.JPG" class="img-fluid" alt="24" id="secondcheck"></div>
                            <div id="24_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="24_1" id="secondcheck1"></div>
