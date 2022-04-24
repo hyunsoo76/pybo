@@ -33,8 +33,8 @@ def Request_create(request):
 
 def detail_r_dojang(request, Request_id):
     if request.method == 'POST':
-        form = RequestForm(request.POST)
-        if form.is_valid():
+        # form = RequestForm(request.POST)
+        # if form.is_valid():
             new_detail = get_object_or_404(Request, pk=Request_id)
             # new_detail = get_object_or_404(Request, pk=Request_id)
             # new_detail.create_date = timezone.now()
