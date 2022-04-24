@@ -38,7 +38,7 @@ def detail_r_dojang(request, new_Rquest_id):
             # new_detail = get_object_or_404(Request, pk=Request_id)
             # new_detail.create_date = timezone.now()
             new_Rquest = Request.object.get(pk = new_Rquest_id)
-            new_Rquestl.aaa = "반려"
+            new_Rquest.aaa = "반려"
             new_Rquest.save()
             # context = {'new_detail': new_Rquest}
             return redirect('eas:detail_r')
