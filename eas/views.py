@@ -36,10 +36,10 @@ def detail_r_dojang(request, new_Rquest_id):
             # new_detail = get_object_or_404(Request, pk=new_Rquest_id)
             # new_detail = get_object_or_404(Request, pk=Request_id)
             # new_detail.create_date = timezone.now()
-            new_detail = request.POST.get('dojang22')
-            new_detail.aaa = "반려"
-            new_detail.save()
-            context = {'new_detail': new_detail}
+            new_Rquest = request.POST.get('dojang22')
+            new_Rquestl.aaa = "반려"
+            new_Rquest.save()
+            context = {'new_detail': new_Rquest}
 
             return render(request, 'eas/detail_r.html', context)
     else:
