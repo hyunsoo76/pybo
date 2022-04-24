@@ -31,18 +31,15 @@ def Request_create(request):
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
 
-def detail_r_dojang(request, Request_id):
+def detail_r_dojang(request, new_Rquest_id):
 
-            new_detail = get_object_or_404(Request, pk=Request_id)
+            new_detail = get_object_or_404(Request, pk=new_Rquest_id)
             # new_detail = get_object_or_404(Request, pk=Request_id)
             # new_detail.create_date = timezone.now()
             new_detail.aaa = "반려"
             new_detail.save()
+            context = {'new_detail': new_detail}
+
+            return render(request, 'eas/detail_r.html', context)
+
             return redirect('eas:detail_r')
-    else:
-        new_detail = get_object_or_404(Request, pk=Request_id)
-        # new_detail = get_object_or_404(Request, pk=Request_id)
-        # new_detail.create_date = timezone.now()
-        new_detail.aaa = "반려"
-        new_detail.save()
-        return redirect('eas:detail_r')
