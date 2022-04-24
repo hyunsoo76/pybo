@@ -84,8 +84,7 @@
 
 <!--이사 결재란-->
                       </td>
-                        <form onkeydown="return event.key != 'Enter';">
-                            {% csrf_token %}
+
                           <td width = "150px">
                           {% if new_Request.aaa == "승인" %}
                            <div id="24"><img src="/static/img/hyunsoo.JPG" class="img-fluid" alt="24" id="secondcheck"></div>
@@ -101,7 +100,10 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                                   </div>
                                   <div class="modal-footer row-3 ">
-                                    <div><a href="{% url 'detail_r_dojang' new_Rquest.id %}" type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="send2">반려</a></div>
+                                      <form method="post" action="/eas/detail_r_dojang" onkeydown="return event.key != 'Enter';">
+                                          {% csrf_token %}
+
+                                    <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="send2" name="reject1">반려</a></div>
                                     <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>
                                     <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="24_send">승인</button></div>
                                   </div>
