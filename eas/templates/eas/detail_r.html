@@ -102,7 +102,7 @@
                                   <div class="modal-footer row-3 ">
                                       <form method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
-                                    <div><a href = "{% url 'eas/detail_r_dojang' new_Rquest.id  %}" type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="send2" name="reject1">반려</a></div>
+                                    <div><a href = "{% url 'eas:detail_r_dojang' new_Rquest.id  %}" type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="send2" name="reject1">반려</a></div>
                                       </form>
                                     <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>
                                     <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="24_send">승인</button></div>
