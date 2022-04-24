@@ -30,3 +30,10 @@ def Request_create(request):
         form = RequestForm()
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
+
+def detail_r_dojang(request, Request_id):
+    new_detail = get_object_or_404(Request, 'aaa')
+    new_detail = 1
+    new_detail.create_date = timezone.now()
+    new_detail.save()
+    return redirect('eas:detail_r')
