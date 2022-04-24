@@ -32,17 +32,14 @@ def Request_create(request):
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
 
-def detail_r_dojang(request):
+def detail_r_dojang(request,Request_id):
 
-        if request.method == 'POST':
+    reject_check = request.POST.get('input_reject')
+    new_Request = Request()
+    new_Request.aaa = reject_check
+    new_Request.save()
+    form = RequestForm()
+    context = {'form': form}
+    return render(request, 'eas/detail_r.html', context)
 
-            form = RequestForm(request.POST)
-            if form.is_valid():
-                new_Request = form.save(commit=False)
-                new_Request.create_date = timezone.now()
-                new_Request.save()
-                return redirect('eas:index')
-        else:
-            form = RequestForm()
-        context = {'form': form}
-        return render(request, 'eas/detail.html', context)
+
