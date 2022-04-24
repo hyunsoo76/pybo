@@ -41,9 +41,9 @@ def detail_r_dojang(request, new_Rquest_id):
             new_Rquest.modify_date = timezone.now()
             new_Rquest.aaa = "반려"
             new_Rquest.save()
-                # context = {'new_detail': new_Rquest}
-                return redirect('eas:detail_r')
-                # return render(request, 'eas/detail_r.html', context)
+            context = {'new_detail': new_Rquest}
+            # return redirect('eas:detail_r')
+            return render(request, 'eas/detail_r.html', context)
         else:
 
                 return redirect('eas:detail_r')
