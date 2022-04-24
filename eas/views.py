@@ -7,6 +7,7 @@ from .models import Request
 from .forms import RequestForm
 from django.http import  HttpResponse
 
+
 def index(request):
     Request_list = Request.objects.order_by('-create_date')
     context = {'Request_list': Request_list}
@@ -32,17 +33,17 @@ def Request_create(request):
     return render(request, 'eas/detail.html', context)
 
 def detail_r_dojang(request, new_Rquest_id):
-    if request.method == 'POST':
 
-            # new_detail = get_object_or_404(Request, pk=new_Rquest_id)
-            # new_detail = get_object_or_404(Request, pk=Request_id)
-            # new_detail.create_date = timezone.now()
-            new_Rquest = Request.object.get(pk = new_Rquest_id)
+        if request.method == 'POST':
+
+            form = RequestForm(request.POST)
+            new_Rquest = form.save(commit=False)
+            new_Rquest.modify_date = timezone.now()
             new_Rquest.aaa = "반려"
             new_Rquest.save()
-            # context = {'new_detail': new_Rquest}
-            return redirect('eas:detail_r')
-            # return render(request, 'eas/detail_r.html', context)
-    else:
+                # context = {'new_detail': new_Rquest}
+                return redirect('eas:detail_r')
+                # return render(request, 'eas/detail_r.html', context)
+        else:
 
-            return redirect('eas:detail_r')
+                return redirect('eas:detail_r')
