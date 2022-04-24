@@ -102,6 +102,7 @@
                                   <div class="modal-footer row-3 ">
                                       <form method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
+                                          <input name="input_reject" type="hidden" value="반려"
                                           <div><a href ="{% url 'detail_r_dojang' new_Rquest.id" type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="send2" name="reject1" value="반려">반려</a></div>
                                       </form>
                                     <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>
@@ -482,24 +483,24 @@
                               alert("전송완료");
                             }
                     });
-<!--이사결재란 모달 닫힐때 이벤트-->
-                });
+<!--&lt;!&ndash;이사결재란 모달 닫힐때 이벤트&ndash;&gt;-->
+<!--                });-->
 
-                $(document).ready(function(){
-                    $('#exampleModal2').on('hidden.bs.modal', function () {
-                            if($("#24").css("display")!= "none"){
-                                alert("전송완료");
-                                }
-                    });
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal2').on('hidden.bs.modal', function () {-->
+<!--                            if($("#24").css("display")!= "none"){-->
+<!--                                alert("전송완료");-->
+<!--                                }-->
+<!--                    });-->
 
-                });
+<!--                });-->
 
-                $(document).ready(function(){
-                    $('#exampleModal2').on('hidden.bs.modal', function () {
-                            if($("#24_1").css("display") != "none"){
-                                alert("전송완료");
-                                }
-                    });
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal2').on('hidden.bs.modal', function () {-->
+<!--                            if($("#24_1").css("display") != "none"){-->
+<!--                                alert("전송완료");-->
+<!--                                }-->
+<!--                    });-->
 <!--대표결제란 모델 닫힐때 이벤트-->
                 });
 
