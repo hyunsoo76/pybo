@@ -84,7 +84,7 @@
 
 <!--이사 결재란-->
                       </td>
-                        <form method="post" action = "{% url 'eas:detail_r_dojang' Rquest.id %}" onkeydown="return event.key != 'Enter';">
+                        <form action = "{% url 'eas:detail_r_dojang' Rquest.id %}" onkeydown="return event.key != 'Enter';">
                             {% csrf_token %}
                           <td width = "150px">
                           {% if new_Request.aaa == "승인" %}
