@@ -84,6 +84,7 @@
 
 <!--이사 결재란-->
                       </td>
+                        <form method="post" onkeydown="return event.key != 'Enter';">
                       <td width = "150px">
                            <div id="24" style="display: none"><img src="/static/img/hyunsoo.JPG" class="img-fluid" alt="24" id="secondcheck"></div>
                            <div id="24_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="24_1" id="secondcheck1"></div>
@@ -94,9 +95,9 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                                   </div>
                                   <div class="modal-footer row-3 ">
-                                    <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="send2"><a href="{% url 'eas:detail_r_dojang'%}">반려</a></button></div>
+                                    <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="send2"><a href="{% url 'eas:detail_r_dojang' %}">반려</a></button></div>
                                     <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>
-                                    <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="24_send">승인</button></div>
+                                    <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="24_send">승인</button></div>
                                   </div>
                                   <div class="modal-body1">
                                       <p>검토 후 재가 바랍니다.</p>
@@ -110,6 +111,7 @@
                                 </div>
                               </div>
                             </div></td>
+                        </form>
 <!--   대표이사 결재란-->
                       <td width = "150px">
                             <div id="director" style="display: none"><img src="/static/img/taewon.JPG" class="img-fluid" alt="director"></div>
