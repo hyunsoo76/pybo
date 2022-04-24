@@ -41,8 +41,8 @@ def detail_r_dojang(request, new_Rquest_id):
             new_Rquestl.aaa = "반려"
             new_Rquest.save()
             context = {'new_detail': new_Rquest}
-
-            return render(request, 'eas/detail_r.html', context)
+            return redirect('eas:detail_r')
+            # return render(request, 'eas/detail_r.html', context)
     else:
 
             return redirect('eas:detail_r')
