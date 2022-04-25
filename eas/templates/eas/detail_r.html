@@ -100,7 +100,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                                   </div>
                                   <div class="modal-footer row-3 ">
-                                      <form method="post" action="eas/{{new_Request.id}}" onkeydown="return event.key != 'Enter';">
+                                      <form method="post" action="{{new_Request.id}}" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
                                           <input name="input_reject" type="hidden" value="반려">
                                           <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="send2" name="reject1" >반려</button></div>
