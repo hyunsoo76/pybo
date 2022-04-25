@@ -33,9 +33,24 @@ def Request_create(request):
     return render(request, 'eas/detail.html', context)
 
 def detail_r_dojang(request,Request_id):
-    new_Request = Request.object.get(pk=Request_id)
-    new_Request.aaa = request.POST['input_reject']
-    new_Request.save()
-    return redirect('eas:index')
+    if request.method == 'POST':
+        form = RequestForm(request.POST, instance=question)
+        if form.is_valid():
+            new_Request = form.save(commit=False)
+            new_Request.create_date = timezone.now()
+            new_Request.save()
+            return redirect('eas:index')
+    else:
+        form = RequestForm()
+    context = {'form': form}
+    return render(request, 'eas/detail.html', context)
+
+
+
+    #
+    # new_Request = Request.object.get(pk=Request_id)
+    # new_Request.aaa = request.POST['input_reject']
+    # new_Request.save()
+    # return redirect('eas:index')
 
 
