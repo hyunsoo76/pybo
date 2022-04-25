@@ -32,10 +32,7 @@ def Request_create(request):
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
 
-def detail_r_dojang(request,Request_id):
-    new_Request = Request.object.get(pk=Request_id)
-    context = {'new_Request': new_Request}
-    return render(request, 'eas/detail_r.html', context)
+def detail_r_dojang(request):
 
     return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다.")
 
