@@ -33,18 +33,9 @@ def Request_create(request):
     return render(request, 'eas/detail.html', context)
 
 def detail_r_dojang(request,new_Request_id):
-    new_Request = get_object_or_404(Request, pk=new_Request_id)
-    if request.method == "POST":
-        form = RequestForm(request.POST, instance=new_Request)
-        if form.is_valid():
-            new_Request = form.save(commit=False)
-            new_Request.modify_date = timezone.now()  # 수정일시 저장
-            new_Request.aaa = "반려"
-            new_Request.save()
-            return redirect('eas:detail', new_Request=new_Request.id)
-    else:
-        form = RequestForm(instance=new_Request)
-    context = {'form': form}
-    return render(request, 'eas/detail.html', context)
+    new_Request = Request.object.get(pk=new_Request_id)
+    new_Request.aaa = request.POST['input_reject']
+    new_Request.save()
+    return redirect('eas:index')
 
 
