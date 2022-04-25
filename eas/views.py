@@ -40,6 +40,6 @@ def detail_r_dojang(request,Request_id):
     new_Request.save()
     form = RequestForm()
     context = {'form': form}
-    return render(request, 'eas/detail.html', context)
+    return render(request, 'eas/detail_r.html', context)
 
 
