@@ -39,7 +39,7 @@ def detail_r_dojang(request, new_Request_id):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
-            new_Request.aaa = "반려"
+            new_Request.aaa = request.POST.get('input_reject')
             new_Request.save()
             return redirect('eas:index')
     else:
