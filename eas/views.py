@@ -32,11 +32,8 @@ def Request_create(request):
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
 
-def detail_r_dojang(request):
-    context = "안년하세요"
-    return render(request, 'eas/index.html', context)
-
-
+def detail_r_dojang(request, Request_id):
+    if request.method == 'POST':
 
     # if request.method == 'POST':
     #     form = RequestForm(request.POST, instance=question)
@@ -52,10 +49,10 @@ def detail_r_dojang(request):
     #
 
 
-    #
-    # new_Request = Request.object.get(pk=Request_id)
-    # new_Request.aaa = request.POST['input_reject']
-    # new_Request.save()
-    # return redirect('eas:index')
+
+    new_Request = Request.object.get(pk=Request_id)
+    new_Request.update(aaa="반려")
+    new_Request.save()
+    return redirect('eas:index')
 
 
