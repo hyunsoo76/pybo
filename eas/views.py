@@ -32,8 +32,8 @@ def Request_create(request):
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
 
-def detail_r_dojang(request,new_Request_id):
-    new_Request = Request.object.get(pk=new_Request_id)
+def detail_r_dojang(request,Request_id):
+    new_Request = Request.object.get(pk=Request_id)
     new_Request.aaa = request.POST['input_reject']
     new_Request.save()
     return redirect('eas:index')
