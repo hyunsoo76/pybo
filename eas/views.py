@@ -38,8 +38,6 @@ def detail_r_dojang(request,Request_id):
 
     new_Request.aaa = reject_check
     new_Request.save()
-    form = RequestForm()
-    context = {'form': form}
     return redirect('eas:index')
 
 
