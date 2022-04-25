@@ -33,18 +33,26 @@ def Request_create(request):
     return render(request, 'eas/detail.html', context)
 
 def detail_r_dojang(request,Request_id):
-    if request.method == 'POST':
-        form = RequestForm(request.POST, instance=question)
-        if form.is_valid():
-            new_Request = form.save(commit=False)
-            new_Request.create_date = timezone.now()
-            new_Request.save()
-            return redirect('eas:index')
-    else:
-        form = RequestForm()
-    context = {'form': form}
-    return render(request, 'eas/detail.html', context)
+    new_Request = Request.object.get(pk=Request_id)
+    context = {'new_Request': new_Request}
+    return render(request, 'eas/detail_r.html', context)
 
+    return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다.")
+
+
+
+    # if request.method == 'POST':
+    #     form = RequestForm(request.POST, instance=question)
+    #     if form.is_valid():
+    #         new_Request = form.save(commit=False)
+    #         new_Request.create_date = timezone.now()
+    #         new_Request.save()
+    #         return redirect('eas:index')
+    # else:
+    #     form = RequestForm()
+    # context = {'form': form}
+    # return render(request, 'eas/detail.html', context)
+    #
 
 
     #
