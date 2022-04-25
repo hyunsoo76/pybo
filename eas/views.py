@@ -51,7 +51,7 @@ def detail_r_dojang(request, Request_id):
 
 
     new_Request = Request.object.get(pk=Request_id)
-    new_Request.update(aaa="반려")
+    new_Request.aaa="반려"
     new_Request.save()
     return redirect('eas:index')
 
