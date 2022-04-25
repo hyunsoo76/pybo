@@ -33,9 +33,9 @@ def Request_create(request):
     return render(request, 'eas/detail.html', context)
 
 def detail_r_dojang(request,Request_id):
-
+    new_Request = get_object_or_404(Request, pk=Request_id)
     reject_check = request.POST.get('input_reject')
-    new_Request = Request()
+
     new_Request.aaa = reject_check
     new_Request.save()
     form = RequestForm()
