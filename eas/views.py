@@ -39,6 +39,7 @@ def detail_r_dojang(request,new_Request_id):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.modify_date = timezone.now()  # 수정일시 저장
+            new_Request.aaa = "반려"
             new_Request.save()
             return redirect('eas:detail', new_Request=new_Request.id)
     else:
