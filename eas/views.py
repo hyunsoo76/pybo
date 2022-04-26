@@ -26,7 +26,7 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            return render(request, 'eas/detail.html')
+            return redirect('eas:index', id(request))
     else:
         form = RequestForm()
     context = {'form': form}
