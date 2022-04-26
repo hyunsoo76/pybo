@@ -1,4 +1,3 @@
-from django.urls import reverse
 from django.utils import timezone
 
 from django.shortcuts import render, redirect
@@ -6,7 +5,7 @@ from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from .models import Request
 from .forms import RequestForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import  HttpResponse
 
 
 def index(request):
@@ -27,7 +26,7 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            return HttpResponseRedirect(reverse('eas:index'))
+            return redirect('eas:index')
     else:
         form = RequestForm()
     context = {'form': form}
