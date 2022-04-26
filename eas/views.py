@@ -35,7 +35,7 @@ def Request_create(request):
 def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == 'POST':
-        form = RequestForm(request.POST, instance=new_Request)
+        form = RequestForm(request.POST, instance=new_Request_id)
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
