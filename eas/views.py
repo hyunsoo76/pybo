@@ -26,7 +26,7 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+            return redirect('eas:index', new_Request.id)
     else:
         form = RequestForm()
     context = {'form': form}
