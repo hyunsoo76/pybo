@@ -15,7 +15,9 @@ def index(request):
 
 def detail(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
+    new_Request.total = new_Request.a_1 + new_Request.b_1
     context = {'new_Request': new_Request}
+
 
     return render(request, 'eas/detail_r.html', context)
 
@@ -25,17 +27,8 @@ def Request_create(request):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
-            new_Request.total = new_Request.a_1 + new_Request.b_1
-
-
-
-
             new_Request.save()
             return redirect('eas:index')
-
-
-
-
     else:
         form = RequestForm()
     context = {'form': form}
