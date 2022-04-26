@@ -68,5 +68,4 @@ def detail_update(request, new_Request_id):
         temp = request.POST.get('input_reject')
         new_Request.aaa = temp
         new_Request.save()
-        contex = int(request.id)
-        return redirect('eas:index', contex)
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
