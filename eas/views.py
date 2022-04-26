@@ -53,3 +53,25 @@ def detail_okupdate(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+def detail_update2(request, new_Request_id):
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
+    if request.method == "POST":
+        temp = request.POST.get('input_reject')
+        if new_Request.bbb != "승인":
+            new_Request.bbb = temp
+            new_Request.save()
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        else:
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+def detail_okupdate2(request, new_Request_id):
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
+    if request.method == "POST":
+        temp = request.POST.get('input_ok')
+        if new_Request.bbb != "반려":
+            new_Request.bbb = temp
+            new_Request.save()
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        else:
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))

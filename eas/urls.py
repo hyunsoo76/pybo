@@ -12,6 +12,8 @@ urlpatterns = [
     path('Request/create/', views.Request_create, name='Request_create'),
     path('detail/update/<int:new_Request_id>/', views.detail_update, name='detail_update'),
     path('detail/okupdate/<int:new_Request_id>/', views.detail_okupdate, name='detail_okupdate'),
+    path('detail/update2/<int:new_Request_id>/', views.detail_update2, name='detail_update2'),
+    path('detail/okupdate2/<int:new_Request_id>/', views.detail_okupdate2, name='detail_okupdate2'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

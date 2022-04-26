@@ -112,6 +112,7 @@
                                           {% csrf_token %}
                                           <input name="input_ok" type="hidden" value="승인">
                                         <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="24_send">승인</button></div>
+                                      </form>
                                   </div>
                                   <div class="modal-body1">
                                       <p>검토 후 재가 바랍니다.</p>
@@ -128,10 +129,13 @@
 
 <!--   대표이사 결재란-->
                       <td width = "150px">
-                            <div id="director" style="display: none"><img src="/static/img/taewon.JPG" class="img-fluid" alt="director"></div>
-                            <div id="director_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="director_1"></div>
-<!--                          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap">반려</button>-->
-<!--                                          &nbsp;<button type="button" class="btn btn-outline-secondary btn-sm">승인</button>-->
+                          {% if new_Request.bbb == "승인" %}
+                            <div id="director"><img src="/static/img/taewon.JPG" class="img-fluid" alt="director"></div>
+                          {% elif new_Request.bbb == "반려" %}
+                            <div id="director_1"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="director_1"></div>
+                          {% else %}
+                          <div id="director_2"></div>
+                          {% endif %}
                             <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -140,9 +144,19 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-footer row-3 ">
-                                    <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
-                                    <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button></div>
-                                    <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="final">승인</button></div>
+                                      <form action="{% url 'eas:detail_update2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
+                                          {% csrf_token %}
+                                          <input name="input_reject2" type="hidden" value="반려">
+                                        <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
+                                      </form>
+
+                                        <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button></div>
+
+                                      <form action="{% url 'eas:detail_okupdate2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
+                                          {% csrf_token %}
+                                          <input name="input_ok2" type="hidden" value="승인">
+                                        <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="final">승인</button></div>
+                                      </form>
                                   </div>
                                   <div class="modal-body">
                                       <p>검토 후 재가 바랍니다.</p>
@@ -506,26 +520,26 @@
 <!--                                alert("전송완료");-->
 <!--                                }-->
 <!--                    });-->
-<!--대표결제란 모델 닫힐때 이벤트-->
-                });
+<!--&lt;!&ndash;대표결제란 모델 닫힐때 이벤트&ndash;&gt;-->
+<!--                });-->
 
-                $(document).ready(function(){
-                    $('#exampleModal3').on('hidden.bs.modal', function () {
-                            if($("#director").css("display")!= "none"){
-                                alert("전송완료");
-                                }
-                    });
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal3').on('hidden.bs.modal', function () {-->
+<!--                            if($("#director").css("display")!= "none"){-->
+<!--                                alert("전송완료");-->
+<!--                                }-->
+<!--                    });-->
 
-                });
+<!--                });-->
 
-                $(document).ready(function(){
-                    $('#exampleModal3').on('hidden.bs.modal', function () {
-                            if($("#director_1").css("display") != "none"){
-                                alert("전송완료");
-                                }
-                    });
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal3').on('hidden.bs.modal', function () {-->
+<!--                            if($("#director_1").css("display") != "none"){-->
+<!--                                alert("전송완료");-->
+<!--                                }-->
+<!--                    });-->
 
-                });
+<!--                });-->
 
 
 
