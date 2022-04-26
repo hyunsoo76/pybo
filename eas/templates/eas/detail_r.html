@@ -30,7 +30,7 @@
 
                 <h3 align="center">품 의 서</h3>
         <hr>
-            <div class="col align-items-bottom align=middle" id="now_date">2022-4-5 13:30</div>
+            <div class="col align-items-bottom align=middle" id="now_date">{{new_Request.create_date}}</div>
             </div>
 
             <div class="col-6">
@@ -477,13 +477,13 @@
             <div class="col-6">
                   <div class="mb-3 bg-secondary text-white">
                   <label for="chamjo1" class="form-label">참조사항</label>
-                  <textarea class="form-control" id="chamjo1" rows="3"></textarea>
+                  <span class="form-control" id="chamjo1" rows="3"></span>
                   </div>
             </div>
             <div class="col-6">
               <div class="mb-3 bg-secondary text-white">
               <label for="jisi1" class="form-label">지시사항</label>
-              <span class="form-control" id="jisi1" rows="3">{{ new_Rquest.aaa }}</span>
+              <span class="form-control" id="jisi1" rows="3"></span>
               </div>
             </div>
         </div>
