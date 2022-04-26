@@ -25,8 +25,17 @@ def Request_create(request):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
+            new_Request.total = new_Request.a_1 + new_Request.b_1
+
+
+
+
             new_Request.save()
             return redirect('eas:index')
+
+
+
+
     else:
         form = RequestForm()
     context = {'form': form}
