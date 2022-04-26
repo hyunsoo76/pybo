@@ -45,8 +45,8 @@ def detail_update(request, new_Request_id):
             # return render(request, 'eas/detail_r.html', context)
             return redirect('eas:detail.html', new_Request_id=new_Request.id)
         else:
-            new_Request = form.save(commit=False)
-            new_Request.create_date = timezone.now()
+            # new_Request = form.save(commit=False)
+            # new_Request.create_date = timezone.now()
             new_Request.aaa = request.POST.get('input_reject')
             new_Request.save()
             # context = {'new_Request': new_Request}
