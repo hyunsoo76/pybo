@@ -40,6 +40,7 @@ def detail_update(request, new_Request_id):
         temp = request.POST.get('input_reject')
         if new_Request.aaa != "승인":
             new_Request.aaa = temp
+            new_Request.date1 = timezone.now()
             new_Request.save()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
@@ -51,6 +52,7 @@ def detail_okupdate(request, new_Request_id):
         temp = request.POST.get('input_ok')
         if new_Request.aaa != "반려":
             new_Request.aaa = temp
+            new_Request.date1 = timezone.now()
             new_Request.save()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
@@ -62,6 +64,7 @@ def detail_update2(request, new_Request_id):
         temp = request.POST.get('input_reject2')
         if new_Request.bbb != "승인":
             new_Request.bbb = temp
+            new_Request.date2 = timezone.now()
             new_Request.save()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
@@ -73,6 +76,7 @@ def detail_okupdate2(request, new_Request_id):
         temp = request.POST.get('input_ok2')
         if new_Request.bbb != "반려":
             new_Request.bbb = temp
+            new_Request.date2 = timezone.now()
             new_Request.save()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
