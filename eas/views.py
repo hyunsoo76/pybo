@@ -23,10 +23,11 @@ def Request_create(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
         if form.is_valid():
+
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            return redirect('int:Request_id')
+            return redirect('eas:int:Request_id')
     else:
         form = RequestForm()
     context = {'form': form}
