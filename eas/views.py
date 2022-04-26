@@ -32,8 +32,8 @@ def Request_create(request):
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
 
-def detail_update(request, Request_id):
-    new_Request = get_object_or_404(Request, pk=Request_id)
+def detail_update(request, new_Request_id):
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == 'POST':
         form = RequestForm(request.POST, instance=new_Request)
         if form.is_valid():
@@ -45,7 +45,7 @@ def detail_update(request, Request_id):
             # return render(request, 'eas/detail_r.html', context)
             return redirect('eas:detail.html', new_Request_id=new_Request.id)
         else:
-            # form = RequestForm(request.POST, instance=new_Request)
+            form = RequestForm(request.POST, instance=new_Request)
             new_Request = form.save(commit=False)
             new_Request.aaa = request.POST.get('input_reject')
             new_Request.save()
