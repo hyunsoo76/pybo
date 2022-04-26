@@ -43,7 +43,7 @@ def detail_update(request, Request_id):
             new_Request.save()
             # context = {'new_Request': new_Request}
             # return render(request, 'eas/detail_r.html', context)
-            return redirect('eas:detail.html', new_Request_id=new_Request.id)
+            return redirect('eas:detail.html')
         else :
             form = RequestForm(request.POST, instance=new_Request)
             new_Request = form.save(commit=False)
