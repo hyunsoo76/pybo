@@ -57,7 +57,7 @@ def detail_okupdate(request, new_Request_id):
 def detail_update2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
-        temp = request.POST.get('input_reject')
+        temp = request.POST.get('input_reject2')
         if new_Request.bbb != "승인":
             new_Request.bbb = temp
             new_Request.save()
@@ -68,7 +68,7 @@ def detail_update2(request, new_Request_id):
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
-        temp = request.POST.get('input_ok')
+        temp = request.POST.get('input_ok2')
         if new_Request.bbb != "반려":
             new_Request.bbb = temp
             new_Request.save()
