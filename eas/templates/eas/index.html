@@ -11,6 +11,9 @@
     <title>대진산업 전자문서결재</title>
   </head>
   <body>
+  <ul>
+      <a href="{% url 'eas:Request_create' %}" class="btn btn-secondary">작성하기</a>
+  </ul>
     {% if Request_list %}
     <ul>
       {% for Request in Request_list %}
