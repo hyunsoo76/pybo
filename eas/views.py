@@ -26,7 +26,7 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            return redirect('eas:index')
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
     else:
         form = RequestForm()
     context = {'form': form}
@@ -36,7 +36,7 @@ def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
         temp = request.POST.get('input_reject')
-        if new_Request.aaa != "반려":
+        if new_Request.aaa != "승인":
             new_Request.aaa = temp
             new_Request.save()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
