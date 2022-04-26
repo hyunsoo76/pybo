@@ -51,12 +51,12 @@ def detail_update(request, Request_id):
             new_Request.save()
             # context = {'new_Request': new_Request}
             # return render(request, 'eas/detail_r.html', context)
-            return redirect('eas:detail.html', new_Request_id=new_Request.id)
+            return redirect('eas:detail.html')
 
     else:
         form = RequestForm(request.POST, instance=new_Request)
         if form.is_valid():
-            new_Request = get_object_or_404(Request, pk=new_Request_id)
+            new_Request = get_object_or_404(Request, pk=Request_id)
             new_Request.aaa = "반려"
             new_Request.save()
             context = {'new_Request': new_Request}
