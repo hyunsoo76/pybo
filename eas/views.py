@@ -36,10 +36,12 @@ def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
         temp = request.POST.get('input_reject')
-        new_Request.aaa = temp
-        new_Request.save()
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-
+        if new_Request.aaa != "반려":
+            new_Request.aaa = temp
+            new_Request.save()
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        else:
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 def detail_okupdate(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -48,4 +50,6 @@ def detail_okupdate(request, new_Request_id):
         if new_Request.aaa != "반려":
             new_Request.aaa = temp
             new_Request.save()
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
