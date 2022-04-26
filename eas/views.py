@@ -27,7 +27,7 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            return redirect('eas:Request_id')
+            return HttpResponse('eas:Request_id')
     else:
         form = RequestForm()
     context = {'form': form}
