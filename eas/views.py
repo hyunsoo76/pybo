@@ -68,5 +68,5 @@ def detail_update(request, new_Request_id):
         temp = request.POST.get('input_reject')
         new_Request.aaa = temp
         new_Request.save()
-        contex = int(new_Request_id)
+        contex = int(Request_id)
         return redirect('eas:index', contex)
