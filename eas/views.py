@@ -35,13 +35,13 @@ def Request_create(request):
 def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == 'POST':
-        form = RequestForm(request.POST, instance=new_Request_id)
+        form = RequestForm(request.POST, instance=new_Request)
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.aaa = request.POST.get('input_reject')
             new_Request.save()
-            return redirect('eas:index')
+            return redirect('eas:detail.html', new_Request_id=new_Request.id)
     else:
         form = RequestForm()
     context = {'form': form}
