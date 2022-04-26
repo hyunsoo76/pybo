@@ -10,7 +10,7 @@ urlpatterns = [
     path('<int:Request_id>/', views.detail),
     path('detail', views.detail, name='detail'),
     path('Request/create/', views.Request_create, name='Request_create'),
-    path('detail/r/dojang/<int:Request_id>/', views.detail_r_dojang, name='detail_r_dojang'),
+    path('detail/update/<int:Request_id>/', views.detail_update, name='detail_update'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
