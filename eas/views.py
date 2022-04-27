@@ -42,11 +42,12 @@ def detail_update(request, new_Request_id):
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
             new_Request.save()
+            messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
-    messages.warning(request, "결재완료")
+
 
 def detail_okupdate(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -56,10 +57,11 @@ def detail_okupdate(request, new_Request_id):
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
             new_Request.save()
+            messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    messages.warning(request, "결재완료")
+
 
 def detail_update2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -69,10 +71,11 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
+            messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    messages.warning(request, "결재완료")
+
 
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -82,7 +85,7 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
+            messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    messages.warning(request, "결재완료")
