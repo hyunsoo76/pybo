@@ -21,7 +21,7 @@ def detail(request, Request_id):
               new_Request.j_5]
     totalsum = 0
     for total in totals:
-        if total == int:
+        if total != False:
             totalsum = totalsum + total
 
     new_Request.total = totalsum
