@@ -42,7 +42,7 @@ def detail_update(request, new_Request_id):
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
             new_Request.save()
-            messages.warning(request, "결재완료")
+            messages.warning(self.request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
