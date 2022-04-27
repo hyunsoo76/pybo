@@ -23,7 +23,9 @@ def detail(request, Request_id):
     for total in totals:
         if total == int:
             totalsum = totalsum + total
-            new_Request.total = totalsum
+
+    new_Request.total = totalsum
+
     context = {'new_Request': new_Request}
 
 
