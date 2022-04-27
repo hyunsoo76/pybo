@@ -1,5 +1,5 @@
 from django.utils import timezone
-
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
@@ -46,6 +46,8 @@ def detail_update(request, new_Request_id):
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
+    messages.warning(request, "결재완료")
+
 def detail_okupdate(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
@@ -57,6 +59,7 @@ def detail_okupdate(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+    messages.warning(request, "결재완료")
 
 def detail_update2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -69,6 +72,7 @@ def detail_update2(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+    messages.warning(request, "결재완료")
 
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -81,3 +85,4 @@ def detail_okupdate2(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+    messages.warning(request, "결재완료")
