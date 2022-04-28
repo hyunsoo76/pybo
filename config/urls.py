@@ -24,6 +24,6 @@ urlpatterns = [
     path('common/', include('common.urls')),
     path('polls/', include('polls.urls')),
     path('eas/', include('eas.urls')),
-    path('', base_views.index, name='index'),        # '/' 에 해당되는 path
+    path('', include('eas.urls')),        # '/' 에 해당되는 path
     
 ]
