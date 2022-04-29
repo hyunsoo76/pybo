@@ -18,7 +18,6 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'eas:index' %}">Eas</a>
-            <a class="navbar-brand justify-content-start" href="{% url 'eas:Request_create' %}">write</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,12 +25,12 @@
              <form class="justify-content-start">
               <a class="navbar-brand" href="{% url 'eas:Request_create' %}">write</a>
              </form>
-<!--          <div class="navbar-collapse collapse ">-->
-            <form class="d-flex justify-content-end">
+          <div class="navbar-collapse collapse justify-content-end">
+            <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
-<!--          </div>-->
+          </div>
 
           </div>
         </div>
