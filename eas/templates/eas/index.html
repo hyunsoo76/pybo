@@ -96,7 +96,7 @@
     <!-- 페이징처리 끝 -->
 </div>
 <!-- 검색 -->
-    <form id="searchForm" method="get" action="{% url 'index' %}">
+    <form id="searchForm" method="get" action="{% url 'eas:index' %}">
         <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
         <input type="hidden" id="page" name="page" value="{{ page }}">
     </form>
