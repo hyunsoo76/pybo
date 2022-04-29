@@ -26,7 +26,7 @@
       </td>
       <td>{{ Request.aaa }}</td>
       <td>{{ Request.bbb }}</td>
-      <td>{{ Request.create_date }}</td>
+      <td>{{ Request.create_date|date:'y/n/d/g:i' }}</td>
     </tr>
         {% endfor %}
 
