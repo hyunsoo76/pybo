@@ -4,9 +4,11 @@
 <div class="container container-fluid">
     <table class="table text-align">
         <thead>
-        <tr class="table-dark text-align">
-            <th><span></span>No</th>
-            <th>제 목</th>
+        <tr class="table-dark text-center">
+            <th>No</th>
+            <th style="width:50%">제목</th>
+            <th>이사</th>
+            <th>대표</th>
             <th>작성일시</th>
         </tr>
         </thead>
@@ -14,14 +16,16 @@
 
     {% if Request_list %}
     {% for Request in Request_list %}
-    <tr>
+    <tr class="text-center">
       <td>
        <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
        {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
       </td>
-      <td>
+      <td class="text-start">
       <a href ="/eas/{{ Request.id }}/">{{Request.subject }}</a>
       </td>
+      <td>{{ Request.aaa }}</td>
+      <td>{{ Request.bbb }}</td>
       <td>{{ Request.create_date }}</td>
     </tr>
         {% endfor %}
