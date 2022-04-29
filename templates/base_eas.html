@@ -44,7 +44,7 @@
 <!--            </form>-->
              <form class="d-flex justify-content-end" id="search">
               <div class="input-group">
-                    <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}" onKeypress="javascript:if(event.keyCode==13){search_onclick_submit}"/>
+                    <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}" onKeypress="javascript:if(event.keyCode==13){enterkey();}"/>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="btn_search" onkeyup="enterkey();">Search</button>
                     </div>
@@ -58,7 +58,7 @@
        <script type='text/javascript'>
         function enterkey() {
             if (window.event.keyCode == 13) {
-                 $("#search_form").submit();
+                 $("#search").submit();
             }
         }
        </script>
