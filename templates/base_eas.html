@@ -13,6 +13,15 @@
   </head>
 
   <body>
+
+  <script type='text/javascript'>
+        function enterkey() {
+            if (window.event.keyCode == 13) {
+                 $("#search").submit();
+            }
+        }
+  </script>
+  
   <!-- 네비게이션바 -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
@@ -55,13 +64,7 @@
 
 
         </div>
-       <script type='text/javascript'>
-        function enterkey() {
-            if (window.event.keyCode == 13) {
-                 $("#search").submit();
-            }
-        }
-       </script>
+
 
 
 <!--            <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
