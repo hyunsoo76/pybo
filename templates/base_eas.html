@@ -44,9 +44,9 @@
 <!--            </form>-->
              <form class="d-flex justify-content-end" id="search">
               <div class="input-group">
-                    <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
+                    <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }" onkeyup="enterkey();"/>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="btn_search" onkeyup="enterkey();">Search</button>
+                        <button class="btn btn-outline-secondary" type="button" id="btn_search">Search</button>
                     </div>
                 </div>
               </form>
@@ -55,13 +55,13 @@
 
 
         </div>
-<!--       <script type='text/javascript'>-->
-<!--        function enterkey() {-->
-<!--            if (window.event.keyCode == 13) {-->
-<!--                 $("#search").submit();-->
-<!--            }-->
-<!--        }-->
-<!--       </script>-->
+       <script type='text/javascript'>
+        function enterkey() {
+            if (window.event.keyCode == 13) {
+                 $("#search").submit();
+            }
+        }
+       </script>
 
 
 <!--            <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
