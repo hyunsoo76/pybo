@@ -1,19 +1,37 @@
 {% extends 'base_eas.html' %}
 {% block content %}
-  <ul>
-      <a href="{% url 'eas:Request_create' %}" class="btn btn-secondary">작성하기</a>
-  </ul>
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+
     {% if Request_list %}
-    <ul>
-      {% for Request in Request_list %}
-      <li><a href ="/eas/{{ Request.id }}/">{{Request.subject }}</a></li>
-      {% endfor %}
-    </ul>
+    {% for Request in Request_list %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>
+      <a href ="/eas/{{ Request.id }}/">{{Request.subject }}</a>
+      </td>
+      <td>{{ Request.create_date }}</td>
+    </tr>
+        {% endfor %}
+
     {% else %}
+    <tr>
      <p>결재 리스트가 없습니다.</p>
+    </tr>
     {% endif %}
+      <a href="{% url 'eas:Request_create' %}" class="btn btn-secondary">작성하기</a>
 
-
+        </tbody>
+    </table>
+</div>
 
 
 
