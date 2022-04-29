@@ -42,9 +42,9 @@
 <!--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search_kw">-->
 <!--              <button class="btn btn-outline-light" type="submit" id="btn_search">Search</button>-->
 <!--            </form>-->
-             <form class="d-flex justify-content-end" id="search_form">
+             <form class="d-flex justify-content-end" id="searchf">
               <div class="input-group">
-                    <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
+                    <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}" onKeypress="javascript:if(event.keyCode==13){searchf_onclick_submit}"/>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="btn_search" onkeyup="enterkey();">Search</button>
                     </div>
