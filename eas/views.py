@@ -89,12 +89,13 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            return redirect('eas:index')
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+            # return redirect('eas:index')
     else:
         form = RequestForm()
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
-    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
 
 def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -102,7 +103,6 @@ def detail_update(request, new_Request_id):
         temp = request.POST.get('input_reject')
         if new_Request.aaa != "승인":
             new_Request.aaa = temp
-            new_Request.date1 = timezone.now()
             new_Request.save()
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
