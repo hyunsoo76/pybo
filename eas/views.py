@@ -90,8 +90,27 @@ def Request_create(request):
             new_Request.create_date = timezone.now()
             new_Request.save()
             lastid = Request.objects.order_by('-id')[0]
-            # context = {'lastid': lastid}
-            return redirect('eas/index/lastid.html')
+            global Request_id
+            global detail
+            Request_id= lastid
+            def detail(request, Request_id):
+                new_Request = get_object_or_404(Request, pk=Request_id)
+                totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                          new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                          new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                          new_Request.j_5]
+                totalsum = 0
+                for total in totals:
+                    if total != None:
+                        totalsum = totalsum + total
+
+                new_Request.total = totalsum
+
+                context = {'new_Request': new_Request}
+
+                return render(request, 'eas/detail_r.html', context)
+
+            # return redirect('eas/index/lastid.html')
     else:
         form = RequestForm()
     context = {'form': form}
