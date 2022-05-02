@@ -89,7 +89,7 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            lastid = Request.objects.latest('id')
+            lastid = Request.objects.order_by('-id')[0]
             # context = {'lastid': lastid}
             return redirect('eas/index/lastid.html')
     else:
