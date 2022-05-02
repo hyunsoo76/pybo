@@ -25,8 +25,8 @@
         <tr class="table-secondary text-center">
             <th>No</th>
             <th style="width:70%">제목</th>
-            <th style="width:5% d-none d-sm-block">이사</th>
-            <th style="width:5% d-none d-sm-block">대표</th>
+            <th style="width:5%">이사</th>
+            <th style="width:5%">대표</th>
             <th>작성일시</th>
         </tr>
         </thead>
@@ -42,8 +42,8 @@
       <td class="text-start">
       <a href ="/eas/{{ Request.id }}/">{{Request.subject }}</a>
       </td>
-      <td style="d-none d-sm-block">{{ Request.aaa }}</td>
-      <td style="d-none d-sm-block">{{ Request.bbb }}</td>
+      <td>{{ Request.aaa }}</td>
+      <td>{{ Request.bbb }}</td>
       <td>{{ Request.create_date|date:'y/n/d/g:i' }}</td>
     </tr>
         {% endfor %}
