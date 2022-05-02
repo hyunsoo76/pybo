@@ -93,7 +93,7 @@ def Request_create(request):
     else:
         form = RequestForm()
     context = {'form': form}
-    render(request, 'eas/detail.html', context)
+    return render(request, 'eas/detail.html', context)
     return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 def detail_update(request, new_Request_id):
