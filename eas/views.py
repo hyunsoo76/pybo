@@ -110,7 +110,6 @@ def Request_create(request):
 
                 return render(request, 'eas/detail_r.html', context)
 
-            # return redirect('eas/index/lastid.html')
     else:
         form = RequestForm()
     context = {'form': form}
