@@ -81,7 +81,6 @@ def detail(request, Request_id):
 
     return render(request, 'eas/detail_r.html', context)
 
-
 def Request_create(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
@@ -89,32 +88,11 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            lastid = Request.objects.order_by('-id')[0]
-            global Request_id
-            global detail
-            Request_id= lastid
-            def detail(request, Request_id):
-                new_Request = get_object_or_404(Request, pk=Request_id)
-                totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                          new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                          new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                          new_Request.j_5]
-                totalsum = 0
-                for total in totals:
-                    if total != None:
-                        totalsum = totalsum + total
-
-                new_Request.total = totalsum
-
-                context = {'new_Request': new_Request}
-
-                return render(request, 'eas/detail_r.html', context)
-
+            return redirect('eas:index')
     else:
         form = RequestForm()
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
-
 
 def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -122,6 +100,7 @@ def detail_update(request, new_Request_id):
         temp = request.POST.get('input_reject')
         if new_Request.aaa != "승인":
             new_Request.aaa = temp
+            new_Request.date1 = timezone.now()
             new_Request.save()
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
