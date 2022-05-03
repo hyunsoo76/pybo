@@ -39,7 +39,7 @@
        <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
        {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
       </td>
-      <td class="text-left" style ="font-color:#000000">
+      <td class="text-start" style ="font-color:#000000">
       <a href ="/eas/{{ Request.id }}/">{{Request.subject }}</a>
       </td>
       <td>{{ Request.aaa }}</td>
