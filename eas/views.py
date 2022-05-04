@@ -149,3 +149,18 @@ def detail_okupdate2(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+
+def Request_modify(request, new_Request_id):
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
+    if request.method == "POST":
+        form = RequestForm(request.POST, instance=new_Request)
+        if form.is_valid():
+            new_Request = form.save(commit=False)
+            new_Request.create_date = timezone.now()  # 수정일시 저장
+            new_Request.save()
+            return redirect('eas:index', Request_id=Request.id)
+    else:
+        form = RequestForm(instance=new_Request)
+    context = {'form': form}
+    return render(request, 'eas/Request_form.html', context)
