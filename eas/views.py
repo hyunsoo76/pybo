@@ -77,8 +77,6 @@ def detail(request, Request_id):
     new_Request.total = totalsum
 
     context = {'new_Request': new_Request}
-
-
     return render(request, 'eas/detail_r.html', context)
 
 def Request_create(request):
@@ -159,12 +157,14 @@ def Request_modify(request, new_Request_id):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()  # 수정일시 저장
             new_Request.save()
-            return redirect('eas:Request_modify', Request_id=new_Request.id)
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
     else:
         form = RequestForm(request.POST, instance=new_Request)
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()  # 수정일시 저장
             new_Request.save()
-            return redirect('eas:Request_modify', Request_id=new_Request.id)
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+
 
