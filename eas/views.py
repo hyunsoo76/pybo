@@ -159,12 +159,12 @@ def Request_modify(request, new_Request_id):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()  # 수정일시 저장
             new_Request.save()
-            return redirect('eas:detail', Request_id=Request.id)
+            return redirect('eas:detail', Request_id=new_Request.id)
     else:
         form = RequestForm(request.POST, instance=new_Request)
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()  # 수정일시 저장
             new_Request.save()
-            return redirect('eas:detail', Request_id=Request.id)
+            return redirect('eas:detail', Request_id=new_Request.id)
 
