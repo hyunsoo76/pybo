@@ -162,7 +162,7 @@ def Request_modify(request, new_Request_id):
     else:
         form = RequestForm(instance=new_Request)
         context = {'form': form}
-        return render(request, 'eas/detail_modify.html', context)
+        return render(request, 'eas/detail_r.html', context)
 
 def detail_modify(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
