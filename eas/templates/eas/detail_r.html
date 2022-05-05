@@ -483,7 +483,7 @@
     </div>
 <!--수정버튼-->
     <div class="my-3">
-            {% if Request.aaa == Null %}
+            {% if Request.aaa == none %}
             <a href="{% url 'eas:Request_modify' new_Request.id  %}"
                class="btn btn-sm btn-outline-secondary">수정</a>
             {% endif %}
