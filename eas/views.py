@@ -161,7 +161,7 @@ def Request_modify(request, new_Request_id):
     else:
         form = RequestForm(instance=new_Request)
         context = {'form': form}
-        return render(request, 'eas/Request_form.html', context)
+        return render(request, 'eas/detail_modify.html', context)
 
 
 
