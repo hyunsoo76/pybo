@@ -163,7 +163,8 @@ def Request_modify(request, new_Request_id):
         form = RequestForm(instance=new_Request)
         context = {'form': form}
         return render(request, 'eas/detail_modify.html', context)
-    return redirect('eas:views.detail', Request_id=new_Request.id)
+
+    redirect('eas:views.detail', Request_id=new_Request.id)
 
 def detail_modify(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
