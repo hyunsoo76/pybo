@@ -8,9 +8,6 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
-import base64
 
 
 def index(request):
@@ -132,25 +129,7 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            # pushsafer
-            # url = 'https://www.pushsafer.com/api'
-            # post_fields = {
-            #     "t": 'Test',
-            #     "m": 'Test Message',
-            #     "s": 11,
-            #     "v": 3,
-            #     "i": 33,
-            #     "c": '#FF0000',
-            #     "d": all,
-            #     "u": 'https://www.pushsafer.com',
-            #     "ut": 'Open Pushsafer',
-            #     "k": 'V7n0lT68dTeoYJU6YQiW',
-            # }
-            # request = Request(url, urlencode(post_fields).encode())
-            # json = urlopen(request).read().decode()
-            # print(json)
-
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+            messages.warning(request, "결재완료")
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
