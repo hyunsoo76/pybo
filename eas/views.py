@@ -146,10 +146,11 @@ def detail_update2(request, new_Request_id):
                 "ut": 'Open Pushsafer',
                 "k": 'V7n0lT68dTeoYJU6YQiW',
             }
-
             request = Request(url, urlencode(post_fields).encode())
             json = urlopen(request).read().decode()
             print(json)
+
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
