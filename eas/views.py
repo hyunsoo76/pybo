@@ -133,7 +133,7 @@ def detail_update2(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found', message='confirm'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found', message='confirm'))
 
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
