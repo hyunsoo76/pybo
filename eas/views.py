@@ -158,8 +158,7 @@ def Request_modify(request, new_Request_id):
             new_Request.create_date = timezone.now()  # 수정일시 저장
             new_Request.save()
             # return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-            return redirect('views.detail')
-
+            return redirect('eas:detail_r')
     else:
         form = RequestForm(instance=new_Request)
         context = {'form': form}
