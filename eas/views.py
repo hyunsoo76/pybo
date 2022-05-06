@@ -132,12 +132,9 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-        else:
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-# pushsafer
-    url = 'https://www.pushsafer.com/api'
-    post_fields = {
+            # pushsafer
+            url = 'https://www.pushsafer.com/api'
+            post_fields = {
                 "t": 'Test',
                 "m": 'Test Message',
                 "s": 11,
@@ -149,9 +146,13 @@ def detail_update2(request, new_Request_id):
                 "ut": 'Open Pushsafer',
                 "k": 'V7n0lT68dTeoYJU6YQiW',
             }
-    request = Request(url, urlencode(post_fields).encode())
-    json = urlopen(request).read().decode()
-    print(json)
+            request = Request(url, urlencode(post_fields).encode())
+            json = urlopen(request).read().decode()
+            print(json)
+
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        else:
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
