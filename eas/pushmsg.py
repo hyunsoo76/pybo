@@ -6,7 +6,7 @@ import ssl
 def push():
 
     if __name__ == "__main__":
-        pass
+        return
     else:
         pass
 from django.shortcuts import render
