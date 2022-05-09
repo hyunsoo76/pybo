@@ -167,7 +167,7 @@ def Request_modify(request, new_Request_id):
                 if total != None:
                     totalsum = totalsum + total
             new_Request.total = totalsum
-            
+
             new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
