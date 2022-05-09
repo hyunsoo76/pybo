@@ -26,3 +26,25 @@ def push(x):
 
         request = Request(url, urlencode(post_fields).encode())
         json = urlopen(request).read().decode()
+
+    else:
+        ssl._create_default_https_context = ssl._create_unverified_context
+        # from tqdm import tqdm
+
+        url = 'https://www.pushsafer.com/api'  # Set destination URL here
+        post_fields = {  # Set POST fields here
+            "t": '대진산업',  # 알림상단 텍스트
+            "m": '전자문서 결재',  # 테스트 메시지
+            "s": 0,  # 사운드재생
+            "v": 1,  # 진통설정
+            "i": 43,  # 진통설정
+            "c": '#00ff00',  # 아이콘색상
+            "d": all,
+            "u": 'http://3.37.211.248/eas/',
+            "ut": '대진산업 전자문서결재',
+            "k": 'V7n0lT68dTeoYJU6YQiW'
+
+        }
+
+        request = Request(url, urlencode(post_fields).encode())
+        json = urlopen(request).read().decode()
