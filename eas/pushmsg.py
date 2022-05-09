@@ -3,12 +3,13 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import ssl
 
+from django.shortcuts import render
+
+
 def push(x):
     if x == 1:
+
         ssl._create_default_https_context = ssl._create_unverified_context
-        # from tqdm import tqdm
-
-
         url = 'https://www.pushsafer.com/api' # Set destination URL here
         post_fields = {                       # Set POST fields here
                             "t" : '대진산업', #알림상단 텍스트
@@ -25,8 +26,7 @@ def push(x):
                             }
 
         request = Request(url, urlencode(post_fields).encode())
-        json = urlopen(request).read().decode()
-
+        return render(json = urlopen(request).read().decode())
     else:
         ssl._create_default_https_context = ssl._create_unverified_context
         # from tqdm import tqdm
@@ -47,4 +47,4 @@ def push(x):
         }
 
         request = Request(url, urlencode(post_fields).encode())
-        json = urlopen(request).read().decode()
+        return render(json = urlopen(request).read().decode())
