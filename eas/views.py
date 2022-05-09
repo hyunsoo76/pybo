@@ -11,9 +11,6 @@ from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
-import ssl
 
 
 
@@ -140,7 +137,7 @@ def detail_update2(request, new_Request_id):
             new_Request.save()
 
 
-            
+
 
 
             messages.warning(request, "결재완료")
