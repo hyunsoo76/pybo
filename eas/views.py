@@ -9,6 +9,7 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
+from eas import pushmsg
 
 
 
@@ -131,12 +132,13 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-
+            if new_Request.bbb == "승인":
+                pushmsg
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    subprocess.Popen(['/eas/pushmsg.py'])
+    # subprocess.run(['eas/pushmsg.py'])
 
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
