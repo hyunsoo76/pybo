@@ -10,6 +10,7 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
+import runpy
 
 
 
@@ -136,7 +137,7 @@ def detail_update2(request, new_Request_id):
             new_Request.save()
             # if new_Request.bbb == "승인":
             # from eas import pushmsg
-            exec(open("pushmsg.py").read())
+            runpy.run_path('pushmsg.py')
             # subprocess.call(pushmsg)
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
