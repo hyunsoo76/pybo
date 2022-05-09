@@ -10,8 +10,7 @@ from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from .pushmsg import main
-
+from eas import pushmsg
 
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
@@ -132,7 +131,7 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            main()
+            pushmsg.main()
 
             # subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
