@@ -4,14 +4,12 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
-
-import eas
-from . import pushmsg
 from .models import Request
 from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
+from eas import pushmsg
 
 
 
@@ -135,7 +133,7 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            eas.pushmsg.main()
+            pushmsg.main()
             subprocess.run(pushmsg.main())
 
             messages.warning(request, "결재완료")
@@ -208,4 +206,5 @@ def detail_modify(request, Request_id):
     return render(request, 'eas/detail_r.html', context)
 
 
-
+def main():
+    return pushmsg
