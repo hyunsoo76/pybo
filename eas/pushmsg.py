@@ -4,12 +4,9 @@ from urllib.request import Request, urlopen
 import ssl
 
 from django.shortcuts import render
-
-from views import main
-
 ssl._create_default_https_context = ssl._create_unverified_context
-        url = 'https://www.pushsafer.com/api' # Set destination URL here
-        post_fields = {                       # Set POST fields here
+url = 'https://www.pushsafer.com/api' # Set destination URL here
+post_fields = {                       # Set POST fields here
                                     "t" : '대진산업', #알림상단 텍스트
                                     "m" : '전자문서 결재',  #테스트 메시지
                                     "s" : 0,          #사운드재생
@@ -22,7 +19,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
                                     "k" : 'V7n0lT68dTeoYJU6YQiW'
 
                                     }
-        request = Request(url, urlencode(post_fields).encode())
-        json = urlopen(request).read().decode()
-        if __name__ == "__main__":
-            main()
+request = Request(url, urlencode(post_fields).encode())
+json = urlopen(request).read().decode()
+        # if __name__ == "__main__":
+        #     main()

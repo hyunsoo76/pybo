@@ -206,5 +206,3 @@ def detail_modify(request, Request_id):
     return render(request, 'eas/detail_r.html', context)
 
 
-def main():
-    return pushmsg
