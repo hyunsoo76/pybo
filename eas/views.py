@@ -8,7 +8,7 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
-import pushmsg
+# import pushmsg
 
 
 
