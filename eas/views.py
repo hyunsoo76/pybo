@@ -4,13 +4,15 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
+
+from . import pushmsg
 from .models import Request
 from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from eas import pushmsg
+# from eas import pushmsg
 
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
@@ -131,7 +133,7 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            pushmsg.main()
+            pushmsg.push()
 
             # subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
