@@ -26,8 +26,8 @@ def main():
     json = urlopen(request).read().decode()
 
     context = {'json': json}
-    if __name__ == "__main__":
-        main()
+    # if __name__ == "__main__":
+    #     main()
     return render(request, context)
 
 
