@@ -153,7 +153,7 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.save()
             if new_Request.bbb == "반려":
                 from eas import pushmsg
-                subprocess.run([pushmsg], shell=True)
+                subprocess.run()
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
