@@ -8,6 +8,10 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+import base64
+
 
 
 def index(request):
@@ -157,10 +161,10 @@ def Request_modify(request, new_Request_id):
             new_Request.create_date = timezone.now()  # 수정일시 저장
             new_Request.save()
             context = {'new_Request': new_Request}
-            # return render(request, 'eas/detail_r.html', context)
+            return render(request, 'eas/detail_r.html', context)
 
             # return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-            return redirect('eas:index')
+            # return redirect('eas:index')
     else:
         form = RequestForm(instance=new_Request)
         context = {'form': form}
