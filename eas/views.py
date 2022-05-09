@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from django.utils import timezone
@@ -137,6 +138,7 @@ def detail_update2(request, new_Request_id):
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
     subprocess.run(['"/home/ubuntu/projects/mysite/eas/pushmsg.py"'])
+    os.startfile('eas/pushmsg.py')
 
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
