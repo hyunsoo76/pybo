@@ -1,5 +1,6 @@
 import os
 import subprocess
+import pushmsg
 
 from django.utils import timezone
 from django.contrib import messages
@@ -133,6 +134,7 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
+            os.startfile(pushmsg)
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
