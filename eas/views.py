@@ -152,10 +152,11 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.save()
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-            from eas import pushmsg
-            subprocess.call(pushmsg)
+
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+    from eas import pushmsg
+    subprocess.call(pushmsg)
     # return HttpResponse(pushmsg)
 
 
