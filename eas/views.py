@@ -8,9 +8,7 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
-import base64
+
 
 
 
