@@ -10,7 +10,7 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
-from eas import pushmsg
+
 
 
 
@@ -126,6 +126,7 @@ def detail_okupdate(request, new_Request_id):
 
 
 def detail_update2(request, new_Request_id):
+    from eas import pushmsg
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     # from eas import pushmsg
     if request.method == "POST":
