@@ -10,7 +10,7 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
-from eas import pushmsg
+# from eas import pushmsg
 
 
 
