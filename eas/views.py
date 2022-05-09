@@ -11,7 +11,9 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from eas import pushmsg
 
-
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+import ssl
 
 
 def index(request):
@@ -133,7 +135,7 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            pushmsg.main()
+            pushmsg.py
             # subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
