@@ -134,7 +134,7 @@ def detail_update2(request, new_Request_id):
             new_Request.date2 = timezone.now()
             new_Request.save()
 
-            subprocess.call(pushmsg)
+            subprocess.run(pushmsg)
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
