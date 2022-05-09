@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 
+import eas
 from . import pushmsg
 from .models import Request
 from .forms import RequestForm
@@ -134,7 +135,7 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            pushmsg.main()
+            eas.pushmsg.main()
             subprocess.run(pushmsg.main())
 
             messages.warning(request, "결재완료")
