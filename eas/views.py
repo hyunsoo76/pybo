@@ -1,6 +1,6 @@
 import os
 import subprocess
-import pushmsg
+from eas import pushmsg
 
 from django.utils import timezone
 from django.contrib import messages
@@ -139,7 +139,7 @@ def detail_update2(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    subprocess.run(['"/home/ubuntu/projects/mysite/eas/pushmsg.py"'])
+    # subprocess.run(['"/home/ubuntu/projects/mysite/eas/pushmsg.py"'])
     os.startfile('eas/pushmsg.py')
 
 def detail_okupdate2(request, new_Request_id):
