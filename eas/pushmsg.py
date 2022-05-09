@@ -3,6 +3,8 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import ssl
 
+def do_stuff():
+    pass
 from django.shortcuts import render
 
 #

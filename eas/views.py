@@ -9,9 +9,8 @@ from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
-import eas
-import os
 
+from .pushmsg import do_stuff
 
 
 def index(request):
@@ -133,8 +132,8 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            # subprocess.run(eas.pushmsg.py)
-            os.system('"/home/ubuntu/projects/mysite/eas/pushmsg.py"')
+            do_stuff()
+
             # subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
