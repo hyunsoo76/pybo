@@ -137,7 +137,7 @@ def detail_update2(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    return HttpResponse(pushmsg)
+    # return HttpResponse(pushmsg)
 
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -152,7 +152,7 @@ def detail_okupdate2(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    return HttpResponse(pushmsg)
+    # return HttpResponse(pushmsg)
 
 def Request_modify(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
