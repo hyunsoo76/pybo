@@ -127,7 +127,7 @@ def detail_okupdate(request, new_Request_id):
 
 def detail_update2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
-    from eas import pushmsg
+    # from eas import pushmsg
     if request.method == "POST":
         temp = request.POST.get('input_reject2')
         if new_Request.bbb != "승인":
@@ -135,7 +135,7 @@ def detail_update2(request, new_Request_id):
             new_Request.date2 = timezone.now()
             new_Request.save()
             # if new_Request.bbb == "승인":
-            subprocess.run(pushmsg.py)
+            subprocess.run('pushmsg.py')
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
