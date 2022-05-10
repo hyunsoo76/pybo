@@ -204,4 +204,17 @@ def detail_modify(request, Request_id):
     context = {'new_Request': new_Request}
     return render(request, 'eas/detail_r.html', context)
 
+def monthly_holiday(request):
+    if request.method == 'POST':
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            new_Request = form.save(commit=False)
+            new_Request.create_date = timezone.now()
+            new_Request.save()
+            return redirect('eas:index')
+    else:
+        form = RequestForm()
+    context = {'form': form}
+    return render(request, 'eas/monthly_holiday.html', context)
+
 
