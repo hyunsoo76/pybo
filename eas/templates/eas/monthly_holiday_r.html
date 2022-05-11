@@ -191,8 +191,7 @@
               <div class="col-12">
                   <div class="input-group mb-3">
                   <span class="input-group-text" id="input_subject">제목</span>
-                  <input type="text" class="form-control" name="subject" id="subject"
-                   value="{{ form.subject.value|default_if_none:'' }}">
+                      <span class="form-control" id="subject">{{ new_Request.subject }}"></span>
 <!--                  <textarea class="form-control" id="input_subject1" rows="1"></textarea>-->
                   </div>
               </div>
