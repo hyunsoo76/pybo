@@ -203,36 +203,29 @@
             <div class="row text-white" align="center">
                 <div class="bg-secondary text-white" style="border: 1px solid white" align="center">내용</div>
             </div>
+            <p></p>
     <!--   입력창      -->
             <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">휴가자명</span>
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+              <span class="input-group-text" id="a_1">휴가자명</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ form.a_1.value|default_if_none:'' }}">
             </div>
             <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">휴가구분</span>
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+              <span class="input-group-text" id="b_1">휴가구분</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ form.b_1.value|default_if_none:'' }}">
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">날  짜</span>
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <div class="input-group">
+              <span class="input-group-text" id="c_1">날  짜</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ form.c_1.value|default_if_none:'' }}">
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">휴가사유</span>
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <div class="input-group">
+              <span class="input-group-text" id="d_1">휴가사유</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ form.d_1.value|default_if_none:'' }}">
             </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">비  고</span>
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
+            <div class="input-group">
+              <span class="input-group-text" id="e_1">비  고</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ form.e_1.value|default_if_none:'' }}">
             </div>
 
-
-
-            <div class="mb-3" >
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ form.a_1.value|default_if_none:'' }}</textarea>
-<!--                    <textarea class="form-control" aria-label="With textarea">{{ form.a_1.value|default_if_none:'' }}</textarea>-->
-
-            </div>
     </form>
   </div>
 
