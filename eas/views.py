@@ -84,6 +84,7 @@ def detail(request, Request_id):
         context = {'new_Request': new_Request}
         return render(request, 'eas/detail_r.html', context)
     else:
+        new_Request = get_object_or_404(Request, pk=Request_id)
         context = {'new_Request': new_Request}
         return render(request, 'eas/monthly_holiday_r.html', context)
 
