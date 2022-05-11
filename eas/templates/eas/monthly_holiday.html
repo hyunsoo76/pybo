@@ -11,7 +11,7 @@
 
         <p></p>
 <div class="container">
-    <form method="post" onkeydown="return event.key != 'Enter';" action="monthly_holiday_r">
+    <form method="post" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <!-- 오류표시 Start -->
         {% if form.errors %}
