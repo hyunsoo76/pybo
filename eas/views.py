@@ -146,8 +146,8 @@ def detail_update2(request, new_Request_id):
             new_Request.save()
             # if new_Request.bbb == "승인":
             #     pushmsg.push()
-            pushmsg.main()
-            # subprocess.run(pushmsg.main())
+            # pushmsg.main()
+            subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
