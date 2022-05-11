@@ -1,4 +1,6 @@
 import subprocess
+
+import self as self
 from django.utils import timezone
 from django.contrib import messages
 from django.shortcuts import render, redirect
@@ -212,10 +214,9 @@ def monthly_holiday(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            nowid = new_Request.id
-            new_Request = get_object_or_404(Request, pk=nowid)
-            context = {'new_Request': new_Request}
-            return render(request, 'eas/monthly_holiday_r.html', context)
+            # context = {'new_Request': new_Request}
+            return self.render_to_response({'new_Request': new_Request})
+            # return render(request, 'eas/monthly_holiday_r.html', context)
             # return redirect('eas:index')
     else:
         form = RequestForm()
