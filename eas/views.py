@@ -133,8 +133,8 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            if new_Request.bbb == "승인":
-                pushmsg.push()
+            # if new_Request.bbb == "승인":
+            #     pushmsg.push()
 
             # subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
@@ -212,9 +212,9 @@ def monthly_holiday(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            context = {'new_Request': new_Request}
-            return render(request, 'eas/monthly_holiday_r.html', context)
-            # return redirect('eas:index')
+            # context = {'new_Request': new_Request}
+            # return render(request, 'eas/monthly_holiday_r.html', context)
+            return redirect('eas:index')
     else:
         form = RequestForm()
     context = {'form': form}
