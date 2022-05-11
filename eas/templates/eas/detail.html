@@ -169,10 +169,10 @@
 
             <div class="row" style="height: 50px;" align="center">
               <div class="col-4">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" onchange="location.href=this.value">
                   <option value="buy">매입결재</option>
                   <option value="request">품의서</option>
-                  <option value={{monthly_holiday}}>휴가원</option>
+                  <option value={{eas:monthly_holiday}}>휴가원</option>
                 </select>
               </div>
               <div class="col-8">
