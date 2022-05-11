@@ -220,7 +220,7 @@ def monthly_holiday(request):
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
-            # new_Request.create_date = timezone.now()
+            new_Request.create_date = timezone.now()
             new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/monthly_holiday_r.html', context)
