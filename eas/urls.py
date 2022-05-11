@@ -18,6 +18,7 @@ urlpatterns = [
     path('monthly_holiday/', views.monthly_holiday, name='monthly_holiday'),
     path('monthly_holiday_r/<int:Request_id>/', views.monthly_holiday_r, name='monthly_holiday_r'),
     path('monthly_holiday_r/okupdate2/<int:new_Request_id>/', views.monthly_holiday_r_okupdate2, name='monthly_holiday_r_okupdate2'),
+    path('monthly_holiday_r/update2/<int:new_Request_id>/', views.monthly_holiday_r_update2, name='monthly_holiday_r_update2'),
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

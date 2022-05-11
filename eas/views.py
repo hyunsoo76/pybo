@@ -154,6 +154,9 @@ def detail_update2(request, new_Request_id):
     # pushmsg.main()
     # subprocess.run(['eas/pushmsg.py'])
 
+
+
+
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
@@ -244,11 +247,25 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
         temp = request.POST.get('input_ok2')
         if new_Request.bbb != "반려":
             new_Request.bbb = temp
+            new_Request.aaa = "승인"
             new_Request.date2 = timezone.now()
             new_Request.save()
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
+        else:
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+def monthly_holiday_r_update2(request, new_Request_id):
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
+    if request.method == "POST":
+        temp = request.POST.get('input_reject2')
+        if new_Request.bbb != "승인":
+            new_Request.bbb = temp
+            new_Request.aaa = "승인"
+            new_Request.date2 = timezone.now()
+            new_Request.save()
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
