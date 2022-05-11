@@ -213,13 +213,17 @@ def monthly_holiday(request):
             new_Request.create_date = timezone.now()
             new_Request.save()
             # new_Request = get_object_or_404(Request, pk=Request_id)
-            context = {'new_Request': new_Request}
-            return render(request, 'eas/monthly_holiday_r.html', context)
+            # context = {'new_Request': new_Request}
+            # return render(request, 'eas/monthly_holiday_r.html', context)
             # return redirect('eas:index')
+            form = RequestForm(instance=new_Request)
+            context = {'form': form}
+            return render(request, 'eas/monthly_holiday.html', context)
+
     else:
         form = RequestForm()
-    context = {'form': form}
-    return render(request, 'eas/monthly_holiday.html', context)
+        context = {'form': form}
+        return render(request, 'eas/monthly_holiday.html', context)
 
 def monthly_holiday_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
