@@ -15,7 +15,7 @@ urlpatterns = [
     path('detail/update2/<int:new_Request_id>/', views.detail_update2, name='detail_update2'),
     path('detail/okupdate2/<int:new_Request_id>/', views.detail_okupdate2, name='detail_okupdate2'),
     path('detail_modify/<int:new_Request_id>/', views.Request_modify, name='Request_modify'),
-    path('monthly_holiday_r/<int:Request_id>/', views.monthly_holiday, name='monthly_holiday'),
+    path('monthly_holiday_r/', views.monthly_holiday, name='monthly_holiday'),
     path('monthly_holiday_r/<int:Request_id>/', views.monthly_holiday_r, name='monthly_holiday_r'),
     ]
 
