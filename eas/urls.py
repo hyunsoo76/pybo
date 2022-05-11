@@ -16,7 +16,7 @@ urlpatterns = [
     path('detail/okupdate2/<int:new_Request_id>/', views.detail_okupdate2, name='detail_okupdate2'),
     path('detail_modify/<int:new_Request_id>/', views.Request_modify, name='Request_modify'),
     path('monthly_holiday/', views.monthly_holiday, name='monthly_holiday'),
-    path('<int:question_id>/monthly_holiday_r/', views.monthly_holiday_r, name='monthly_holiday_r'),
+    path('<int:Request_id>/monthly_holiday_r/', views.monthly_holiday_r, name='monthly_holiday_r'),
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
