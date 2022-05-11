@@ -206,7 +206,7 @@
     <!--   입력창      -->
             <div class="row"  align="center" >
                 <div style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_1" name="a_1" row="5" value="{{ form.a_1.value|default_if_none:'' }}">
+                    <textarea class="form-control" aria-label="With textarea"> value="{{ form.a_1.value|default_if_none:'' }}"</textarea>
                 </div>
             </div>
     </form>
