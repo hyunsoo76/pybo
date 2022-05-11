@@ -69,7 +69,7 @@ def index(request):
 
 def detail(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
-    if new_Request.create_date !=None:
+    if new_Request.a_5 > 100:
         totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                   new_Request.d_5, new_Request.e_5, new_Request.f_5,
                   new_Request.g_5, new_Request.h_5, new_Request.i_5,
