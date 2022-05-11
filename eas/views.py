@@ -218,7 +218,7 @@ def monthly_holiday(request):
     else:
         form = RequestForm()
     context = {'form': form}
-    return render(request, 'eas/monthly_holiday.html', context)
+    return render(request, 'eas/monthly_holiday_r.html', context)
 
 def monthly_holiday_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
