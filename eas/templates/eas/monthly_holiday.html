@@ -11,7 +11,7 @@
 
         <p></p>
 <div class="container">
-    <form method="post" onkeydown="return event.key != 'Enter';">
+    <form method="post" onkeydown="return event.key != 'Enter';" action="monthly_holiday_r">
         {% csrf_token %}
         <!-- 오류표시 Start -->
         {% if form.errors %}
@@ -227,7 +227,7 @@
             </div>
             <div class="input-group">
               <span class="input-group-text">기타비고</span>
-              <input type="text" class="form-control" id="a_1" name="e_1" aria-describedby="basic-addon1" value="{{ form.e_1.value|default_if_none:'' }}">
+              <input type="text" class="form-control" id="e_1" name="e_1" aria-describedby="basic-addon1" value="{{ form.e_1.value|default_if_none:'' }}">
             </div>
 
     </form>
