@@ -3,12 +3,12 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import ssl
 
-def push():
-
-    if __name__ == "__main__":
-        return
-    else:
-        pass
+# def push():
+#
+#     if __name__ == "__main__":
+#         return
+#     else:
+#         pass
 from django.shortcuts import render
 
 #

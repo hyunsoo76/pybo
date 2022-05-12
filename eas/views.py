@@ -13,7 +13,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 from eas import pushmsg
-from .pushmsg import main, push
+from .pushmsg import main
 
 
 def index(request):
@@ -148,8 +148,7 @@ def detail_update2(request, new_Request_id):
             new_Request.save()
             # if new_Request.bbb == "승인":
             #     pushmsg.push()
-            # main();
-            push();
+            main();
             # subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
@@ -222,6 +221,7 @@ def detail_modify(request, Request_id):
     context = {'new_Request': new_Request}
     return render(request, 'eas/detail_r.html', context)
 
+# 휴가품의 insert
 def monthly_holiday(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
@@ -237,13 +237,14 @@ def monthly_holiday(request):
         context = {'form': form}
         return render(request, 'eas/monthly_holiday.html', context)
 
+# 휴가품의 read
 def monthly_holiday_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
 
     context = {'new_Request': new_Request}
     return render(request, 'eas/monthly_holiday_r.html', context)
 
-
+# 휴가품의 대표이사결재란 승인
 def monthly_holiday_r_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
@@ -259,6 +260,7 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
+# 휴가품의 대표결재란 번려
 def monthly_holiday_r_update2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
