@@ -110,19 +110,8 @@ def Request_create(request):
 
 # 상신버튼클릭시 push 보내기위해서
 def Request_create_sangsin(request):
-    if request.method == 'POST':
-        form = RequestForm(request.POST)
-        if form.is_valid():
-            new_Request = form.save(commit=False)
-            new_Request.create_date = timezone.now()
-            new_Request.save()
-            from importlib import reload
-            reload(pushmsg)
-            return redirect('eas:index')
-    else:
-        form = RequestForm()
-    context = {'form': form}
-    return render(request, 'eas/detail.html', context)
+    from importlib import reload
+    reload(pushmsg)
 
 
 
