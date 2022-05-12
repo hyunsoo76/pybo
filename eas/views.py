@@ -94,7 +94,7 @@ def detail(request, Request_id):
 
 def Request_create(request):
     if request.method == 'POST':
-        temp = request.POST.get('first_check')
+        temp = request.POST.get('sangsin')
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
@@ -109,7 +109,7 @@ def Request_create(request):
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
 
-# # 상신버튼클릭시 push 보내기위해서
+# 상신버튼클릭시 push 보내기위해서
 # def Request_create_sangsin(request):
 #     if request.method == 'POST':
 #         from importlib import reload
