@@ -12,7 +12,7 @@ from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-
+from .pushmsg import main
 
 
 def index(request):
@@ -148,7 +148,7 @@ def detail_update2(request, new_Request_id):
             # if new_Request.bbb == "승인":
             #     pushmsg.push()
             from.import pushmsg
-            pushmsg.main()
+            main()
 
             # subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
