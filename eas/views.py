@@ -147,7 +147,7 @@ def detail_update2(request, new_Request_id):
             new_Request.save()
             # if new_Request.bbb == "승인":
             #     pushmsg.push()
-            from . import pushmsg
+            from.import pushmsg
             pushmsg.main()
 
             # subprocess.run(pushmsg.main())
