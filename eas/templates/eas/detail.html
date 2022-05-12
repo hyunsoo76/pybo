@@ -81,7 +81,11 @@
     <!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
                                     <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">취소</button>
                                     <div><button type="submit" class="btn-success btn-lg" data-bs-dismiss="modal" id="first_check_reday">저장</button></div>
+
+                                    <form action="{% url 'eas:Request_create_sangsin'%}" method="post" onkeydown="return event.key != 'Enter';">
+                                        {% csrf_token %}
                                     <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="first_check">상신</button></div>
+                                    </form>
     <!--                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">날인</button>-->
                                   </div>
                                 </div>
@@ -394,7 +398,7 @@
                     <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_4" name="h_4" value="{{ form.h_4.value|default_if_none:'' }}">
                 </div>
                 <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text"style="text-align:right;" placeholder="" aria-label="" id="h_5" name="h_5" value="{{ form.h_5.value|default_if_none:'' }}">
+                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="h_5" name="h_5" value="{{ form.h_5.value|default_if_none:'' }}">
                 </div>
                 <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
                     <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_6" name="h_6" value="{{ form.h_6.value|default_if_none:'' }}">

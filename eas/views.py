@@ -108,6 +108,25 @@ def Request_create(request):
     context = {'form': form}
     return render(request, 'eas/detail.html', context)
 
+# 상신버튼클릭시 push 보내기위해서
+def Request_create_snagsin(request):
+    if request.method == 'POST':
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            new_Request = form.save(commit=False)
+            new_Request.create_date = timezone.now()
+            new_Request.save()
+            from importlib import reload
+            reload(pushmsg)
+            return redirect('eas:index')
+    else:
+        form = RequestForm()
+    context = {'form': form}
+    return render(request, 'eas/detail.html', context)
+
+
+
+
 def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
@@ -145,14 +164,11 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            # if __name__ == '__main__':
-            #     pushmsg.main()
+            from importlib import reload
+            reload(pushmsg)
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    # pushmsg.main()
-    # subprocess.run(['eas/pushmsg.py'])
-
 
 
 
@@ -165,7 +181,6 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.date2 = timezone.now()
             new_Request.save()
             from importlib import reload
-            # if __name__ == '__main__':
             reload(pushmsg)
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
@@ -253,7 +268,8 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
             new_Request.aaa = "승인"
             new_Request.date2 = timezone.now()
             new_Request.save()
-            messages.warning(request, "결재완료")
+            from importlib import reload
+            reload(pushmsg)
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
         else:
