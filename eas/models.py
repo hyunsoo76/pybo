@@ -83,9 +83,9 @@ class Request(models.Model):
     dojang1 = models.ImageField(blank = True)
     dojang2 = models.ImageField(blank = True)
     dojang3 = models.ImageField(blank = True)
-    aaa = models.CharField(max_length=200,blank=True)
-    bbb = models.CharField(max_length=200, blank=True)
-    ccc = models.CharField(max_length=200, blank=True)
+    aaa = models.CharField(max_length=200,blank=True) #이사결재
+    bbb = models.CharField(max_length=200, blank=True) #대표이사결재
+    ccc = models.CharField(max_length=200, blank=True) #상신버튼체크
     ddd = models.CharField(max_length=200, blank=True)
     eee = models.CharField(max_length=200, blank=True)
     fff = models.IntegerField(blank=True, null=True)
