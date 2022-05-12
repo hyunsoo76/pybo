@@ -145,12 +145,8 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            # if new_Request.bbb == "승인":
-            #     pushmsg.push()
-            from.import pushmsg
-            main()
-
-            # subprocess.run(pushmsg.main())
+            # if __name__ == '__main__':
+            #     pushmsg.main()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
@@ -170,7 +166,6 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.save()
             if __name__ == '__main__':
                 pushmsg.main()
-            messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
         else:
