@@ -1,4 +1,3 @@
-import subprocess
 from django.utils import timezone
 from django.contrib import messages
 from django.shortcuts import render, redirect
@@ -8,11 +7,9 @@ from django.shortcuts import get_object_or_404, render
 from . import pushmsg
 from .models import Request
 from .forms import RequestForm
-from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from .pushmsg import main
 
 
 def index(request):
@@ -110,9 +107,10 @@ def Request_create(request):
 
 # 상신버튼클릭시 push 보내기위해서
 def Request_create_sangsin(request):
-    from importlib import reload
-    reload(pushmsg)
-
+    if request.method == 'POST':
+        from importlib import reload
+        reload(pushmsg)
+        return redirect('eas:index')
 
 
 
