@@ -5,15 +5,14 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 
-from . import pushmsg
+
 from .models import Request
 from .forms import RequestForm
 from django.http import  HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from eas import pushmsg
-from .pushmsg import main
+
 
 
 def index(request):
@@ -148,8 +147,9 @@ def detail_update2(request, new_Request_id):
             new_Request.save()
             # if new_Request.bbb == "승인":
             #     pushmsg.push()
+            from . import pushmsg
             pushmsg.main()
-            
+
             # subprocess.run(pushmsg.main())
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
