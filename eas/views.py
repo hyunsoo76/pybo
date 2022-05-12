@@ -94,13 +94,13 @@ def detail(request, Request_id):
 
 def Request_create(request):
     if request.method == 'POST':
-
+        temp = request.POST.get('first_check')
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            if form.ccc == "상신":
+            if temp == "상신":
                 from importlib import reload
                 reload(pushmsg)
             return redirect('eas:index')
