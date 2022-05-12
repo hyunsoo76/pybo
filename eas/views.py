@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 
-
+from . import pushmsg
 from .models import Request
 from .forms import RequestForm
 from django.http import  HttpResponse
@@ -168,7 +168,8 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            main()
+            if __name__ == '__main__':
+                pushmsg.main()
             messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
