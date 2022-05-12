@@ -164,8 +164,8 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            if __name__ == '__main__':
-                pushmsg.main()
+            # if __name__ == '__main__':
+            pushmsg.main()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
         else:
