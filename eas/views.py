@@ -275,9 +275,10 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
             new_Request.aaa = "승인"
             new_Request.date2 = timezone.now()
             new_Request.save()
+
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
             from importlib import reload
             reload(pushmsg)
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
