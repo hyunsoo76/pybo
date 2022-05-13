@@ -103,8 +103,8 @@ def Request_create(request):
             # if temp == "상신":
             #     from importlib import reload
             #     reload(pushmsg)
-            new_Request = Request.objects.last()
-            context = {'new_Request': new_Request}
+            obj = Request.objects.last()
+            context = {'obj': obj}
             return render(request, 'eas/detail_r.html', context)
 
             # return redirect('eas:index')
