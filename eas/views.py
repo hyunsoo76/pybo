@@ -94,7 +94,7 @@ def detail(request, Request_id):
 
 def Request_create(request):
     if request.method == 'POST':
-        temp = request.POST.get('sangsin')
+        # temp = request.POST.get('sangsin')
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
