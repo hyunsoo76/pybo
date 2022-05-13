@@ -103,8 +103,11 @@ def Request_create(request):
             # if temp == "상신":
             #     from importlib import reload
             #     reload(pushmsg)
-            # key = Request.objects.order_by('-pk')[0]
-            return redirect('eas:index')
+            new_Request = Request.objects.last()
+            context = {'new_Request': new_Request}
+            return render(request, 'eas/detail_r.html', context)
+
+            # return redirect('eas:index')
     else:
         form = RequestForm()
     context = {'form': form}
