@@ -104,7 +104,7 @@ def Request_create(request):
             #     from importlib import reload
             #     reload(pushmsg)
             key = Request.objects.latest('pk')
-            return redirect('eas/key.html', {'key': key})
+            return redirect('eas/'+key+'.html')
     else:
         form = RequestForm()
     context = {'form': form}
