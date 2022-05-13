@@ -103,8 +103,8 @@ def Request_create(request):
             # if temp == "상신":
             #     from importlib import reload
             #     reload(pushmsg)
-            # key = Request.objects.latest('id')
-            return redirect('eas/(?P<new_Request_id>[0]+)/$')
+            key = ModelObj.objects.order_by('-pk')[0]
+            return redirect('eas/'+key+'.html')
     else:
         form = RequestForm()
     context = {'form': form}
