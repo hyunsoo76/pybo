@@ -123,9 +123,9 @@ def Request_create(request):
 
 # 상신버튼클릭시 push 보내기위해서
 def Request_create_sangsin(request):
-    # new_Request = get_object_or_404(Request, pk=new_Request_id)
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == 'POST':
-        # new_Request.create_date = timezone.now()
+        new_Request.create_date = timezone.now()
         # new_Request.save()
         from importlib import reload
         reload(pushmsg)
