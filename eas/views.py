@@ -281,8 +281,9 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
 
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-        from importlib import reload
-        reload(pushmsg)
+
+    from importlib import reload
+    reload(pushmsg)
 # 휴가품의 대표결재란 번려
 def monthly_holiday_r_update2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
