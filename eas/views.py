@@ -127,8 +127,6 @@ def Request_create_sangsin(request, new_Request_id):
     if request.method == 'POST':
         temp_s = request.POST.get('temp_sangsin')
         if temp_s == "상신":
-            new_Request.hhh = 200
-            new_Request.save()
             from importlib import reload
             reload(pushmsg)
             return redirect('eas:index')
