@@ -94,16 +94,24 @@ def detail(request, Request_id):
 
 def Request_create(request):
     if request.method == 'POST':
-        # temp = request.POST.get('sangsin')
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            # if temp == "상신":
-            #     from importlib import reload
-            #     reload(pushmsg)
-            # obj = Request.objects.last()
+            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                      new_Request.j_5]
+            totalsum = 0
+            for total in totals:
+                if total != None:
+                    totalsum = totalsum + total
+
+            new_Request.total = totalsum
+
+
+
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
 
