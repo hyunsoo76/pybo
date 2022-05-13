@@ -121,9 +121,9 @@ def Request_create_sangsin(request, new_Request_id):
         new_Request.save()
         from importlib import reload
         reload(pushmsg)
-        return redirect('eas:index')
-    else:
-        return redirect('eas:index')
+    #     return redirect('eas:index')
+    # else:
+    #     return redirect('eas:index')
 
 
 def detail_update(request, new_Request_id):
