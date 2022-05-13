@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.template import loader
+from django.shortcuts import redirect
+# from django.template import loader
 from django.shortcuts import get_object_or_404, render
 
 from . import pushmsg
@@ -100,9 +100,9 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.save()
-            if temp == "상신":
-                from importlib import reload
-                reload(pushmsg)
+            # if temp == "상신":
+            #     from importlib import reload
+            #     reload(pushmsg)
             return redirect('eas:index')
     else:
         form = RequestForm()
@@ -110,11 +110,14 @@ def Request_create(request):
     return render(request, 'eas/detail.html', context)
 
 # 상신버튼클릭시 push 보내기위해서
-# def Request_create_sangsin(request):
-#     if request.method == 'POST':
-#         from importlib import reload
-#         reload(pushmsg)
-#         return redirect('eas:index')
+def Request_create_sangsin(request, new_Request_id):
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
+    if request.method == 'POST':
+        new_Request.create_date = timezone.now()
+        new_Request.save()
+        from importlib import reload
+        reload(pushmsg)
+        return redirect('eas:index')
 
 
 
