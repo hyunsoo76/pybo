@@ -125,7 +125,7 @@ def Request_create(request):
 def Request_create_sangsin(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == 'POST':
-        new_Request.create_date = timezone.now()
+        new_Request.hhh = 200
         new_Request.save()
         from importlib import reload
         reload(pushmsg)
