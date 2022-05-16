@@ -276,7 +276,7 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
         if new_Request.bbb != "반려":
             new_Request.bbb = temp
             new_Request.aaa = "승인"
-            if new_Request.date2 ==None:
+            if new_Request.date2 == "":
                 new_Request.date2 = timezone.now()
             new_Request.save()
 
