@@ -128,7 +128,8 @@ async def Request_create_sangsin(request, new_Request_id):
         temp_s = request.POST.get('temp_sangsin')
         if temp_s == "상신":
             from importlib import reload
-            await reload(pushmsg)
+            # await reload(pushmsg)
+            await reload(pushmsg.main())
             return redirect('eas:index')
     else:
         return redirect('eas:index')
