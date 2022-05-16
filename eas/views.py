@@ -9,7 +9,6 @@ from .models import Request
 from .forms import RequestForm
 from django.core.paginator import Paginator
 from django.db.models import Q
-from asgiref.sync import sync_to_async
 
 
 def index(request):
@@ -122,7 +121,7 @@ def Request_create(request):
     return render(request, 'eas/detail.html', context)
 
 # 상신버튼클릭시 push 보내기위해서
-@sync_to_async
+
 async def Request_create_sangsin(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == 'POST':
