@@ -2,7 +2,7 @@
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import ssl
-from asgiref.sync import sync_to_async
+
 
 # def push():
 #
@@ -13,7 +13,7 @@ from asgiref.sync import sync_to_async
 from django.shortcuts import render
 
 #
-@sync_to_async
+
 async def main():
     ssl._create_default_https_context = ssl._create_unverified_context
 url = 'https://www.pushsafer.com/api'  # Set destination URL here
