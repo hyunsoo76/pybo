@@ -12,7 +12,7 @@ import ssl
 from django.shortcuts import render
 
 #
-def main():
+async def main():
     ssl._create_default_https_context = ssl._create_unverified_context
 url = 'https://www.pushsafer.com/api'  # Set destination URL here
 post_fields = {  # Set POST fields here
