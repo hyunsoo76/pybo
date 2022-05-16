@@ -9,6 +9,7 @@ from .models import Request
 from .forms import RequestForm
 from django.core.paginator import Paginator
 from django.db.models import Q
+from asgiref.sync import sync_to_async
 
 
 
@@ -130,7 +131,7 @@ async def Request_create_sangsin(request, new_Request_id):
         if temp_s == "상신":
             from importlib import reload
             # await reload(pushmsg)
-            await reload(pushmsg.main())
+            await reload(sync_to_async(pushmsg.main()))
             return redirect('eas:index')
     else:
         return redirect('eas:index')
