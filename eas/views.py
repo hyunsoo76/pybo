@@ -276,11 +276,8 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
         if new_Request.bbb != "반려":
             new_Request.bbb = temp
             new_Request.aaa = "승인"
-            if new_Request.date2:
-                new_Request.save()
-            else:
-                new_Request.date2 = timezone.now()
-                new_Request.save()
+            new_Request.date2 = timezone.now()
+            new_Request.save()
 
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
@@ -299,8 +296,7 @@ def monthly_holiday_r_update2(request, new_Request_id):
         if new_Request.bbb != "승인":
             new_Request.bbb = temp
             new_Request.aaa = "승인"
-            if new_Request.date2 == None:
-               new_Request.date2 = timezone.now()
+            new_Request.date2 = timezone.now()
             new_Request.save()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
