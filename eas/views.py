@@ -124,14 +124,14 @@ def Request_create(request):
 
 # 상신버튼클릭시 push 보내기위해서
 
-async def Request_create_sangsin(request, new_Request_id):
+def Request_create_sangsin(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == 'POST':
         temp_s = request.POST.get('temp_sangsin')
         if temp_s == "상신":
             from importlib import reload
-            # await reload(pushmsg)
-            await reload(sync_to_async(pushmsg.main()))
+            reload(pushmsg)
+            # await reload(sync_to_async(pushmsg.main()))
             return redirect('eas:index')
     else:
         return redirect('eas:index')

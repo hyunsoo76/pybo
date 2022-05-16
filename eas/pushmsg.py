@@ -13,8 +13,8 @@ from asgiref.sync import sync_to_async
 from django.shortcuts import render
 
 #
-@sync_to_async
-async def main():
+
+def main():
     ssl._create_default_https_context = ssl._create_unverified_context
 url = 'https://www.pushsafer.com/api'  # Set destination URL here
 post_fields = {  # Set POST fields here
