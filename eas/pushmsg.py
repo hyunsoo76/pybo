@@ -34,8 +34,8 @@ request = Request(url, urlencode(post_fields).encode())
 json = urlopen(request).read().decode()
 
     # context = {'json': json}
-    # # if __name__ == "__main__":
-    # #     main()
+if __name__ == "__main__":
+      main()
     # return render(request, context)
 
 
