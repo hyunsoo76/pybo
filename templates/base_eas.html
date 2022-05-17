@@ -69,15 +69,7 @@
 
 
     </nav>
-  <script>
-      const input = document.getElementById("search_kw");
-      const btn = document.getElementById("btn_search");
 
-      btn.addEventListener("click", () => {
-        input.focus();
-        input.setSelectionRange(6, 11); // World 선택
-      });
-  </script>
   <!-- 기본 템플릿 안에 삽입될 내용 Start -->
   {% block content %}
   {% endblock %}
@@ -88,5 +80,14 @@
   {% endblock %}
   <!-- 자바스크립트 End -->
   </body>
+  <script>
+      const input = document.getElementById("search_kw");
+      const btn = document.getElementById("btn_search");
+
+      btn.addEventListener("click", () => {
+        input.focus();
+        input.setSelectionRange(6, 11); // World 선택
+      });
+  </script>
 
 </html>
