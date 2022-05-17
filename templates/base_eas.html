@@ -81,12 +81,15 @@
   <!-- 자바스크립트 End -->
 
   <script>
-      const input = document.getElementById("search_kw");
-      const btn = document.getElementById("btn_search");
+      const searchInput = document.getElementById("search_kw");
+      const maxLength = 50;
 
-      btn.addEventListener("click", () => {
-        input.focus();
-        input.setSelectionRange(0, 3);
+      searchInput.addEventListener("focus", e => {
+      const el = e.target;
+      setTimeout(() => {
+        el.setSelectionRange(maxLength, maxLength);
+        el.scrollLeft = maxLength * 30;
+        }, 0);
       });
   </script>
   </body>
