@@ -70,13 +70,13 @@
 
     </nav>
   <script>
-  const input = document.getElementById("search_kw");
-  const btn = document.getElementById("btn_search");
+      const input = document.getElementById("search_kw");
+      const btn = document.getElementById("btn_search");
 
-  btn.addEventListener("click", () => {
-    input.focus();
-    input.setSelectionRange(6, 11); // World 선택
-  });
+      btn.addEventListener("click", () => {
+        input.focus();
+        input.setSelectionRange(6, 11); // World 선택
+      });
   </script>
   <!-- 기본 템플릿 안에 삽입될 내용 Start -->
   {% block content %}
