@@ -75,6 +75,18 @@
   <!-- 기본 템플릿 안에 삽입될 내용 End -->
 
   <!-- 자바스크립트 Start -->
+  <script>
+  const input = document.getElementById("search_kw");
+  const btn = document.getElementById("btn_search");
+
+  btn.addEventListener("click", () => {
+    input.focus();
+    input.setSelectionRange(6, 11); // World 선택
+  });
+  </script>
+
+
+
   {% block script %}
   {% endblock %}
   <!-- 자바스크립트 End -->
