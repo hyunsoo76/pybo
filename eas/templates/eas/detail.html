@@ -433,17 +433,16 @@
                 </div>
             </div>
             <div class="row" align="center">
+                <form action="{% url 'eas:Request_create' %}" method="get">
                 <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">
-                <button type="button" class="btn btn-outline-none btn-sm"  id="input_10" accesskey="-">10</button></div>
+                <button type="submit" class="btn btn-outline-none btn-sm"  id="input_10" accesskey="-">10</button></div>
 <!--                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">10</div>-->
-
                 <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <form action="{% url 'eas:Request_create' %}" method="get">
                     <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_1" name="a_1" value="{{ s_result.a_2 }}">
                     <input type= submit hidden="hidden" />
 <!--                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_1" name="j_1" value="{{ form.j_1.value|default_if_none:'' }}">-->
-                    </form>
                 </div>
+                </form>
 
                 <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
                     <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_2" name="j_2" value="{{ form.j_2.value|default_if_none:'' }}">
