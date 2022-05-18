@@ -123,7 +123,7 @@ def Request_create(request):
         s_result = Request.objects.all()
         if query:
             s_result = Request.object.fillter(a_1__contains=query)
-        return render(request, 'detail.html', {'s_result': s_result})
+        return render(request, 'eas/detail.html', {'s_result': s_result})
 
 
     # else:
