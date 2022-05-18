@@ -119,7 +119,7 @@ def Request_create(request):
             # return redirect('eas:index')
     else:
 
-        query = request.GET.get('a_1')
+        query = request.GET.get('a_1', '')
         s_result = Request.objects.all()
         if query:
             s_result = Request.object.fillter(a_1__contains=query)
