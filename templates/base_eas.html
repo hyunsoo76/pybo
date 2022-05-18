@@ -45,7 +45,7 @@
              <form class="d-flex justify-content-end" id="search">
               <div class="input-group">
                     <input hidden="hidden" />
-                    <input type="text" id="search_kw" class="form-control me-2" accesskey="a" value="{{ kw|default_if_none:'alt+a' }}" >
+                    <input type="text" id="search_kw" class="form-control me-2" accesskey="a" value="{{ kw|default_if_none:'' }}" placeholder="alt+a" >
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="btn_search">Search</button>
                     </div>
