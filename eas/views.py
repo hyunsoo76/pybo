@@ -317,11 +317,11 @@ def monthly_holiday_r_update2(request, new_Request_id):
 
 # 매입처 검색 팝업 창
 def account(request):
-    qs = Request.objects.all()
+    qs_list= Request.objects.all()
     q = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
     # qs = Request.objects.order_by('-create_date')
     if q: # q가 있으면
-        qs = qs.filter(
+        qs_list = qs_list.filter(
             Q(a_1__icontains=q) |
             Q(b_1__icontains=q) |
             Q(c_1__icontains=q) |
@@ -335,7 +335,7 @@ def account(request):
         ).distinct()
         # qs = qs.filter(a_1__icontains=q) # 제목에 q가 포함되어 있는 레코드만 필터링
         return render(request, 'eas/account.html', {
-            'account': qs,
+            'qs_list': qs_list,
             'q': q, })
     else:
         qs = Request.objects.all()

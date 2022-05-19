@@ -12,13 +12,13 @@
 </form>
 
 {% if q %}
-{% for account in account_list %}
-<h5>'{{ account }}' 검색 결과입니다.</h5>
-<h5>'{{ account.a_1 }}' 검색 결과입니다.</h5>
-<h5>'{{ account.b_1 }}' 검색 결과입니다.</h5>
-<h5>'{{ account.c_1 }}' 검색 결과입니다.</h5>
+{% for qs in qs_list %}
+<h5>'{{ qs }}' 검색 결과입니다.</h5>
+<h5>'{{ qs.a_1 }}' 검색 결과입니다.</h5>
+<h5>'{{ qs.b_1 }}' 검색 결과입니다.</h5>
+<h5>'{{ qs.c_1 }}' 검색 결과입니다.</h5>
 <p></p>
-<a href ="/eas/{{ account.id }}/" style="text-decoration:none">{{account.subject }}</a>
+<a href ="/eas/{{ qs.id }}/" style="text-decoration:none">{{qs.subject }}</a>
 {% endfor %}
 {% else %}
 <p>결재 리스트가 없습니다.</p>
