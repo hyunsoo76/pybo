@@ -317,9 +317,9 @@ def monthly_holiday_r_update2(request, new_Request_id):
 
 # 매입처 검색 팝업 창
 def account(request):
-    # qs = Request.objects.all()
+    qs = Request.objects.all()
     q = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
-    qs = Request.objects.order_by('-create_date')
+    # qs = Request.objects.order_by('-create_date')
     if q: # q가 있으면
         qs = qs.filter(
             Q(a_1__icontains=q) |  # 매입처명
