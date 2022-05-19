@@ -116,10 +116,10 @@ def Request_create(request):
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
 
-        else:
-            form = RequestForm()
-            context = {'form': form}
-            return render(request, 'eas/detail.html', context)
+    else:
+        form = RequestForm()
+        context = {'form': form}
+        return render(request, 'eas/detail.html', context)
 
         # return redirect('eas:index')
     # else:
