@@ -314,3 +314,14 @@ def monthly_holiday_r_update2(request, new_Request_id):
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
+
+# 매입처 검색 팝업 창
+def account(request):
+    qs = Request.objects.all()
+    q = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
+    if q: # q가 있으면
+        qs = qs.filter(title__icontains=q) # 제목에 q가 포함되어 있는 레코드만 필터링
+
+    return render(request, 'eas/account.html', {
+        'account': qs,
+        'q': q, })
