@@ -435,11 +435,11 @@
             <div class="row" align="center">
 
                 <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">
-                <button type="submit" class="btn btn-outline-none btn-sm"  id="input_10" accesskey="-">10</button></div>
+                <button type="button" class="btn btn-outline-none btn-sm"  id="input_10" accesskey="-">10</button></div>
 <!--                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">10</div>-->
                 <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
                     <form action="{% url 'eas:Request_create' %}" method="get" name="in_search_10">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_1" name="a_1" value="{{ s_result.a_2 }}" onkeypress="JavaScript:press(this.form)">
+                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_1" name="j_1" value="{{ s_result.j_1 }}" onkeypress="JavaScript:press(this.form)">
 <!--                    <input type= submit hidden="hidden" />-->
                     </form>
 <!--                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_1" name="j_1" value="{{ form.j_1.value|default_if_none:'' }}">-->
@@ -589,9 +589,6 @@
 <!--                    });-->
 
 
-function press(f){
- if(f.keyCode == 13){
-     in_search_10.submit(); } }
 
                  </script>
 
