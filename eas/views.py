@@ -123,6 +123,8 @@ def Request_create(request):
         s_result = Request.objects.all()
         if query:
             s_result = Request.object.fillter(j_1__contains=query)
+        else:
+            s_result = "일치 없음"
         return render(request, 'eas/detail.html', {'s_result': s_result})
 
 
