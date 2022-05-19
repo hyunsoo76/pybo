@@ -20,7 +20,8 @@
 <p></p>
 <a href ="/eas/{{ account.id }}/" style="text-decoration:none">{{account.subject }}</a>
 {% endfor %}
+{% else %}
+<p>결재 리스트가 없습니다.</p>
 {% endif %}
-
 </body>
 </html>
