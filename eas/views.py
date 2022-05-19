@@ -320,7 +320,7 @@ def account(request):
     # qs_list= Request.objects.all()
     q = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
     qs_list = Request.objects.order_by('-create_date')
-    if q: # q가 있으면
+    if q:
         qs_list = qs_list.filter(
             Q(a_1__icontains=q) |
             Q(b_1__icontains=q) |
