@@ -322,7 +322,7 @@ def account(request):
     # qs = Request.objects.order_by('-create_date')
     if q: # q가 있으면
         qs = qs.filter(
-            Q(a_1__icontains=q) |  # 매입처명
+            Q(a_1__icontains=q) |
             Q(b_1__icontains=q) |
             Q(c_1__icontains=q) |
             Q(d_1__icontains=q) |
