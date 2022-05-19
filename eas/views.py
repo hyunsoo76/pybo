@@ -322,16 +322,16 @@ def account(request):
     qs_list = Request.objects.order_by('-create_date')
     if q: # q가 있으면
         qs_list = qs_list.filter(
-            Q(a_1__in=q) |
-            Q(b_1__in=q) |
-            Q(c_1__in=q) |
-            Q(d_1__in=q) |
-            Q(e_1__in=q) |
-            Q(f_1__in=q) |
-            Q(g_1__in=q) |
-            Q(h_1__in=q) |
-            Q(i_1__in=q) |
-            Q(j_1__in=q)
+            Q(a_1__icontains=q) |
+            Q(b_1__icontains=q) |
+            Q(c_1__icontains=q) |
+            Q(d_1__icontains=q) |
+            Q(e_1__icontains=q) |
+            Q(f_1__icontains=q) |
+            Q(g_1__icontains=q) |
+            Q(h_1__icontains=q) |
+            Q(i_1__icontains=q) |
+            Q(j_1__icontains=q)
         ).distinct()
         # qs = qs.filter(a_1__icontains=q) # 제목에 q가 포함되어 있는 레코드만 필터링
         return render(request, 'eas/account.html', {
