@@ -116,22 +116,23 @@ def Request_create(request):
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
 
-            # return redirect('eas:index')
-    else:
-
-        query = request.GET.get('j_1', '')
-        s_result = Request.objects.all()
-        if query:
-            s_result = Request.object.fillter(j_1__contains=query)
         else:
-            s_result = "일치 없음"
-        return render(request, 'eas/detail.html', {'s_result': s_result})
+            form = RequestForm()
+            context = {'form': form}
+            return render(request, 'eas/detail.html', context)
 
-
+        # return redirect('eas:index')
     # else:
-    #     form = RequestForm()
-    # context = {'form': form}
-    # return render(request, 'eas/detail.html', context)
+    #
+    #     query = request.GET.get('j_1', '')
+    #     s_result = Request.objects.all()
+    #     if query:
+    #         s_result = Request.object.fillter(j_1__contains=query)
+    #     else:
+    #         s_result = "일치 없음"
+    #     return render(request, 'eas/detail.html', {'s_result': s_result})
+
+
 
 # 상신버튼클릭시 push 보내기위해서
 
