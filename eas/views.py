@@ -322,6 +322,6 @@ def account(request):
     if q: # q가 있으면
         qs = qs.filter(a_1__icontains=q) # 제목에 q가 포함되어 있는 레코드만 필터링
 
-    return render(request, 'templates/eas/account.html/', {
+    return render(request, 'eas/templates/eas/account.html/', {
         'account': qs,
         'q': q, })
