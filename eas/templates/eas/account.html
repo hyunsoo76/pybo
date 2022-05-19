@@ -13,12 +13,14 @@
 
 {% if q %}
 {% for qs in qs_list %}
-<h5>'{{ qs }}' 검색 결과입니다.</h5>
-<h5>'{{ qs.a_1 }}' 검색 결과입니다.</h5>
-<h5>'{{ qs.a_2 }}' 검색 결과입니다.</h5>
-<h5>'{{ qs.a_3 }}' 검색 결과입니다.</h5>
-<p></p>
-<a href ="/eas/{{ qs.id }}/" style="text-decoration:none">{{qs.subject }}</a>
+<h5>{{ qs.a_1 }}&nbsp;{{ qs.a_2 }}&nbsp;{{ qs.a_3 }}&nbsp;{{ qs.a_4 }}&nbsp;{{ qs.a_6 }}&nbsp;{{ qs.a_7 }}</h5>
+<h5>{{ qs.b_1 }}&nbsp;{{ qs.b_2 }}&nbsp;{{ qs.b_3 }}&nbsp;{{ qs.b_4 }}&nbsp;{{ qs.b_6 }}&nbsp;{{ qs.b_7 }}</h5>
+<h5>{{ qs.c_1 }}&nbsp;{{ qs.c_2 }}&nbsp;{{ qs.c_3 }}&nbsp;{{ qs.c_4 }}&nbsp;{{ qs.c_6 }}&nbsp;{{ qs.c_7 }}</h5>
+<h5>{{ qs.d_1 }}&nbsp;{{ qs.d_2 }}&nbsp;{{ qs.d_3 }}&nbsp;{{ qs.d_4 }}&nbsp;{{ qs.d_6 }}&nbsp;{{ qs.d_7 }}</h5>
+<h5>{{ qs.e_1 }}&nbsp;{{ qs.e_2 }}&nbsp;{{ qs.e_3 }}&nbsp;{{ qs.e_4 }}&nbsp;{{ qs.e_6 }}&nbsp;{{ qs.e_7 }}</h5>
+<h5>{{ qs.f_1 }}&nbsp;{{ qs.f_2 }}&nbsp;{{ qs.f_3 }}&nbsp;{{ qs.f_4 }}&nbsp;{{ qs.f_6 }}&nbsp;{{ qs.f_7 }}</h5>
+
+
 {% endfor %}
 {% else %}
 <p>결재 리스트가 없습니다.</p>
