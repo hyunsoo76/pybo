@@ -107,7 +107,10 @@
         var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
         $('#data-area').attr('type', 'hidden'); // 사용자 알림
         if(copy){
-            alert("copy done");
+<!--            alert("copy done");-->
+                $.modaldialog.success('copy done!!', {
+                     timeout: 1
+                });
         }
     });
 
