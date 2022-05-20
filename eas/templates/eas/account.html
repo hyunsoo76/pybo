@@ -100,6 +100,18 @@
 </table>
 {% else %}
 {% endif %}
+<script>
+    $('#data-copy').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+            alert("데이터가 복사되었습니다.");
+        }
+    });
+
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
