@@ -107,8 +107,9 @@
         var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
         $('#data-area').attr('type', 'hidden'); // 사용자 알림
         if(copy){
-<!--            alert("copy done");-->
-                AutoDestoryAlert.show("copy done!!", "알림", 1000);
+                alert("copy done");
+                self.close();
+
         }
     });
 
