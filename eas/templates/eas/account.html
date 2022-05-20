@@ -27,28 +27,75 @@
 <!--  <input type="submit" value="검색">-->
 </form>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">거래처명</th>
+      <th scope="col">계좌번호</th>
+      <th scope="col">은행</th>
+      <th scope="col">계좌명</th>
+      <th scope="col">구분</th>
+      <th scope="col">적요</th>
+      <th scope="col">날짜</th>
+    </tr>
+  </thead>
+
+<tbody>
 {% if q %}
 {% for qs in qs_list %}
 {% if q in qs.a_1 %}
-<h5>{{ qs.create_date }}&nbsp;{{ qs.a_1 }}&nbsp;{{ qs.a_2 }}&nbsp;{{ qs.a_3 }}&nbsp;{{ qs.a_4 }}&nbsp;{{ qs.a_6 }}&nbsp;{{ qs.a_7 }}</h5>
+      <tr>
+      <td>{{ qs.a_1 }}</td><td>{{ qs.a_2 }}</td><td>{{ qs.a_3 }}</td><td>{{ qs.a_4 }}</td><td>{{ qs.a_5 }}</td><td>{{ qs.a_6 }}</td><td>{{ qs.a_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
 {% endif %}
 {% if q in qs.b_1 %}
-<h5>{{ qs.create_date }}&nbsp;{{ qs.b_1 }}&nbsp;{{ qs.b_2 }}&nbsp;{{ qs.b_3 }}&nbsp;{{ qs.b_4 }}&nbsp;{{ qs.b_6 }}&nbsp;{{ qs.b_7 }}</h5>
+      <tr>
+      <td>{{ qs.b_1 }}</td><td>{{ qs.b_2 }}</td><td>{{ qs.b_3 }}</td><td>{{ qs.b_4 }}</td><td>{{ qs.b_5 }}</td><td>{{ qs.b_6 }}</td><td>{{ qs.b_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
 {% endif %}
-{% if q in  qs.c_1 %}
-<h5>{{ qs.create_date }}&nbsp;{{ qs.c_1 }}&nbsp;{{ qs.c_2 }}&nbsp;{{ qs.c_3 }}&nbsp;{{ qs.c_4 }}&nbsp;{{ qs.c_6 }}&nbsp;{{ qs.c_7 }}</h5>
+{% if q in qs.c_1 %}
+      <tr>
+      <td>{{ qs.c_1 }}</td><td>{{ qs.c_2 }}</td><td>{{ qs.c_3 }}</td><td>{{ qs.c_4 }}</td><td>{{ qs.c_5 }}</td><td>{{ qs.c_6 }}</td><td>{{ qs.c_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
 {% endif %}
-{% if q in  qs.d_1 %}
-<h5>{{ qs.create_date }}&nbsp;{{ qs.d_1 }}&nbsp;{{ qs.d_2 }}&nbsp;{{ qs.d_3 }}&nbsp;{{ qs.d_4 }}&nbsp;{{ qs.d_6 }}&nbsp;{{ qs.d_7 }}</h5>
+{% if q in qs.d_1 %}
+      <tr>
+      <td>{{ qs.d_1 }}</td><td>{{ qs.d_2 }}</td><td>{{ qs.d_3 }}</td><td>{{ qs.d_4 }}</td><td>{{ qs.d_5 }}</td><td>{{ qs.d_6 }}</td><td>{{ qs.d_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
 {% endif %}
-{% if q in  qs.e_1 %}
-<h5>{{ qs.create_date }}&nbsp;{{ qs.e_1 }}&nbsp;{{ qs.e_2 }}&nbsp;{{ qs.e_3 }}&nbsp;{{ qs.e_4 }}&nbsp;{{ qs.e_6 }}&nbsp;{{ qs.e_7 }}</h5>
+{% if q in qs.e_1 %}
+      <tr>
+      <td>{{ qs.e_1 }}</td><td>{{ qs.e_2 }}</td><td>{{ qs.e_3 }}</td><td>{{ qs.e_4 }}</td><td>{{ qs.e_5 }}</td><td>{{ qs.e_6 }}</td><td>{{ qs.e_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
 {% endif %}
-{% if q in  qs.f_1 %}
-<h5>{{ qs.create_date }}&nbsp;{{ qs.f_1 }}&nbsp;{{ qs.f_2 }}&nbsp;{{ qs.f_3 }}&nbsp;{{ qs.f_4 }}&nbsp;{{ qs.f_6 }}&nbsp;{{ qs.f_7 }}</h5>
+{% if q in qs.f_1 %}
+      <tr>
+      <td>{{ qs.f_1 }}</td><td>{{ qs.f_2 }}</td><td>{{ qs.f_3 }}</td><td>{{ qs.f_4 }}</td><td>{{ qs.f_5 }}</td><td>{{ qs.f_6 }}</td><td>{{ qs.f_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
 {% endif %}
-
+{% if q in qs.g_1 %}
+      <tr>
+      <td>{{ qs.g_1 }}</td><td>{{ qs.g_2 }}</td><td>{{ qs.g_3 }}</td><td>{{ qs.g_4 }}</td><td>{{ qs.g_5 }}</td><td>{{ qs.g_6 }}</td><td>{{ qs.g_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
+{% endif %}
+{% if q in qs.h_1 %}
+      <tr>
+      <td>{{ qs.h_1 }}</td><td>{{ qs.h_2 }}</td><td>{{ qs.h_3 }}</td><td>{{ qs.h_4 }}</td><td>{{ qs.h_5 }}</td><td>{{ qs.h_6 }}</td><td>{{ qs.h_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
+{% endif %}
+{% if q in qs.i_1 %}
+      <tr>
+      <td>{{ qs.i_1 }}</td><td>{{ qs.i_2 }}</td><td>{{ qs.i_3 }}</td><td>{{ qs.i_4 }}</td><td>{{ qs.i_5 }}</td><td>{{ qs.i_6 }}</td><td>{{ qs.i_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
+{% endif %}
+{% if q in qs.a_1 %}
+      <tr>
+      <td>{{ qs.j_1 }}</td><td>{{ qs.j_2 }}</td><td>{{ qs.j_3 }}</td><td>{{ qs.j_4 }}</td><td>{{ qs.j_5 }}</td><td>{{ qs.j_6 }}</td><td>{{ qs.j_7 }}</td><td>{{ qs.create_date }}</td>
+      </tr>
+{% endif %}
 {% endfor %}
+</tbody>
+</table>
 {% else %}
 <p>거래처명을 입력하세요.</p>
 {% endif %}
