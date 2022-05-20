@@ -7,7 +7,11 @@
 <body>
 
 <form action="" method="get">
-  <input type="text" name="q" value="{{ q }}">
+<!--    <input type="text" name="q" value="{{ q }}">-->
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Search</span>
+      <input type="text" class="form-control" placeholder="거래처명" aria-label="거래처명" aria-describedby="basic-addon1" name="q" value="{{ q }}">
+    </div>
 <!--  <input type="submit" value="검색">-->
 </form>
 
