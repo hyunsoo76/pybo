@@ -338,7 +338,7 @@ def account(request):
             'qs_list': qs_list,
             'q': q, })
     else:
-        qs = Request.objects.all()
+        qs_list = Request.objects.all()
         return render(request, 'eas/account.html', {
-            'account': qs,
+            'qs_list': qs_list,
             'q': q, })
