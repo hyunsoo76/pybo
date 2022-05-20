@@ -108,9 +108,7 @@
         $('#data-area').attr('type', 'hidden'); // 사용자 알림
         if(copy){
 <!--            alert("copy done");-->
-                $.modaldialog.success('copy done!!', {
-                     timeout: 1
-                });
+                AutoDestoryAlert.show("copy done!!", "알림", 1000);
         }
     });
 
