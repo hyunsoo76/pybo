@@ -52,7 +52,7 @@
 {% endif %}
 {% if q in qs.b_1 %}
       <tr>
-          <td>{{ qs.b_1 }}</td><td>{{ qs.b_2 }}</td><td><td><button type="button" class="btn btn-outline-success btn-sm" id="data-copy_b" class="data-copy" accesskey="c">copy</button> <input type="hidden" id="data-area_b" class="data-area" value="{{ qs.b_2 }}"></td><td>{{ qs.b_3 }}</td><td>{{ qs.b_4 }}</td><td>{{ qs.b_6 }}</td><td>{{ qs.b_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td>
+          <td>{{ qs.b_1 }}</td><td>{{ qs.b_2 }}</td><td><button type="button" class="btn btn-outline-success btn-sm" id="data-copy_b" class="data-copy" accesskey="c">copy</button> <input type="hidden" id="data-area_b" class="data-area" value="{{ qs.b_2 }}"></td><td>{{ qs.b_3 }}</td><td>{{ qs.b_4 }}</td><td>{{ qs.b_6 }}</td><td>{{ qs.b_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td>
       </tr>
 {% endif %}
 {% if q in qs.c_1 %}
@@ -107,7 +107,97 @@
         var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
         $('#data-area').attr('type', 'hidden'); // 사용자 알림
         if(copy){
-                alert("copy done");
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_b').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_b').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_b').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_b').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_c').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_c').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_c').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_c').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_d').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_d').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_d').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_d').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_e').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_e').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_e').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_e').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_f').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_f').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_f').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_f').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_g').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_g').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_g').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_g').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_h').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_h').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_h').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_h').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_i').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_i').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_i').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_i').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
+        }
+    });
+
+    $('#data-copy_j').click(function() { // 화면에서 hidden 처리한 input box type을 text로 일시 변환
+        $('#data-area_j').attr('type', 'text'); // input에 담긴 데이터를 선택
+        $('#data-area_j').select(); // clipboard에 데이터 복사
+        var copy = document.execCommand('copy'); // input box를 다시 hidden 처리
+        $('#data-area_j').attr('type', 'hidden'); // 사용자 알림
+        if(copy){
+                alert("copy done!!");
         }
     });
 
