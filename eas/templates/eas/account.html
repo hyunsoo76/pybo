@@ -46,7 +46,7 @@
 {% for qs in qs_list %}
 {% if q in qs.a_1 %}
       <tr>
-      <td>{{ qs.a_1 }}</td><td>{{ qs.a_2 }}</td><td><button type="button" id="data-copy" class="data-copy">복사하기</button> <input type="hidden" id="data-area" class="data-area" value="{{ qs.a_2 }}">
+      <td>{{ qs.a_1 }}</td><td>{{ qs.a_2 }}</td><td><button type="button" class="btn btn-outline-success" id="data-copy" class="data-copy" accesskey="c">복사하기</button> <input type="hidden" id="data-area" class="data-area" value="{{ qs.a_2 }}">
 </td><td>{{ qs.a_3 }}</td><td>{{ qs.a_4 }}</td><td>{{ qs.a_6 }}</td><td>{{ qs.a_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td>
       </tr>
 {% endif %}
