@@ -195,7 +195,7 @@
                   <div class="input-group mb-3">
                   <span class="input-group-text" id="input_subject">제목</span>
                   <input type="text" class="form-control" name="subject" id="subject"
-                   value="{{ form.subject.value|default_if_none:'' }}">
+                   value="{{ form.subject.value|default_if_none:'alt+s' }}" accesskey="s">
 <!--                  <textarea class="form-control" id="input_subject1" rows="1"></textarea>-->
                   </div>
               </div>
