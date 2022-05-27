@@ -49,6 +49,7 @@
                 <thead>
                 <tr class="table-dark text-center ">
                     <th>No</th>
+                    <th>&nbsp;&nbsp;</th>
                     <th style="width:70%">제목</th>
                     <th style="width:5%">이사</th>
                     <th style="width:5%">대표</th>
@@ -64,6 +65,7 @@
                <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
                {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
               </td>
+              <td>&nbsp;&nbsp;</td>
               <td class="text-start" style ="font-color:#000000">
               <a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{Request.subject }}</a>
               </td>
