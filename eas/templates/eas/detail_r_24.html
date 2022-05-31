@@ -1,0 +1,622 @@
+{% extends 'base_eas.html' %}
+{% block content %}
+{% load humanize %}
+        <p></p>
+<!--            {% if messages %}-->
+<!--              <ul class="absoulte top-0 right-0 left-0 flex justify-center">-->
+<!--                  {% for message in messages %}-->
+<!--                  <li class="z-20 message py-3 px-5 text-black rounded-lg font-bold text-lg {% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</li>-->
+<!--                  {% endfor %}-->
+<!--              </ul>-->
+<!--            {% endif %}-->
+
+        <p></p>
+<div class="container">
+
+    <!-- 결재란 -->
+        <div class="row">
+            <div class="col-6 align=middle">
+                <br>
+                <br>
+
+                <h3 align="center">품 의 서</h3>
+        <hr>
+            <div class="col align-items-bottom align=middle" id="now_date">{{new_Request.create_date}}</div>
+            </div>
+
+            <div class="col-6">
+                <table class="table table-sm table-bordered border-secondary align-middle">
+                     <tr  class="table-secondary" align="center" >
+<!--                      <td height = "10px"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a></td>-->
+                      <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1"><B>&nbsp;이&nbsp;사&nbsp;</b></button></td>
+<!--                      <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap"><b>&nbsp;이&nbsp;사&nbsp;</b></button></td>-->
+                      <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap"><b>&nbsp;대&nbsp;표&nbsp;</b></button>
+                    </tr>
+<!-- 결재란-->
+                  <tbody>
+                    <tr align="center">
+                      <td height = "80px" width = "150px" bgcolor="#D8D8D8">
+<!--                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>-->
+<!--                          <div class="collapse collapse-horizontal" id="collapseWidthExample">-->
+<!--                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">-->
+                          <div id="first_comfirm"><img src="/static/img/24.JPG" class="img-fluid" alt="first_comfirm" id="firstcheck"></div>
+<!--                          </div>-->
+
+                          <!-- Button trigger modal -->
+<!--                        <div>-->
+<!--                            <button type="button" class="btn btn-outline-secondary btn-sm" id="noneDiv" data-bs-toggle="modal" data-bs-target="#exampleModal1">-->
+<!--                          담당-->
+<!--                        </button>-->
+<!--                        </div>-->
+<!--                         -->
+
+<!--                        &lt;!&ndash; Modal &ndash;&gt;-->
+                        <div class="modal fade modal-scroll-clear" data-timer="3000" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel1">결재 전송하기</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                검토 후 재가바랍니다.!
+                              </div>
+                              <div class="modal-footer">
+
+<!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
+                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">취소</button>
+                                  <div><button type="button" class="btn-success btn-lg" data-bs-dismiss="modal" id="first_check_ready">저장</button></div>
+                                    <form action="{% url 'eas:Request_create_sangsin' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
+                                        {% csrf_token %}
+                                        <input name="temp_sangsin" type="hidden" value="상신">
+                                    <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" name="first_check" value="상신">상신</button></div>
+                                    </form>
+
+<!--                                    <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="first_check">상신</button></div>-->
+<!--                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">날인</button>-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+<!--이사 결재란-->
+                      </td>
+
+<!--                          <td width = "150px">-->
+<!--                          {% if new_Request.aaa == "승인" %}-->
+<!--                           <div id="24"><img src="/static/img/hyunsoo.JPG" class="img-fluid" alt="24" id="secondcheck"></div>-->
+<!--                          {% elif new_Request.aaa == "반려" %}-->
+<!--                           <div id="24_1"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="24_1" id="secondcheck1"></div>-->
+<!--                          {% else %}-->
+<!--                          <div id="24_2"></div>-->
+<!--                          {% endif %}-->
+<!--                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                              <div class="modal-dialog"><div class="modal-content">-->
+<!--                                  <div class="modal-header">-->
+<!--                                    <h5 class="modal-title" id="exampleModalLabel2">결재전송하기</h5>-->
+<!--                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>-->
+<!--                                  </div>-->
+<!--                                  <div class="modal-footer row-3 ">-->
+<!--                                      <form action="{% url 'eas:detail_update' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">-->
+<!--                                          {% csrf_token %}-->
+<!--                                          <input name="input_reject" type="hidden" value="반려">-->
+<!--                                          <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="send2" name="reject1" >반려</button></div>-->
+<!--                                      </form>-->
+
+<!--                                          <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>-->
+
+<!--                                      <form action="{% url 'eas:detail_okupdate' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">-->
+<!--                                          {% csrf_token %}-->
+<!--                                          <input name="input_ok" type="hidden" value="승인">-->
+<!--                                        <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="24_send">승인</button></div>-->
+<!--                                      </form>-->
+<!--                                  </div>-->
+<!--                                  <div class="modal-body1">-->
+<!--                                      <p>검토 후 재가 바랍니다.</p>-->
+<!--                                    <form>-->
+<!--                                      <div class="mb-3">-->
+<!--&lt;!&ndash;                                        <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <textarea class="form-control" id="message-text2"></textarea>&ndash;&gt;-->
+<!--                                      </div>-->
+<!--                                    </form>-->
+<!--                                  </div>-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div></td>-->
+
+<!--   대표이사 결재란-->
+                      <td width = "150px">
+                          {% if new_Request.bbb == "승인" %}
+                            <div id="director"><img src="/static/img/taewon.JPG" class="img-fluid" alt="director"></div>
+                          {% elif new_Request.bbb == "반려" %}
+                            <div id="director_1"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="director_1"></div>
+                          {% else %}
+                          <div id="director_2"></div>
+                          {% endif %}
+                            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">결재전송하기</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-footer row-3 ">
+                                      <form action="{% url 'eas:detail_update2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
+                                          {% csrf_token %}
+                                          <input name="input_reject2" type="hidden" value="반려">
+                                        <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
+                                      </form>
+
+                                        <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button></div>
+
+                                      <form action="{% url 'eas:detail_okupdate2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
+                                          {% csrf_token %}
+                                          <input name="input_ok2" type="hidden" value="승인">
+                                        <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="final">승인</button></div>
+                                      </form>
+                                  </div>
+                                  <div class="modal-body1">
+                                      <p>검토 후 재가 바랍니다.</p>
+                                      <hr>
+                                    <form>
+                                      <div class="mb-3">
+<!--                                          이건 새입력에서 오는게 아니고 불러와서 수정 해야될듯-->
+<!--                                        <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>-->
+<!--                                        <textarea class="form-control" id="message-text"></textarea>-->
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div></td>
+                    </tr>
+                    <tr align="center" bgcolor="#E6E6E6">
+                      <td id="data1">{{new_Request.create_date|date:'n/d g:i'}}</td>
+<!--                      <td id="data2">{{new_Request.date1|date:'n/d g:i'}}</td>-->
+                      <td id="data3">{{new_Request.date2|date:'n/d g:i'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="row" style="height: 50px;" align="center">
+          <div class="col-4">
+            <select class="form-select" aria-label="Default select example">
+              <option value="buy">매입결재</option>
+              <option value="request">품의서</option>
+              <option value="holiday">휴가원</option>
+            </select>
+          </div>
+          <div class="col-8">
+             <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">계</th>
+                  <th scope="col" id="total">{{ new_Request.total|intcomma }}</th>
+                </tr>
+              </thead>
+             </table>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-12">
+              <div class="input-group mb-3">
+              <span class="input-group-text" id="input_subject">제목</span>
+              <span class="form-control" id="input_subject1" >{{ new_Request.subject }}</span>
+              </div>
+          </div>
+
+        </div>
+
+<!--입력창 타이틀-->
+        <div class="row text-white" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">list</div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">매입처</div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">계좌번호</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">은행</div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">계좌명</div>
+            <div class="col-lg-1 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">금액</div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">구분</div>
+            <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">적요</div>
+        </div>
+<!--   입력창      -->
+        <div class="row"  align="center" style="border: 1px solid #D8D8D8 border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">1</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="a_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap; border-collapse:collapse;">{{ new_Request.a_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="a_2" style="border:0; outline:0;">{{ new_Request.a_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="a_3" style="border:0; outline:0;">{{ new_Request.a_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap; border-collapse:collapse;"  align="center" >
+                <span class="form-control form-control-sm" id="a_4" style="border:0; outline:0;">{{ new_Request.a_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="a_5" style="text-align:right; border:0; outline:0;">{{ new_Request.a_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="a_6" style="border:0; outline:0;">{{ new_Request.a_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="a_7" style="border:0; outline:0;">{{ new_Request.a_7 }}</span>
+            </div>
+        </div>
+        <div class="row"  align="center" style="border: 1px solid #D8D8D8 border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">2</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="b_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap; border-collapse:collapse;">{{ new_Request.b_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="b_2" style="border:0; outline:0;">{{ new_Request.b_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="b_3" style="border:0; outline:0;">{{ new_Request.b_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap; border-collapse:collapse;"  align="center" >
+                <span class="form-control form-control-sm" id="b_4" style="border:0; outline:0;">{{ new_Request.b_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="b_5" style="text-align:right; border:0; outline:0;">{{ new_Request.b_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="b_6" style="border:0; outline:0;">{{ new_Request.b_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="b_7" style="border:0; outline:0;">{{ new_Request.b_7 }}</span>
+            </div>
+        </div>
+        <div class="row" align="center" style="border: 1px solid #D8D8D8 border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">3</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="c_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.c_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="c_2" style="border:0; outline:0;">{{ new_Request.c_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="c_3" style="border:0; outline:0;">{{ new_Request.c_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="c_4" style="border:0; outline:0;">{{ new_Request.c_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="c_5" style="text-align:right; border:0; outline:0;">{{ new_Request.c_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="c_6" style="border:0; outline:0;">{{ new_Request.c_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="c_7" style="border:0; outline:0;">{{ new_Request.c_7 }}</span>
+            </div>
+        </div>
+        <div class="row" align="center" style="border: 1px solid #D8D8D8 border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">4</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="d_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.d_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="d_2" style="border:0; outline:0;">{{ new_Request.d_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="d_3" style="border:0; outline:0;">{{ new_Request.d_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="d_4" style="border:0; outline:0;">{{ new_Request.d_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="d_5" style="text-align:right; border:0; outline:0;">{{ new_Request.d_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="d_6" style="border:0; outline:0;">{{ new_Request.d_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="d_7" style="border:0; outline:0;">{{ new_Request.d_7 }}</span>
+            </div>
+        </div>
+        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">5</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="e_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.e_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="e_2" style="border:0; outline:0;">{{ new_Request.e_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="e_3" style="border:0; outline:0;">{{ new_Request.e_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="e_4" style="border:0; outline:0;">{{ new_Request.e_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="e_5" style="text-align:right; border:0; outline:0;">{{ new_Request.e_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="e_6" style="border:0; outline:0;">{{ new_Request.e_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="e_7" style="border:0; outline:0;">{{ new_Request.e_7 }}</span>
+            </div>
+        </div>
+        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">6</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="f_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.f_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="f_2" style="border:0; outline:0;">{{ new_Request.f_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="f_3" style="border:0; outline:0;">{{ new_Request.f_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="f_4" style="border:0; outline:0;">{{ new_Request.f_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="f_5" style="text-align:right; border:0; outline:0;">{{ new_Request.f_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="f_6" style="border:0; outline:0;">{{ new_Request.f_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm"  id="f_7" style="border:0; outline:0;">{{ new_Request.f_7 }}</span>
+            </div>
+        </div>
+        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">7</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="g_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.g_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="g_2" style="border:0; outline:0;">{{ new_Request.g_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="g_3" style="border:0; outline:0;">{{ new_Request.g_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="g_4" style="border:0; outline:0;">{{ new_Request.g_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="g_5" style="text-align:right; border:0; outline:0;">{{ new_Request.g_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="g_6" style="border:0; outline:0;">{{ new_Request.g_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="g_7" style="border:0; outline:0;">{{ new_Request.g_7 }}</span>
+            </div>
+        </div>
+        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">8</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="h_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.h_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="h_2" style="border:0; outline:0;">{{ new_Request.h_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="h_3" style="border:0; outline:0;">{{ new_Request.h_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm" id="h_4" style="border:0; outline:0;">{{ new_Request.h_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="h_5" style="text-align:right; border:0; outline:0;">{{ new_Request.h_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="h_6" style="border:0; outline:0;">{{ new_Request.h_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm" id="h_7" style="border:0; outline:0;">{{ new_Request.h_7 }}</span>
+            </div>
+        </div>
+        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">9</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm" id="i_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.i_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="i_2" style="border:0; outline:0;">{{ new_Request.i_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="i_3" style="border:0; outline:0;">{{ new_Request.i_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="i_4" style="border:0; outline:0;">{{ new_Request.i_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="i_5" style="text-align:right; border:0; outline:0;">{{ new_Request.i_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="i_6" style="border:0; outline:0;">{{ new_Request.i_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm"  id="i_7" style="border:0; outline:0;">{{ new_Request.i_7 }}</span>
+            </div>
+        </div>
+        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">10</div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
+                <span class="form-control form-control-sm"  id="j_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.j_1 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="j_2" style="border:0; outline:0;">{{ new_Request.j_2 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="j_3" style="border:0; outline:0;">{{ new_Request.j_3 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="j_4" style="border:0; outline:0;">{{ new_Request.j_4 }}</span>
+            </div>
+            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="j_5" style="text-align:right; border:0; outline:0;">{{ new_Request.j_5|default_if_none:""|intcomma }}</span>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <span class="form-control form-control-sm"  id="j_6" style="border:0; outline:0;">{{ new_Request.j_6 }}</span>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
+                <span class="form-control form-control-sm"  id="j_7" style="border:0; outline:0;">{{ new_Request.j_7 }}</span>
+            </div>
+        </div>
+
+        <p></p>
+        <div class="row" align="center">
+            <div class="col-6">
+                  <div class="mb-3 bg-secondary text-white">
+                  <label for="chamjo1" class="form-label">참조사항</label>
+                  <span class="form-control" id="chamjo1">{{ new_Request.chamjo1}}</span>
+                  </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3 bg-secondary text-white">
+              <label for="jisi1" class="form-label">지시사항</label>
+              <span class="form-control" id="jisi1">{{ new_Request.jisi1}}</span>
+              </div>
+            </div>
+        </div>
+        <!--수정버튼-->
+        <div class="my-3">
+                {% if not new_Request.aaa %}
+                <a href="{% url 'eas:Request_modify' new_Request.id  %}"
+                       class="btn btn-sm btn-outline-success">&nbsp;&nbsp;수&nbsp;정&nbsp;&nbsp;</a>
+                {% endif %}
+        </div>
+
+    </div>
+
+
+
+
+           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!--        <script>-->
+<!--            var xhttp;-->
+<!--            if (window.XMLHttpRequest) {-->
+<!--                xhttp = new XMLHttpRequest();-->
+<!--                } else {-->
+<!--                // code for IE6, IE5-->
+<!--                xhttp = new ActiveXObject("Microsoft.XMLHTTP");-->
+<!--            }-->
+<!--            xhttp.open("POST", "https://www.pushsafer.com/api", true);-->
+<!--            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");-->
+<!--            xhttp.send("t="+escape(title)+"&m="+escape(message)+"&s="+sound+"&v="+vibration+"&i="+icon+"&c="+iconcolor+"&d="+device+"&u="+escape(url)+"&ut="+escape(urltitle)+"&k="+V7n0lT68dTeoYJU6YQiW);-->
+<!--        </script>-->
+             <script>
+<!--&lt;!&ndash;  담당 모달창 닫힐때 이벤트&ndash;&gt;-->
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal1').on('hidden.bs.modal', function () {-->
+<!--                            if($("#first_comfirm").css("display") != "none"){-->
+<!--                              alert("전송완료");-->
+<!--                            }-->
+<!--                    });-->
+<!--                });-->
+<!--&lt;!&ndash;이사결재란 모달 닫힐때 이벤트&ndash;&gt;-->
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal2').on('hidden.bs.modal', function () {-->
+<!--                                alert("전송완료");-->
+<!--                    });-->
+<!--                });-->
+
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal2').on('hidden.bs.modal', function () {-->
+<!--                                alert("전송완료");-->
+<!--                    });-->
+<!--                });-->
+<!--대표결제란 모달 닫힐때 이벤트-->
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal3').on('hidden.bs.modal', function () {-->
+<!--                            if($("#director").css("display")!= "none"){-->
+<!--                                alert("전송완료");-->
+<!--                                }-->
+                    });
+                });
+
+<!--                $(document).ready(function(){-->
+<!--                    $('#exampleModal3').on('hidden.bs.modal', function () {-->
+<!--                            if($("#director_1").css("display") != "none"){-->
+<!--                                alert("전송완료");-->
+<!--                                }-->
+<!--                    });-->
+
+<!--                });-->
+
+
+
+
+
+<!-- 이사 모달창 버튼 클릭시 이벤트-->
+
+                $(function(){
+                    $('#24_send').click(function(){
+                        if($("#24").css("display") && $("#24_1").css("display") == "none"){
+                            $('#24').show();
+                        }
+                    });
+                });
+
+                $(function(){
+                    $('#send2').click(function(){
+                        if($("#24_1").css("display") && $("#24").css("display") == "none"){
+                            $('#24_1').show();
+
+                        }
+                    });
+                });
+<!-- 담당 모달창 버튼 클릭시 이벤트-->
+                $(function(){
+                    $('#first_check').click(function(){
+                        if($("#first_comfirm").css("display") == "none"){
+                            $('#first_comfirm').show();
+
+                        }
+                    });
+                });
+<!-- 대표 모달창 버튼 클릭시 이벤트-->
+                $(function(){
+                    $('#final').click(function(){
+<!--                                alert("전송완료");-->
+<!--                                var xhttp;-->
+<!--                                if (window.XMLHttpRequest) {-->
+<!--                                    xhttp = new XMLHttpRequest();-->
+<!--                                    } else {-->
+<!--                                    xhttp = new ActiveXObject("Microsoft.XMLHTTP");-->
+<!--                                }-->
+<!--                                xhttp.open("POST", "https://www.pushsafer.com/api", true);-->
+<!--                                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");-->
+<!--                                xhttp.send("t="+escape(title)+"&m="+escape(message)+"&s="+11+"&v="+3+"&i="+33+"&c="+#FF0000+"&d="+a+"&u="+escape(url)+"&ut="+escape(urltitle)+"&k="+V7n0lT68dTeoYJU6YQiW);-->
+
+                        if($("#director").css("display") && $("#director_1").css("display") == "none"){
+                            $('#director').show();
+                        }
+                    });
+                });
+
+                $(function(){
+                    $('#reject_2').click(function(){
+                        if($("#director_1").css("display") && $("#director").css("display") == "none"){
+                            $('#director_1').show();
+
+                        }
+                    });
+                });
+
+
+
+
+             </script>
+
+
+{% endblock %}
