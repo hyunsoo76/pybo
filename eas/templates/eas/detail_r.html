@@ -141,37 +141,31 @@
                                     <h5 class="modal-title" id="exampleModalLabel">결재전송하기</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
-                                  <div class="mb-3">
-<!--                                      <label class="col-form-label">지시사항 및 결제의견</label>-->
-
+                                  <div class="modal-footer row-3 ">
                                       <form action="{% url 'eas:detail_update2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
-                                          <input class="form-control form-control-sm" type="text" placeholder="반려:의견 및 지시사항      " aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">
                                           <input name="input_reject2" type="hidden" value="반려">
                                         <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
                                       </form>
 
-<!--                                        <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button></div>-->
+                                        <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button></div>
 
                                       <form action="{% url 'eas:detail_okupdate2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
-                                          <input class="form-control form-control-sm" type="text" placeholder="승인: 의견 및 지시사항 " aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">
                                           <input name="input_ok2" type="hidden" value="승인">
                                         <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="final">승인</button></div>
                                       </form>
                                   </div>
                                   <div class="modal-body1">
-<!--                                      <p>검토 후 재가 바랍니다.</p>-->
+                                      <p>검토 후 재가 바랍니다.</p>
                                       <hr>
-<!--                                    <form>-->
-<!--                                        {% csrf_token %}-->
-<!--                                      <div class="mb-3">-->
-<!--&lt;!&ndash;                                          이건 새입력에서 오는게 아니고 불러와서 수정 해야될듯&ndash;&gt;-->
+                                    <form>
+                                      <div class="mb-3">
+<!--                                          이건 새입력에서 오는게 아니고 불러와서 수정 해야될듯-->
 <!--                                        <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>-->
-<!--                                          <input class="form-control form-control-sm" id="message-text" type="text" placeholder="" aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">-->
-<!--&lt;!&ndash;                                        <textarea class="form-control" id="message-text"></textarea>&ndash;&gt;-->
-<!--                                      </div>-->
-<!--                                    </form>-->
+<!--                                        <textarea class="form-control" id="message-text"></textarea>-->
+                                      </div>
+                                    </form>
                                   </div>
                                 </div>
                               </div>
@@ -489,7 +483,7 @@
             <div class="col-6">
               <div class="mb-3 bg-secondary text-white">
               <label for="jisi1" class="form-label">지시사항</label>
-                  <span class="form-control" id="jisi1" >{{ new_Request.jisi1}}</span>
+              <span class="form-control" id="jisi1">{{ new_Request.jisi1}}</span>
               </div>
             </div>
         </div>
