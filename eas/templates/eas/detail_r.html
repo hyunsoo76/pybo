@@ -483,9 +483,9 @@
             <div class="col-6">
               <div class="mb-3 bg-secondary text-white">
               <label for="jisi1" class="form-label">지시사항</label>
-              if new_Request.jisi1 :
+              {% if new_Request.jisi1 : %}
                   <span class="form-control" id="jisi1">{{ new_Request.jisi1}}</span>
-              else:
+              {% else: %}
                   <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">
 
               </div>
