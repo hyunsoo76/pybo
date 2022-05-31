@@ -146,7 +146,7 @@
 
                                       <form action="{% url 'eas:detail_update2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
-                                          <input class="form-control form-control-sm" type="text" placeholder="반려:의견 및 지시사항" aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">
+                                          <input class="form-control form-control-sm" type="text" placeholder="반려:의견 및 지시사항      " aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">
                                           <input name="input_reject2" type="hidden" value="반려">
                                         <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
                                       </form>
