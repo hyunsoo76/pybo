@@ -487,7 +487,7 @@
                   <span class="form-control" id="jisi1">{{ new_Request.jisi1}}</span>
               {% else %}
                   <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">
-
+              {% endif %}
               </div>
             </div>
         </div>
