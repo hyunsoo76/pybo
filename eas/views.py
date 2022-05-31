@@ -154,7 +154,8 @@ def Request_create_24(request):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
-            new_Request.ddd = "이사"
+            temp_24 = request.POST.get('24_check')
+            new_Request.ddd = temp_24
             new_Request.save()
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
