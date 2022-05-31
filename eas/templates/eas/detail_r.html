@@ -142,8 +142,11 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-footer row-3 ">
+                                      <label class="col-form-label">지시사항 및 결제의견</label>
+
                                       <form action="{% url 'eas:detail_update2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
+                                          <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">
                                           <input name="input_reject2" type="hidden" value="반려">
                                         <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
                                       </form>
@@ -152,6 +155,7 @@
 
                                       <form action="{% url 'eas:detail_okupdate2' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
+                                          <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">
                                           <input name="input_ok2" type="hidden" value="승인">
                                         <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="final">승인</button></div>
                                       </form>
@@ -160,6 +164,7 @@
                                       <p>검토 후 재가 바랍니다.</p>
                                       <hr>
                                     <form>
+                                        {% csrf_token %}
                                       <div class="mb-3">
 <!--                                          이건 새입력에서 오는게 아니고 불러와서 수정 해야될듯-->
                                         <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>
