@@ -68,7 +68,8 @@ def index(request):
 
 def detail(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
-    if new_Request.a_5 > 100:
+    if new_Request.ddd == "이사" :
+
         totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                   new_Request.d_5, new_Request.e_5, new_Request.f_5,
                   new_Request.g_5, new_Request.h_5, new_Request.i_5,
@@ -81,11 +82,26 @@ def detail(request, Request_id):
         new_Request.total = totalsum
 
         context = {'new_Request': new_Request}
-        return render(request, 'eas/detail_r.html', context)
+        return render(request, 'eas/detail_r_24.html', context)
     else:
-        new_Request = get_object_or_404(Request, pk=Request_id)
-        context = {'new_Request': new_Request}
-        return render(request, 'eas/monthly_holiday_r.html', context)
+            if new_Request.a_5 > 100:
+                totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                          new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                          new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                          new_Request.j_5]
+                totalsum = 0
+                for total in totals:
+                    if total != None:
+                        totalsum = totalsum + total
+
+                new_Request.total = totalsum
+
+                context = {'new_Request': new_Request}
+                return render(request, 'eas/detail_r.html', context)
+            else:
+                new_Request = get_object_or_404(Request, pk=Request_id)
+                context = {'new_Request': new_Request}
+                return render(request, 'eas/monthly_holiday_r.html', context)
 
 
 
@@ -138,6 +154,7 @@ def Request_create_24(request):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
+            new_Request.ddd = "이사"
             new_Request.save()
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
