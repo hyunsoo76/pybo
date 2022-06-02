@@ -132,7 +132,9 @@ def Request_create(request):
             context = {'form': form}
             return render(request, 'eas/detail.html', context)
     else:
-        return redirect('eas:index')
+        form = RequestForm()
+        context = {'form': form}
+        return render(request, 'eas/detail.html', context)
     # else:
     #
     #     query = request.GET.get('j_1', '')
