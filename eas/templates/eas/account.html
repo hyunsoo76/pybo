@@ -1,4 +1,6 @@
-<!doctype html>
+{% block content %}
+{% load humanize %}
+
 <html lang="ko">
   <head>
     <!-- Required meta tags -->
@@ -51,52 +53,52 @@
             {% if q in qs.a_1 %}
                   <tr>
                   <td>{{ qs.a_1 }}</td><td>{{ qs.a_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy" accesskey="c">copy</button> <input type="hidden" id="data-area" value="{{ qs.a_2 }}">
-            </td><td>{{ qs.a_3 }}</td><td>{{ qs.a_4 }}</td><td>{{ qs.a_6 }}</td><td>{{ qs.a_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.a_5 }}</td>
+            </td><td>{{ qs.a_3 }}</td><td>{{ qs.a_4 }}</td><td>{{ qs.a_6 }}</td><td>{{ qs.a_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.a_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.b_1 %}
                   <tr>
-                      <td>{{ qs.b_1 }}</td><td>{{ qs.b_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_b">copy</button> <input type="hidden" id="data-area_b" value="{{ qs.b_2 }}"></td><td>{{ qs.b_3 }}</td><td>{{ qs.b_4 }}</td><td>{{ qs.b_6 }}</td><td>{{ qs.b_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.b_5 }}</td>
+                      <td>{{ qs.b_1 }}</td><td>{{ qs.b_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_b">copy</button> <input type="hidden" id="data-area_b" value="{{ qs.b_2 }}"></td><td>{{ qs.b_3 }}</td><td>{{ qs.b_4 }}</td><td>{{ qs.b_6 }}</td><td>{{ qs.b_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.b_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.c_1 %}
                   <tr>
-                  <td>{{ qs.c_1 }}</td><td>{{ qs.c_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_c">copy</button> <input type="hidden" id="data-area_c" value="{{ qs.c_2 }}"></td><td>{{ qs.c_3 }}</td><td>{{ qs.c_4 }}</td><td>{{ qs.c_6 }}</td><td>{{ qs.c_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.c_5 }}</td>
+                  <td>{{ qs.c_1 }}</td><td>{{ qs.c_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_c">copy</button> <input type="hidden" id="data-area_c" value="{{ qs.c_2 }}"></td><td>{{ qs.c_3 }}</td><td>{{ qs.c_4 }}</td><td>{{ qs.c_6 }}</td><td>{{ qs.c_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.c_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.d_1 %}
                   <tr>
-                  <td>{{ qs.d_1 }}</td><td>{{ qs.d_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_d" class="data-copy" >copy</button> <input type="hidden" id="data-area_d" class="data-area" value="{{ qs.d_2 }}"></td><td>{{ qs.d_3 }}</td><td>{{ qs.d_4 }}</td><td>{{ qs.d_6 }}</td><td>{{ qs.d_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.d_5 }}</td>
+                  <td>{{ qs.d_1 }}</td><td>{{ qs.d_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_d" class="data-copy" >copy</button> <input type="hidden" id="data-area_d" class="data-area" value="{{ qs.d_2 }}"></td><td>{{ qs.d_3 }}</td><td>{{ qs.d_4 }}</td><td>{{ qs.d_6 }}</td><td>{{ qs.d_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.d_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.e_1 %}
                   <tr>
-                  <td>{{ qs.e_1 }}</td><td>{{ qs.e_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_e" class="data-copy" >copy</button> <input type="hidden" id="data-area_e" class="data-area" value="{{ qs.e_2 }}"></td><td>{{ qs.e_3 }}</td><td>{{ qs.e_4 }}</td><td>{{ qs.e_6 }}</td><td>{{ qs.e_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.e_5 }}</td>
+                  <td>{{ qs.e_1 }}</td><td>{{ qs.e_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_e" class="data-copy" >copy</button> <input type="hidden" id="data-area_e" class="data-area" value="{{ qs.e_2 }}"></td><td>{{ qs.e_3 }}</td><td>{{ qs.e_4 }}</td><td>{{ qs.e_6 }}</td><td>{{ qs.e_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.e_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.f_1 %}
                   <tr>
-                  <td>{{ qs.f_1 }}</td><td>{{ qs.f_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_f" class="data-copy">copy</button> <input type="hidden" id="data-area_f" class="data-area" value="{{ qs.f_2 }}"></td><td>{{ qs.f_3 }}</td><td>{{ qs.f_4 }}</td><td>{{ qs.f_6 }}</td><td>{{ qs.f_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.f_5 }}</td>
+                  <td>{{ qs.f_1 }}</td><td>{{ qs.f_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_f" class="data-copy">copy</button> <input type="hidden" id="data-area_f" class="data-area" value="{{ qs.f_2 }}"></td><td>{{ qs.f_3 }}</td><td>{{ qs.f_4 }}</td><td>{{ qs.f_6 }}</td><td>{{ qs.f_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.f_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.g_1 %}
                   <tr>
-                  <td>{{ qs.g_1 }}</td><td>{{ qs.g_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_g" class="data-copy">copy</button> <input type="hidden" id="data-area_g" class="data-area" value="{{ qs.g_2 }}"></td><td>{{ qs.g_3 }}</td><td>{{ qs.g_4 }}</td><td>{{ qs.g_6 }}</td><td>{{ qs.g_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.g_5 }}</td>
+                  <td>{{ qs.g_1 }}</td><td>{{ qs.g_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_g" class="data-copy">copy</button> <input type="hidden" id="data-area_g" class="data-area" value="{{ qs.g_2 }}"></td><td>{{ qs.g_3 }}</td><td>{{ qs.g_4 }}</td><td>{{ qs.g_6 }}</td><td>{{ qs.g_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.g_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.h_1 %}
                   <tr>
-                  <td>{{ qs.h_1 }}</td><td>{{ qs.h_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_h" class="data-copy">copy</button> <input type="hidden" id="data-area_h" class="data-area" value="{{ qs.h_2 }}"></td><td>{{ qs.h_3 }}</td><td>{{ qs.h_4 }}</td><td>{{ qs.h_6 }}</td><td>{{ qs.h_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.h_5 }}</td>
+                  <td>{{ qs.h_1 }}</td><td>{{ qs.h_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_h" class="data-copy">copy</button> <input type="hidden" id="data-area_h" class="data-area" value="{{ qs.h_2 }}"></td><td>{{ qs.h_3 }}</td><td>{{ qs.h_4 }}</td><td>{{ qs.h_6 }}</td><td>{{ qs.h_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.h_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.i_1 %}
                   <tr>
-                  <td>{{ qs.i_1 }}</td><td>{{ qs.i_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_i" class="data-copy">copy</button> <input type="hidden" id="data-area_i" class="data-area" value="{{ qs.i_2 }}"></td><td>{{ qs.i_3 }}</td><td>{{ qs.i_4 }}</td><td>{{ qs.i_6 }}</td><td>{{ qs.i_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.i_5 }}</td>
+                  <td>{{ qs.i_1 }}</td><td>{{ qs.i_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_i" class="data-copy">copy</button> <input type="hidden" id="data-area_i" class="data-area" value="{{ qs.i_2 }}"></td><td>{{ qs.i_3 }}</td><td>{{ qs.i_4 }}</td><td>{{ qs.i_6 }}</td><td>{{ qs.i_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.i_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.j_1 %}
                   <tr>
-                  <td>{{ qs.j_1 }}</td><td>{{ qs.j_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_j" class="data-copy">copy</button> <input type="hidden" id="data-area_j" class="data-area" value="{{ qs.j_2 }}"></td><td>{{ qs.j_3 }}</td><td>{{ qs.j_4 }}</td><td>{{ qs.j_6 }}</td><td>{{ qs.j_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.j_5 }}</td>
+                  <td>{{ qs.j_1 }}</td><td>{{ qs.j_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy_j" class="data-copy">copy</button> <input type="hidden" id="data-area_j" class="data-area" value="{{ qs.j_2 }}"></td><td>{{ qs.j_3 }}</td><td>{{ qs.j_4 }}</td><td>{{ qs.j_6 }}</td><td>{{ qs.j_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.j_5|default_if_none:""|intcomma }}</td>
                   </tr>
             {% endif %}
             {% endfor %}
