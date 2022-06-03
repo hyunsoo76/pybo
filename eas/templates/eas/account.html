@@ -51,7 +51,7 @@
             {% if q in qs.a_1 %}
                   <tr>
                   <td>{{ qs.a_1 }}</td><td>{{ qs.a_2 }}</td><td><button type="button" class="btn btn-outline-info btn-sm" id="data-copy" accesskey="c">copy</button> <input type="hidden" id="data-area" value="{{ qs.a_2 }}">
-            </td><td>{{ qs.a_3 }}</td><td>{{ qs.a_4 }}</td><td>{{ qs.a_6 }}</td><td>{{ qs.a_7 }}</td><td>{{ qs.create_date|date:'n/d g:i' }}</td><td>{{ qs.a_5 }}</td>
+            </td><td>{{ qs.a_3 }}</td><td>{{ qs.a_4 }}</td><td>{{ qs.a_6 }}</td><td>{{ qs.a_7 }}</td><td>{{ qs.create_date|date:'n/d' }}</td><td>{{ qs.a_5 }}</td>
                   </tr>
             {% endif %}
             {% if q in qs.b_1 %}
