@@ -11,7 +11,8 @@
 
         <p></p>
 <div class="container">
-    <form method="post" onkeydown="return event.key != 'Enter';">
+<!--    <form method="post" onkeydown="return event.key != 'Enter';">-->
+    <form method="post">
         {% csrf_token %}
         <!-- 오류표시 Start -->
         {% if form.errors %}
@@ -108,12 +109,12 @@
                                       </div>
                                       <div class="modal-body1">
                                           <p>검토 후 재가 바랍니다.</p>
-                                        <form>
-                                          <div class="mb-3">
-                                            <label class="col-form-label">지시사항 및 결제의견</label>
-                                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="chamjo1_holiday" name="chamjo1" value="{{ form.chamjo1.value|default_if_none:'' }}">
-                                          </div>
-                                        </form>
+<!--                                        <form>-->
+<!--                                          <div class="mb-3">-->
+<!--                                            <label class="col-form-label">지시사항 및 결제의견</label>-->
+<!--                                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="chamjo1_holiday" name="chamjo1" value="{{ form.chamjo1.value|default_if_none:'' }}">-->
+<!--                                          </div>-->
+<!--                                        </form>-->
                                       </div>
                                     </div>
                                   </div>
