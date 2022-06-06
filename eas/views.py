@@ -396,7 +396,8 @@ def nomal_approval(request):
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
-
+            temp = request.POST.get('nomal')
+            new_Request.jisi1 = temp
             new_Request.create_date = timezone.now()
             new_Request.save()
             # context = {'new_Request': new_Request}
@@ -410,7 +411,5 @@ def nomal_approval(request):
 # 일반품의 read
 def nomal_approval_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
-    temp = request.POST.get('nomal')
-    new_Request.jisi1 = temp
     context = {'new_Request': new_Request}
     return render(request, 'eas/nomal_approval_r.html', context)
