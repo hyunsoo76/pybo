@@ -68,7 +68,7 @@ def index(request):
 
 def detail(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
-    if new_Request.c_1 == "일반품의" :
+    if new_Request.c_1 == "일반품의":
         new_Request = get_object_or_404(Request, pk=Request_id)
         context = {'new_Request': new_Request}
         return render(request, 'eas/nomal_approval_r.html', context)
@@ -394,9 +394,9 @@ def account(request):
 # 일반품의 insert
 def nomal_approval(request):
     if request.method == 'POST':
+        temp = request.POST.get('nomal')
         form = RequestForm(request.POST)
         if form.is_valid():
-            temp = request.POST.get('nomal')
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.jisi1 = temp
