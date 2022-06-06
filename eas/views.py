@@ -393,13 +393,12 @@ def account(request):
 # 일반품의 insert
 def nomal_approval(request):
     if request.method == 'POST':
-
         form = RequestForm(request.POST)
         if form.is_valid():
-            new_Request = form.save(commit=False)
-            new_Request.create_date = timezone.now()
             temp = request.POST.get('nomal')
+            new_Request = form.save(commit=False)
             new_Request.jisi1 = temp
+            new_Request.create_date = timezone.now()
             new_Request.save()
             # context = {'new_Request': new_Request}
             # return render(request, 'eas/monthly_holiday_r.html', context)
