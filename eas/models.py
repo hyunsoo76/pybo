@@ -75,7 +75,7 @@ class Request(models.Model):
     j_6 = models.CharField(max_length=200, blank=True)
     j_7 = models.CharField(max_length=200, blank=True)
     chamjo1 = models.TextField(blank=True)
-    jisi1 = models.TextField(blank=True)
+    jisi1 = models.TextField(blank=True) #일반품의에선 내용입력으로 사용
     total = models.IntegerField(blank=True, null=True)
     date1 = models.DateTimeField(null=True, blank=True)
     date2 = models.DateTimeField(null=True, blank=True)
