@@ -68,39 +68,45 @@ def index(request):
 
 def detail(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
-    if new_Request.ddd == "이사" :
-
-        totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                  new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                  new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                  new_Request.j_5]
-        totalsum = 0
-        for total in totals:
-            if total != None:
-                totalsum = totalsum + total
-
-        new_Request.total = totalsum
-
+    if new_Request.c_1 == "일반품의" :
+        new_Request = get_object_or_404(Request, pk=Request_id)
         context = {'new_Request': new_Request}
-        return render(request, 'eas/detail_r_24.html', context)
-    else:
-            if new_Request.a_5 > 100:
-                totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                          new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                          new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                          new_Request.j_5]
-                totalsum = 0
-                for total in totals:
-                    if total != None:
-                        totalsum = totalsum + total
+        return render(request, 'eas/nomal_approval_r.html', context)
+    else :
 
-                new_Request.total = totalsum
+        if new_Request.ddd == "이사" :
 
-                context = {'new_Request': new_Request}
-                return render(request, 'eas/detail_r.html', context)
-            else:
-                new_Request = get_object_or_404(Request, pk=Request_id)
-                context = {'new_Request': new_Request}
+            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                      new_Request.j_5]
+            totalsum = 0
+            for total in totals:
+                if total != None:
+                    totalsum = totalsum + total
+
+            new_Request.total = totalsum
+
+            context = {'new_Request': new_Request}
+            return render(request, 'eas/detail_r_24.html', context)
+        else:
+                if new_Request.a_5 > 100:
+                    totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                              new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                              new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                              new_Request.j_5]
+                    totalsum = 0
+                    for total in totals:
+                        if total != None:
+                            totalsum = totalsum + total
+
+                    new_Request.total = totalsum
+
+                    context = {'new_Request': new_Request}
+                    return render(request, 'eas/detail_r.html', context)
+                else:
+                    new_Request = get_object_or_404(Request, pk=Request_id)
+                    context = {'new_Request': new_Request}
                 return render(request, 'eas/monthly_holiday_r.html', context)
 
 
@@ -390,8 +396,10 @@ def nomal_approval(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
         if form.is_valid():
+            temp = request.POST.get('nomal')
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
+            new_Request.jisi1 = temp
             new_Request.save()
             # context = {'new_Request': new_Request}
             # return render(request, 'eas/monthly_holiday_r.html', context)
@@ -404,6 +412,5 @@ def nomal_approval(request):
 # 일반품의 read
 def nomal_approval_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
-
     context = {'new_Request': new_Request}
     return render(request, 'eas/nomal_approval_r.html', context)
