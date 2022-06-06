@@ -189,19 +189,19 @@
 
 
         <div class="row" style="height: 50px;" align="center">
-          <div class="col-4">
+          <div class="col-5">
             <select class="form-select" aria-label="Default select example">
               <option value="buy">매입결재</option>
               <option value="request">품의서</option>
               <option value="holiday">휴가원</option>
             </select>
           </div>
-          <div class="col-8">
+          <div class="col-7">
              <table class="table">
               <thead>
                 <tr>
                   <th scope="col">계</th>
-                  <th scope="col" id="total">{{ new_Request.total|intcomma }}</th>
+                  <th scope="col" id="total" align="right">{{ new_Request.total|intcomma }}</th>
                 </tr>
               </thead>
              </table>
