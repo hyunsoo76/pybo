@@ -23,6 +23,8 @@ urlpatterns = [
     path('monthly_holiday_r/update2/<int:new_Request_id>/', views.monthly_holiday_r_update2, name='monthly_holiday_r_update2'),
     path('account.html/', views.account, name='account'),
     path('Request/create_24/', views.Request_create_24, name='Request_create_24'),
+    path('monthly_holiday/', views.nomal_approval_r, name='nomal_approval'),
+    path('monthly_holiday_r/<int:Request_id>/', views.nomal_approval_r, name='nomal_approval_r'),
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

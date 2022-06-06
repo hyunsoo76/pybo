@@ -384,3 +384,26 @@ def account(request):
         return render(request, 'eas/account.html', {
             'qs_list': qs_list,
             'q': q, })
+
+# 일반품의 insert
+def nomal_approval(request):
+    if request.method == 'POST':
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            new_Request = form.save(commit=False)
+            new_Request.create_date = timezone.now()
+            new_Request.save()
+            # context = {'new_Request': new_Request}
+            # return render(request, 'eas/monthly_holiday_r.html', context)
+            return redirect('eas:index')
+    else:
+        form = RequestForm()
+        context = {'form': form}
+        return render(request, 'eas/nomal_approval.html', context)
+
+# 일반품의 read
+def nomal_approval_r(request, Request_id):
+    new_Request = get_object_or_404(Request, pk=Request_id)
+
+    context = {'new_Request': new_Request}
+    return render(request, 'eas/nomal_approval_r.html', context)
