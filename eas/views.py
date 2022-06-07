@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 # from django.template import loader
 from django.shortcuts import get_object_or_404, render
 
-from . import pushmsg, hometax
+from . import pushmsg
 from .models import Request
 from .forms import RequestForm
 from django.core.paginator import Paginator
