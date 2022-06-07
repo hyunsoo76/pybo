@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 # from django.template import loader
 from django.shortcuts import get_object_or_404, render
 
-from . import pushmsg
+from . import pushmsg, hometax
 from .models import Request
 from .forms import RequestForm
 from django.core.paginator import Paginator
@@ -413,3 +413,7 @@ def nomal_approval_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
     context = {'new_Request': new_Request}
     return render(request, 'eas/nomal_approval_r.html', context)
+
+def hometax(request):
+    from importlib import reload
+    reload(hometax)
