@@ -26,7 +26,7 @@ from selenium.webdriver.chrome.options import Options
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
         # driver = webdriver(options=options)
-driver = webdriver.Chrome("c:\chromedriver.exe", options=options)
+driver = webdriver.Chrome("/home/ubuntu/projects/mysite/eas/chromedriver.exe", options=options)
 driver.implicitly_wait(20)
 driver.implicitly_wait(10)
 
