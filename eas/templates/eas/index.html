@@ -72,7 +72,8 @@
               <td>{% if Request.ddd == "이사"
                    기안
                   {% else %}
-                  {{ Request.aaa }}</td>
+                  {{ Request.aaa }}
+                  {% endif %}  </td>
               <td>{{ Request.bbb }}</td>
               <td style="text-align:right;">{{ Request.create_date|date:'y/n/d/g:i' }}</td>
             </tr>
