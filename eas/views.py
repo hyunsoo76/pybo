@@ -73,8 +73,8 @@ def detail(request, Request_id):
         return render(request, 'eas/nomal_approval_r.html', context)
     else:
 
-        if new_Request.ddd == "이사" :
-            new_Request.aaa = "이사"
+        if new_Request.ddd == "이사":
+            new_Request.aaa = new_Request.ddd
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
@@ -85,7 +85,7 @@ def detail(request, Request_id):
                     totalsum = totalsum + total
 
             new_Request.total = totalsum
-
+            new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r_24.html', context)
         else:
