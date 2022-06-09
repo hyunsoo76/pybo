@@ -74,7 +74,7 @@ def detail(request, Request_id):
     else:
 
         if new_Request.ddd == "이사" :
-
+            new_Request.aaa = "이사"
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
