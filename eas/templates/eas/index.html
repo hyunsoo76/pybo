@@ -69,7 +69,10 @@
               <td class="text-start" style ="font-color:#000000">
               <a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{Request.subject }}</a>
               </td>
-              <td>{{ Request.aaa }}</td>
+              <td>{% if Request.ddd == "이사"
+                   기안
+                  {% else %}
+                  {{ Request.aaa }}</td>
               <td>{{ Request.bbb }}</td>
               <td style="text-align:right;">{{ Request.create_date|date:'y/n/d/g:i' }}</td>
             </tr>
