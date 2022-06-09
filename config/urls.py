@@ -20,7 +20,7 @@ from pybo.views import base_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pybo/', include('pybo.urls')),
-    # path('paystub/', include('paystub.urls')),
+    path('paystub/', include('paystub.urls')),
     path('common/', include('common.urls')),
     path('polls/', include('polls.urls')),
     path('eas/', include('eas.urls')),
