@@ -73,8 +73,8 @@ def detail(request, Request_id):
         return render(request, 'eas/nomal_approval_r.html', context)
     else:
 
-        if new_Request.ddd == "이사":
-            new_Request.aaa = new_Request.ddd
+        if new_Request.ddd == "이사" :
+
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
@@ -85,7 +85,7 @@ def detail(request, Request_id):
                     totalsum = totalsum + total
 
             new_Request.total = totalsum
-            new_Request.save()
+
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r_24.html', context)
         else:
@@ -158,7 +158,6 @@ def Request_create_24(request):
             new_Request.create_date = timezone.now()
             temp_24 = request.POST.get('24_check')
             new_Request.ddd = temp_24
-            new_Request.aaa = "기안"
             new_Request.save()
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
