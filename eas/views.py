@@ -217,11 +217,8 @@ def detail_okupdate(request, new_Request_id):
         temp = request.POST.get('input_ok')
         if new_Request.aaa != "반려":
             new_Request.aaa = temp
-            if new_Request.data1:
-                new_Request.save()
-            else:
-                new_Request.date1 = timezone.now()
-                new_Request.save()
+            new_Request.date1 = timezone.now()
+            new_Request.save()
             # messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
