@@ -505,15 +505,15 @@
 <!--              <span class="form-control" id="jisi1">{{ new_Request.jisi1}}</span>-->
 <!--              </div>-->
             </div>
-        </div>
-        <!--수정버튼-->
-        <div>
-                {% if not new_Request.aaa %}
-                <a href="{% url 'eas:Request_modify' new_Request.id  %}"
-                       class="btn btn-sm btn-outline-success">&nbsp;&nbsp;수&nbsp;정&nbsp;&nbsp;</a>
-                {% endif %}
-        </div>
 
+        <!--수정버튼-->
+            <div>
+                    {% if not new_Request.aaa %}
+                    <a href="{% url 'eas:Request_modify' new_Request.id  %}"
+                           class="btn btn-sm btn-outline-success">&nbsp;&nbsp;수&nbsp;정&nbsp;&nbsp;</a>
+                    {% endif %}
+            </div>
+        </div>
     </div>
 
 
