@@ -11,7 +11,7 @@
 
         <p></p>
 <div class="container">
-    <form method="post" onkeydown="return event.key != 'Enter';">
+    <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <!-- 오류표시 Start -->
         {% if form.errors %}
@@ -195,7 +195,8 @@
                   <div class="input-group mb-3">
                   <span class="input-group-text" id="input_subject">제목</span>
                   <input type="text" class="form-control" name="subject" id="subject"
-                   value="{{ form.subject.value|default_if_none:'' }}" accesskey="s" placeholder="alt+s" autofocus>
+                         value="{{ form.subject.value|default_if_none:'' }}" accesskey="s"
+                         placeholder="alt+s" autofocus onkeydown="if(event.keyCode==13)detail_input.a_1.focus();">
 <!--                  <textarea class="form-control" id="input_subject1" rows="1"></textarea>-->
                   </div>
               </div>
