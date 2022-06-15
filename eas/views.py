@@ -422,4 +422,4 @@ def nomal_approval_r(request, Request_id):
 
 def ds(request):
     if request.method == "POST":
-      return (request, 'eas/ds.html')
+      return render(request, 'eas/ds.html')
