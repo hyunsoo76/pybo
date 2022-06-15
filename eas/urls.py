@@ -25,6 +25,7 @@ urlpatterns = [
     path('Request/create_24/', views.Request_create_24, name='Request_create_24'),
     path('nomal_approval/', views.nomal_approval, name='nomal_approval'),
     path('nomal_approval_r/<int:Request_id>/', views.nomal_approval_r, name='nomal_approval_r'),
+    path('ds.html/', views.ds, name='ds'),
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
