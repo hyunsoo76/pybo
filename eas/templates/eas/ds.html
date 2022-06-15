@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="http://info.sweettracker.co.kr/tracking/4" method="post">
+<form action="http://info.sweettracker.co.kr/tracking/4" method="post" target=”w”>
     {% csrf_token %}
             <div class="form-group">
               <label for="t_key"></label>
@@ -28,6 +28,13 @@
         </form>
 
 </body>
+
+  <script>
+      var win;
+      function create(){
+      win = open(”,‘w’,‘width=300,height=200′);
+      }
+  </script>
 </html>
 
 {% endblock %}
