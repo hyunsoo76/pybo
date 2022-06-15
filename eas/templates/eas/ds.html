@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="http://info.sweettracker.co.kr/tracking/4" method="post" target="w" onsubmit="create();">
+<form name="viewerForm" action="http://info.sweettracker.co.kr/tracking/4" method="post" target="w" onsubmit="create();">
     {% csrf_token %}
             <div class="form-group">
               <label for="t_key"></label>
@@ -30,10 +30,15 @@
 </body>
 
   <script type="text/javascript">
-      var win;
-      function create(){
-      win = window.open(",'w','width=300,height=200');
-      }
+      function postPopUp(viewerForm) {
+
+        frm = document.getElementById(viewerForm);
+        window.open('', 'viewer', 'width=1000, height=700');
+        frm.action = "viewing.jsp";
+        frm.target = "viewer";
+        frm.method = "post";
+        frm.submit();
+       }
   </script>
 </html>
 
