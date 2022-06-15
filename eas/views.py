@@ -421,4 +421,5 @@ def nomal_approval_r(request, Request_id):
 #     reload(hometax)
 
 def ds(request):
-    return (request, 'eas/ds.html')
+    if request.method == "POST":
+      return (request, 'eas/ds.html')
