@@ -419,3 +419,6 @@ def nomal_approval_r(request, Request_id):
 # def hometax(request):
 #     from importlib import reload
 #     reload(hometax)
+
+def ds(request):
+    return (request, 'eas/ds.html')
