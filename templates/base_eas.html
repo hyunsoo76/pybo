@@ -35,17 +35,27 @@
 <!--             </form>-->
 <!--          </div>-->
           <div class="navbar-collapse collapse justify-content-end" id="navbarSupportedContent">
+<!-- --------------택배조회 -->
+              <form name="viewerForm" action="http://info.sweettracker.co.kr/tracking/4" method="post" target="viewer" onsubmit="postPopUp();">
+                {% csrf_token %}
+                <div class="form-group">
+                <label for="t_key"></label>
+                <input type="hidden" class="form-control" id="t_key" name="t_key" value="YFjaa5nBpHKFhYt560rryA">
+                </div>
+                <div class="form-group">
+                <label for="t_code">택배사 코드</label>
+                 <input type="text" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드">
+                </div>
 
-<!--              <form id="searchForm" method="get" action="{% url 'eas:index' %}">-->
-<!--                <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">-->
-<!--                <input type="hidden" id="page" name="page" value="{{ page }}">-->
-<!--              </form>-->
+                <div class="form-group">
+                  <label for="t_invoice">운송장 번호</label>
+                  <input type="number" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호">
+                </div>
+                <button type="submit" class="btn btn-default">조회하기</button>
+              </form>
+<!-- --------------택배조회 끝-->
 
 
-<!--            <form class="d-flex justify-content-end" >-->
-<!--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search_kw">-->
-<!--              <button class="btn btn-outline-light" type="submit" id="btn_search">Search</button>-->
-<!--            </form>-->
              <form class="d-flex justify-content-end" id="search">
 
               <div class="input-group">
@@ -100,6 +110,14 @@
 <!--      });-->
 <!--  </script>-->
   </body>
+  
+  <script type="text/javascript">
+      function postPopUp(viewerForm) {
 
+        frm = document.getElementById(viewerForm);
+        window.open('', 'viewer', 'width=500, height=800 left=710, top=86, location=no,status=no,scrollbars=yes');
+
+       }
+  </script>
 
 </html>
