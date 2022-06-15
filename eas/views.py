@@ -173,8 +173,9 @@ def Request_create_24(request):
 
 
             context = {'new_Request': new_Request}
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-            # return render(request, 'eas/detail_r_24.html', context)
+
+            render(request, 'eas/detail_r_24.html', context)
+            return redirect('eas:index')
 
     else:
         form = RequestForm()
