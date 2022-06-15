@@ -173,9 +173,9 @@ def Request_create_24(request):
 
 
             context = {'new_Request': new_Request}
-
-            render(request, 'eas/detail_r_24.html', context)
-            return redirect('eas:index')
+            return render(request, 'eas/index.html', context)
+            # return render(request, 'eas/detail_r_24.html', context)
+            
 
     else:
         form = RequestForm()
