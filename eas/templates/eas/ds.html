@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% extends 'base_eas.html' %}
+{% block content %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +9,7 @@
 <body>
 
 <form action="http://info.sweettracker.co.kr/tracking/4" method="post" target=”ifr”>
+    {% csrf_token %}
             <div class="form-group">
               <label for="t_key"></label>
               <input type="hidden" class="form-control" id="t_key" name="t_key" value="YFjaa5nBpHKFhYt560rryA">
