@@ -173,7 +173,7 @@ def Request_create_24(request):
 
 
             context = {'new_Request': new_Request}
-            return render(request, 'eas/index.html', context)
+            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
             # return render(request, 'eas/detail_r_24.html', context)
 
     else:
