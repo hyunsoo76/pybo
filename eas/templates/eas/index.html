@@ -1,24 +1,25 @@
 {% extends 'base_eas.html' %}
 {% load eas_filter %}
 {% block content %}
-<div class = "container my-3">
-    <div class="row justify-content-between">
+<!--<p></p>-->
+<div class="container my-3">
+    <div class="row justify-content-between my-1">
 <!--        <div class="col-lg-7 col-md-2 d-none d-sm-block"></div>-->
-        <div class="col-lg-2">&nbsp;</div>
+<!--            <div class="col-lg-3 col-sm-5">-->
         <!--        검색창-->
-        <div class="col-2 input-group">
-            <form class="d-flex justify-content-end" id="search">
-    <!--                  <div class="input-group">-->
-              <input hidden="hidden" />
-              <input type="text" id="search_kw" class="form-control me-2" accesskey="a" value="{{ kw|default_if_none:'' }}" placeholder="alt+a" >
-              <button class="btn btn-outline-secondary" type="button" id="btn_search">Search</button>
+                <form class="d-flex justify-content-end" id="search">
 
-            </form>
-        </div>
-<!--        <div class="col-1"></div>-->
+                  <div class="input-group">
+                        <input hidden="hidden" />
+                        <input type="text" id="search_kw" class="form-control me-2" accesskey="a" value="{{ kw|default_if_none:'' }}" placeholder="alt+a" >
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="btn_search">Search</button>
+                        </div>
+                  </div>
+                </form>
+            </div>
+        <div class="col-1"></div>
     </div>
-
-
 
 
 
