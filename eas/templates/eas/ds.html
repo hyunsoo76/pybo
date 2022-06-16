@@ -48,6 +48,12 @@
         window.open('', 'viewer', 'width=500, height=800 left=710, top=86, location=no,status=no,scrollbars=yes');
 
        }
+
+
+   var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\ '\"\\(\=]/gi;
+   var str = $( "#inputid").val();
+   var text = str.replace(regExp, "")
+   $( "#t_invoice").val(text.trim());
   </script>
 </html>
 
