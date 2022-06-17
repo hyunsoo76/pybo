@@ -134,7 +134,8 @@
 
      $('body').on('input', 'input[name=t_invoice]', function() {
           var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
-          $(this).val($(this).val().replace(reg, ''));
+          return t_invoice.replace(reg, "");
+<!--          $(this).val($(this).val().replace(reg, ''));-->
         });
 
 
