@@ -119,6 +119,19 @@
         window.open('', 'viewer', 'width=500, height=800 left=710, top=86, location=no,status=no,scrollbars=yes');
 
        }
+
+      function regExp(t_invoice){
+      var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
+      //특수문자 검증
+      if(reg.test(t_invoice)){
+        //특수문자 제거후 리턴
+        return str.replace(reg, "");
+      } else {
+        //특수문자가 없으므로 본래 문자 리턴
+        return str;
+      }
+    }
+
   </script>
 
 </html>
