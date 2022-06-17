@@ -132,9 +132,15 @@
         }
       }
 
-     $('body').on('input', 'input[name=t_invoice]', function() {
-          $(this).val($(this).val().replace('-', ''));
+<!--     $('body').on('input', 'input[name=t_invoice]', function() {-->
+<!--          $(this).val($(this).val().replace('-', ''));-->
+<!--        });-->
+       $('#t_invoice').on('change',function()
+        {
+            $(this).val($(this).val().replace("-",""));
         });
+
+
 
   </script>
 
