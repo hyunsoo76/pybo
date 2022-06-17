@@ -132,14 +132,15 @@
         }
       }
 
-<!--     $('body').on('input', 'input[name=t_invoice]', function() {-->
-<!--          $(this).val($(this).val().replace('-', ''));-->
-<!--        });-->
-      $(document).ready(function(){
-            $('input[name=t_invoice]').blur(function(){
-                var value = $(this).val();
-                $(this).val(value.replace('-',''));
-            });
+     $('body').on('input', 'input[name=t_invoice]', function() {
+       var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
+       if(reg.test(t_invoice)){
+          $(this).val($(this).val().replace('reg', ''));
+       } else {
+        //특수문자가 없으므로 본래 문자 리턴
+        return t_invoice;
+        }
+      }
         });
 
 
