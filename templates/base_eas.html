@@ -129,8 +129,12 @@
       } else {
         //특수문자가 없으므로 본래 문자 리턴
         return str;
+        }
       }
-    }
+
+     $('body').on('input', 'input[name=t_invoice]', function() {
+          $(this).val($(this).val().replace('-', ''));
+        });
 
   </script>
 
