@@ -133,9 +133,11 @@
 <!--      }-->
 
      $('body').on('input', 'input[name=t_invoice]', function() {
-          var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
-          return t_invoice.replace(reg, "");
+<!--          var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi-->
 <!--          $(this).val($(this).val().replace(reg, ''));-->
+          var value = $('input[name=t_invoice]').val();
+            value = value.replace("-", "");
+            $('input[name=t_invoice]').val(value);
         });
 
 
