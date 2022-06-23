@@ -101,26 +101,24 @@ def detail(request, Request_id):
 
                     new_Request.total = totalsum
                     # 외 몇개의 매입처인지 표기하기기 위해
-                    if new_Request.j_7:
-                        new_Request.eee = 10
-                    elif new_Request.i_7:
-                        new_Request.eee = 9
-                    elif new_Request.h_7:
-                        new_Request.eee = 8
-                    elif new_Request.g_7:
-                        new_Request.eee = 7
-                    elif new_Request.f_7:
-                        new_Request.eee = 6
-                    elif new_Request.e_7:
-                        new_Request.eee = 5
-                    elif new_Request.d_7:
-                        new_Request.eee = 4
-                    elif new_Request.c_7:
-                        new_Request.eee = 3
-                    elif new_Request.b_7:
-                        new_Request.eee = 2
-                    else:
-                        new_Request.eee = 1
+                    if new_Request.b_7 != None:
+                        new_Request.eee = "2"
+                    elif new_Request.c_7 != None:
+                        new_Request.eee = "3"
+                    elif new_Request.d_7 != None:
+                        new_Request.eee = "4"
+                    elif new_Request.e_7 != None:
+                        new_Request.eee = "5"
+                    elif new_Request.f_7 != None:
+                        new_Request.eee = "6"
+                    elif new_Request.g_7 != None:
+                        new_Request.eee = "7"
+                    elif new_Request.h_7 != None:
+                        new_Request.eee = "8"
+                    elif new_Request.i_7 != None:
+                        new_Request.eee = "9"
+                    elif new_Request.j_7 != None:
+                        new_Request.eee = "10"
 
                     context = {'new_Request': new_Request}
                     return render(request, 'eas/detail_r.html', context)
