@@ -26,5 +26,6 @@ urlpatterns = [
     path('eas/', include('eas.urls')),
     path('pybo/', base_views.index, name='index'),
     path('', include('eas.urls')),
+    path('eos/', include('eos.urls')),
     
 ]
