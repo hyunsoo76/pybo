@@ -70,6 +70,7 @@
               <a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{Request.subject }} {{ Request.fff }}</a>
               {% else %}
               <a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{Request.subject }} </a>
+              {% endif %}
               </td>
                 {% if Request.ddd == "이사" %}
                     <td>기안</td>
