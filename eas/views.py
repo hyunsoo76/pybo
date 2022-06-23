@@ -133,7 +133,7 @@ def Request_create(request):
             elif new_Request.j_1:
                 new_Request.fff = 10
             else:
-                new_Request.fff = ''
+                new_Request.fff = 1
 
             new_Request.save()
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
