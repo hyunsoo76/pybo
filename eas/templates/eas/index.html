@@ -49,7 +49,8 @@
                 <tr class="table-dark text-center ">
                     <th>No</th>
                     <th>&nbsp;&nbsp;</th>
-                    <th style="width:60%">제목</th>
+                    <th style="width:52%">제목</th>
+                    <th style="width:8%">&nbsp;</th>
                     <th style="width:8%">이사</th>
                     <th style="width:8%">대표</th>
                     <th>&nbsp;&nbsp;작성일시</th>
@@ -68,6 +69,8 @@
               <td class="text-start" style ="font-color:#000000">
               <a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{Request.subject }}</a>
               </td>
+                {% if Request.eee %}
+              <td>{{ Request.eee }} </td>
                 {% if Request.ddd == "이사" %}
                     <td>기안</td>
                 {% else %}
