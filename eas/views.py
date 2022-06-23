@@ -102,23 +102,24 @@ def detail(request, Request_id):
                     new_Request.total = totalsum
                     # 외 몇개의 매입처인지 표기하기기 위해
                     if new_Request.b_1:
-                        new_Request.eee = "2"
+                        eee = "2"
                     elif new_Request.c_1:
-                        new_Request.eee = "3"
+                        eee = "3"
                     elif new_Request.d_1:
-                        new_Request.eee = "4"
+                        eee = "4"
                     elif new_Request.e_1:
-                        new_Request.eee = "5"
+                        eee = "5"
                     elif new_Request.f_1:
-                        new_Request.eee = "6"
+                        eee = "6"
                     elif new_Request.g_1:
-                        new_Request.eee = "7"
+                        eee = "7"
                     elif new_Request.h_1:
-                        new_Request.eee = "8"
+                        eee = "8"
                     elif new_Request.i_1:
-                        new_Request.eee = "9"
+                        eee = "9"
                     elif new_Request.j_1:
-                        new_Request.eee = "10"
+                        eee = "10"
+                    new_Request.eee = eee
 
                     context = {'new_Request': new_Request}
                     return render(request, 'eas/detail_r.html', context)
