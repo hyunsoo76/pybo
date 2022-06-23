@@ -151,6 +151,7 @@ def Request_create(request):
                     totalsum = totalsum + total
             new_Request.total = totalsum
             # 외 몇개의 매입처인지 표기하기기 위해
+            global eee
             if new_Request.b_1:
                 eee = "2"
             elif new_Request.c_1:
@@ -170,7 +171,7 @@ def Request_create(request):
             elif new_Request.j_1:
                 eee = "10"
             new_Request.eee = eee
-            
+
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
         else:
