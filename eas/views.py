@@ -159,7 +159,7 @@ def Request_create(request):
                 new_Request.fff = 9
             elif new_Request.j_1:
                 new_Request.fff = 10
-                
+
             new_Request.save()
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,

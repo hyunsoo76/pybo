@@ -88,7 +88,7 @@ class Request(models.Model):
     ccc = models.CharField(max_length=200, blank=True) #상신버튼체크
     ddd = models.CharField(max_length=200, blank=True) #이사결재체크
     eee = models.CharField(max_length=200, blank=True)
-    fff = models.IntegerField(blank=True, null=True)
+    fff = models.IntegerField(blank=True, null=True) #index 외 몇개 매입처 표기
     ggg = models.IntegerField(blank=True, null=True)
     hhh = models.IntegerField(blank=True, null=True)
 
