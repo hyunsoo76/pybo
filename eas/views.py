@@ -115,23 +115,23 @@ def Request_create(request):
             new_Request.create_date = timezone.now()
             # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
-                new_Request.fff = 10
-            elif new_Request.i_1:
                 new_Request.fff = 9
-            elif new_Request.h_1:
+            elif new_Request.i_1:
                 new_Request.fff = 8
-            elif new_Request.g_1:
+            elif new_Request.h_1:
                 new_Request.fff = 7
-            elif new_Request.f_1:
+            elif new_Request.g_1:
                 new_Request.fff = 6
-            elif new_Request.e_1:
+            elif new_Request.f_1:
                 new_Request.fff = 5
-            elif new_Request.d_1:
+            elif new_Request.e_1:
                 new_Request.fff = 4
-            elif new_Request.c_1:
+            elif new_Request.d_1:
                 new_Request.fff = 3
-            elif new_Request.b_1:
+            elif new_Request.c_1:
                 new_Request.fff = 2
+            elif new_Request.b_1:
+                new_Request.fff = 1
 
             new_Request.save()
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
