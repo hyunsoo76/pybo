@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'django.contrib.humanize',
     'eas.apps.EasConfig',
+    'eos.apps.EasConfig',
 
 ]
 
