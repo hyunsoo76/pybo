@@ -3,4 +3,4 @@ from django.shortcuts import redirect, render
 
 
 def index(request):
-    return render("https://picsum.photos/1080/620/?random")
+    return ("https://picsum.photos/1080/620/?random")
