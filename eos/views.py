@@ -3,5 +3,5 @@ from django.shortcuts import redirect, render
 
 
 def index(request):
-    # return render(request, 'eos/index.html')
-    return HttpResponse("hellow world")
+    return render(request, 'eos/index.html')
+    # return HttpResponse("hellow world")
