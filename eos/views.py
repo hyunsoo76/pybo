@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 
 def index(request):
-    redirect('eos/index.html')
+    return render(request, 'eos/index.html')
