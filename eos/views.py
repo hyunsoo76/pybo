@@ -3,4 +3,4 @@ from django.shortcuts import redirect, render
 
 
 def index(request):
-    return render(request, 'eos/templates/eos/index.html')
+    return render(request, 'index.html')
