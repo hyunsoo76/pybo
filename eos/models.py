@@ -12,7 +12,7 @@ class Products(models.Model):
 
 class User(models.Model):
     odp_name = models.CharField(max_length=200, blank=True) #발주자명
-    buyer_name = models.CharField(max_length=200, blank=True) #수주자명
+    buyer_name = models.CharField(max_length=200, blank=True) #매출처
     phon_num = models.CharField(max_length=200, blank=True) #전화번호
 
 
