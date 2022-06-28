@@ -15,4 +15,4 @@ class UserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order_list, Order_listAdmin)
-admin.site.register(Order_list, UserAdmin)
+admin.site.register(User, UserAdmin)
