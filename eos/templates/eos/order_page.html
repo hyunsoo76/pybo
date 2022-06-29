@@ -39,7 +39,8 @@
     <br>
     <div class="row">
         <div class="col-4">
-            <select class="form-select" aria-label="Default select example">
+            <label for="buyer_select" class="form-label">발주매장</label>
+            <select class="form-select" aria-label="Default select example" id="buyer_select">
               <option selected>발주 매장 선택</option>
               <option value="1">One</option>
               <option value="2">Two</option>
@@ -54,6 +55,7 @@
         </div>
 <!--  배송일 달력 날짜선택   -->
         <div class="col-4">
+            <label for="date-picker" class="form-label">배송일</label>
             <input type="text" inputmode="none" placeholder="배송일" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2">
 <!--            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">-->
         </div>
