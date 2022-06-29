@@ -73,7 +73,7 @@
 
         $('#get-history').on('click', function() {
             const dateArr = $('#date-picker').val().split('-')
-            location.href = '/history?year=' + dateArr[0] + '&month=' + dateArr[1]
+            location.href = '/history?year=' + dateArr[0] + '&month=' + dateArr[1]+ '&day=' + dateArr[2]
         })
     })
 </script>
