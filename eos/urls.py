@@ -7,4 +7,5 @@ app_name = 'eos'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('order_page', views.detail, name='detail'),
 ]
