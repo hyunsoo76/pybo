@@ -7,5 +7,5 @@ app_name = 'eos'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('order_page', views.order_page, name='order_page'),
+    path('order_page.html/', views.order_page, name='order_page'),
 ]
