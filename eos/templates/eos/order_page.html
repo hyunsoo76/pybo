@@ -1,6 +1,6 @@
 {% extends 'base_eos.html' %}
 {% block content %}
-       <p></p>
+
          {% if messages %}
             <ul class="absoulte top-0 right-0 left-0 flex justify-center">
         {% for message in messages %}
@@ -23,7 +23,7 @@
             {% endfor %}
         </div>
         {% endif %}
-<-- 오류표시 End -->
+<!-- 오류표시 End -->
 <div class="container">
     <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
@@ -50,6 +50,7 @@
               <option value="8">eight</option>
               <option value="9">nine</option>
             </select>
+        </div>
         <div class="col-4">
             <input type="text" id="datePicker" class="form-control" value="2022-06-29" />
         </div>
