@@ -52,7 +52,14 @@
             </select>
         </div>
 <!--  배송일 달력 날짜선택   -->
-        <div class="col-4"
+        <div class="col-4">
+            <input
+                     type="text"
+                     class="datepicker_input form-control border-2"
+                     id="datepicker"
+                     required
+                     placeholder="DD/MM/YYYY">
+            <label for="datepicker">Date input label 1</label>
 
         </div>
     </div>
@@ -62,6 +69,24 @@
 
 
 <script>
+    const getDatePickerTitle = elem => {
+      const label = elem.nextElementSibling;
+      let titleText = '';
+      if (label && label.tagName === 'LABEL') {
+        titleText = label.textContent;
+      } else {
+        titleText = elem.getAttribute('aria-label') || '';
+      }
+      return titleText;
+    }
+
+    const elems = document.querySelectorAll('.datepicker_input');
+    for (const elem of elems) {
+      const datepicker = new Datepicker(elem, {
+        'format': 'dd/mm/yyyy', // UK format
+        title: getDatePickerTitle(elem)
+      });
+}
 </script>
 
 
