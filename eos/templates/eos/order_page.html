@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-발주페이지
-</body>
-</html>
+{% extends 'base_eos.html' %}
+{% block content %}
+       <p></p>
+         {% if messages %}
+            <ul class="absoulte top-0 right-0 left-0 flex justify-center">
+        {% for message in messages %}
+            <li class="z-20 message py-3 px-5 text-white rounded-lg font-bold text-lg {% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</li>
+        {% endfor %}
+            </ul>
+        {% endif %}
+       <p></p>
+
+<!-- 오류표시 Start -->
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field in form %}
+            {% if field.errors %}
+            <div>
+                <strong>{{ field.label }}</strong>
+                {{ field.errors }}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+<-- 오류표시 End -->
+<div class="container">
+    <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-6">
