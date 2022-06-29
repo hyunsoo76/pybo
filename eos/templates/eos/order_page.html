@@ -54,12 +54,11 @@
         </div>
 <!--  배송일 달력 날짜선택   -->
         <div class="col-4">
-            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">
+            <input type="text" inputmode="none" placeholder="배송일" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">
+<!--            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">-->
         </div>
-        <div class="col-2">
+        <div class="col-4">
             <button type="button" class="btn btn-outline-dark">파일생성</button>
-        </div>
-        <div class="col-2">
             <button type="button" class="btn btn-outline-dark">발주서 출력</button>
         </div>
 
