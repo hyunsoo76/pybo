@@ -2,7 +2,8 @@
 {% block content %}
 
          {% if messages %}
-            <ul class="absoulte top-0 right-0 left-0 flex justify-center">
+<ul class="absoulte top-0 right-0 left-0 flex justify-center" xmlns:th="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.w3.org/1999/xhtml">
         {% for message in messages %}
             <li class="z-20 message py-3 px-5 text-white rounded-lg font-bold text-lg {% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</li>
         {% endfor %}
@@ -53,7 +54,7 @@
         </div>
 <!--  배송일 달력 날짜선택   -->
         <div class="col-4">
-            <input type="text" id="date-picker" class="form-control bg-white border-0 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}|">
+            <input type="text" id="date-picker" class="form-control bg-white border-0 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">
         </div>
     </div>
     </form>
@@ -64,7 +65,7 @@
 <script>
     $(document).ready(function() {
         $('#date-picker').datepicker({
-            format: "yyyy-m",
+            format: "yyyy-mm-dd",
             minViewMode: 1,
             language: "ko",
             autoclose: true
