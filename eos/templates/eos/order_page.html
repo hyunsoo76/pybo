@@ -51,10 +51,23 @@
               <option value="9">nine</option>
             </select>
         </div>
-        <div class="col-4">
-            <input type="text" class="datepicker_input form-control border-2" id="datepicker" required placeholder="DD/MM/YYYY">
-            <label for="datepicker">Date input label 1</label>
-</div>
+        <div class="col-4"
+            class='input-group'
+            id='datetimepicker1'
+            data-td-target-input='nearest'
+            data-td-target-toggle='nearest'>
+            <input
+            id='datetimepicker1Input'
+             type='text'
+            class='form-control'
+             data-td-target='#datetimepicker1'/>
+           <span
+             class='input-group-text'
+             data-td-target='#datetimepicker1'
+             data-td-toggle='datetimepicker'>
+                <span class='fa fa-solid fa-calendar'></span>
+           </span>
+        </div>
     </div>
     </form>
 </div>
@@ -62,25 +75,26 @@
 
 
 <script>
-const getDatePickerTitle = elem => {
-  // From the label or the aria-label
-  const label = elem.nextElementSibling;
-  let titleText = '';
-  if (label && label.tagName === 'LABEL') {
-    titleText = label.textContent;
-  } else {
-    titleText = elem.getAttribute('aria-label') || '';
-  }
-  return titleText;
-}
-
-const elems = document.querySelectorAll('.datepicker_input');
-for (const elem of elems) {
-  const datepicker = new Datepicker(elem, {
-    'format': 'dd/mm/yyyy', // UK format
-    title: getDatePickerTitle(elem)
-  });
-}
+    new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
+    display: {
+        components: {
+            seconds: false,
+            useTwentyfourHour: false,
+        },
+        icons: {
+            type: 'icons',
+            time: 'fa fa-solid fa-clock',
+            date: 'fa fa-solid fa-calendar',
+            up: 'fa fa-solid fa-arrow-up',
+            down: 'fa fa-solid fa-arrow-down',
+            previous: 'fa fa-solid fa-chevron-left',
+            next: 'fa fa-solid fa-chevron-right',
+            today: 'fa fa-solid fa-calendar-check',
+            clear: 'fa fa-solid fa-trash',
+            close: 'fas fa-solid fa-xmark'
+        },
+    },
+});
 </script>
 
 
