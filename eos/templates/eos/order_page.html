@@ -69,19 +69,26 @@
 
 
 <script>
-    $(document).ready(function() {
-        $('#date-picker').datepicker({
-            format: "dd-mm-yy",
-            minViewMode: 0,
-            language: "ko",
-            autoclose: true
-        })
+<!--    $(document).ready(function() {-->
+<!--        $('#date-picker').datepicker({-->
+<!--            format: "yy-mm-dd",-->
+<!--            minViewMode: 0,-->
+<!--            language: "ko",-->
+<!--            autoclose: true-->
+<!--        })-->
 
-        $('#get-history').on('click', function() {
-            const dateArr = $('#date-picker').val().split('-')
-            location.href = '/history?year=' + dateArr[0] + '&month=' + dateArr[1] + '&day=' + dateArr[2]
-        })
-    })
+<!--        $('#get-history').on('click', function() {-->
+<!--            const dateArr = $('#date-picker').val().split('-')-->
+<!--            location.href = '/history?year=' + dateArr[0] + '&month=' + dateArr[1] + '&day=' + dateArr[2]-->
+<!--        })-->
+<!--    })-->
+$(function() {
+  $( "#datepicker" ).datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
+});
+
+
 </script>
 
 
