@@ -37,8 +37,9 @@
         </div>
     </div>
     <br>
-    <div class="input-group row">
-        <div class="col-4">
+    <div class="row">
+        <div class="input-group">
+          <div class="col-4">
             <span class="input-group-text">발주매장</span>
             <select class="form-select" aria-label="Default select example" id="buyer_select">
               <option selected>발주 매장 선택</option>
@@ -52,16 +53,17 @@
               <option value="8">eight</option>
               <option value="9">nine</option>
             </select>
-        </div>
+          </div>
 <!--  배송일 달력 날짜선택   -->
-        <div class="col-4">
+          <div class="col-4">
             <span class="input-group-text">배송일</span>
             <input type="text" inputmode="none" placeholder="배송일" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2">
 <!--            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">-->
-        </div>
-        <div class="col-4 ">
+          </div>
+          <div class="col-4 ">
             <button type="button" class="btn btn-outline-dark">파일생성</button>
             <button type="button" class="btn btn-outline-dark">발주서 출력</button>
+          </div>
         </div>
 
     </div>
