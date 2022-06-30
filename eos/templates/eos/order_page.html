@@ -26,7 +26,7 @@
         {% endif %}
 <!-- 오류표시 End -->
 <div class="container">
-    <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
+    <form method="post" name="order_page" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
     <div class="row">
         <div class="col-3">
@@ -41,16 +41,16 @@
         </div>
     </div>
     <br>
-        <div class="row">
-           <div>
-            <table background="/static/img/dark_wood.png" width="100%"  height="30">
-                <tr>
-                    <td></td>
-                </tr>
-            </table>
-          </div>
-<!--            <div style="" ><img src="/static/img/dark_wood.png"> </div>-->
-        </div>
+<!--        <div class="row">-->
+<!--           <div>-->
+<!--            <table background="/static/img/dark_wood.png" width="100%"  height="30">-->
+<!--                <tr>-->
+<!--                    <td></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--&lt;!&ndash;            <div style="" ><img src="/static/img/dark_wood.png"> </div>&ndash;&gt;-->
+<!--        </div>-->
     <span style="line-height:50%"><br></span>
 
     <div class="row">
@@ -78,6 +78,7 @@
           </div>
 
         <p></p>
+    </div>
 
         <div class="row bg-Secondary" align="center">
             <div class="col-lg-1 col-md-2 col-sm-2  text-white" align="center">no</div>
@@ -98,9 +99,10 @@
         <hr>
         <p></p>
 
-    </div>
+    
+
     </form>
-</div>
+ </div>
 
 
 
