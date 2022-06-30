@@ -25,7 +25,7 @@
         </div>
         {% endif %}
 <!-- 오류표시 End -->
-<div class="container-fluid">
+<div class="container-fluid border=1">
     <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
     <div class="row">
@@ -42,7 +42,7 @@
     </div>
     <br>
     <div class="row container-fluid">
-       
+
           <div class="col-lg-4 col-md-4 col-sm-12">
               <h6>발주매장</h6>
             <select class="form-select" aria-label="Default select example" id="buyer_select">
