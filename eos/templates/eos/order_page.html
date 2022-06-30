@@ -65,6 +65,12 @@
 <!--            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">-->
           </div>
           </div>
+        <p></p>
+        <div id="box">
+            <input type="text"><span>상품명 |</span><span>입수</span><input type="int" onkeydown = "if(event.keyCode==13) add_textbox();">
+        </div>
+
+
     </form>
 </div>
 
@@ -76,6 +82,29 @@ $(function() {
     dateFormat: 'yy-mm-dd'
   });
 });
+
+        const add_textbox = () => {
+            const box = document.getElementById("box");
+            const newP = document.createElement('p');
+            //  newP.innerHTML = "<input type='text'> <input type='button' value='삭제' onclick='remove(this)'>";
+                newP.innerHTML = "<input type='text'> <span>상품명 |</span><span>입수</span><input type='int'> <input type='button' value='확인' onclick='add_textbox()'>";
+            box.appendChild(newP);
+        }
+        const remove = (obj) => {
+            document.getElementById('box').removeChild(obj.parentNode);
+        }
+
+
+        document.addEventListener('keydown', function (event) {
+        if (event.keyCode === 13 && event.target.nodeName === 'INPUT') {
+            var form = event.target.form;
+            var index = Array.prototype.indexOf.call(form, event.target);
+            form.elements[index + 1].focus();
+            event.preventDefault();
+        }
+        });
+
+
 
 
 </script>
