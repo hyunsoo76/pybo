@@ -76,10 +76,6 @@
             <input type="text" inputmode="none" placeholder="배송일" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2">
 <!--            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">-->
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-4 d-none d-sm-block">
-            <button type="button" class="btn btn-outline-dark">파일생성</button>
-            <button type="button" class="btn btn-outline-dark">발주서 출력</button>
-          </div>
         <p></p>
     </div>
 
@@ -97,7 +93,7 @@
         </div>
         <span style="line-height:50%"><br></span>
         <div id="box">
-            <input type="text"><span>상품명 |</span><span>입수</span><input type="number" pattern="\d*" placeholder="number" onkeydown = "if(event.keyCode==13) add_textbox();">
+            <input type="text"><span>상품명 |</span><span>입수</span><input type="number" pattern="\d*" placeholder="수량입력" onkeydown = "if(event.keyCode==13) add_textbox();">
 <!--            <input type="text"><span>상품명 |</span><span>입수</span><input type="int" onkeydown = "if(event.keyCode==13) add_textbox();">-->
         </div>
         <hr>
