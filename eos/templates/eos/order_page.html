@@ -146,69 +146,6 @@ $(function() {
 	}
 });
 
-        new pinpad({
-            ref : {
-                el : '#pin2'
-            },
-            height : 45,
-            keypads : [ 4, 3, 6, 0, 8, 9, 'done', '.', 'del'],
-            letterReplace : {
-                'del' : '<i class="fa fa-long-arrow-left" data-toggle="tooltip" title="fa fa-long-arrow-left"></i>',
-                'done' : '<i class="fa fa-check" data-toggle="tooltip" title="fa fa-check"></i>',
-                4 : '<i class="fa fa-foursquare" data-toggle="tooltip" title="" data-original-title="fa fa-foursquare"></i>'
-            },
-        });
-
-        new pinpad({
-            ref : {
-                el : '#pin3',
-                useFormat : true
-            },
-            format : '**/**'
-        });
-
-        new pinpad({
-            ref : {
-                el : '#pin4'
-            },
-            skin : 'gray',
-            passcode : true,
-            immediate : true,
-            maxLength : 4,
-            desc : '숫자4자리를 입력하세요',
-            letterReplace : {
-                'del' : '<',
-                'done' : 'V'
-            }
-        });
-
-        var pin5 = new pinpad({
-            oncomplete : function(value) {
-                alert(value);
-            },
-            passcode : true
-        });
-
-        $('#pin5').on('click', function() {
-            pin5.show();
-        });
-
-        new pinpad({
-            ref : {
-                el : '#pin6'
-            },
-            skin : 'blue',
-            mode : 'x4'
-        });
-
-        new pinpad({
-            ref : {
-                el : '#pin7'
-            },
-            skin : 'gray',
-            mode : 'x5',
-            setRandomSpaceCount : 8
-        });
 
 <!--키보드-->
 
