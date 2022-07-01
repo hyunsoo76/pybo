@@ -93,7 +93,7 @@
         </div>
         <span style="line-height:50%"><br></span>
         <div id="box" class="wrap">
-            <input type="text" placeholder="바코드 or 상품명"><span>상품명 |</span><span>입수</span><input type="number" pattern="\d*" placeholder="수량입력" onkeydown = "if(event.blur) add_textbox();">
+            <input type="text" placeholder="바코드 or 상품명"><span>상품명 |</span><span>입수</span><input type="number" id="test_obj" pattern="\d*" placeholder="수량입력">
 <!--            <input type="text" placeholder="바코드 or 상품명"><span>상품명 |</span><span>입수</span><input type="number" pattern="\d*" placeholder="수량입력" onkeydown = "if(event.keyCode==13) add_textbox();">-->
 
 <!--  원본          <input type="text"><span>상품명 |</span><span>입수</span><input id="pin1" type="int" onkeydown = "if(event.keyCode==13) add_textbox();">-->
@@ -141,6 +141,11 @@ $(function() {
         }
         });
 <!--동적 input 끝-->
+
+
+        document.getElementById('test_obj').addEventListener('blur', function () {
+            add_textbox();
+        });
 
 <!--키보드-->
 
