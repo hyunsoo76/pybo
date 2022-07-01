@@ -123,11 +123,11 @@ $(function() {
         const add_textbox = () => {
             const box = document.getElementById("box");
             const newP = document.createElement('p');
-            i = 0;
+
 
             //  newP.innerHTML = "<input type='text'> <input type='button' value='삭제' onclick='remove(this)'>";
             //    newP.innerHTML = "<br><input type='text'> <span>상품명 |</span><span>입수</span><input type='int' onkeydown = 'if(event.keyCode==13) add_textbox();'>";//원본
-                newP.innerHTML = "<br><span>i+1</span><input type='text'> <span>상품명 |</span><span>입수</span><input type='number' onkeydown = 'if(event.keyCode==13) add_textbox();'>";
+                newP.innerHTML = "<br><input type='text'> <span>상품명 |</span><span>입수</span><input type='number' onkeydown = 'if(event.keyCode==13) add_textbox();'>";
             //  newP.innerHTML = "<input type='text'> <span>상품명 |</span><span>입수</span><input type='int'> <input type='button' value='확인' onclick='add_textbox()'>";
             box.appendChild(newP);
         }
