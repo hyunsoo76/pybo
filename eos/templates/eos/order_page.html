@@ -93,7 +93,7 @@
         </div>
         <span style="line-height:50%"><br></span>
         <div id="box" class="wrap">
-            <input type="text" placeholder="바코드 or 상품명"><span>상품명 |</span><span>입수</span><input type="number" pattern="\d*" placeholder="수량입력" onkeydown = "if(event.keyCode==13) add_textbox();">
+            <input type="text" placeholder="바코드 or 상품명"><span>상품명 |</span><span>입수</span><input type="number" pattern="\d*" placeholder="수량입력" onkeydown = "if(event.blur) add_textbox();">
 <!--            <input type="text" placeholder="바코드 or 상품명"><span>상품명 |</span><span>입수</span><input type="number" pattern="\d*" placeholder="수량입력" onkeydown = "if(event.keyCode==13) add_textbox();">-->
 
 <!--  원본          <input type="text"><span>상품명 |</span><span>입수</span><input id="pin1" type="int" onkeydown = "if(event.keyCode==13) add_textbox();">-->
@@ -122,7 +122,7 @@ $(function() {
             const newP = document.createElement('p');
 
             //  newP.innerHTML = "<input type='text'> <input type='button' value='삭제' onclick='remove(this)'>";
-                newP.innerHTML = "<br><input type='text'> <span>상품명 |</span><span>입수</span><input type='int' onkeydown = 'if(event.keyCode==13) add_textbox();'>";//원본
+            //    newP.innerHTML = "<br><input type='text'> <span>상품명 |</span><span>입수</span><input type='int' onkeydown = 'if(event.keyCode==13) add_textbox();'>";//원본
                 newP.innerHTML = "<br><input type='text'> <span>상품명 |</span><span>입수</span><input type='number' onkeydown = 'if(event.keyCode==13) add_textbox();'>";
             //  newP.innerHTML = "<input type='text'> <span>상품명 |</span><span>입수</span><input type='int'> <input type='button' value='확인' onclick='add_textbox()'>";
             box.appendChild(newP);
