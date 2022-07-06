@@ -1,6 +1,10 @@
 {% extends 'base_eos.html' %}
 {% block content %}
 {% load eos_filter %}
-{% for Products in
+{% for Products in object_list %}
+
+{{Products}}<br>
+{{Products.p_name}} : {{Products.sale_bar}} : {{Products.p_price}}
+
 
 {% endblock %}
