@@ -1,7 +1,7 @@
 {% extends 'base_eos.html' %}
 {% block content %}
 {% load eos_filter %}
-{% for Products in object_list %}
+{% for Products in midas_product %}
 
 {{Products}}<br>
 {{Products.p_name}} : {{Products.sale_bar}} : {{Products.p_price}}
