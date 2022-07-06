@@ -12,4 +12,4 @@ def order_page(request):
 
 class ProductView(ListView):
     model = Products
-    template_name = 'product.html'
+    template_name = 'eos/product.html'
