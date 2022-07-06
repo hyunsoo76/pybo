@@ -10,6 +10,6 @@ def index(request):
 def order_page(request):
     return render(request, 'eos/order_page.html')
 
-class Productview(ListView):
+class ProductView(ListView):
     model = Products
     template_name = 'product.html'
