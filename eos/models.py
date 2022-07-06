@@ -1,6 +1,7 @@
 from django.db import models
 
 class Products(models.Model):
+    object = models.manager()
     p_id = models.IntegerField(blank=True, null=True, verbose_name='상품코드')
     org_bar = models.IntegerField(blank=True, null=True, verbose_name='원코드')
     sale_bar = models.IntegerField(blank=True, null=True, verbose_name='판매코드')
