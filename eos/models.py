@@ -1,14 +1,21 @@
 from django.db import models
 
 class Products(models.Model):
-    p_id = models.IntegerField(blank=True, null=True) #상품코드
-    org_bar = models.IntegerField(blank=True, null=True) #원코드
-    sale_bar = models.IntegerField(blank=True, null=True) #판매코드
-    p_name = models.CharField(max_length=200, blank=True) #상품명
-    iq = models.IntegerField(blank=True, null=True) #입수
-    p_price = models.IntegerField(blank=True, null=True) #출고가
-    location = models.CharField(max_length=200, blank=True) #위치정보
+    p_id = models.IntegerField(blank=True, null=True, verbose_name='상품코드')
+    org_bar = models.IntegerField(blank=True, null=True, verbose_name='원코드')
+    sale_bar = models.IntegerField(blank=True, null=True, verbose_name='판매코드')
+    p_name = models.CharField(max_length=200, blank=True, verbose_name='상품명')
+    iq = models.IntegerField(blank=True, null=True, verbose_name='입수')
+    p_price = models.IntegerField(blank=True, null=True, verbose_name='출고가')
+    location = models.CharField(max_length=200, blank=True, verbose_name='위치정보')
 
+    def __str__(self):
+        return self.p_name
+
+    class Meta:
+        db_table = 'midas_product'
+        verbose_name = '상품'
+        verbose_name_plural = '상품'
 
 class User(models.Model):
     odp_name = models.CharField(max_length=200, blank=True) #발주자명
