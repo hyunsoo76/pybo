@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import Order_list
 from .models import User
-
+from .models import Products
 
 
 
@@ -13,7 +13,7 @@ class Order_listAdmin(admin.ModelAdmin):
 class UserAdmin(admin.ModelAdmin):
     search_fields = ['buyer_name']
 
-class Products(admin.ModelAdmin):
+class ProductsAdmin(admin.ModelAdmin):
     search_fields = ['p_name']
 
 admin.site.register(Order_list, Order_listAdmin)
