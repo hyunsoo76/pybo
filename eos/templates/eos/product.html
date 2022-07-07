@@ -5,6 +5,32 @@
 
 
 {{Products.p_id}} :{{Products.p_name}} : {{Products.sale_bar}}: {{Products.iq}}  : {{Products.p_price}} : {{Products.org_bar}} : {{Products.location}}<p></p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">상품코드</th>
+          <th scope="col">상품명</th>
+          <th scope="col">바코드</th>
+          <th scope="col">입수</th>
+          <th scope="col">출고가</th>
+          <th scope="col">원코드</th>
+          <th scope="col">위치정보</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{Product.id}}</th>
+          <td>{{Products.p_id}}</td>
+          <td>{{Products.p_name}}</td>
+          <td>{{Products.sale_bar}}</td>
+          <td>{{Products.iq}}</td>
+          <td>{{Products.p_price}}</td>
+          <td>{{Products.org_bar}}</td>
+          <td>{{Products.location}}</td>
+        </tr>
+      </tbody>
+    </table>
 
 {% endfor %}
 
