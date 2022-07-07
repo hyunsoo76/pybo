@@ -4,9 +4,9 @@
 
 <div class = "container my-3">
 
-    <table class="table">
+    <table class="table table-striped">
       <thead>
-        <tr class="table-secondary">
+        <tr>
           <th scope="col">#</th>
           <th scope="col">상품코드</th>
           <th scope="col">상품명</th>
@@ -19,7 +19,7 @@
       </thead>
       <tbody>
       {% for Products in object_list %}
-        <tr class="table-secondary">
+        <tr>
           <th scope="row">{{Products.id}}</th>
           <td>{{Products.p_id}}</td>
           <td>{{Products.p_name}}</td>
