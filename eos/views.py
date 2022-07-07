@@ -27,4 +27,4 @@ for i in range(len(s)):
     st = (s["ID"][i], s["상품명"][i], s["바코드"][i], s["입수"][i], s["납품가"][i], s["원코드"][i])
     ss.append(st)
 for i in range(len(s)):
-    Products.objects.create(name=ss[i][0], code=ss[i][1], ipo_date=ss[i][2])
+    Products.objects.create(p_id=ss[i][0], p_name=ss[i][1], sale_bar=ss[i][2], iq=ss[i][3], p_price=ss[i][4], org_bar=ss[i][5])
