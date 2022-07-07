@@ -1,10 +1,9 @@
 {% extends 'base_eos.html' %}
 {% block content %}
 {% load eos_filter %}
-{% for Products in object_list %}
 
 
-{{Products.p_id}} :{{Products.p_name}} : {{Products.sale_bar}}: {{Products.iq}}  : {{Products.p_price}} : {{Products.org_bar}} : {{Products.location}}<p></p>
+
     <table class="table">
       <thead>
         <tr>
@@ -18,6 +17,7 @@
           <th scope="col">위치정보</th>
         </tr>
       </thead>
+{% for Products in object_list %}
       <tbody>
         <tr>
           <th scope="row">{{Product.id}}</th>
