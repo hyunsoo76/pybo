@@ -1,10 +1,10 @@
 {% extends 'base_eos.html' %}
 {% block content %}
 {% load eos_filter %}
-{% for Products in midas_Products %}
+{% for Products in object_list %}
 
-{{midas_Products}}<br>
-{{midas_Products.p_name}} : {{midas_Products.sale_bar}} : {{midas_Products.p_price}}
+{{Products}}<br>
+{{Products.p_name}} : {{Products.sale_bar}} : {{Products.p_price}}
 
 {% endfor %}
 

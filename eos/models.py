@@ -13,10 +13,10 @@ class Products(models.Model):
     def __str__(self):
         return self.p_name
 
-    class Meta:
-        db_table = 'midas_Products'
-        verbose_name = '상품'
-        verbose_name_plural = '상품'
+    # class Meta:
+    #     db_table = 'midas_Products'
+    #     verbose_name = '상품'
+    #     verbose_name_plural = '상품'
 
 class User(models.Model):
     odp_name = models.CharField(max_length=200, blank=True) #발주자명
