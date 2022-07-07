@@ -28,7 +28,7 @@ for i in range(len(s)):
     ss.append(st)
 for i in range(len(s)):
     Products.objects.create(p_id=int(ss[i][0]), p_name=ss[i][1], sale_bar=int(ss[i][2]),
-                            iq=int([i][3]), p_price=int(ss[i][4]), org_bar=int(ss[i][5]), location=ss[i][5])
+                            iq=int([i][3]), p_price=int(ss[i][4]), org_bar=int(ss[i][5]), location=ss[i][6])
     # try:
     #     Products.objects.create(p_id=int(ss[i][0]), p_name=ss[i][1], sale_bar=int(ss[i][2]),
     #                             iq=int([i][3]), p_price=int(ss[i][4]), org_bar=int(ss[i][5]))
