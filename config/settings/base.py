@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'eas.apps.EasConfig',
     'eos.apps.EosConfig',
+    'Products'
 
 ]
 
