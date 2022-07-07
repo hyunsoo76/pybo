@@ -24,8 +24,8 @@ urlpatterns = [
     path('common/', include('common.urls')),
     path('polls/', include('polls.urls')),
     path('eas/', include('eas.urls')),
-    path('pybo/', base_views.index, name='index'),
+    path('pybo/', base_views.index),
     path('', include('eas.urls')),
-    path('eos/', include('eos.urls'), name='eos'),
+    path('eos/', include('eos.urls')),
     
 ]
