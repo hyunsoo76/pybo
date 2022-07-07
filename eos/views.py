@@ -18,7 +18,6 @@ class ProductView(ListView):
 
 
 # 상품db 업데이트
-# "/home/ubuntu/projects/mysite/static/p_list.csv"
 # def p_list(request):
 with open("/home/ubuntu/projects/mysite/static/p_list.csv", "r", encoding='cp949') as f:
     dr = csv.DictReader(f)
