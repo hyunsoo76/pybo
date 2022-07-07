@@ -2,7 +2,7 @@
 {% block content %}
 {% load eos_filter %}
 
-
+<div class = "container my-3">
 
     <table class="table">
       <thead>
@@ -17,7 +17,9 @@
           <th scope="col">위치정보</th>
         </tr>
       </thead>
+    </table>
 {% for Products in object_list %}
+    <table class="table">
       <tbody>
         <tr>
           <th scope="row">{{Product.id}}</th>
@@ -33,5 +35,5 @@
     </table>
 
 {% endfor %}
-
+</div>
 {% endblock %}
