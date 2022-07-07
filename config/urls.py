@@ -25,7 +25,7 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('eas/', include('eas.urls')),
     path('pybo/', base_views.index),
-    path('', include('eas.urls')),
+    # path('', include('eas.urls')),
     path('eos/', include('eos.urls')),
     
 ]
