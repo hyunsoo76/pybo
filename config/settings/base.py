@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'paystub.apps.PaystubConfig',
     'polls.apps.PollsConfig',
     'django.contrib.humanize',
     'eas.apps.EasConfig',
