@@ -1,11 +1,12 @@
 from django.contrib import admin
-
+from import_export.admin import ExportActionModelAdmin, ImportExportMixin, ImportMixin
 from .models import Order_list
 from .models import User
 from .models import Products
 
 
-
+class ProductAdmin(ImportExportMixin, admin.ModelAdmin):
+    pass
 
 class Order_listAdmin(admin.ModelAdmin):
     search_fields = ['d_day']
@@ -20,3 +21,4 @@ class ProductsAdmin(admin.ModelAdmin):
 admin.site.register(Order_list, Order_listAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Products, UserAdmin)
+
