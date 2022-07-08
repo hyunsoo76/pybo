@@ -17,5 +17,5 @@ class ProductsAdmin(admin.ModelAdmin):
 
 admin.site.register(Order_list, Order_listAdmin)
 # admin.site.register(User, UserAdmin)
-admin.site.register(Products, UserAdmin)
+admin.site.register(Products, ProductsAdmin)
 
