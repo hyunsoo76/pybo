@@ -8,8 +8,8 @@ from .models import Products
 class Order_listAdmin(admin.ModelAdmin):
     search_fields = ['d_day']
 
-class UserAdmin(admin.ModelAdmin):
-    search_fields = ['buyer_name']
+# class UserAdmin(admin.ModelAdmin):
+#     search_fields = ['buyer_name']
 
 class ProductsAdmin(admin.ModelAdmin):
     search_fields = ['p_name']
