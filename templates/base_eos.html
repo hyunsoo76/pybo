@@ -30,7 +30,7 @@
         <div class="container-sm">
             <div>
             <a class="navbar-brand" href="{% url 'eos:index' %}" accesskey="j" onMouseOver="this.innerHTML='alt+j'" onMouseOut="this.innerHTML='EOS'">Eos</a>
-            <a class="navbar-brand" href="{% url 'eos:order_page' %}" accesskey="w" onMouseOver="this.innerHTML='alt+w'" onMouseOut="this.innerHTML='발주작성'">발주작성</a>
+                <button type="button" class="btn btn-outline-dark"  onclick="{% url 'eos:order_page' %}" accesskey="w" onMouseOver="this.innerHTML='alt+w'" onMouseOut="this.innerHTML='발주작성'">발주작성</button>
             <a class="navbar-brand" href="{% url 'eos:product' %}" accesskey="w" onMouseOver="this.innerHTML='alt+p'" onMouseOut="this.innerHTML='상품관리'">상품관리</a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
