@@ -16,6 +16,6 @@ class ProductsAdmin(admin.ModelAdmin):
     list_display = ('p_name', 'org_bar', 'sale_bar', 'p_price')
 
 admin.site.register(Order_list, Order_listAdmin)
-admin.site.register(User, UserAdmin)
+# admin.site.register(User, UserAdmin)
 admin.site.register(Products, UserAdmin)
 
