@@ -92,11 +92,10 @@
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">미출체크</div>
         </div>
         <span style="line-height:50%"><br></span>
-
+        {% for i in "x"|rjust:"200" %}
             <div class="row">
-                {% i = 0 %}
                 <div class="col-lg-1">
-                    <span> {% i %} </span>
+                    <span> {% i+1 %} </span>
                 </div>
                 <div class="col-lg-2">
                     <input type="text" placeholder="바코드 or 상품명">
@@ -127,7 +126,7 @@
                 </div>
 
             </div>
-
+        {% endfor %}
 
         <hr>
         <p></p>
@@ -138,7 +137,7 @@
  </div>
 
 
-{% endblock %}
+
 <script>
 
 
