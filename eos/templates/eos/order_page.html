@@ -95,7 +95,7 @@
         {% for i in "x"|rjust:"200" %}
             <div class="row">
                 <div class="col-lg-1">
-                    <span> {% i = i+1 %} </span>
+                    <span> {{ i = i+1 }} </span>
                 </div>
                 <div class="col-lg-2">
                     <input type="text" placeholder="바코드 or 상품명">
