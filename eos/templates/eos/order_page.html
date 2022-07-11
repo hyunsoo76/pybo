@@ -92,15 +92,43 @@
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">미출체크</div>
         </div>
         <span style="line-height:50%"><br></span>
-        <div id="box" class="wrap">
 
-            <div>
-            <input type="text" placeholder="바코드 or 상품명"><span>상품명 |</span><span>입수</span><input type="number" id="test_obj" placeholder="수량입력" onkeydown = "if(event.keyCode==13) add_textbox();">
-<!--            <input type="text" placeholder="바코드 or 상품명"><span>상품명 |</span><span>입수</span><input type="number" pattern="\d*" placeholder="수량입력" onkeydown = "if(event.keyCode==13) add_textbox();">-->
-<!--  원본          <input type="text"><span>상품명 |</span><span>입수</span><input id="pin1" type="int" onkeydown = "if(event.keyCode==13) add_textbox();">-->
+            <div class="row">
+                {% i = 0 %}
+                <div class="col-lg-1">
+                    <span> {% i %} </span>
+                </div>
+                <div class="col-lg-2">
+                    <input type="text" placeholder="바코드 or 상품명">
+                </div>
+                <div class="col-lg-2">
+                    <span> {% 상품명 %} </span>
+                </div>
+                <div class="col-lg-1">
+                    <span> {% 입수 %} </span>
+                </div>
+                <div class="col-lg-1">
+                    <input type="number" id="test_obj" placeholder="수량입력">
+                </div>
+                <div class="col-lg-1">
+                    <input type="number" id="test_obj1" placeholder="박스발주">
+                </div>
+                <div class="col-lg-1">
+                    <span> {% 단가 %} </span>
+                </div>
+                <div class="col-lg-1">
+                    <span> {% 위치 %} </span>
+                </div>
+                <div class="col-lg-1">
+                    <span> {% 원바코드 %} </span>
+                </div>
+                <div class="col-lg-1">
+                    <span> {% 미출체크 %} </span>
+                </div>
+
             </div>
 
-        </div>
+
         <hr>
         <p></p>
 
