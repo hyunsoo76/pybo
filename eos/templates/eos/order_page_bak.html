@@ -113,14 +113,47 @@
 
 <script>
 
-
+<!--동적 input-->
 $(function() {
   $( "#date-picker" ).datepicker({
     dateFormat: 'yy-mm-dd'
   });
 });
 
+        const add_textbox = () => {
+            const box = document.getElementById("box");
+            const newP = document.createElement('p');
 
+
+            //  newP.innerHTML = "<input type='text'> <input type='button' value='삭제' onclick='remove(this)'>";
+            //    newP.innerHTML = "<br><input type='text'> <span>상품명 |</span><span>입수</span><input type='int' onkeydown = 'if(event.keyCode==13) add_textbox();'>";//원본
+                newP.innerHTML = "<br><input type='text'> <span>상품명 |</span><span>입수</span><input type='number' onkeydown = 'if(event.keyCode==13) add_textbox();'>";
+            //  newP.innerHTML = "<input type='text'> <span>상품명 |</span><span>입수</span><input type='int'> <input type='button' value='확인' onclick='add_textbox()'>";
+            box.appendChild(newP);
+        }
+        const remove = (obj) => {
+            document.getElementById('box').removeChild(obj.parentNode);
+        }
+
+
+        document.addEventListener('keydown', function (event) {
+        if (event.keyCode === 13 && event.target.nodeName === 'INPUT') {
+            var form = event.target.form;
+            var index = Array.prototype.indexOf.call(form, event.target);
+            form.elements[index + 1].focus();
+            event.preventDefault();
+        }
+        });
+<!--동적 input 끝-->
+
+
+<!--        document.getElementById('test_obj').addEventListener('blur', function () {-->
+<!--            add_textbox();-->
+<!--        });-->
+
+<!--키보드-->
+
+<!--키보드-->
 
 </script>
 
