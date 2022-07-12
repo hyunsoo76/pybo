@@ -37,7 +37,7 @@ def p_list(request):
                                 location = s["위치정보"][i])
 
 # 발주등록 order_page
-def Order_create(request):
+def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
         if form.is_valid():
