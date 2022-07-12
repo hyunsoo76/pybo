@@ -44,7 +44,7 @@ def order_create(request):
             new_order_list = form.save(commit=False)
             new_order_list.od_date = timezone.now()
             new_order_list.save()
-            context = {'new_Request': new_order_list}
+            context = {'new_order_list': new_order_list}
             return render(request, 'eos/order_page_r.html', context)
         else:
             form = Order_listForm(request.POST)
