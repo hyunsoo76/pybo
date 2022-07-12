@@ -14,7 +14,7 @@ import pandas as pd
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
     kw = request.GET.get('kw', '')  # 검색어
-    Order_lists = Order_list.objects.order_by('-create_date')
+    Order_lists = Order_list.objects.order_by('-od_date')
     if kw:
         Order_lists = Order_lists.filter(
             Q(buyer_name__icontains=kw) |  # 제목 검색
