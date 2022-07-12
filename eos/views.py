@@ -1,6 +1,9 @@
 from django.http import HttpResponse
+from django.utils import timezone
 from django.shortcuts import redirect, render
 from django.views.generic import ListView
+
+from .forms import Order_listForm
 from .models import Products
 import csv
 import pandas as pd
@@ -33,6 +36,17 @@ def p_list(request):
                                 org_bar = s["원코드"][i],
                                 location = s["위치정보"][i])
 
-
-
-
+# 발주등록 order_page
+def order_create(request):
+    if request.method == 'POST':
+        form = Order_listForm(request.POST)
+        if form.is_valid():
+            new_order_list = form.save(commit=False)
+            new_order_list.od_date = timezone.now()
+            new_order_list.save()
+            context = {'new_Request': new_order_list}
+            return render(request, 'eos/order_page_r.html', context)
+        else:
+            form = Order_listForm(request.POST)
+            context = {'form': form}
+            return render(request, 'eos/order_page_r.html', context)
