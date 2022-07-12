@@ -1,8 +1,9 @@
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.utils import timezone
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView
-
+from django.db.models import Q
 from .forms import Order_listForm, UserForm
 from .models import Products
 from .models import Order_list
@@ -11,7 +12,57 @@ import pandas as pd
 
 
 def index(request):
-    return render(request, 'eos/index.html')
+    page = request.GET.get('page', '1')  # 페이지
+    kw = request.GET.get('kw', '')  # 검색어
+    Order_lists = Order_list.objects.order_by('-create_date')
+    if kw:
+        Order_lists = Order_lists.filter(
+            Q(buyer_name__icontains=kw) |  # 제목 검색
+            Q(d_day__icontains=kw) |  # 매입처명
+            Q(od_date__icontains=kw) |
+            Q(p_name__icontains=kw) |
+            Q(sale_bar__icontains=kw) |
+            Q(org_bar__icontains=kw) |
+            Q(f_1__icontains=kw) |
+            Q(g_1__icontains=kw) |
+            Q(h_1__icontains=kw) |
+            Q(i_1__icontains=kw) |
+            Q(j_1__icontains=kw) |
+            Q(a_4__icontains=kw) |  # 계좌명
+            Q(b_4__icontains=kw) |
+            Q(d_4__icontains=kw) |
+            Q(e_4__icontains=kw) |
+            Q(f_4__icontains=kw) |
+            Q(g_4__icontains=kw) |
+            Q(h_4__icontains=kw) |
+            Q(i_4__icontains=kw) |
+            Q(j_4__icontains=kw) |
+            Q(a_5__icontains=kw) |  # 금액
+            Q(b_5__icontains=kw) |
+            Q(c_5__icontains=kw) |
+            Q(d_5__icontains=kw) |
+            Q(e_5__icontains=kw) |
+            Q(f_5__icontains=kw) |
+            Q(g_5__icontains=kw) |
+            Q(h_5__icontains=kw) |
+            Q(i_5__icontains=kw) |
+            Q(j_5__icontains=kw) |
+            Q(a_7__icontains=kw) |  # 비고
+            Q(b_7__icontains=kw) |
+            Q(c_7__icontains=kw) |
+            Q(d_7__icontains=kw) |
+            Q(e_7__icontains=kw) |
+            Q(f_7__icontains=kw) |
+            Q(g_7__icontains=kw) |
+            Q(h_7__icontains=kw) |
+            Q(i_7__icontains=kw) |
+            Q(j_7__icontains=kw)
+        ).distinct()
+    # context = {'Order_lists': Order_lists}
+    paginator = Paginator(Order_lists, 10)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+    context = {'Order_lists': page_obj, 'page': page, 'kw': kw}
+    return render(request, 'eos/index.html', context)
 
 # def order_page(request):
 #     return render(request, 'eos/order_page.html')
