@@ -54,3 +54,4 @@ def order_create(request):
         form = Order_listForm()
         context = {'form': form}
         return render(request, 'eos/order_page.html', context)
+    return redirect('eos:index')
