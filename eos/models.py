@@ -45,7 +45,7 @@ class Order_list(models.Model):
     fff = models.IntegerField(blank=True, null=True)
     ggg = models.IntegerField(blank=True, null=True)
     hhh = models.IntegerField(blank=True, null=True)
-    upload = models.FileField(upload_to='uploads/')
+    upload = models.FileField(upload_to='uploads/', blank=True, null=True)
 
 
 
