@@ -57,12 +57,12 @@
                 </thead>
                 <tbody>
 
-            {% if Order_list %}
-            {% for Order_list in Order_lists %}
+            {% if Order_list object %}
+            {% for Order_list object in Order_list object_list %}
             <tr class="text-center">
               <td>
                <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-               {{ Order_list.paginator.count|sub:Order_list.start_index|sub:forloop.counter0|add:1 }}
+               {{ Order_list object_list.paginator.count|sub:Order_list.start_index|sub:forloop.counter0|add:1 }}
               </td>
               <td>&nbsp;&nbsp;</td>
               <td class="text-start" style ="font-color:#000000">
