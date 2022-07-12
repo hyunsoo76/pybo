@@ -44,6 +44,8 @@ def order_create(request):
         if form.is_valid():
             new_order_list = form.save(commit=False)
             new_order_list.od_date = timezone.now()
+            input_cal = request.POST.get('calender')
+            new_order_list.d_day = input_cal
             new_order_list.save()
             context = {'new_order_list': new_order_list}
             return render(request, 'eos/order_page_r.html', context)
