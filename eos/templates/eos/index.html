@@ -62,19 +62,19 @@
                 <tr class="text-center">
                   <td>
                    <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-                   {{ Order_list.paginator.count|sub:Order_list.start_index|sub:forloop.counter0|add:1 }}
+                   {{ Order_lists.paginator.count|sub:Order_lists.start_index|sub:forloop.counter0|add:1 }}
                   </td>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-start" style ="font-color:#000000">
-                  <a href ="/eos/{{ Order_list.id }}/" style="text-decoration:none">{{Order_list.buyer_name }} </a>
+                  <a href ="/eos/{{ Order_list.id }}/" style="text-decoration:none">{{Order_list.id }} </a>
                   </td>
-                  <td style="text-align:right;">{{ buyer_name.od_date|date:'y/n/d/g:i' }}</td>
+                  <td style="text-align:right;">{{ Order_list.od_date|date:'y/n/d/g:i' }}</td>
                 </tr>
                  {% endfor %}
 
             {% else %}
             <tr>
-             <p>결재 리스트가 없습니다.</p>
+             <p>발주 리스트가 없습니다.</p>
             </tr>
             {% endif %}
 
