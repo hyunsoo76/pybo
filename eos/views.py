@@ -38,7 +38,7 @@ def p_list(request):
                                 location = s["위치정보"][i])
 
 # 발주등록 order_page
-def order_create():
+def order_create(request):
     # if request.method == 'POST':
     #     form = Order_listForm(request.POST)
     #     if form.is_valid():
@@ -55,7 +55,7 @@ def order_create():
     #     form = Order_listForm()
     #     context = {'form': form}
     #     return render(request, 'eos/order_page.html', context)
-    return render(request, 'eos/index.html')
+    return render(request,'eos/index.html')
 
 # def order_page(request, Order_list_id):
 #     new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
