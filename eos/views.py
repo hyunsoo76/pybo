@@ -55,7 +55,7 @@ def order_create(request):
     #     form = Order_listForm()
     #     context = {'form': form}
     #     return render(request, 'eos/order_page.html', context)
-    return render(request,'eos/index.html')
+    return render(request, 'eos/index.html')
 
 # def order_page(request, Order_list_id):
 #     new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
