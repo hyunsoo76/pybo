@@ -12,5 +12,5 @@ urlpatterns = [
     path('product/', ProductView.as_view(), name='product'),
     path('p_list/', views.p_list),
     # path('order_page/', views.order_page(), name='order_page'),
-    path('order_page/', views.order_page(), name='order_create'),
+    path('order_page/', views.order_page(), name='order_page'),
 ]
