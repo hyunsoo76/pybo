@@ -1,10 +1,11 @@
 from django.http import HttpResponse
 from django.utils import timezone
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView
 
 from .forms import Order_listForm
 from .models import Products
+from .models import Order_list
 import csv
 import pandas as pd
 
@@ -54,3 +55,11 @@ def order_create(request):
         form = Order_listForm()
         context = {'form': form}
         return render(request, 'eos/order_page.html', context)
+
+
+def order_page(request, Order_list_id):
+    new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
+    context = {'new_order_list': new_order_list}
+    return render(request, 'eos/order_page_r.html', context)
+
+
