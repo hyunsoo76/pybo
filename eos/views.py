@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.utils import timezone
-from django.shortcuts import redirect, render, get_object_or_404, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView
 
 from .forms import Order_listForm

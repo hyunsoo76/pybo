@@ -15,6 +15,6 @@ urlpatterns = [
     # path('order_page.html/', views.order_page, name='order_page'),
     path('product/', ProductView.as_view(), name='product'),
     path('p_list/', views.p_list),
-    path('order_page', views.order_page(), name='order_page'),
+    path('order_page/', views.order_page(), name='order_page'),
     path('order_create/', views.order_create(), name='order_create'),
 ]
