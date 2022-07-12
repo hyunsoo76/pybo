@@ -39,27 +39,27 @@ def p_list(request):
 
 # 발주등록 order_page
 def order_create(request):
-    if request.method == 'POST':
-        form = Order_listForm(request.POST)
-        if form.is_valid():
-            new_order_list = form.save(commit=False)
-            new_order_list.od_date = timezone.now()
-            new_order_list.save()
-            context = {'new_order_list': new_order_list}
-            return render(request, 'eos/order_page_r.html', context)
-        else:
-            form = Order_listForm(request.POST)
-            context = {'form': form}
-            return render(request, 'eos/order_page.html', context)
-    else:
-        form = Order_listForm()
-        context = {'form': form}
-        return render(request, 'eos/order_page.html', context)
+    # if request.method == 'POST':
+    #     form = Order_listForm(request.POST)
+    #     if form.is_valid():
+    #         new_order_list = form.save(commit=False)
+    #         new_order_list.od_date = timezone.now()
+    #         new_order_list.save()
+    #         context = {'new_order_list': new_order_list}
+    #         return render(request, 'eos/order_page_r.html', context)
+    #     else:
+    #         form = Order_listForm(request.POST)
+    #         context = {'form': form}
+    #         return render(request, 'eos/order_page.html', context)
+    # else:
+    #     form = Order_listForm()
+    #     context = {'form': form}
+    #     return render(request, 'eos/order_page.html', context)
+    return render(request, 'eos/order_page.html')
 
-
-def order_page(request, Order_list_id):
-    new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
-    context = {'new_order_list': new_order_list}
-    return render(request, 'eos/order_page_r.html', context)
+# def order_page(request, Order_list_id):
+#     new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
+#     context = {'new_order_list': new_order_list}
+#     return render(request, 'eos/order_page_r.html', context)
 
 
