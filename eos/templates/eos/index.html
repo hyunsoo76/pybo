@@ -2,28 +2,182 @@
 {% block content %}
 {% load eos_filter %}
 
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>대진산업_전자발주</title>
-</head>
-<body class="bg-black">
-<span style="line-height:50%"><br></span>
-    <table align="center">
-        <tr align="center" >
-            <td><img src="https://picsum.photos/1080/650/?random" class="img-fluid"></td>
-        </tr>
-
-    </table>
-
-<button style="display:none;" onClick="window.location.reload()" type="button" class="btn btn-outline-success btn-sm" accesskey="+">Reflash</button>
-
-
-
-
+<div class="container my-3">
+    <div class="row justify-content-between">
+        <div class="col-lg-7 col-md-2 d-none d-sm-block"></div>
+            <div class="col-lg-3 col-sm-5">
+        <!--        검색창-->
+<!--                <form class="d-flex justify-content-end" id="search">-->
+                  <div class="input-group">
+                        <input hidden="hidden" />
+                        <input type="text" id="search_kw" class="form-control me-2" accesskey="a" value="{{ kw|default_if_none:'' }}" placeholder="alt+a" >
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="btn_search">Search</button>
+                        </div>
+                  </div>
+<!--                </form>-->
+            </div>
+        <div class="col-1"></div>
+    </div>
 
 
-</body>
-</html>
 
+
+
+
+
+<!--    <div class="container my-3">-->
+<!--        <div class="row my-3">-->
+<!--            <div class="col-6">-->
+
+<!--            </div>-->
+<!--            <div class="col-6">-->
+<!--                <div class="input-group">-->
+<!--                    <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">-->
+<!--                    <div class="input-group-append">-->
+<!--                        <button class="btn btn-outline-secondary" type="button" id="btn_search">Search</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="row justify-content-between my-3">
+        <div class="col-1 d-none d-sm-block"> </div>
+           <div class="col-lg-9 col-md-12 col-sm-12">
+            <table class="table table-hover">
+                <thead>
+                <tr class="table-dark text-center ">
+                    <th>No</th>
+                    <th>&nbsp;&nbsp;</th>
+                    <th style="width:52%">발주매장</th>
+                    <th style="width:8%">발주일</th>
+                    <th style="width:8%">배송일</th>
+                    <th>&nbsp;&nbsp;미출체크</th>
+                </tr>
+                </thead>
+                <tbody>
+
+            {% if Order_list %}
+            {% for Order_list in Order_lists %}
+            <tr class="text-center">
+              <td>
+               <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+               {{ Order_list.paginator.count|sub:Order_list.start_index|sub:forloop.counter0|add:1 }}
+              </td>
+              <td>&nbsp;&nbsp;</td>
+              <td class="text-start" style ="font-color:#000000">
+              <a href ="/eos/{{ Order_list.id }}/" style="text-decoration:none">{{Order_list.buyer_name }} </a>
+              </td>
+              <td style="text-align:right;">{{ buyer_name.od_date|date:'y/n/d/g:i' }}</td>
+            </tr>
+                {% endfor %}
+
+            {% else %}
+            <tr>
+             <p>결재 리스트가 없습니다.</p>
+            </tr>
+            {% endif %}
+
+                </tbody>
+            </table>
+            <!-- 페이징처리 시작 -->
+            <ul class="pagination justify-content-center">
+                <!-- 이전페이지 -->
+                {% if Order_list.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ Request_list.previous_page_number }}" href="javascript:void(0)">이전</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="javascript:void(0)">이전</a>
+                </li>
+                {% endif %}
+                <!-- 페이지리스트 -->
+                {% for page_number in Order_list.paginator.page_range %}
+                {% if page_number >= Order_list.number|add:-5 and page_number <= Order_list.number|add:5 %}
+                {% if page_number == Order_list.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                <!-- 다음페이지 -->
+                {% if Order_list.has_next %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ Order_list.next_page_number }}" href="javascript:void(0)">다음</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="javascript:void(0)">다음</a>
+                </li>
+                {% endif %}
+            </ul>
+           </div>
+        <div class="col-1 d-none d-sm-block"> </div>
+    </div>
+<!--    <p></p>-->
+<!--&lt;!&ndash;    랜덤 이미지 &ndash;&gt;-->
+<!--    <table align="center">-->
+<!--        <tr align="center" >-->
+<!--            <td><img src="https://picsum.photos/1080/620/?random" class="img-fluid img-thumbnail"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+
+</div>
+    <!-- 페이징처리 끝 -->
+
+
+
+<!-- 검색 -->
+    <form id="searchForm" method="get" action="{% url 'eos:index' %}">
+        <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+        <input type="hidden" id="page" name="page" value="{{ page }}">
+    </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!--    <ul>-->
+<!--      <a href="{% url 'eas:Request_create' %}" class="btn btn-secondary">작성하기</a>-->
+<!--    </ul>-->
 {% endblock %}
+    {% block script %}
+    <script type='text/javascript'>
+    const page_elements = document.getElementsByClassName("page-link");
+    Array.from(page_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            document.getElementById('page').value = this.dataset.page;
+            document.getElementById('searchForm').submit();
+        });
+    });
+    const btn_search = document.getElementById("btn_search");
+    btn_search.addEventListener('click', function() {
+        document.getElementById('kw').value = document.getElementById('search_kw').value;
+        document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+        document.getElementById('searchForm').submit();
+    });
+
+    function enterkey() {
+            if (window.event.keyCode == 13) {
+                 $("#search").submit();
+            }
+        }
+
+
+const searchInput = document.getElementById("search_kw");
+const maxLength = 50;
+
+    searchInput.addEventListener("focus", e => {
+    const el = e.target;
+    setTimeout(() => {
+        el.setSelectionRange(maxLength, maxLength);
+        el.scrollLeft = maxLength * 30;
+        }, 0);
+    });
+
+    </script>
+    {% endblock %}
