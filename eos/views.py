@@ -12,8 +12,8 @@ import pandas as pd
 def index(request):
     return render(request, 'eos/index.html')
 
-def order_page(request):
-    return render(request, 'eos/order_page.html')
+# def order_page(request):
+#     return render(request, 'eos/order_page.html')
 
 class ProductView(ListView):
     model = Products
