@@ -20,7 +20,7 @@ def index(request):
             Q(buyer_name__icontains=kw) |  #
             # Q(d_day__icontains=kw) |  #
             # Q(od_date__icontains=kw) |
-            Q(p_name__icontains=kw) 
+            Q(p_name__icontains=kw)
             # Q(sale_bar__icontains=kw) |
             # Q(org_bar__icontains=kw)
         ).distinct()
