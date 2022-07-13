@@ -37,7 +37,7 @@ class Order_list(models.Model):
     img1 = models.ImageField(blank=True)
     img2 = models.ImageField(blank=True)
     img3 = models.ImageField(blank=True)
-    aaa = models.CharField(max_length=200, blank=True)
+    aaa = models.CharField(max_length=200, blank=True) #바이어네임 씽크
     bbb = models.CharField(max_length=200, blank=True)
     ccc = models.CharField(max_length=200, blank=True)
     ddd = models.CharField(max_length=200, blank=True)

@@ -67,6 +67,7 @@ def order_create(request):
             input_buyer = request.POST.get('buyer_select')
             new_order_list.d_day = input_cal
             new_user.buyer_name = input_buyer
+            new_order_list.aaa = new_user.buyer_name
             new_order_list.save()
             new_user.save()
             context = {'new_order_list': new_order_list, 'new_user': new_user}
