@@ -96,9 +96,9 @@
                 </li>
                 {% endif %}
                 <!-- 페이지리스트 -->
-                {% for page_number in Order_list.paginator.page_range %}
-                {% if page_number >= Order_list.number|add:-5 and page_number <= Order_list.number|add:5 %}
-                {% if page_number == Order_list.number %}
+                {% for page_number in Order_lists.paginator.page_range %}
+                {% if page_number >= Order_lists.number|add:-5 and page_number <= Order_list.number|add:5 %}
+                {% if page_number == Order_lists.number %}
                 <li class="page-item active" aria-current="page">
                     <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
                 </li>
@@ -110,7 +110,7 @@
                 {% endif %}
                 {% endfor %}
                 <!-- 다음페이지 -->
-                {% if Order_list.has_next %}
+                {% if Order_lists.has_next %}
                 <li class="page-item">
                     <a class="page-link" data-page="{{ Order_list.next_page_number }}" href="javascript:void(0)">다음</a>
                 </li>
