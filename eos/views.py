@@ -69,7 +69,7 @@ def order_create(request):
             new_user.buyer_name = input_buyer
             new_order_list.save()
             new_user.save()
-            context = {'new_order_list': new_order_list, 'new_user':new_user}
+            context = {'new_order_list': new_order_list, 'new_user': new_user}
             return render(request, 'eos/order_page_r.html', context)
         else:
             form = Order_listForm(request.POST)
@@ -77,7 +77,8 @@ def order_create(request):
             return render(request, 'eos/order_page.html', context)
     else:
         form = Order_listForm()
-        context = {'form': form}
+        form_user = UserForm()
+        context = {'form': form, 'form_user': form_user}
         return render(request, 'eos/order_page.html', context)
 
 def order_page(request, Order_list_id):
