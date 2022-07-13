@@ -71,7 +71,7 @@ def order_create(request):
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')
-            if odbox != None :
+            if odbox != '' :
                 new_order_list.fff = barcode
                 new_order_list.od_count = occonunt
                 new_order_list.od_box_count = odbox
@@ -80,7 +80,6 @@ def order_create(request):
                 context = {'new_order_list': new_order_list, 'new_user': new_user}
                 return render(request, 'eos/order_page_r.html', context)
             else :
-
                 new_order_list.fff = barcode
                 new_order_list.od_count = occonunt
                 new_order_list.save()
