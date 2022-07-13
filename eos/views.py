@@ -67,11 +67,11 @@ def order_create(request):
             input_buyer = request.POST.get('buyer_select')
             new_order_list.d_day = input_cal
             new_user.buyer_name = input_buyer
-            new_order_list.aaa = new_user.buyer_name
+            new_order_list.aaa = new_user.buyer_name #매장명 order_list로 복사
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')
-            if odbox != '':
+            if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
                new_order_list.fff = barcode
                new_order_list.od_count = 0
                new_order_list.od_box_count = odbox
