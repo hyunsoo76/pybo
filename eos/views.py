@@ -71,9 +71,9 @@ def order_create(request):
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')
-            if occonunt !='' & odbox !='' :
+            if occonunt & odbox != '':
                 messages.warning(request, "안녕")
-                if odbox != '' :
+                if odbox != '':
                     new_order_list.fff = barcode
                     new_order_list.od_count = 0
                     new_order_list.od_box_count = odbox
