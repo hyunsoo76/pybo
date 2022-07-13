@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView
 from django.db.models import Q
 from .forms import Order_listForm, UserForm
-from .models import Products
+from .models import Products, User
 from .models import Order_list
 import csv
 import pandas as pd
@@ -83,7 +83,7 @@ def order_create(request):
 
 def order_page(request, Order_list_id, User_id):
     new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
-    new_user = get_object_or_404(UserForm, pk=User_id)
+    new_user = get_object_or_404(User, pk=User_id)
     context = {'new_order_list': new_order_list, 'new_user': new_user}
     return render(request, 'eos/order_page_r.html', context)
 
