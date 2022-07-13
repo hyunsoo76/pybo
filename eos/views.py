@@ -68,11 +68,11 @@ def order_create(request):
             new_order_list.d_day = input_cal
             new_user.buyer_name = input_buyer
             new_order_list.aaa = new_user.buyer_name
-            barcode = request.POST.getlist('barcode_input')
-            occonunt = request.POST.getlist('od_count_input')
-            odbox = request.POST.getlist('od_box_count_input')
+            barcode = request.POST.get('barcode_input')
+            occonunt = request.POST.get('od_count_input')
+            odbox = request.POST.get('od_box_count_input')
             new_order_list.fff = barcode
-            new_order_list.od_count = int(occonunt)
+            new_order_list.od_count = occonunt
             new_order_list.od_box_count = odbox
             new_order_list.save()
             new_user.save()
