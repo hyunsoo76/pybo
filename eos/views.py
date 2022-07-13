@@ -71,6 +71,7 @@ def order_create(request):
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')
+
             new_order_list.fff = barcode
             new_order_list.od_count = occonunt
             new_order_list.od_box_count = odbox
