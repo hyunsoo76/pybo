@@ -62,7 +62,7 @@
                 <tr class="text-center">
                   <td>
                    <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-                   {{ Order_list_list.paginator.count|sub:Order_lists.start_index|sub:forloop.counter0|add:1 }}
+                   {{ Order_lists.paginator.count|sub:Order_lists.start_index|sub:forloop.counter0|add:1 }}
                   </td>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-start" style ="font-color:#000000">
