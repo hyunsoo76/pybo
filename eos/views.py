@@ -83,7 +83,7 @@ def order_create(request):
 
 def order_page(request, Order_list_id):
     new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
-    context = {'new_order_list': new_order_list}
+    context = {'new_order_list': new_order_list, 'new_user': new_user}
     return render(request, 'eos/order_page_r.html', context)
 
 
