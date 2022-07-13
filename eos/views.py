@@ -71,9 +71,9 @@ def order_create(request):
             barcode = request.POST.getlist('barcode_input[]')
             occonunt = request.POST.getlist('od_count_input[]')
             odbox = request.POST.getlist('od_box_count_input[]')
-            new_order_list.b_code = barcode
-            new_order_list.od_count_arr = occonunt
-            new_order_list.od_box_count_arr = odbox
+            new_order_list.fff = barcode
+            new_order_list.od_count = occonunt
+            new_order_list.od_box_count = odbox
             new_order_list.save()
             new_user.save()
             context = {'new_order_list': new_order_list, 'new_user': new_user}

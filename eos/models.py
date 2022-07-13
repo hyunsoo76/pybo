@@ -1,6 +1,5 @@
 from django.db import models
 
-from django.contrib.postgres.fields import ArrayField
 
 class Products(models.Model):
     objects = models.Manager()
