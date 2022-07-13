@@ -52,6 +52,7 @@
                     <th style="width:52%">발주매장</th>
                     <th style="width:8%">발주일</th>
                     <th style="width:8%">배송일</th>
+                    <th style="width:8%">발주자</th>
                     <th>&nbsp;&nbsp;미출체크</th>
                 </tr>
                 </thead>
@@ -70,6 +71,7 @@
                   </td>
                   <td style="text-align:right;">{{ Order_list.od_date|date:'y-n-d' }}</td>
                   <td style="text-align:right;">{{ Order_list.d_day|date:'y-n-d' }}</td>
+                  <td>{{ }}</td>
                 </tr>
                  {% endfor %}
 
@@ -84,7 +86,7 @@
             <!-- 페이징처리 시작 -->
             <ul class="pagination justify-content-center">
                 <!-- 이전페이지 -->
-                {% if Order_list.has_previous %}
+                {% if Order_lists.has_previous %}
                 <li class="page-item">
                     <a class="page-link" data-page="{{ Order_lists.previous_page_number }}" href="javascript:void(0)">이전</a>
                 </li>
