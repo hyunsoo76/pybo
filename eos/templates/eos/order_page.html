@@ -95,7 +95,7 @@
         </div>
         <span style="line-height:50%"><br></span>
             <div class="row">
-                <div class="col-lg-1">
+                <div class="col-lg-1">{{counter}}
                 </div>
                 <div class="col-lg-2">
                     <input type="text" placeholder="바코드 or 상품명" name="barcode_input" value="{{ Order_list.fff.value|default_if_none:'' }}">
@@ -107,10 +107,10 @@
                     <span> 입수 </span>
                 </div>
                 <div class="col-lg-1">
-                    <input maxlength="5" type="number" id="test_obj" name="od_count_input">
+                    <input type="number" id="test_obj" name="od_count_input" class="form-control input-sm">
                 </div>
                 <div class="col-lg-1">
-                    <input maxlength="5" type="number" id="test_obj1" name="od_box_count_input">
+                    <input type="number" id="test_obj1" name="od_box_count_input" class="form-control input-sm">
                 </div>
                 <div class="col-lg-1">
                     <span> 단가 </span>
