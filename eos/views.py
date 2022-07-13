@@ -18,11 +18,11 @@ def index(request):
     if kw:
         Order_lists = Order_lists.filter(
             Q(buyer_name__icontains=kw) |  #
-            Q(d_day__icontains=kw) |  #
-            Q(od_date__icontains=kw) |
-            Q(p_name__icontains=kw) |
-            Q(sale_bar__icontains=kw) |
-            Q(org_bar__icontains=kw)
+            # Q(d_day__icontains=kw) |  #
+            # Q(od_date__icontains=kw) |
+            Q(p_name__icontains=kw) 
+            # Q(sale_bar__icontains=kw) |
+            # Q(org_bar__icontains=kw)
         ).distinct()
     # context = {'Order_lists': Order_lists}
     paginator = Paginator(Order_lists, 10)  # 페이지당 10개씩 보여주기
