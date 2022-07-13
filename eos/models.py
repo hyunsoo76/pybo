@@ -48,7 +48,4 @@ class Order_list(models.Model):
     ggg = models.IntegerField(blank=True, null=True)
     hhh = models.IntegerField(blank=True, null=True)
     upload = models.FileField(upload_to='uploads/', blank=True, null=True)
-    b_code = ArrayField(models.IntegerField(null=True, blank=True))
-    od_count_arr = ArrayField(models.IntegerField(null=True, blank=True))
-    od_box_count_arr = ArrayField(models.IntegerField(null=True, blank=True))
 
