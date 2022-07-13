@@ -38,11 +38,11 @@ class Order_list(models.Model):
     img2 = models.ImageField(blank=True)
     img3 = models.ImageField(blank=True)
     aaa = models.CharField(max_length=200, blank=True) #바이어네임 씽크
-    bbb = models.CharField(max_length=200, blank=True)
+    bbb = models.CharField(max_length=200, blank=True) #상품명
     ccc = models.CharField(max_length=200, blank=True)
     ddd = models.CharField(max_length=200, blank=True)
     eee = models.CharField(max_length=200, blank=True)
-    fff = models.IntegerField(blank=True, null=True)
+    fff = models.IntegerField(blank=True, null=True) #바코드
     ggg = models.IntegerField(blank=True, null=True)
     hhh = models.IntegerField(blank=True, null=True)
     upload = models.FileField(upload_to='uploads/', blank=True, null=True)
