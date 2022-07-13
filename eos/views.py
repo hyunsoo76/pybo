@@ -71,23 +71,21 @@ def order_create(request):
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')
-            if occonunt and odbox != '':
-                messages.warning(request)
-                if odbox != '':
-                    new_order_list.fff = barcode
-                    new_order_list.od_count = 0
-                    new_order_list.od_box_count = odbox
-                    new_order_list.save()
-                    new_user.save()
-                    context = {'new_order_list': new_order_list, 'new_user': new_user}
-                    return render(request, 'eos/order_page_r.html', context)
-                else :
-                    new_order_list.fff = barcode
-                    new_order_list.od_count = occonunt
-                    new_order_list.save()
-                    new_user.save()
-                    context = {'new_order_list': new_order_list, 'new_user': new_user}
-                    return render(request, 'eos/order_page_r.html', context)
+            if odbox != '':
+               new_order_list.fff = barcode
+               new_order_list.od_count = 0
+               new_order_list.od_box_count = odbox
+               new_order_list.save()
+               new_user.save()
+               context = {'new_order_list': new_order_list, 'new_user': new_user}
+               return render(request, 'eos/order_page_r.html', context)
+            else :
+               new_order_list.fff = barcode
+               new_order_list.od_count = occonunt
+               new_order_list.save()
+               new_user.save()
+               context = {'new_order_list': new_order_list, 'new_user': new_user}
+               return render(request, 'eos/order_page_r.html', context)
         else:
             form = Order_listForm(request.POST)
             context = {'form': form}
@@ -105,5 +103,5 @@ def order_page(request, Order_list_id):
     return render(request, 'eos/order_page_r.html', context)
 
 # 메시지 팝업
-def some_function(request):
-    messages.warning(request, "낱개발주와 박스발주 같이 입력하면 낱개발주 0 으로 됨.")
+# def some_function(request):
+#     messages.warning(request, "낱개발주와 박스발주 같이 입력하면 낱개발주 0 으로 됨.")
