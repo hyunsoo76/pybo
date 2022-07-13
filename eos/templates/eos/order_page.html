@@ -100,7 +100,7 @@
                     <span> {{forloop.counter}} </span>
                 </div>
                 <div class="col-lg-2">
-                    <input type="text" placeholder="바코드 or 상품명" name="barcode_input[]" value="{{ Order_list.fff.value|default_if_none:'' }}">
+                    <input type="text" placeholder="바코드 or 상품명" name="barcode_input[]" value="{{ Order_list.b_code.value|default_if_none:'' }}">
                 </div>
                 <div class="col-lg-2">
                     <span> 상품명 </span>
