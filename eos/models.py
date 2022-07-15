@@ -49,3 +49,5 @@ class Order_list(models.Model):
     hhh = models.IntegerField(blank=True, null=True)
     upload = models.FileField(upload_to='uploads/', blank=True, null=True)
 
+    def __str__(self):
+        return self.buyer_name
