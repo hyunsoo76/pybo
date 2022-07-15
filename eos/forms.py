@@ -9,6 +9,7 @@ class Order_listForm(forms.ModelForm):
                   'del_check', 'order_note', 'out_note', 'note',
                   'total_sum', 'img1', 'img2', 'img3', 'aaa',
                   'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'upload']
+        exclude = ('buyer_name',)
 
 class UserForm(forms.ModelForm):
     class Meta:
