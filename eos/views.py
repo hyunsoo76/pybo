@@ -69,7 +69,7 @@ def order_create(request):
             new_order_list.buyer_name = input_buyer
             # new_user.buyer_name = input_buyer
             # new_order_list.aaa = new_user.buyer_name #매장명 order_list로 복사
-            new_order_list.aaa = new_order_list.buyer_name  # 매장명 order_list로 복사
+            # new_order_list.aaa = new_order_list.buyer_name  # 매장명 order_list로 복사
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')

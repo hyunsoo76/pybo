@@ -19,16 +19,17 @@ class Products(models.Model):
     #     verbose_name = '상품'
     #     verbose_name_plural = '상품'
 
-class User(models.Model):
-    odp_name = models.CharField(max_length=200, blank=True) #발주자명
-    buyer_name = models.CharField(max_length=200, blank=True) #수주자명
-    phon_num = models.CharField(max_length=200, blank=True) #전화번호
+
+
 
 
 class Order_list(models.Model):
+    odp_name = models.CharField(max_length=200, blank=True)  # 발주자명
+    buyer_name = models.CharField(max_length=200)  # 수주자명
+    phon_num = models.CharField(max_length=200, blank=True)  # 전화번호
     od_count = models.IntegerField(blank=True, null=True) #낱개발주수량
     od_box_count = models.IntegerField(blank=True, null=True) #박스발주수량
-    d_day = models.DateTimeField(blank=True) #배송요청일
+    d_day = models.DateTimeField() #배송요청일
     od_date = models.DateTimeField(blank=True) #발주일(today)
     del_check = models.CharField(max_length=200, blank=True) #미출체크(발주삭제)
     order_note = models.TextField(blank=True) #발주자 기타사항
