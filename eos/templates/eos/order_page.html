@@ -1,19 +1,21 @@
 {% extends 'base_eos.html' %}
 {% block content %}
 
-         {% if messages %}
-<ul class="absoulte top-0 right-0 left-0 flex justify-center" xmlns:th="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.w3.org/1999/xhtml">
-        {% for message in messages %}
-            <li class="z-20 message py-3 px-5 text-white rounded-lg font-bold text-lg {% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</li>
-        {% endfor %}
-            </ul>
-        {% endif %}
-       <p></p>
+{% if messages %}
+<ul class="absoulte top-0 right-0 left-0 flex justify-center">
+    {% for message in messages %}
+    <li class="z-20 message py-3 px-5 text-white rounded-lg font-bold text-lg {% if message.tags %} {{ message.tags }}{% endif %}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<p></p>
 <div class="container">
     <form method="post" name="order_create" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
-<!-- 오류표시 Start -->
+        <!-- 오류표시 Start -->
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
             {% for field in form %}
@@ -26,61 +28,62 @@
             {% endfor %}
         </div>
         {% endif %}
-<!-- 오류표시 End -->
+        <!-- 오류표시 End -->
 
 
-    <div class="row">
-        <div class="col-3">
-            <span>발주자 : 최은주</span>
+        <div class="row">
+            <div class="col-3">
+                <span>발주자 : 최은주</span>
+            </div>
+            <div class="col-5">
+                <span>발주일 : 2022-06-29</span>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 d-none d-sm-block">
+                <button type="button" class="btn btn-outline-dark">파일생성</button>
+                <button type="button" class="btn btn-outline-dark">발주서 출력</button>
+                <button type="submit" class="btn-outline-dark" id="order_submit">전송</button>
+            </div>
+
         </div>
-        <div class="col-5">
-            <span>발주일 : 2022-06-29</span>
+        <br>
+        <!--        <div class="row">-->
+        <!--           <div>-->
+        <!--            <table background="/static/img/dark_wood.png" width="100%"  height="30">-->
+        <!--                <tr>-->
+        <!--                    <td></td>-->
+        <!--                </tr>-->
+        <!--            </table>-->
+        <!--          </div>-->
+        <!--&lt;!&ndash;            <div style="" ><img src="/static/img/dark_wood.png"> </div>&ndash;&gt;-->
+        <!--        </div>-->
+        <span style="line-height:50%"><br></span>
+
+        <div class="row input-group">
+
+            <div class="col-lg-4 col-md-4 col-sm-12 input-group">
+                <select class="form-select" aria-label="Default select example" name="buyer_select">
+                    <option selected>발주 매장 선택</option>
+                    <option value="북단양농협하나로마트'">북단양농협하나로마트'</option>
+                    <option value="단양농협하나로마트'">단양농협하나로마트'</option>
+                    <option value="단양소백하나로마트'">단양소백하나로마트'</option>
+                    <option value="대강하나로마트'">대강하나로마트'</option>
+                    <option value="상진농협하나로마트'">상진농협하나로마트'</option>
+                    <option value="봉양농협하나로마트'">봉양농협하나로마트'</option>
+                    <option value="남제천농협하나로마트'">남제천농협하나로마트'</option>
+                    <option value="남제천농협 청풍지점'">남제천농협 청풍지점'</option>
+                    <option value="가곡농협하나로마트'">가곡농협하나로마트'</option>
+                </select>
+
+                <!--  배송일 달력 날짜선택   -->
+                <span class="input-group-text">배송일</span>
+                <!--          <div class="col-lg-4 col-md-4 col-sm-12">-->
+
+                <input type="text" name="calender" inputmode="none" placeholder="배송일" id="date-picker"
+                       class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2">
+                <!--            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">-->
+            </div>
+            <p></p>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 d-none d-sm-block">
-        <button type="button" class="btn btn-outline-dark">파일생성</button>
-        <button type="button" class="btn btn-outline-dark">발주서 출력</button>
-        <button type="submit" class="btn-outline-dark" id="order_submit">전송</button>
-        </div>
-
-    </div>
-    <br>
-<!--        <div class="row">-->
-<!--           <div>-->
-<!--            <table background="/static/img/dark_wood.png" width="100%"  height="30">-->
-<!--                <tr>-->
-<!--                    <td></td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--          </div>-->
-<!--&lt;!&ndash;            <div style="" ><img src="/static/img/dark_wood.png"> </div>&ndash;&gt;-->
-<!--        </div>-->
-    <span style="line-height:50%"><br></span>
-
-    <div class="row input-group">
-
-          <div class="col-lg-4 col-md-4 col-sm-12 input-group">
-            <select class="form-select" aria-label="Default select example" name="buyer_select">
-              <option selected>발주 매장 선택</option>
-              <option value="북단양농협하나로마트'">북단양농협하나로마트'</option>
-              <option value="단양농협하나로마트'">단양농협하나로마트'</option>
-              <option value="단양소백하나로마트'">단양소백하나로마트'</option>
-              <option value="대강하나로마트'">대강하나로마트'</option>
-              <option value="상진농협하나로마트'">상진농협하나로마트'</option>
-              <option value="봉양농협하나로마트'">봉양농협하나로마트'</option>
-              <option value="남제천농협하나로마트'">남제천농협하나로마트'</option>
-              <option value="남제천농협 청풍지점'">남제천농협 청풍지점'</option>
-              <option value="가곡농협하나로마트'">가곡농협하나로마트'</option>
-            </select>
-
-<!--  배송일 달력 날짜선택   -->
-          <span class="input-group-text">배송일</span>
-<!--          <div class="col-lg-4 col-md-4 col-sm-12">-->
-
-            <input type="text" name="calender" inputmode="none" placeholder="배송일" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2">
-<!--            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">-->
-          </div>
-        <p></p>
-    </div>
 
         <div class="row bg-Secondary" align="center" style="margin-left: 2px; margin-right: 1px">
             <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block text-white" align="center">no</div>
@@ -95,47 +98,46 @@
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">미출체크</div>
         </div>
         <span style="line-height:50%"><br></span>
-            <div class="row">
-                <div class="col-lg-1">1
-                </div>
-                <div class="col-lg-2">
-                    <input type="text" placeholder="바코드 or 상품명" name="barcode_input" value="{{ Order_list.fff.value|default_if_none:'' }}">
-                </div>
-                <div class="col-lg-2">
-                    <span> 상품명 </span>
-                </div>
-                <div class="col-lg-1">
-                    <span> 입수 </span>
-                </div>
-                <div class="col-lg-1">
-                    <input type="number" id="test_obj" name="od_count_input" class="form-control input-sm">
-                </div>
-                <div class="col-lg-1">
-                    <input type="number" id="test_obj1" name="od_box_count_input" class="form-control input-sm">
-                </div>
-                <div class="col-lg-1">
-                    <span> 단가 </span>
-                </div>
-                <div class="col-lg-1">
-                    <span> 위치 </span>
-                </div>
-                <div class="col-lg-1">
-                    <span> 원바코드 </span>
-                </div>
-                <div class="col-lg-1">
-                    <span> 미출체크 </span>
-                </div>
-
+        <div class="row">
+            <div class="col-lg-1">1
             </div>
+            <div class="col-lg-2">
+                <input type="text" placeholder="바코드 or 상품명" name="barcode_input"
+                       value="{{ Order_list.fff.value|default_if_none:'' }}">
+            </div>
+            <div class="col-lg-2">
+                <span> 상품명 </span>
+            </div>
+            <div class="col-lg-1">
+                <span> 입수 </span>
+            </div>
+            <div class="col-lg-1">
+                <input type="number" id="test_obj" name="od_count_input" class="form-control input-sm">
+            </div>
+            <div class="col-lg-1">
+                <input type="number" id="test_obj1" name="od_box_count_input" class="form-control input-sm">
+            </div>
+            <div class="col-lg-1">
+                <span> 단가 </span>
+            </div>
+            <div class="col-lg-1">
+                <span> 위치 </span>
+            </div>
+            <div class="col-lg-1">
+                <span> 원바코드 </span>
+            </div>
+            <div class="col-lg-1">
+                <span> 미출체크 </span>
+            </div>
+
+        </div>
 
         <hr>
         <p></p>
 
 
-
     </form>
- </div>
-
+</div>
 
 
 <script>
@@ -149,9 +151,8 @@ $(function() {
 
 
 
+
 </script>
-
-
 
 
 {% endblock %}

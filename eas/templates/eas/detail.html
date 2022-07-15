@@ -1,15 +1,17 @@
 {% extends 'base_eas.html' %}
 {% block content %}
-        <p></p>
-         {% if messages %}
-            <ul class="absoulte top-0 right-0 left-0 flex justify-center">
-        {% for message in messages %}
-            <li class="z-20 message py-3 px-5 text-white rounded-lg font-bold text-lg {% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</li>
-        {% endfor %}
-            </ul>
-        {% endif %}
+<p></p>
+{% if messages %}
+<ul class="absoulte top-0 right-0 left-0 flex justify-center">
+    {% for message in messages %}
+    <li class="z-20 message py-3 px-5 text-white rounded-lg font-bold text-lg {% if message.tags %} {{ message.tags }}{% endif %}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
 
-        <p></p>
+<p></p>
 <div class="container">
     <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
@@ -29,463 +31,695 @@
         <!-- 오류표시 End -->
 
         <!-- 결재란 -->
-            <div class="row">
-                <div class="col-6 align=middle">
-                    <br>
-                    <br>
+        <div class="row">
+            <div class="col-6 align=middle">
+                <br>
+                <br>
 
-                    <h3 align="center">품 의 서</h3>
-            <hr>
+                <h3 align="center">품 의 서</h3>
+                <hr>
                 <div class="col align-items-bottom align=middle" id="now_date"></div>
-                </div>
+            </div>
 
-                <div class="col-6">
-                    <table class="table table-sm table-bordered border-secondary align-middle">
-                         <tr  class="table-secondary" align="center" >
-    <!--                      <td height = "10px"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a></td>-->
-                          <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1" accesskey="z"><B>&nbsp;담&nbsp;당&nbsp;[alt+z]</b></button></td>
-                          <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap"><b>&nbsp;이&nbsp;사&nbsp;</b></button></td>
-                          <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap"><b>&nbsp;대&nbsp;표&nbsp;</b></button></td>
-                        </tr>
-    <!-- 결재란-->
-                      <tbody>
-                        <tr align="center">
-                          <td height = "80px" width = "150px" bgcolor="#D8D8D8">
-    <!--                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>-->
-    <!--                          <div class="collapse collapse-horizontal" id="collapseWidthExample">-->
-    <!--                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">-->
-                              <div id="first_comfirm" style="display: none"><img src="/static/img/hyuckman.JPG" class="img-fluid" alt="first_comfirm" id="firstcheck"></div>
-    <!--                          </div>-->
+            <div class="col-6">
+                <table class="table table-sm table-bordered border-secondary align-middle">
+                    <tr class="table-secondary" align="center">
+                        <!--                      <td height = "10px"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a></td>-->
+                        <td height="10px">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1" accesskey="z"><B>&nbsp;담&nbsp;당&nbsp;[alt+z]</b>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap"><b>&nbsp;이&nbsp;사&nbsp;</b>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap"><b>&nbsp;대&nbsp;표&nbsp;</b>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- 결재란-->
+                    <tbody>
+                    <tr align="center">
+                        <td height="80px" width="150px" bgcolor="#D8D8D8">
+                            <!--                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>-->
+                            <!--                          <div class="collapse collapse-horizontal" id="collapseWidthExample">-->
+                            <!--                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">-->
+                            <div id="first_comfirm" style="display: none"><img src="/static/img/hyuckman.JPG"
+                                                                               class="img-fluid" alt="first_comfirm"
+                                                                               id="firstcheck"></div>
+                            <!--                          </div>-->
 
-                              <!-- Button trigger modal -->
-    <!--                        <div>-->
-    <!--                            <button type="button" class="btn btn-outline-secondary btn-sm" id="noneDiv" data-bs-toggle="modal" data-bs-target="#exampleModal1">-->
-    <!--                          담당-->
-    <!--                        </button>-->
-    <!--                        </div>-->
-    <!--                         -->
+                            <!-- Button trigger modal -->
+                            <!--                        <div>-->
+                            <!--                            <button type="button" class="btn btn-outline-secondary btn-sm" id="noneDiv" data-bs-toggle="modal" data-bs-target="#exampleModal1">-->
+                            <!--                          담당-->
+                            <!--                        </button>-->
+                            <!--                        </div>-->
+                            <!--                         -->
 
-    <!--                        &lt;!&ndash; Modal &ndash;&gt;-->
-                            <div class="modal fade modal-auto-clear" data-timer="3000" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel1">결재 전송하기</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    검토 후 재가바랍니다.!
-                                  </div>
-                                  <div class="modal-footer">
+                            <!--                        &lt;!&ndash; Modal &ndash;&gt;-->
+                            <div class="modal fade modal-auto-clear" data-timer="3000" id="exampleModal1" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel1">결재 전송하기</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            검토 후 재가바랍니다.!
+                                        </div>
+                                        <div class="modal-footer">
 
-    <!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
-                                    <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">취소</button>
-                                    <div><button type="submit" class="btn-success btn-lg" data-bs-dismiss="modal" id="first_check_ready">저장</button></div>
+                                            <!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
+                                            <button type="button" class="btn btn-secondary btn-lg"
+                                                    data-bs-dismiss="modal" id="sendbtn">취소
+                                            </button>
+                                            <div>
+                                                <button type="submit" class="btn-success btn-lg" data-bs-dismiss="modal"
+                                                        id="first_check_ready">저장
+                                                </button>
+                                            </div>
 
-<!--                                        <input name="sangsin" type="hidden" value="상신">-->
-<!--                                    <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" name="first_check" value="상신">상신</button></div>-->
-<!--                                    </form>-->
-    <!--                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">날인</button>-->
-                                  </div>
+                                            <!--                                        <input name="sangsin" type="hidden" value="상신">-->
+                                            <!--                                    <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" name="first_check" value="상신">상신</button></div>-->
+                                            <!--                                    </form>-->
+                                            <!--                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">날인</button>-->
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
 
 
-    <!--이사 결재란-->
-                          </td>
-                          <td width = "150px">
-                               <div id="24" style="display: none"><img src="/static/img/hyunsoo_1.JPG" class="img-fluid" alt="24" id="secondcheck"></div>
-                               <div id="24_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="24_1" id="secondcheck1"></div>
-                                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
+                            <!--이사 결재란-->
+                        </td>
+                        <td width="150px">
+                            <div id="24" style="display: none"><img src="/static/img/hyunsoo_1.JPG" class="img-fluid"
+                                                                    alt="24" id="secondcheck"></div>
+                            <div id="24_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid"
+                                                                      alt="24_1" id="secondcheck1"></div>
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel2">결제전송하기</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-footer row-3 ">
-                                        <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="send2">반려</button></div>
-                                        <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>
-                                        <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="24_send">승인</button></div>
-                                      </div>
-                                      <div class="modal-body1">
-                                          <p>검토 후 재가 바랍니다.</p>
-                                        <form>
-                                          <div class="mb-3">
-                                            <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>
-                                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="chamjo1" name="chamjo1" value="{{ form.chamjo1.value|default_if_none:'' }}">
-                                          </div>
-                                        </form>
-                                      </div>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel2">결제전송하기</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer row-3 ">
+                                            <div>
+                                                <button type="button" class="btn btn-primary btn-lg"
+                                                        data-bs-dismiss="modal" id="send2">반려
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-secondary btn-lg"
+                                                        data-bs-dismiss="modal">취소
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-danger btn-lg"
+                                                        data-bs-dismiss="modal" id="24_send">승인
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body1">
+                                            <p>검토 후 재가 바랍니다.</p>
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>
+                                                    <input class="form-control form-control-sm" type="text"
+                                                           placeholder="" aria-label="" id="chamjo1" name="chamjo1"
+                                                           value="{{ form.chamjo1.value|default_if_none:'' }}">
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                  </div>
-                                </div></td>
-    <!--   대표이사 결재란-->
-                          <td width = "150px">
-                                <div id="director" style="display: none"><img src="/static/img/taewon.JPG" class="img-fluid" alt="director"></div>
-                                <div id="director_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="director_1"></div>
-    <!--                          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap">반려</button>-->
-    <!--                                          &nbsp;<button type="button" class="btn btn-outline-secondary btn-sm">승인</button>-->
-                                <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
+                                </div>
+                            </div>
+                        </td>
+                        <!--   대표이사 결재란-->
+                        <td width="150px">
+                            <div id="director" style="display: none"><img src="/static/img/taewon.JPG" class="img-fluid"
+                                                                          alt="director"></div>
+                            <div id="director_1" style="display: none"><img src="/static/img/reject_img.jpg"
+                                                                            class="img-fluid" alt="director_1"></div>
+                            <!--                          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap">반려</button>-->
+                            <!--                                          &nbsp;<button type="button" class="btn btn-outline-secondary btn-sm">승인</button>-->
+                            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">결제전송하기</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-footer row-3 ">
-                                        <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
-                                        <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button></div>
-                                        <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="final">승인</button></div>
-                                      </div>
-                                      <div class="modal-body">
-                                          <p>검토 후 재가 바랍니다.</p>
-<!--                                        <form>-->
-                                          <div class="mb-3">
-<!--                                            <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>-->
-<!--                                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="jisi1" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">-->
-                                          </div>
-<!--                                        </form>-->
-                                      </div>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">결제전송하기</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer row-3 ">
+                                            <div>
+                                                <button type="button" class="btn btn-primary btn-lg"
+                                                        data-bs-dismiss="modal" id="reject_2">반려
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-secondary btn-lg"
+                                                        data-bs-dismiss="modal">취소
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-danger btn-lg"
+                                                        data-bs-dismiss="modal" id="final">승인
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>검토 후 재가 바랍니다.</p>
+                                            <!--                                        <form>-->
+                                            <div class="mb-3">
+                                                <!--                                            <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>-->
+                                                <!--                                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="jisi1" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">-->
+                                            </div>
+                                            <!--                                        </form>-->
+                                        </div>
                                     </div>
-                                  </div>
-                                </div></td>
-                        </tr>
-                        <tr align="center" bgcolor="#E6E6E6">
-                          <td id="data1"></td>
-                          <td id="data2"></td>
-                          <td id="data3"></td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                </div>
-
-
-            </div>
-
-
-
-
-
-
-            <div class="row" style="height: 50px;" align="center">
-              <div class="col-4">
-                <select class="form-select" aria-label="Default select example" onchange="location.href=this.value">
-                  <option value="buy">매입결재</option>
-                  <option value="http://3.37.211.248/eas/nomal_approval/">품의서</option>
-                  <option value="http://3.37.211.248/eas/monthly_holiday/">휴가품의서</option>
-                </select>
-              </div>
-              <div class="col-8">
-                 <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">계</th>
-                      <th scope="col" id="total"></th>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
-                  </thead>
-                 </table>
-              </div>
-
-            </div>
-            <div class="row">
-              <div class="col-12">
-                  <div class="input-group mb-3">
-                  <span class="input-group-text" id="input_subject">제목</span>
-                  <input type="text" class="form-control" name="subject" id="subject"
-                         value="{{ form.subject.value|default_if_none:'' }}" accesskey="s"
-                         placeholder="alt+s" autofocus onkeydown="if(event.keyCode==13)detail_input.a_1.focus();">
-<!--                  <textarea class="form-control" id="input_subject1" rows="1"></textarea>-->
-                  </div>
-              </div>
+                    <tr align="center" bgcolor="#E6E6E6">
+                        <td id="data1"></td>
+                        <td id="data2"></td>
+                        <td id="data3"></td>
+                    </tr>
+                    </tbody>
+                </table>
 
             </div>
 
-    <!--입력창 타이틀-->
-            <div class="row text-white" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">list</div>
-                <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">매입처</div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">계좌번호 [alt+no]</div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">은행</div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">계좌명</div>
-                <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">금액</div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">구분</div>
-                <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">적요</div>
-            </div>
-    <!--   입력창      -->
-            <div class="row"  align="center" >
 
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">1</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                   <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_1" name="a_1" value="{{ form.a_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.a_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_2" name="a_2" value="{{ form.a_2.value|default_if_none:'' }}" accesskey="1" onkeydown="if(event.keyCode==13)detail_input.a_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_3" name="a_3" value="{{ form.a_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.a_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_4" name="a_4" value="{{ form.a_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.a_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8"  align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" aria-label="" id="a_5" name="a_5" value="{{ form.a_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.a_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_6" name="a_6" value="{{ form.a_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.a_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_7" name="a_7" value="{{ form.a_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.b_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">2</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_1" name="b_1" value="{{ form.b_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.b_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_2" name="b_2" value="{{ form.b_2.value|default_if_none:'' }}" accesskey="2" onkeydown="if(event.keyCode==13)detail_input.b_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_3" name="b_3" value="{{ form.b_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.b_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_4" name="b_4" value="{{ form.b_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.b_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="b_5" name="b_5" value="{{ form.b_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.b_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_6" name="b_6" value="{{ form.b_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.b_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_7" name="b_7" value="{{ form.b_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.c_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">3</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_1" name="c_1" value="{{ form.c_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.c_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_2" name="c_2" value="{{ form.c_2.value|default_if_none:'' }}" accesskey="3" onkeydown="if(event.keyCode==13)detail_input.c_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_3" name="c_3" value="{{ form.c_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.c_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_4" name="c_4" value="{{ form.c_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.c_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="c_5" name="c_5" value="{{ form.c_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.c_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_6" name="c_6" value="{{ form.c_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.c_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_7" name="c_7" value="{{ form.c_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.d_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">4</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_1" name="d_1" value="{{ form.d_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.d_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_2" name="d_2" value="{{ form.d_2.value|default_if_none:'' }}" accesskey="4" onkeydown="if(event.keyCode==13)detail_input.d_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_3" name="d_3" value="{{ form.d_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.d_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_4" name="d_4" value="{{ form.d_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.d_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="d_5" name="d_5" value="{{ form.d_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.d_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_6" name="d_6" value="{{ form.d_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.d_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_7" name="d_7" value="{{ form.d_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.e_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">5</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_1" name="e_1" value="{{ form.e_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.e_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_2" name="e_2" value="{{ form.e_2.value|default_if_none:'' }}" accesskey="5" onkeydown="if(event.keyCode==13)detail_input.e_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_3" name="e_3" value="{{ form.e_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.e_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_4" name="e_4" value="{{ form.e_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.e_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="e_5" name="e_5" value="{{ form.e_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.e_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_6" name="e_6" value="{{ form.e_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.e_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_7" name="e_7" value="{{ form.e_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.f_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">6</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_1" name="f_1" value="{{ form.f_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.f_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_2" name="f_2" value="{{ form.f_2.value|default_if_none:'' }}" accesskey="6" onkeydown="if(event.keyCode==13)detail_input.f_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_3" name="f_3" value="{{ form.f_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.f_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_4" name="f_4" value="{{ form.f_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.f_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="f_5" name="f_5" value="{{ form.f_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.f_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_6" name="f_6" value="{{ form.f_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.f_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_7" name="f_7" value="{{ form.f_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.g_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">7</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_1" name="g_1" value="{{ form.g_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.g_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_2" name="g_2" value="{{ form.g_2.value|default_if_none:'' }}" accesskey="7" onkeydown="if(event.keyCode==13)detail_input.g_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_3" name="g_3" value="{{ form.g_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.g_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_4" name="g_4" value="{{ form.g_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.g_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="g_5" name="g_5" value="{{ form.g_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.g_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_6" name="g_6" value="{{ form.g_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.g_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_7" name="g_7" value="{{ form.g_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.h_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">8</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_1" name="h_1" value="{{ form.h_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.h_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_2" name="h_2" value="{{ form.h_2.value|default_if_none:'' }}" accesskey="8" onkeydown="if(event.keyCode==13)detail_input.h_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_3" name="h_3" value="{{ form.h_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.h_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_4" name="h_4" value="{{ form.h_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.h_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="h_5" name="h_5" value="{{ form.h_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.h_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_6" name="h_6" value="{{ form.h_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.h_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_7" name="h_7" value="{{ form.h_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.i_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">9</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_1" name="i_1" value="{{ form.i_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.i_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_2" name="i_2" value="{{ form.i_2.value|default_if_none:'' }}" accesskey="9" onkeydown="if(event.keyCode==13)detail_input.i_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_3" name="i_3" value="{{ form.i_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.i_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_4" name="i_4" value="{{ form.i_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.i_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="i_5" name="i_5" value="{{ form.i_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.i_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_6" name="i_6" value="{{ form.i_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.i_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_7" name="i_7" value="{{ form.i_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.j_1.focus();">
-                </div>
-            </div>
-            <div class="row" align="center">
-
-                <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">10</div>
-                <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_1" name="j_1" value="{{ form.j_1.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.j_2.focus();">
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_2" name="j_2" value="{{ form.j_2.value|default_if_none:'' }}" accesskey="-" onkeydown="if(event.keyCode==13)detail_input.j_3.focus();">
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_3" name="j_3" value="{{ form.j_3.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.j_4.focus();">
-                </div>
-                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_4" name="j_4" value="{{ form.j_4.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.j_5.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder="" aria-label="" id="j_5" name="j_5" value="{{ form.j_5.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.j_6.focus();">
-                </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_6" name="j_6" value="{{ form.j_6.value|default_if_none:'대진산업' }}" onkeydown="if(event.keyCode==13)detail_input.j_7.focus();">
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                    <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_7" name="j_7" value="{{ form.j_7.value|default_if_none:'' }}" onkeydown="if(event.keyCode==13)detail_input.chamjo1.focus();">
-                </div>
-            </div>
-
-            <p></p>
-            <div class="row" align="center">
-                <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">Note</div>
-<!--                <div class="col-12">-->
-<!--                      <div class="mb-3 bg-secondary text-white">-->
-<!--                      <label for="chamjo1" class="form-label">참조사항</label>-->
-                          <input style="height:40px;" class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="chamjo1" name="chamjo1" value="{{ form.chamjo1.value|default_if_none:'' }}">
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-6">-->
-<!--                  <div class="mb-3 bg-secondary text-white">-->
-<!--                  <label for="jisi1" class="form-label">지시사항</label>-->
-<!--                  <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">-->
-<!--                  </div>-->
-<!--                </div>-->
-            </div>
-            <div>
-                &nbsp;
-            </div>
-    </form>
         </div>
 
 
+        <div class="row" style="height: 50px;" align="center">
+            <div class="col-4">
+                <select class="form-select" aria-label="Default select example" onchange="location.href=this.value">
+                    <option value="buy">매입결재</option>
+                    <option value="http://3.37.211.248/eas/nomal_approval/">품의서</option>
+                    <option value="http://3.37.211.248/eas/monthly_holiday/">휴가품의서</option>
+                </select>
+            </div>
+            <div class="col-8">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">계</th>
+                        <th scope="col" id="total"></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="input_subject">제목</span>
+                    <input type="text" class="form-control" name="subject" id="subject"
+                           value="{{ form.subject.value|default_if_none:'' }}" accesskey="s"
+                           placeholder="alt+s" autofocus onkeydown="if(event.keyCode==13)detail_input.a_1.focus();">
+                    <!--                  <textarea class="form-control" id="input_subject1" rows="1"></textarea>-->
+                </div>
+            </div>
+
+        </div>
+
+        <!--입력창 타이틀-->
+        <div class="row text-white" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white"
+                 align="center">list
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block bg-secondary text-white"
+                 style="border: 1px solid white" align="center">매입처
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block bg-secondary text-white"
+                 style="border: 1px solid white" align="center">계좌번호 [alt+no]
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block bg-secondary text-white"
+                 style="border: 1px solid white" align="center">은행
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block bg-secondary text-white"
+                 style="border: 1px solid white" align="center">계좌명
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white"
+                 style="border: 1px solid white" align="center">금액
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block bg-secondary text-white"
+                 style="border: 1px solid white" align="center">구분
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white"
+                 style="border: 1px solid white" align="center">적요
+            </div>
+        </div>
+        <!--   입력창      -->
+        <div class="row" align="center">
+
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">1
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_1" name="a_1"
+                       value="{{ form.a_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.a_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_2" name="a_2"
+                       value="{{ form.a_2.value|default_if_none:'' }}" accesskey="1"
+                       onkeydown="if(event.keyCode==13)detail_input.a_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_3" name="a_3"
+                       value="{{ form.a_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.a_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_4" name="a_4"
+                       value="{{ form.a_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.a_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" aria-label="" id="a_5"
+                       name="a_5" value="{{ form.a_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.a_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_6" name="a_6"
+                       value="{{ form.a_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.a_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_7" name="a_7"
+                       value="{{ form.a_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.b_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">2
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_1" name="b_1"
+                       value="{{ form.b_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.b_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_2" name="b_2"
+                       value="{{ form.b_2.value|default_if_none:'' }}" accesskey="2"
+                       onkeydown="if(event.keyCode==13)detail_input.b_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_3" name="b_3"
+                       value="{{ form.b_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.b_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_4" name="b_4"
+                       value="{{ form.b_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.b_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="b_5" name="b_5" value="{{ form.b_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.b_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_6" name="b_6"
+                       value="{{ form.b_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.b_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_7" name="b_7"
+                       value="{{ form.b_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.c_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">3
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_1" name="c_1"
+                       value="{{ form.c_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.c_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_2" name="c_2"
+                       value="{{ form.c_2.value|default_if_none:'' }}" accesskey="3"
+                       onkeydown="if(event.keyCode==13)detail_input.c_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_3" name="c_3"
+                       value="{{ form.c_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.c_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_4" name="c_4"
+                       value="{{ form.c_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.c_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="c_5" name="c_5" value="{{ form.c_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.c_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_6" name="c_6"
+                       value="{{ form.c_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.c_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_7" name="c_7"
+                       value="{{ form.c_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.d_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">4
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_1" name="d_1"
+                       value="{{ form.d_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.d_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_2" name="d_2"
+                       value="{{ form.d_2.value|default_if_none:'' }}" accesskey="4"
+                       onkeydown="if(event.keyCode==13)detail_input.d_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_3" name="d_3"
+                       value="{{ form.d_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.d_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_4" name="d_4"
+                       value="{{ form.d_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.d_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="d_5" name="d_5" value="{{ form.d_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.d_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_6" name="d_6"
+                       value="{{ form.d_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.d_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_7" name="d_7"
+                       value="{{ form.d_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.e_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">5
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_1" name="e_1"
+                       value="{{ form.e_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.e_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_2" name="e_2"
+                       value="{{ form.e_2.value|default_if_none:'' }}" accesskey="5"
+                       onkeydown="if(event.keyCode==13)detail_input.e_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_3" name="e_3"
+                       value="{{ form.e_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.e_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_4" name="e_4"
+                       value="{{ form.e_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.e_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="e_5" name="e_5" value="{{ form.e_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.e_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_6" name="e_6"
+                       value="{{ form.e_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.e_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_7" name="e_7"
+                       value="{{ form.e_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.f_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">6
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_1" name="f_1"
+                       value="{{ form.f_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.f_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_2" name="f_2"
+                       value="{{ form.f_2.value|default_if_none:'' }}" accesskey="6"
+                       onkeydown="if(event.keyCode==13)detail_input.f_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_3" name="f_3"
+                       value="{{ form.f_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.f_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_4" name="f_4"
+                       value="{{ form.f_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.f_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="f_5" name="f_5" value="{{ form.f_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.f_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_6" name="f_6"
+                       value="{{ form.f_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.f_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_7" name="f_7"
+                       value="{{ form.f_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.g_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">7
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_1" name="g_1"
+                       value="{{ form.g_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.g_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_2" name="g_2"
+                       value="{{ form.g_2.value|default_if_none:'' }}" accesskey="7"
+                       onkeydown="if(event.keyCode==13)detail_input.g_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_3" name="g_3"
+                       value="{{ form.g_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.g_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_4" name="g_4"
+                       value="{{ form.g_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.g_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="g_5" name="g_5" value="{{ form.g_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.g_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_6" name="g_6"
+                       value="{{ form.g_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.g_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_7" name="g_7"
+                       value="{{ form.g_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.h_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">8
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_1" name="h_1"
+                       value="{{ form.h_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.h_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_2" name="h_2"
+                       value="{{ form.h_2.value|default_if_none:'' }}" accesskey="8"
+                       onkeydown="if(event.keyCode==13)detail_input.h_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_3" name="h_3"
+                       value="{{ form.h_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.h_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_4" name="h_4"
+                       value="{{ form.h_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.h_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="h_5" name="h_5" value="{{ form.h_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.h_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_6" name="h_6"
+                       value="{{ form.h_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.h_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_7" name="h_7"
+                       value="{{ form.h_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.i_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">9
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_1" name="i_1"
+                       value="{{ form.i_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.i_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_2" name="i_2"
+                       value="{{ form.i_2.value|default_if_none:'' }}" accesskey="9"
+                       onkeydown="if(event.keyCode==13)detail_input.i_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_3" name="i_3"
+                       value="{{ form.i_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.i_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_4" name="i_4"
+                       value="{{ form.i_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.i_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="i_5" name="i_5" value="{{ form.i_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.i_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_6" name="i_6"
+                       value="{{ form.i_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.i_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_7" name="i_7"
+                       value="{{ form.i_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.j_1.focus();">
+            </div>
+        </div>
+        <div class="row" align="center">
+
+            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8"
+                 align="center">10
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_1" name="j_1"
+                       value="{{ form.j_1.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.j_2.focus();">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_2" name="j_2"
+                       value="{{ form.j_2.value|default_if_none:'' }}" accesskey="-"
+                       onkeydown="if(event.keyCode==13)detail_input.j_3.focus();">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_3" name="j_3"
+                       value="{{ form.j_3.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.j_4.focus();">
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_4" name="j_4"
+                       value="{{ form.j_4.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.j_5.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" style="text-align:right;" placeholder=""
+                       aria-label="" id="j_5" name="j_5" value="{{ form.j_5.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.j_6.focus();">
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_6" name="j_6"
+                       value="{{ form.j_6.value|default_if_none:'대진산업' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.j_7.focus();">
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_7" name="j_7"
+                       value="{{ form.j_7.value|default_if_none:'' }}"
+                       onkeydown="if(event.keyCode==13)detail_input.chamjo1.focus();">
+            </div>
+        </div>
+
+        <p></p>
+        <div class="row" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white"
+                 align="center">Note
+            </div>
+            <!--                <div class="col-12">-->
+            <!--                      <div class="mb-3 bg-secondary text-white">-->
+            <!--                      <label for="chamjo1" class="form-label">참조사항</label>-->
+            <input style="height:40px;" class="form-control form-control-sm" type="text" placeholder="" aria-label=""
+                   id="chamjo1" name="chamjo1" value="{{ form.chamjo1.value|default_if_none:'' }}">
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="col-6">-->
+            <!--                  <div class="mb-3 bg-secondary text-white">-->
+            <!--                  <label for="jisi1" class="form-label">지시사항</label>-->
+            <!--                  <input class="form-control form-control-sm" type="text" placeholder="" aria-label="">-->
+            <!--                  </div>-->
+            <!--                </div>-->
+        </div>
+        <div>
+            &nbsp;
+        </div>
+    </form>
+</div>
 
 
-
-               <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-                 <script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script>
     <!--  담당 모달창 닫힐때 이벤트-->
                     $(document).ready(function(){
                         $('#exampleModal1').on('hidden.bs.modal', function () {
@@ -588,6 +822,8 @@
 
 
 
-                 </script>
+
+
+</script>
 
 {% endblock %}
