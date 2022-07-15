@@ -1,15 +1,15 @@
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from django.utils import timezone
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import  render, get_object_or_404
 from django.views.generic import ListView
 from django.db.models import Q
 from .forms import Order_listForm, UserForm
-from .models import Products, User
+from .models import Products
 from .models import Order_list
 import csv
 import pandas as pd
-from django.contrib import messages
+# from django.contrib import messages
 
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
@@ -87,9 +87,9 @@ def order_create(request):
                context = {'new_order_list': new_order_list, 'new_user': new_user}
                return render(request, 'eos/order_page_r.html', context)
         else:
-            form = Order_listForm(request.POST)
-            form_user = UserForm(request.POST)
-            context = {'form': form, 'form_user':form_user}
+            form = Order_listForm(request.POST), UserForm(request.POST)
+            # form_user = UserForm(request.POST)
+            context = {'form': form }
             return render(request, 'eos/order_page.html', context)
     else:
         form = Order_listForm()
