@@ -5,8 +5,7 @@ from .models import Products
 
 
 class Order_listAdmin(admin.ModelAdmin):
-    search_fields = ['d_day']
-    search_fields = ['buyer_name']
+    search_fields = ['d_day', 'buyer_name']
 
 
 class ProductsAdmin(admin.ModelAdmin):

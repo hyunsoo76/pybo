@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.shortcuts import  render, get_object_or_404
 from django.views.generic import ListView
 from django.db.models import Q
-from .forms import Order_listForm, UserForm
+from .forms import Order_listForm
 from .models import Products
 from .models import Order_list
 import csv
@@ -95,8 +95,7 @@ def order_create(request):
             return render(request, 'eos/order_page.html', context)
     else:
         form = Order_listForm()
-        form_user = UserForm()
-        context = {'form': form, 'form_user': form_user}
+        context = {'form': form}
         return render(request, 'eos/order_page.html', context)
 
 def order_page(request, Order_list_id):
