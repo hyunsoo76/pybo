@@ -58,16 +58,18 @@ def p_list(request):
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
-        form_user = UserForm(request.POST)
-        if form.is_valid() & form_user.is_valid():
+        # form_user = UserForm(request.POST)
+        if form.is_valid():
             new_order_list = form.save(commit=False)
-            new_user = form_user.save(commit=False)
+            # new_user = form_user.save(commit=False)
             new_order_list.od_date = timezone.now()
             input_cal = request.POST.get('calender')
             input_buyer = request.POST.get('buyer_select')
             new_order_list.d_day = input_cal
-            new_user.buyer_name = input_buyer
-            new_order_list.aaa = new_user.buyer_name #매장명 order_list로 복사
+            new_order_list.buyer_name = input_buyer
+            # new_user.buyer_name = input_buyer
+            # new_order_list.aaa = new_user.buyer_name #매장명 order_list로 복사
+            new_order_list.aaa = new_order_list.buyer_name  # 매장명 order_list로 복사
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')
@@ -76,20 +78,20 @@ def order_create(request):
                new_order_list.od_count = 0
                new_order_list.od_box_count = odbox
                new_order_list.save()
-               new_user.save()
-               context = {'new_order_list': new_order_list, 'new_user': new_user}
+               # new_user.save()
+               context = {'new_order_list': new_order_list}
                return render(request, 'eos/order_page_r.html', context)
             else :
                new_order_list.fff = barcode
                new_order_list.od_count = occonunt
                new_order_list.save()
-               new_user.save()
-               context = {'new_order_list': new_order_list, 'new_user': new_user}
+               # new_user.save()
+               context = {'new_order_list': new_order_list}
                return render(request, 'eos/order_page_r.html', context)
         else:
-            form = Order_listForm(request.POST), UserForm(request.POST)
+            form = Order_listForm(request.POST)
             # form_user = UserForm(request.POST)
-            context = {'form': form }
+            context = {'form': form}
             return render(request, 'eos/order_page.html', context)
     else:
         form = Order_listForm()
