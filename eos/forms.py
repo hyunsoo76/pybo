@@ -10,4 +10,4 @@ class Order_listForm(forms.ModelForm):
                   'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'upload',
                   'buyer_name', 'phon_num' ]
 
-        # 'odp_name', 일단제외 
+        # 'odp_name', 일단제외
