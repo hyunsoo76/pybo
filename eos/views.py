@@ -59,7 +59,7 @@ def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
         form_user = UserForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() & form_user.is_valid():
             new_order_list = form.save(commit=False)
             new_user = form_user.save(commit=False)
             new_order_list.od_date = timezone.now()
