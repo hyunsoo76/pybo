@@ -88,7 +88,8 @@ def order_create(request):
                return render(request, 'eos/order_page_r.html', context)
         else:
             form = Order_listForm(request.POST)
-            context = {'form': form}
+            form_user = UserForm(request.POST)
+            context = {'form': form, 'form_user':form_user}
             return render(request, 'eos/order_page.html', context)
     else:
         form = Order_listForm()
