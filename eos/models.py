@@ -30,7 +30,7 @@ class Order_list(models.Model):
     od_count = models.IntegerField(blank=True, null=True) #낱개발주수량
     od_box_count = models.IntegerField(blank=True, null=True) #박스발주수량
     d_day = models.DateTimeField(blank=True, null=True) #배송요청일
-    od_date = models.CharField(max_length=200) #발주일(today)
+    od_date = models.DateTimeField() #발주일(today)
     del_check = models.CharField(max_length=200, blank=True) #미출체크(발주삭제)
     order_note = models.TextField(blank=True) #발주자 기타사항
     out_note = models.TextField(blank=True) #수주자 기타사항
