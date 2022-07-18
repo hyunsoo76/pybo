@@ -122,16 +122,14 @@ def order_create(request):
                new_order_list.save()
                context = {'new_order_list': new_order_list}
                return render(request, 'eos/order_page_r.html', context)
-            else :
+            else:
                new_order_list.fff = barcode
                new_order_list.od_count = occonunt
                new_order_list.save()
                context = {'new_order_list': new_order_list}
                return render(request, 'eos/order_page_r.html', context)
         else:
-            form = Order_listForm(request.POST)
-            new_order_list = form.save(commit=False)
-            context = {'new_order_list': new_order_list}
+            context = {'form': form}
             return render(request, 'eos/order_page.html', context)
     else:
         form = Order_listForm()
