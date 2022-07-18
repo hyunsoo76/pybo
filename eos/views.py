@@ -125,7 +125,7 @@ def order_create(request):
                 return render(request, 'eos/order_page.html', context)
             else:
                 pass
-           
+
 
             if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
                new_order_list.fff = barcode
@@ -142,8 +142,8 @@ def order_create(request):
                return render(request, 'eos/order_page_r.html', context)
 
             # if (new_order_list.buyer_name == '') or (type(new_order_list.fff) == str) or (new_order_list.d_day == ''):
-
-
+            new_order_list.save()
+        
         else:
             # form = Order_listForm(request.POST)
             context = {'form': form}
