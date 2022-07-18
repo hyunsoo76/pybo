@@ -105,6 +105,10 @@ def order_page(request, Order_list_id):
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
+        new_order_list = form.save(commit=False)
+        input_cal = request.POST.get('calender')
+        new_order_list.d_day = input_cal
+        form = new_order_list
         if form.is_valid():
             new_order_list = form.save(commit=False)
             new_order_list.od_date = timezone.now()
@@ -129,7 +133,7 @@ def order_create(request):
                context = {'new_order_list': new_order_list}
                return render(request, 'eos/order_page_r.html', context)
         else:
-            form = Order_listForm(request.POST)
+            # form = Order_listForm(request.POST)
             context = {'form': form}
             return render(request, 'eos/order_page.html', context)
     else:
