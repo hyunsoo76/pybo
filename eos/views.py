@@ -66,7 +66,8 @@ def order_create(request):
             new_order_list.d_day = input_cal
             new_order_list.buyer_name = input_buyer
             barcode = request.POST.get('barcode_input')
-            if (new_order_list.buyer_name == '발주 매장 선택') or ( type(barcode) == str) or (new_order_list.d_day==""):
+            if (new_order_list.buyer_name == '발주 매장 선택') or (type(barcode) == str) or (new_order_list.d_day==""):
+                form = Order_listForm(request.POST)
                 context = {'form': form}
                 return render(request, 'eos/order_page.html', context)
             else :
