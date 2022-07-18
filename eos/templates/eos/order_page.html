@@ -61,8 +61,9 @@
         <div class="row input-group">
 
             <div class="col-lg-4 col-md-4 col-sm-12 input-group">
+                <span class="input-group-text">발주매장 선택</span>
                 <select class="form-select" aria-label="Default select example" name="buyer_select" value="{{ form.buyer_name.value|default_if_none:'' }}">
-                    <option selected>발주 매장 선택</option>
+                    <option selected></option>
                     <option value="북단양농협하나로마트'">북단양농협하나로마트'</option>
                     <option value="단양농협하나로마트'">단양농협하나로마트'</option>
                     <option value="단양소백하나로마트'">단양소백하나로마트'</option>
