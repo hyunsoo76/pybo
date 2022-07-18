@@ -105,6 +105,10 @@ def order_page(request, Order_list_id):
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
+        new_order_list = form.save(commit=False)
+        input_buyer = request.POST.get('buyer_select')
+        new_order_list.buyer_name = input_buyer
+
         if form.is_valid():
             new_order_list = form.save(commit=False)
             new_order_list.od_date = timezone.now()
