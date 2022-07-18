@@ -9,7 +9,7 @@ from .models import Products
 from .models import Order_list
 import csv
 import pandas as pd
-# from django.contrib import messages
+from django.contrib import messages
 
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
@@ -112,21 +112,31 @@ def order_create(request):
             new_order_list.d_day = input_cal
             new_order_list.buyer_name = input_buyer
             barcode = request.POST.get('barcode_input')
-            occonunt = request.POST.get('od_count_input')
-            odbox = request.POST.get('od_box_count_input')
-            if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
-               new_order_list.fff = barcode
-               new_order_list.od_count = 0
-               new_order_list.od_box_count = odbox
-               new_order_list.save()
-               context = {'new_order_list': new_order_list}
-               return render(request, 'eos/order_page_r.html', context)
+            # occonunt = request.POST.get('od_count_input')
+            # odbox = request.POST.get('od_box_count_input')
+
+            if (new_order_list.buyer_name == '발주 매장 선택') or (type(barcode) == str) or (new_order_list.d_day == ""):
+                some_function()
+                new_order_list = form.save(commit=False)
+                context = {'new_order_list': new_order_list}
+                return render(request, 'eos/order_page.html', context)
             else:
-               new_order_list.fff = barcode
-               new_order_list.od_count = occonunt
-               new_order_list.save()
-               context = {'new_order_list': new_order_list}
-               return render(request, 'eos/order_page_r.html', context)
+                occonunt = request.POST.get('od_count_input')
+                odbox = request.POST.get('od_box_count_input')
+
+                if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
+                   new_order_list.fff = barcode
+                   new_order_list.od_count = 0
+                   new_order_list.od_box_count = odbox
+                   new_order_list.save()
+                   context = {'new_order_list': new_order_list}
+                   return render(request, 'eos/order_page_r.html', context)
+                else:
+                   new_order_list.fff = barcode
+                   new_order_list.od_count = occonunt
+                   new_order_list.save()
+                   context = {'new_order_list': new_order_list}
+                   return render(request, 'eos/order_page_r.html', context)
         else:
             # form = Order_listForm(request.POST)
             context = {'form': form}
@@ -138,6 +148,9 @@ def order_create(request):
 
 
 
+
+def some_function(request):
+    messages.warning(request, "잘못된 입력")
 
 
 # 메시지 팝업
