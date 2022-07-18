@@ -118,7 +118,7 @@ def order_create(request):
             new_order_list.od_count = occonunt
             new_order_list.fff = barcode
 
-            if (new_order_list.buyer_name == '') or (type(new_order_list.fff) == str) or (new_order_list.d_day == ""):
+            if (new_order_list.buyer_name == '') or (type(new_order_list.fff) == str) or (new_order_list.d_day == ''):
                 some_function(request)
                 new_order_list = form.save(commit=False)
                 context = {'new_order_list': new_order_list}
