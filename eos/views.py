@@ -124,18 +124,14 @@ def order_create(request):
                 new_order_list = form.save(commit=False)
                 context = {'new_order_list': new_order_list}
                 return render(request, 'eos/order_page.html', context)
+            elif odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
+                 new_order_list.fff = barcode
+                 new_order_list.od_count = 0
+                 new_order_list.od_box_count = odbox
+                 new_order_list.save()
+                 context = {'new_order_list': new_order_list}
+                 return render(request, 'eos/order_page_r.html', context)
             else:
-                occonunt = request.POST.get('od_count_input')
-                odbox = request.POST.get('od_box_count_input')
-
-                if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
-                   new_order_list.fff = barcode
-                   new_order_list.od_count = 0
-                   new_order_list.od_box_count = odbox
-                   new_order_list.save()
-                   context = {'new_order_list': new_order_list}
-                   return render(request, 'eos/order_page_r.html', context)
-                else:
                    new_order_list.fff = barcode
                    new_order_list.od_count = occonunt
                    new_order_list.save()
