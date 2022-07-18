@@ -112,8 +112,11 @@ def order_create(request):
             new_order_list.d_day = input_cal
             new_order_list.buyer_name = input_buyer
             barcode = request.POST.get('barcode_input')
-            # occonunt = request.POST.get('od_count_input')
-            # odbox = request.POST.get('od_box_count_input')
+            occonunt = request.POST.get('od_count_input')
+            odbox = request.POST.get('od_box_count_input')
+            new_order_list.od_box_count = odbox
+            new_order_list.od_count = occonunt
+            new_order_list.fff = barcode
 
             if (new_order_list.buyer_name == '') or (type(barcode) == str) or (new_order_list.d_day == ""):
                 some_function(request)
