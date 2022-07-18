@@ -106,8 +106,8 @@ def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
         new_order_list = form
-        input_cal = request.POST.get('calender')
-        new_order_list.d_day = input_cal
+        input_buyer = request.PO
+        new_order_list.buyer_name = input_buyer
         form = new_order_list
         if form.is_valid():
             new_order_list = form.save(commit=False)
