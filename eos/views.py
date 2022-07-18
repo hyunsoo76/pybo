@@ -55,6 +55,53 @@ def p_list(request):
                                 location = s["위치정보"][i])
 
 # 발주등록 order_page
+# def order_create(request):
+#     if request.method == 'POST':
+#         form = Order_listForm(request.POST)
+#         if form.is_valid():
+#             new_order_list = form.save(commit=False)
+#             new_order_list.od_date = timezone.now()
+#             input_cal = request.POST.get('calender')
+#             input_buyer = request.POST.get('buyer_select')
+#             new_order_list.d_day = input_cal
+#             new_order_list.buyer_name = input_buyer
+#             barcode = request.POST.get('barcode_input')
+#             if (new_order_list.buyer_name == '발주 매장 선택') or (type(barcode) == str) or (new_order_list.d_day == ""):
+#                 new_order_list = form.save(commit=False)
+#                 context = {'new_order_list': new_order_list}
+#                 return render(request, 'eos/order_page.html', context)
+#             else:
+#                 occonunt = request.POST.get('od_count_input')
+#                 odbox = request.POST.get('od_box_count_input')
+#                 if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
+#                    new_order_list.fff = barcode
+#                    new_order_list.od_count = 0
+#                    new_order_list.od_box_count = odbox
+#                    new_order_list.save()
+#                    context = {'new_order_list': new_order_list}
+#                    return render(request, 'eos/order_page_r.html', context)
+#                 else :
+#                    new_order_list.fff = barcode
+#                    new_order_list.od_count = occonunt
+#                    new_order_list.save()
+#                    context = {'new_order_list': new_order_list}
+#                    return render(request, 'eos/order_page_r.html', context)
+#         else:
+#             form = Order_listForm(request.POST)
+#             new_order_list = form.save(commit=False)
+#             context = {'new_order_list': new_order_list}
+#             return render(request, 'eos/order_page.html', context)
+#     else:
+#         form = Order_listForm()
+#         context = {'form': form}
+#         return render(request, 'eos/order_page.html', context)
+
+def order_page(request, Order_list_id):
+    new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
+    context = {'new_order_list': new_order_list}
+    return render(request, 'eos/order_page_r.html', context)
+
+
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
@@ -66,26 +113,21 @@ def order_create(request):
             new_order_list.d_day = input_cal
             new_order_list.buyer_name = input_buyer
             barcode = request.POST.get('barcode_input')
-            if (new_order_list.buyer_name == '발주 매장 선택') or (type(barcode) == str) or (new_order_list.d_day == ""):
-                new_order_list = form.save(commit=False)
-                context = {'new_order_list': new_order_list}
-                return render(request, 'eos/order_page.html', context)
-            else:
-                occonunt = request.POST.get('od_count_input')
-                odbox = request.POST.get('od_box_count_input')
-                if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
-                   new_order_list.fff = barcode
-                   new_order_list.od_count = 0
-                   new_order_list.od_box_count = odbox
-                   new_order_list.save()
-                   context = {'new_order_list': new_order_list}
-                   return render(request, 'eos/order_page_r.html', context)
-                else :
-                   new_order_list.fff = barcode
-                   new_order_list.od_count = occonunt
-                   new_order_list.save()
-                   context = {'new_order_list': new_order_list}
-                   return render(request, 'eos/order_page_r.html', context)
+            occonunt = request.POST.get('od_count_input')
+            odbox = request.POST.get('od_box_count_input')
+            if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
+               new_order_list.fff = barcode
+               new_order_list.od_count = 0
+               new_order_list.od_box_count = odbox
+               new_order_list.save()
+               context = {'new_order_list': new_order_list}
+               return render(request, 'eos/order_page_r.html', context)
+            else :
+               new_order_list.fff = barcode
+               new_order_list.od_count = occonunt
+               new_order_list.save()
+               context = {'new_order_list': new_order_list}
+               return render(request, 'eos/order_page_r.html', context)
         else:
             form = Order_listForm(request.POST)
             new_order_list = form.save(commit=False)
@@ -96,10 +138,9 @@ def order_create(request):
         context = {'form': form}
         return render(request, 'eos/order_page.html', context)
 
-def order_page(request, Order_list_id):
-    new_order_list = get_object_or_404(Order_list, pk=Order_list_id)
-    context = {'new_order_list': new_order_list}
-    return render(request, 'eos/order_page_r.html', context)
+
+
+
 
 # 메시지 팝업
 # def some_function(request):
