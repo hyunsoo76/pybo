@@ -118,25 +118,32 @@ def order_create(request):
             new_order_list.od_count = occonunt
             new_order_list.fff = barcode
 
-            # if (new_order_list.buyer_name == '') or (type(new_order_list.fff) == str) or (new_order_list.d_day == ''):
-            if (new_order_list.buyer_name == ''):
+            if new_order_list.buyer_name == '':
                 some_function(request)
                 new_order_list = form.save(commit=False)
                 context = {'new_order_list': new_order_list}
                 return render(request, 'eos/order_page.html', context)
-            elif odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
-                 new_order_list.fff = barcode
-                 new_order_list.od_count = 0
-                 new_order_list.od_box_count = odbox
-                 new_order_list.save()
-                 context = {'new_order_list': new_order_list}
-                 return render(request, 'eos/order_page_r.html', context)
             else:
-                   new_order_list.fff = barcode
-                   new_order_list.od_count = occonunt
-                   new_order_list.save()
-                   context = {'new_order_list': new_order_list}
-                   return render(request, 'eos/order_page_r.html', context)
+                pass
+           
+
+            if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
+               new_order_list.fff = barcode
+               new_order_list.od_count = 0
+               new_order_list.od_box_count = odbox
+               new_order_list.save()
+               context = {'new_order_list': new_order_list}
+               return render(request, 'eos/order_page_r.html', context)
+            else:
+               new_order_list.fff = barcode
+               new_order_list.od_count = occonunt
+               new_order_list.save()
+               context = {'new_order_list': new_order_list}
+               return render(request, 'eos/order_page_r.html', context)
+
+            # if (new_order_list.buyer_name == '') or (type(new_order_list.fff) == str) or (new_order_list.d_day == ''):
+
+
         else:
             # form = Order_listForm(request.POST)
             context = {'form': form}
