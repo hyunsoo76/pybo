@@ -126,9 +126,11 @@ def order_create(request):
             else:
                 pass
 
-
-
             new_order_list.save()
+            context = {'new_order_list': new_order_list}
+            return render(request, 'eos/order_page_r.html', context)
+
+
 
         else:
             # form = Order_listForm(request.POST)
