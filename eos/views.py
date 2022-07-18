@@ -108,7 +108,7 @@ def order_create(request):
 
         input_buyer = request.POST.get('buyer_select')
         form.buyer_name = input_buyer
-        form.save()
+        
         if form.is_valid():
             new_order_list = form.save(commit=False)
             new_order_list.od_date = timezone.now()
