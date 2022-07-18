@@ -106,7 +106,7 @@ def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
         new_order_list = form
-        input_buyer = request.PO
+        input_buyer = request.POST.get('buyer_select')
         new_order_list.buyer_name = input_buyer
         form = new_order_list
         if form.is_valid():
