@@ -105,7 +105,7 @@ def order_page(request, Order_list_id):
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
-        new_order_list = form.save(commit=False)
+        new_order_list = form
         input_cal = request.POST.get('calender')
         new_order_list.d_day = input_cal
         form = new_order_list
