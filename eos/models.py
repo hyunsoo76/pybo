@@ -25,7 +25,7 @@ class Products(models.Model):
 
 class Order_list(models.Model):
     odp_name = models.CharField(max_length=200, blank=True)  # 발주자명
-    buyer_name = models.CharField(max_length=200)  # 수주자명
+    buyer_name = models.CharField(max_length=200, blank=True)  # 수주자명
     phon_num = models.CharField(max_length=200, blank=True)  # 전화번호
     od_count = models.IntegerField(blank=True, null=True) #낱개발주수량
     od_box_count = models.IntegerField(blank=True, null=True) #박스발주수량
