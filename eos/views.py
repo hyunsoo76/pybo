@@ -89,7 +89,7 @@ def order_create(request):
                context = {'new_order_list': new_order_list}
                return render(request, 'eos/order_page_r.html', context)
         else:
-            # form = Order_listForm(request.POST)
+            form = Order_listForm(request.POST)
             context = {'form': form}
             return render(request, 'eos/order_page.html', context)
     else:
