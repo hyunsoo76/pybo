@@ -67,6 +67,7 @@ def order_create(request):
             new_order_list.buyer_name = input_buyer
             barcode = request.POST.get('barcode_input')
             if (new_order_list.buyer_name == '발주 매장 선택') or (type(barcode) == str) or (new_order_list.d_day==""):
+                new_order_list = form.save(commit=False)
                 context = {'new_order_list': new_order_list}
                 return render(request, 'eos/order_page.html', context)
             else :
