@@ -61,7 +61,7 @@
         <div class="row input-group">
 
             <div class="col-lg-4 col-md-4 col-sm-12 input-group">
-                <select class="form-select" aria-label="Default select example" name="buyer_select" id="buyer_select" value="{{ form.buyer_select.value|default_if_none:'' }}">
+                <select class="form-select" aria-label="Default select example" name="buyer_select" value="{{ form.buyer_name.value|default_if_none:'' }}">
                     <option selected>발주 매장 선택</option>
                     <option value="북단양농협하나로마트'">북단양농협하나로마트'</option>
                     <option value="단양농협하나로마트'">단양농협하나로마트'</option>
@@ -79,7 +79,7 @@
                 <!--          <div class="col-lg-4 col-md-4 col-sm-12">-->
 
                 <input type="text" name="calender" inputmode="none" placeholder="배송일" id="date-picker"
-                       class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" value="{{ form.calender.value|default_if_none:'' }}">
+                       class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" value="{{ form.d_day.value|default_if_none:'' }}">
                 <!--            <input type="text" inputmode="none" id="date-picker" class="form-control bg-white border-1 small" aria-label="Search" aria-describedby="basic-addon2" th:value="|${year}-${month}-${day}|">-->
             </div>
             <p></p>
@@ -112,10 +112,10 @@
                 <span> 입수 </span>
             </div>
             <div class="col-lg-1">
-                <input type="number" id="test_obj" name="od_count_input" class="form-control input-sm" value="{{ form.test_obj.value|default_if_none:'' }}">
+                <input type="number" id="test_obj" name="od_count_input" class="form-control input-sm" value="{{ form.od_count.value|default_if_none:'' }}">
             </div>
             <div class="col-lg-1">
-                <input type="number" id="test_obj1" name="od_box_count_input" class="form-control input-sm" value="{{ form.test_obj1.value|default_if_none:'' }}">
+                <input type="number" id="test_obj1" name="od_box_count_input" class="form-control input-sm" value="{{ form.od_box_count.value|default_if_none:'' }}">
             </div>
             <div class="col-lg-1">
                 <span> 단가 </span>
