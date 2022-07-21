@@ -415,7 +415,8 @@ def account(request):
             Q(g_1__icontains=q) |
             Q(h_1__icontains=q) |
             Q(i_1__icontains=q) |
-            Q(j_1__icontains=q)
+            Q(j_1__icontains=q) |
+            Q(jisi1__icontains=q)
         ).distinct()
         # qs = qs.filter(a_1__icontains=q) # 제목에 q가 포함되어 있는 레코드만 필터링
         return render(request, 'eas/account.html', {
