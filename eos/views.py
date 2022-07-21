@@ -151,3 +151,7 @@ def some_function(request):
 # 메시지 팝업
 # def some_function(request):
 #     messages.warning(request, "낱개발주와 박스발주 같이 입력하면 낱개발주 0 으로 됨.")
+
+
+def yuhan(request):
+    return render(request, 'eos/yuhan.html')
