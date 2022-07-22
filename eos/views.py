@@ -163,7 +163,7 @@ def order_create(request):
 
 def some_function(request):
     messages.error(request, "발주매장 선택하세요")
-    form = Order_listForm()
+    form = form_re
     context = {'form': form}
     return render(request, 'eos/order_page.html', context)
 
