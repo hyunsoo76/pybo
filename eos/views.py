@@ -125,7 +125,7 @@ def order_create(request):
             if new_order_list.buyer_name == '':
                 # some_function(request)
                 messages.error(request, "발주매장 선택하세요")
-                form = form
+                form = Order_listForm(request.POST)
                 context = {'form': form}
                 return render(request, 'eos/order_page.html', context)
             else:
