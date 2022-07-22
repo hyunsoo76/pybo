@@ -123,8 +123,8 @@ def order_create(request):
 
             if new_order_list.buyer_name == '':
                 some_function(request)
-                new_order_list = form.save(commit=False)
-                context = {'new_order_list': new_order_list}
+                form = Order_listForm()
+                context = {'form': form}
                 return render(request, 'eos/order_page.html', context)
             else:
                 pass
@@ -160,7 +160,7 @@ def order_create(request):
 
 
 def some_function(request):
-    messages.error(request, "잘못된 입력")
+    messages.error(request, "발주매장 선택하세요")
 
 # 메시지 팝업
 # def some_function(request):
