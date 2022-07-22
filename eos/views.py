@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 # from django.http import HttpResponse
 from django.utils import timezone
-from django.shortcuts import  render, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.db.models import Q
 from .forms import Order_listForm
@@ -10,6 +10,7 @@ from .models import Order_list
 import csv
 import pandas as pd
 from django.contrib import messages
+
 
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
@@ -30,6 +31,7 @@ def index(request):
     context = {'Order_lists': page_obj, 'page': page, 'kw': kw}
     return render(request, 'eos/index.html', context)
 
+
 # def order_page(request):
 #     return render(request, 'eos/order_page.html')
 
@@ -46,13 +48,14 @@ def p_list(request):
     ss = []
     for i in range(len(s)):
         # st = (s["ID"][i], s["상품명"][i], s["바코드"][i], s["입수"][i], s["납품가"][i], s["원코드"][i], s["위치정보"][i])
-        Products.objects.create(p_id = s["ID"][i],
-                                p_name = s["상품명"][i],
-                                sale_bar = s["바코드"][i],
-                                iq = s["입수"][i],
-                                p_price = s["납품가"][i],
-                                org_bar = s["원코드"][i],
-                                location = s["위치정보"][i])
+        Products.objects.create(p_id=s["ID"][i],
+                                p_name=s["상품명"][i],
+                                sale_bar=s["바코드"][i],
+                                iq=s["입수"][i],
+                                p_price=s["납품가"][i],
+                                org_bar=s["원코드"][i],
+                                location=s["위치정보"][i])
+
 
 # 발주등록 order_page
 # def order_create(request):
@@ -126,9 +129,23 @@ def order_create(request):
             else:
                 pass
 
-            new_order_list.save()
-            context = {'new_order_list': new_order_list}
-            return render(request, 'eos/order_page_r.html', context)
+            if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
+                new_order_list.fff = barcode
+                new_order_list.od_count = 0
+                new_order_list.od_box_count = odbox
+                new_order_list.save()
+                context = {'new_order_list': new_order_list}
+                return render(request, 'eos/order_page_r.html', context)
+            else:
+                new_order_list.fff = barcode
+                new_order_list.od_count = occonunt
+                new_order_list.save()
+                context = {'new_order_list': new_order_list}
+                return render(request, 'eos/order_page_r.html', context)
+
+            # new_order_list.save()
+            # context = {'new_order_list': new_order_list}
+            # return render(request, 'eos/order_page_r.html', context)
 
 
 
@@ -142,14 +159,9 @@ def order_create(request):
         return render(request, 'eos/order_page.html', context)
 
 
-
-
 def some_function(request):
     messages.warning(request, "잘못된 입력")
-
 
 # 메시지 팝업
 # def some_function(request):
 #     messages.warning(request, "낱개발주와 박스발주 같이 입력하면 낱개발주 0 으로 됨.")
-
-
