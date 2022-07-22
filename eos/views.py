@@ -107,15 +107,13 @@ def order_page(request, Order_list_id):
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
-        input_buyer = request.POST.get('buyer_select')
-        form.buyer_name = input_buyer
         if form.is_valid():
             new_order_list = form.save(commit=False)
             new_order_list.od_date = timezone.now()
             input_cal = request.POST.get('calender')
-            # input_buyer = request.POST.get('buyer_select')
+            input_buyer = request.POST.get('buyer_select')
             new_order_list.d_day = input_cal
-            # new_order_list.buyer_name = input_buyer
+            new_order_list.buyer_name = input_buyer
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')
