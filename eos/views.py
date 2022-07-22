@@ -160,7 +160,7 @@ def order_create(request):
 
 
 def some_function(request):
-    messages.info(request, "잘못된 입력")
+    messages.debug(request, "잘못된 입력")
 
 # 메시지 팝업
 # def some_function(request):
