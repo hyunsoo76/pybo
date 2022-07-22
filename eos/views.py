@@ -107,6 +107,8 @@ def order_page(request, Order_list_id):
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
+        global form_re
+        form_re = form
         if form.is_valid():
             new_order_list = form.save(commit=False)
             new_order_list.od_date = timezone.now()
@@ -123,7 +125,7 @@ def order_create(request):
 
             if new_order_list.buyer_name == '':
                 some_function(request)
-                form = Order_listForm()
+                form = form_re
                 context = {'form': form}
                 return render(request, 'eos/order_page.html', context)
             else:
