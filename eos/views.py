@@ -107,8 +107,6 @@ def order_page(request, Order_list_id):
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
-        global form_re
-        form_re = form
         if form.is_valid():
             new_order_list = form.save(commit=False)
             new_order_list.od_date = timezone.now()
@@ -122,10 +120,11 @@ def order_create(request):
             new_order_list.od_box_count = odbox
             new_order_list.od_count = occonunt
             new_order_list.fff = barcode
+            new_order_list.save()
 
             if new_order_list.buyer_name == '':
                 some_function(request)
-                form = form_re
+                form = form
                 context = {'form': form}
                 return render(request, 'eos/order_page.html', context)
             else:
@@ -163,10 +162,7 @@ def order_create(request):
 
 def some_function(request):
     messages.error(request, "발주매장 선택하세요")
-    form = form_re
-    context = {'form': form}
-    return render(request, 'eos/order_page.html', context)
-
+    order_create(request)
 # 메시지 팝업
 # def some_function(request):
 #     messages.warning(request, "낱개발주와 박스발주 같이 입력하면 낱개발주 0 으로 됨.")
