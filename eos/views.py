@@ -122,14 +122,15 @@ def order_create(request):
             new_order_list.fff = barcode
             new_order_list.save()
 
-            if new_order_list.buyer_name == '':
-                # some_function(request)
-                messages.error(request, "발주매장 선택하세요")
-                form = Order_listForm(request.POST)
-                context = {'form': form}
-                return render(request, 'eos/order_page.html', context)
-            else:
-                pass
+            # 매장명 미 입력시 오류메시지 표시- 표시는되나 입력값 초기화 되는 문제 미해결
+            # if new_order_list.buyer_name == '':
+            #     # some_function(request)
+            #     messages.error(request, "발주매장 선택하세요")
+            #     form = Order_listForm(request.POST)
+            #     context = {'form': form}
+            #     return render(request, 'eos/order_page.html', context)
+            # else:
+            #     pass
 
             if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
                 new_order_list.fff = barcode
