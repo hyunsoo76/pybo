@@ -142,6 +142,7 @@ def order_create(request):
 
             data = request.POST.getlist('input[]')
             new_order_list.od_list = data
+            new_order_list.save()
 
             # barcode = request.POST.get('barcode_input')
             # occonunt = request.POST.get('od_count_input')
