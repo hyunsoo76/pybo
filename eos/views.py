@@ -109,6 +109,7 @@ def order_create(request):
         form = Order_listForm(request.POST)
         if form.is_valid():
             new_order_list = form.save(commit=False)
+            new_order_list.od_list = {'key' : 'value'}
             new_order_list.od_date = timezone.now()
             input_cal = request.POST.get('calender')
             input_buyer = request.POST.get('buyer_select')
