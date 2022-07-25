@@ -48,6 +48,7 @@ class Order_list(models.Model):
     ggg = models.IntegerField(blank=True, null=True)
     hhh = models.IntegerField(blank=True, null=True)
     upload = models.FileField(upload_to='uploads/', blank=True, null=True)
+    od_list = models.JSONField(default='{}')
 
     def __str__(self):
         return self.buyer_name
