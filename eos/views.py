@@ -10,6 +10,7 @@ from .models import Order_list
 import csv
 import pandas as pd
 from django.contrib import messages
+import jsonfield
 
 
 def index(request):
@@ -28,11 +29,6 @@ def index(request):
     # context = {'Order_lists': Order_lists}
     paginator = Paginator(Order_lists, 10)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
-    if Order_list.od_list == None:
-       Order_list.od_list = 0
-    else:
-        pass
-
     context = {'Order_lists': page_obj, 'page': page, 'kw': kw}
     return render(request, 'eos/index.html', context)
 
