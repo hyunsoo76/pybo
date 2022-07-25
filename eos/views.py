@@ -126,10 +126,10 @@ def order_page(request, Order_list_id):
 
 def order_create(request):
     if request.method == 'POST':
-        data = request.POST.getlist('input[]')
-        form = Order_listForm(request.POST)
-        new_order_list = form.save(commit=False)
-        new_order_list.od_list = data
+        # data = request.POST.getlist('input[]')
+        # form = Order_listForm(request.POST)
+        # new_order_list = form.save(commit=False)
+        # new_order_list.od_list = data
         form = Order_listForm(request.POST)
         if form.is_valid():
             new_order_list = form.save(commit=False)
