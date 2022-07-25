@@ -117,9 +117,9 @@ def order_create(request):
             barcode = request.POST.get('barcode_input')
             occonunt = request.POST.get('od_count_input')
             odbox = request.POST.get('od_box_count_input')
-            new_order_list.od_box_count = odbox
-            new_order_list.od_count = occonunt
-            # new_order_list.fff = barcode
+            # new_order_list.od_box_count = odbox
+            # new_order_list.od_count = occonunt
+            new_order_list.fff = barcode
             # new_order_list.save()
 
             # 매장명 미 입력시 오류메시지 표시- 표시는되나 입력값 초기화 되는 문제 미해결
@@ -133,14 +133,14 @@ def order_create(request):
             #     pass
 
             if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
-                new_order_list.fff = barcode
+                # new_order_list.fff = barcode
                 new_order_list.od_count = 0
                 new_order_list.od_box_count = odbox
                 new_order_list.save()
                 context = {'new_order_list': new_order_list}
                 return render(request, 'eos/order_page_r.html', context)
             else:
-                new_order_list.fff = barcode
+                # new_order_list.fff = barcode
                 new_order_list.od_count = occonunt
                 new_order_list.save()
                 context = {'new_order_list': new_order_list}
