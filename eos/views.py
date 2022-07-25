@@ -126,10 +126,6 @@ def order_page(request, Order_list_id):
 
 def order_create(request):
     if request.method == 'POST':
-        # data = request.POST.getlist('input[]')
-        # form = Order_listForm(request.POST)
-        # new_order_list = form.save(commit=False)
-        # new_order_list.od_list = data
         form = Order_listForm(request.POST)
         if form.is_valid():
             new_order_list = form.save(commit=False)
@@ -143,29 +139,8 @@ def order_create(request):
             data = request.POST.getlist('input[]')
             new_order_list.od_list = data
             new_order_list.save()
-
-            # barcode = request.POST.get('barcode_input')
-            # occonunt = request.POST.get('od_count_input')
-            # odbox = request.POST.get('od_box_count_input')
-            # new_order_list.fff = barcode
-
-            # if odbox != '':  # 낱개발주 와 박스 발주 동시입력시 낱개 발주 0처리
-            #     new_order_list.od_count = 0
-            #     new_order_list.od_box_count = odbox
-            #     new_order_list.save()
-            #     context = {'new_order_list': new_order_list}
-            #     return render(request, 'eos/order_page_r.html', context)
-            # else:
-            #     new_order_list.od_count = occonunt
-            #     new_order_list.od_box_count = 0
-            #     new_order_list.save()
-            #     context = {'new_order_list': new_order_list}
-            #     return render(request, 'eos/order_page_r.html', context)
-
             context = {'new_order_list': new_order_list}
             return render(request, 'eos/order_page_r.html', context)
-
-
         else:
             context = {'form': form}
             return render(request, 'eos/order_page.html', context)
