@@ -86,9 +86,9 @@
     </div>
     <span style="line-height:50%"><br></span>
     {% with j=0 %}
-    {% with k= forloop.counter  %}
-    {% for i in "x"|rjust:"20" %}
 
+    {% for i in "x"|rjust:"20" %}
+    {% with k= forloop.counter  %}
     <div class="row">
         <div class="col-lg-1"> {{ forloop.counter }}
         </div>
