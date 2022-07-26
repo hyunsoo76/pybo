@@ -86,7 +86,7 @@
     </div>
     <span style="line-height:50%"><br></span>
 
-    {% if forloop.last and myposts|length|divisibleby:3 %}
+    {% for key, value in list%}
 
     <div class="row">
         <div class="col-lg-1"> {{ forloop.counter }}
