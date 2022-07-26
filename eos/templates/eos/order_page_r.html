@@ -86,7 +86,7 @@
     </div>
     <span style="line-height:50%"><br></span>
     {% with j=0 %}
-    {% with k=0 %}
+    {% with k=forloop.counter %}
     {% for i in "x"|rjust:"20" %}
 
     <div class="row">
