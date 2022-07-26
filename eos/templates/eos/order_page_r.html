@@ -95,18 +95,18 @@
         <div class="col-lg-2">
             <span>{{ new_order_list.od_list.k}}</span>
         </div>
-        {% with k|add:"3" %}
+        {%  k|add:"3" %}
         <div class="col-lg-2">
             <span> 상품명 </span>
         </div>
         <div class="col-lg-1">
             <span> 입수 </span>
         </div>
-        {% with j=j+1 %}
+        {% j=j+1 %}
         <div class="col-lg-1">
             <span type="number" name="order_input">{{ new_order_list.od_list.j }}</span>
         </div>
-        {% with j=j+1 %}
+        {% j=j+1 %}
         <div class="col-lg-1">
             <span type="number" name="order_input">{{ new_order_list.od_list.j }}</span>
         </div>
@@ -123,6 +123,7 @@
             <span> 미출체크 </span>
         </div>
     </div>
+    {% endwith %}
     {% endfor %}
 
 
