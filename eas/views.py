@@ -205,6 +205,7 @@ def Request_create_sangsin(request, new_Request_id):
     if request.method == 'POST':
         temp_s = request.POST.get('temp_sangsin')
         if temp_s == "상신":
+            new_Request.ccc = '기안'
             from importlib import reload
             reload(pushmsg)
             # await reload(sync_to_async(pushmsg.main()))

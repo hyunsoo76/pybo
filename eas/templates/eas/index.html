@@ -51,6 +51,7 @@
                     <th>&nbsp;&nbsp;</th>
                     <th style="width:52%">제목</th>
                     <th style="width:8%">이사</th>
+                    <th style="width:8%">담당</th>
                     <th style="width:8%">대표</th>
                     <th>&nbsp;&nbsp;작성일시</th>
                 </tr>
@@ -72,6 +73,10 @@
               <a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{Request.subject }} </a>
               {% endif %}
               </td>
+                {% if Request.ccc == "기안" %}
+                    <td>기안</td>
+                {% else %}
+                    <td></td>
                 {% if Request.ddd == "이사" %}
                     <td>기안</td>
                 {% else %}
