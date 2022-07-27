@@ -52,6 +52,7 @@ class Order_list(models.Model):
     s_iq = models.IntegerField(blank=True, null=True)
     s_price = models.IntegerField(blank=True, null=True)
     s_location = models.CharField(max_length=200, blank=True)
+    s_org_bar = models.IntegerField(blank=True, null=True)
     upload = models.FileField(upload_to='uploads/', blank=True, null=True)
     od_list = jsonfield.JSONField(default='{}', blank=True, null=True)
 

@@ -140,8 +140,12 @@ def order_create(request):
 
             # Product Class 조회 변수 저장
             psb = Products.objects.get(sale_bar=(new_order_list.od_list[0]))
-            new_order_list.ccc = psb.p_name
-            new_order_list.iq
+            new_order_list.s_product = psb.p_name
+            new_order_list.s_iq = psb.iq
+            new_order_list.s_price = psb.p_price
+            new_order_list.s_location = psb.location
+            new_order_list. org_bar
+
 
             new_order_list.save()
             context = {'new_order_list': new_order_list}
