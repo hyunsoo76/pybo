@@ -139,7 +139,7 @@ def order_create(request):
             new_order_list.od_list = data
 
             # Product Class 조회 변수 저장
-            for i in 20 :
+            for i in new_order_list :
                 psb = Products.objects.get(sale_bar=(new_order_list.od_list[i]))
                 new_order_list.s_product = psb.p_name[i]
                 new_order_list.s_iq = psb.iq[i]
