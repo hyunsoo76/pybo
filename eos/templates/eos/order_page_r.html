@@ -86,14 +86,14 @@
     </div>
     <span style="line-height:50%"><br></span>
 
-    {% with new_od_list as list %}
+    {% with j = 0 %}
     {% for i in "x"|rjust:"20" %}
 
     <div class="row">
         <div class="col-lg-1"> {{ forloop.counter }}
         </div>
         <div class="col-lg-2">
-            <span>{{ new_order_list.i}} </span>
+            <span>{{ new_order_list.od_list.j }} </span>
         </div>
         <div class="col-lg-2">
             <span> 상품명 </span>
@@ -102,7 +102,7 @@
             <span> 입수 </span>
         </div>
         <div class="col-lg-1">
-            <span>{{ new_order_list.i }}</span>
+            <span>{{ new_order_list.j }}</span>
         </div>
         <div class="col-lg-1">
             <span>{{ new_order_list.od_list.2 }}</span>
