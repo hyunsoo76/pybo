@@ -141,6 +141,8 @@ def order_create(request):
             # Product Class 조회 변수 저장
             psb = Products.objects.get(sale_bar=(new_order_list.od_list[0]))
             new_order_list.ccc = psb.p_name
+            new_order_list.iq
+
             new_order_list.save()
             context = {'new_order_list': new_order_list}
             return render(request, 'eos/order_page_r.html', context)

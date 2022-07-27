@@ -42,12 +42,16 @@ class Order_list(models.Model):
     img3 = models.ImageField(blank=True)
     aaa = models.CharField(max_length=200, blank=True) #바이어네임 씽크
     bbb = models.CharField(max_length=200, blank=True) #상품명
-    ccc = models.CharField(max_length=200, blank=True) # 조회 상품명
-    ddd = models.CharField(max_length=200, blank=True) # 조회 입수
-    eee = models.CharField(max_length=200, blank=True) #조회 단가
-    fff = models.IntegerField(blank=True, null=True) # 조회 판매코드
-    ggg = models.IntegerField(blank=True, null=True) #조회 위치
-    hhh = models.IntegerField(blank=True, null=True) #조회 원코드
+    ccc = models.CharField(max_length=200, blank=True)
+    ddd = models.CharField(max_length=200, blank=True)
+    eee = models.CharField(max_length=200, blank=True)
+    fff = models.IntegerField(blank=True, null=True)
+    ggg = models.IntegerField(blank=True, null=True)
+    hhh = models.IntegerField(blank=True, null=True)
+    s_product = models.CharField(max_length=200, blank=True)
+    s_iq = models.IntegerField(blank=True, null=True)
+    s_price = models.IntegerField(blank=True, null=True)
+    s_location = models.CharField(max_length=200, blank=True)
     upload = models.FileField(upload_to='uploads/', blank=True, null=True)
     od_list = jsonfield.JSONField(default='{}', blank=True, null=True)
 
