@@ -115,10 +115,10 @@
                 <span> 입수 </span>
             </div>
             <div class="col-lg-1">
-                <input type="number" id="test_obj" name="input[]" class="form-control input-sm" value="{{ form.od_list.1.value|default_if_none:'' }}">
+                <input type="number" id="test_obj" pattern="\d*" name="input[]" class="form-control input-sm" value="{{ form.od_list.1.value|default_if_none:'' }}">
             </div>
             <div class="col-lg-1">
-                <input type="number" id="test_obj1" name="input[]" class="form-control input-sm" value="{{ form.od_list.2.value|default_if_none:'' }}">
+                <input type="number" id="test_obj1" pattern="\d*" name="input[]" class="form-control input-sm" value="{{ form.od_list.2.value|default_if_none:'' }}">
             </div>
             <div class="col-lg-1">
                 <span> 단가 </span>
