@@ -140,7 +140,7 @@ def order_create(request):
 
             # Product Class 조회 변수 저장
             psb = Products.objects.filter(sale_bar = (new_order_list.od_list[0]))
-            new_order_list.fff = psb
+            new_order_list.fff = psb.sale_bar
             new_order_list.save()
             context = {'new_order_list': new_order_list}
             return render(request, 'eos/order_page_r.html', context)
