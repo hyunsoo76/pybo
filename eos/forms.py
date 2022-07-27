@@ -9,5 +9,5 @@ class Order_listForm(forms.ModelForm):
                   'total_sum', 'img1', 'img2', 'img3', 'aaa',
                   'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'upload',
                   'buyer_name', 'odp_name', 'phon_num', 'od_list', 's_iq',
-                  's_price', 's_location', 's_org_bar',]
+                  's_price', 's_location', 's_org_bar']
 
