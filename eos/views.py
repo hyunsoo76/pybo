@@ -139,7 +139,8 @@ def order_create(request):
             new_order_list.od_list = data
 
             # Product Class 조회 변수 저장
-            for i in new_order_list :
+            i = 0
+            while i < 20 :
                 psb = Products.objects.get(sale_bar=(new_order_list.od_list[i]))
                 new_order_list.s_product = psb.p_name[i]
                 new_order_list.s_iq = psb.iq[i]
@@ -147,7 +148,7 @@ def order_create(request):
                 new_order_list.s_location = psb.location[i]
                 new_order_list.s_org_bar = psb.org_bar[i]
                 new_order_list.save()
-            context = {'new_order_list': new_order_list}
+                context = {'new_order_list': new_order_list}
             return render(request, 'eos/order_page_r.html', context)
         else:
             context = {'form': form}
