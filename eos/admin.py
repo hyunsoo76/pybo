@@ -9,7 +9,7 @@ class Order_listAdmin(admin.ModelAdmin):
 
 
 class ProductsAdmin(admin.ModelAdmin):
-    search_fields = ['p_name']
+    search_fields = ['p_name', 'sale_bar']
     list_display = ('p_name', 'org_bar', 'sale_bar', 'p_price', 'iq', 'location')
 
 admin.site.register(Order_list, Order_listAdmin)
