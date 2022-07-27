@@ -86,13 +86,13 @@
     </div>
     <span style="line-height:50%"><br></span>
 
-    {% for key, value in new_order_list.od_lists %}
+    {% for new_order_list.od_list[0] in new_order_list.od_list[i] %}
 
     <div class="row">
         <div class="col-lg-1"> {{ forloop.counter }}
         </div>
         <div class="col-lg-2">
-            <span>{{ key }}, {{value}} </span>
+            <span>{{ new_order_list.od_list.0}} </span>
         </div>
         <div class="col-lg-2">
             <span> 상품명 </span>
