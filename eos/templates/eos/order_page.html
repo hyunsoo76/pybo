@@ -115,7 +115,7 @@
                 <span> 입수 </span>
             </div>
             <div class="col-lg-1">
-                <input type="number" id="test_obj" pattern="\d*" name="input[]" class="form-control input-sm" value="{{ form.od_list.1.value|default_if_none:'' }}">
+                <input type="number" id="test_obj" pattern="\d*"  name="input[]" class="form-control input-sm" value="{{ form.od_list.1.value|default_if_none:'' }}" max="5" maxlength="4" oninput="maxLengthCheck(this)">
             </div>
             <div class="col-lg-1">
                 <input type="number" id="test_obj1" pattern="\d*" name="input[]" class="form-control input-sm" value="{{ form.od_list.2.value|default_if_none:'' }}">
@@ -153,6 +153,13 @@ $(function() {
   });
 });
 
+
+  function maxLengthCheck(object){
+      if (object.value.length > object.maxLength){
+          object.value = object.value.slice(0, object.maxLength);
+      }
+  }
+</script>
 
 
 
