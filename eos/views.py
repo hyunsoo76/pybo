@@ -12,8 +12,7 @@ import csv
 import pandas as pd
 from django.contrib import messages
 import json
-from django.view.decorators.csrf import csrf_exempt
-
+from django.http import JsonResponse
 
 
 def index(request):
