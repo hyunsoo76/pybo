@@ -3,7 +3,7 @@ from json import dumps
 from django.core.paginator import Paginator
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
-from django.utils import timezone, simplejson
+from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.db.models import Q
