@@ -11,6 +11,9 @@ from .models import Order_list
 import csv
 import pandas as pd
 from django.contrib import messages
+import json
+from django.view.decorators.csrf import csrf_exempt
+
 
 
 def index(request):
