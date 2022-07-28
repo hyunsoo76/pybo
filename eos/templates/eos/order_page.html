@@ -155,6 +155,21 @@ $(function() {
 });
 
 
+<!--ajax-->
+$('#searchword').keyup(function() {
+    data = $('#searchword').val();
+    $.ajax({
+        type:'POST',
+        url:'/searchData/',
+        data:JSON.stringify(data),
+        success:function(json){
+            console.log("data pass success",json);
+        },
+        error : function(xhr,errmsg,err) {
+        console.log(xhr.status + ": " + xhr.responseText);
+        }
+   });
+  });
 
 
 
