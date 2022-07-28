@@ -169,7 +169,7 @@ def some_function(request):
 
 from django.http import JsonResponse
 
-def shearchData(request):
+def searchData(request):
     # POST 요청일 때
     if request.method == 'POST':
         data = json.loads(request.body)
