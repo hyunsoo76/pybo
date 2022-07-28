@@ -1,5 +1,3 @@
-from json import dumps
-
 from django.core.paginator import Paginator
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
@@ -167,15 +165,3 @@ def some_function(request):
 #     messages.warning(request, "낱개발주와 박스발주 같이 입력하면 낱개발주 0 으로 됨.")
 
 
-# ajax 실시간 검색
-def searchData(request):
-    if 'searchwords' in request.POST:
-        findthis = request.POST['searchwords']
-
-
-    contents = []
-    contents = Products.objects.get(sale_bar=(findthis[0]))
-    # contents = getSearchResults(findthis)
-
-    json = dumps(contents, cls=DjangoJSONEncoder)
-    return HttpResponse(json)
