@@ -1,6 +1,6 @@
 {% load static %}
 <!--<!doctype html>-->
-<html lang="ko">
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
   <head>
       <link rel="shortcut icon" href="{% static 'img/eos_icon_1.ico' %}">
     <!-- Required meta tags -->
@@ -20,9 +20,16 @@
 <!--        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>-->
 <!--        <script type="text/javascript" src="jquery.numberKeypad.js"></script>-->
 <!--      키패드 cdn 끝-->
-    <title>대진산업_전자발주</title>
-  </head>
+<!--  Ajax  -->
+      <script type="text/javascript">
+      $(document).ready(function(){
+        searchajax();
+      });
+      </script>
 
+
+  </head>
+<title>대진산업_전자발주</title>
   <body>
   <!-- 네비게이션바 -->
 

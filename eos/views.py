@@ -1,6 +1,9 @@
+from json import dumps
+
 from django.core.paginator import Paginator
-# from django.http import HttpResponse
-from django.utils import timezone
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse
+from django.utils import timezone, simplejson
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.db.models import Q
@@ -10,7 +13,6 @@ from .models import Order_list
 import csv
 import pandas as pd
 from django.contrib import messages
-import jsonfield
 
 
 def index(request):
@@ -139,7 +141,7 @@ def order_create(request):
             new_order_list.od_list = data
 
             # Product Class 조회 변수 저장
-            psb = Products.objects.get(sale_bar=(new_order_list.od_list[i]))
+            psb = Products.objects.get(sale_bar=(new_order_list.od_list[0]))
             new_order_list.s_product = psb.p_name
             new_order_list.s_iq = psb.iq
             new_order_list.s_price = psb.p_price
@@ -163,3 +165,17 @@ def some_function(request):
 # 메시지 팝업
 # def some_function(request):
 #     messages.warning(request, "낱개발주와 박스발주 같이 입력하면 낱개발주 0 으로 됨.")
+
+
+# ajax 실시간 검색
+def searchData(request):
+    if 'searchwords' in request.POST:
+        findthis = request.POST['searchwords']
+
+
+    contents = []
+    contents = Products.objects.get(sale_bar=(findthis[0]))
+    # contents = getSearchResults(findthis)
+
+    json = dumps(contents, cls=DjangoJSONEncoder)
+    return HttpResponse(json)
