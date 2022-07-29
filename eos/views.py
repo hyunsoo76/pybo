@@ -177,6 +177,6 @@ def searchData(request):
         # sdata = Products.objects.get(sale_bar=(data))
         sdata = "하이"
         context = {
-            'result': sdata,
+            'results': sdata,
         }
         return JsonResponse(context)
