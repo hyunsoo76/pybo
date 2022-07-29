@@ -177,7 +177,7 @@ def searchData(request):
         # sdata = Products.objects.get(sale_bar=(data))
 
         context = {
-            'results': data,
+            'result': data,
         }
         # return HttpResponse(context)
         return JsonResponse(context)
