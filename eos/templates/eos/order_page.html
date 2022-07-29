@@ -177,7 +177,7 @@ $('#searchword').keyup(function() {
                     $("#results").html(str);
                 } else{ $("#results").html(""); }
             },
-            error: function(e) {console.log('error:' + e.status);}
+            error: function(e) {console.log('오류:' + e.status);}
         });
     }  else{ $("#results").html(""); }
   });
