@@ -176,7 +176,7 @@ $('#searchword').keyup(function() {
                         str += '<span>'+ result[i].data + '</span><br/>';
                     }
                     $("#results").html(str);
-                    function(e) {console.log('ajax success');}
+                    console.log('ajax success');
                 } else{ $("#results").html(""); }
             },
             error: function(e) {console.log('오류:' + e.status);}
