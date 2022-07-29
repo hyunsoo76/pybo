@@ -165,7 +165,7 @@ $(document).ready(function(){
 <!--ajax-->
 function searchajax(){
 $('#searchword').keyup(function() {
-    var data = $('#searchword').val();
+    data = $('#searchword').val();
     if( data != ''){
     $.ajax({
         url:'/order_page/searchData/',
@@ -182,7 +182,7 @@ $('#searchword').keyup(function() {
         }
    });
   };
-};
+}
 </script>
 
 
