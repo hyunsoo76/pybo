@@ -167,21 +167,44 @@ $('#searchword').keyup(function() {
         $.ajax({
             url:'{% url 'eos:searchData' %}',
             type:'POST',
-            headers: {
-                'X-CSRFTOKEN' : '{{ csrf_token }}'
+            dataType: 'json',
+            success: function(result){
+                if ( result.length > 0){
+                    var str = ''
+                    for (var i=0; i<result.length; i++){
+                        str += '<span>'+ result[i].data + '</span><br/>';
+                } else{ $("#results").html(""); }
             },
-            data:JSON.stringify(data),
-            success:function(json){
-                console.log("data pass success",json);
-            },
-            error : function(xhr,errmsg,err) {
-            console.log(xhr.status + ": " + xhr.responseText);
-            console.log("어디가 틀린겨?");
-            }
+            error: function(e) {console.log('error:' + e.status);}
         });
-    }
+    }  else{ $("#results").html(""); }
   });
 }
+
+
+<!--&lt;!&ndash;ajax&ndash;&gt;-->
+<!--function searchajax(){-->
+<!--$('#searchword').keyup(function() {-->
+<!--    data = $('#searchword').val();-->
+<!--    if( data != ''){-->
+<!--        $.ajax({-->
+<!--            url:'{% url 'eos:searchData' %}',-->
+<!--            type:'POST',-->
+<!--            headers: {-->
+<!--                'X-CSRFTOKEN' : '{{ csrf_token }}'-->
+<!--            },-->
+<!--            data:JSON.stringify(data),-->
+<!--            success:function(json){-->
+<!--                console.log("data pass success",json);-->
+<!--            },-->
+<!--            error : function(xhr,errmsg,err) {-->
+<!--            console.log(xhr.status + ": " + xhr.responseText);-->
+<!--            console.log("어디가 틀린겨?");-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--  });-->
+<!--}-->
 </script>
 
 
