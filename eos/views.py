@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
-from django.utils import timezone, simplejson
+from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
@@ -183,4 +183,4 @@ def searchData(request):
         # context = get_Search_Results(inputdata)
         # return HttpResponse(context)
         # return JsonResponse(context)
-        return HttpResponse(simplejson.dumps(context), content_type="application/json")
+        return HttpResponse(json.dumps(context), content_type="application/json")
