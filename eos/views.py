@@ -3,6 +3,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
 from django.db.models import Q
 from .forms import Order_listForm
@@ -168,7 +169,7 @@ def some_function(request):
 
 
 
-
+@csrf_exempt
 def searchData(request):
     # POST 요청일 때
     if request.method == 'POST':
