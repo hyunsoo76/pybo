@@ -162,12 +162,12 @@ $(document).ready(function(){
 <!--ajax-->
 function searchajax(){
 $('#searchword').keyup(function() {
-    data = $('#searchword').val();
+    inputdata = $('#searchword').val();
     if( data != ''){
         $.ajax({
             url:'{% url 'eos:searchData' %}',
             type:'POST',
-            data: { searchwords : data},
+            data: { searchwords : inputdata },
             dataType: 'json',
             success: function(result){
                 if ( result.length > 0){
