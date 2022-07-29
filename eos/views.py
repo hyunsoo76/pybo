@@ -179,6 +179,6 @@ def searchData(request):
         context = {
             'results': data,
         }
-        json = dumps(context, cls=DjangoJSONEncoder)
+        # json = dumps(context, cls=DjangoJSONEncoder)
         # return HttpResponse(json)
         return JsonResponse(context)
