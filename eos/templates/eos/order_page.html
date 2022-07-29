@@ -170,15 +170,15 @@ $('#searchword').keyup(function() {
             data: { searchwords : inputdata },
             dataType: 'json',
             success: function(result){
-                if ( result.length > 0){
+<!--                if ( result.length > 0){-->
                     var str = ''
-                    for (var i=0; i<result.length; i++){
+<!--                    for (var i=0; i<result.length; i++){-->
                         str += '<span>'+ result.result + '</span><br/>';
-                    }
+<!--                    }-->
                     $("#results").html(str);
                     console.log('ajax success')
-                     }
-                    else{ $("#results").html(str); }
+<!--                     }-->
+<!--                    else{ $("#results").html(str); }-->
             },
             error: function(e) {console.log('오류:' + e.status);}
         });
