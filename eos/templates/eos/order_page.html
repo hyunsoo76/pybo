@@ -1,9 +1,6 @@
 {% extends 'base_eos.html' %}
 {% block content %}
 
-<!--<head>-->
-<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-<!--</head>-->
 {% if messages %}
 <ul class="absoulte top-0 right-0 left-0 flex justify-center">
     {% for message in messages %}
@@ -168,7 +165,7 @@ $('#searchword').keyup(function() {
     data = $('#searchword').val();
     if( data != ''){
         $.ajax({
-            url:'/order_page/searchData/',
+            url:'{% url 'eos:searchData' %}',
             type:'POST',
             headers: {
                 'X-CSRFTOKEN' : '{{ csrf_token }}'
