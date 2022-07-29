@@ -172,7 +172,9 @@ $('#searchword').keyup(function() {
                 if ( result.length > 0){
                     var str = ''
                     for (var i=0; i<result.length; i++){
-                        str += '<span>'+ result[i].data + '</span><br/>';
+                        str += '<span>'+ result[i].data + '</span><br/>';.
+                    }
+                    $("#results").html(str);
                 } else{ $("#results").html(""); }
             },
             error: function(e) {console.log('error:' + e.status);}
