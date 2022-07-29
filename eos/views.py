@@ -175,8 +175,9 @@ def searchData(request):
     if request.method == 'POST':
         data = request.POST.getlist('input[]')
         # sdata = Products.objects.get(sale_bar=(data))
+        sdata = data[0]
         context = {
-            'results': data[0],
+            'results': sdata,
         }
         json = dumps(context, cls=DjangoJSONEncoder)
         return HttpResponse(json)
