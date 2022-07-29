@@ -163,10 +163,12 @@ $(document).ready(function(){
 
 
 <!--ajax-->
+function searchajax(){
 $('#searchword').keyup(function() {
     data = $('#searchword').val();
+    if( data != ''){
     $.ajax({
-        url:'/searchData/',
+        url:'/order_page/searchData/',
         type:'POST',
         headers: {
             'X-CSRFTOKEN' : '{{ csrf_token }}'
@@ -180,6 +182,7 @@ $('#searchword').keyup(function() {
         }
    });
   });
+}
 
 
 
