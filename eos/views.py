@@ -173,11 +173,11 @@ def some_function(request):
 def searchData(request):
     # POST 요청일 때
     if 'searchwords' :
-        data = request.GET.getlist('input[]')
+        data = request.POST.getlist('input[]')
         # sdata = Products.objects.get(sale_bar=(data))
 
         context = {
             'results': data,
         }
-        return HttpResponse(context)
-        # return JsonResponse(context)
+        # return HttpResponse(context)
+        return JsonResponse(context)
