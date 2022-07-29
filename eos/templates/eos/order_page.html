@@ -170,12 +170,13 @@ $('#searchword').keyup(function() {
             data: { searchwords : inputdata },
             dataType: 'json',
             success: function(result){
-                if ( result.length > 0){
+<!--                if ( result.length > 0){-->
+<!--                    console.log(result['ajax success'])-->
+<!--                    var str = ''-->
+<!--                    for (var i=0; i<result.length; i++){-->
+<!--                        str += '<span>'+ result[i].data + '</span><br/>';-->
+<!--                    }-->
                     console.log(result['ajax success'])
-                    var str = ''
-                    for (var i=0; i<result.length; i++){
-                        str += '<span>'+ result[i].data + '</span><br/>';
-                    }
                     $("#results").html(str);
                     console.log('ajax success')
                 } else{ $("#results").html(""); }
