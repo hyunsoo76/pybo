@@ -171,13 +171,11 @@ $('#searchword').keyup(function() {
             dataType: 'json',
             success: function(result){
 <!--                if ( result.length > 0){-->
-<!--                    console.log(result['ajax success'])-->
-<!--                    var str = ''-->
-<!--                    for (var i=0; i<result.length; i++){-->
-<!--                        str += '<span>'+ result[i].data + '</span><br/>';-->
-<!--                    }-->
-                    console.log(result['ajax success'])
                     var str = ''
+                    for (var i=0; i<result.length; i++){
+                        str += '<span>'+ result[i].data + '</span><br/>';
+                    }
+                    console.log(result['ajax success'])
                     $("#results").html(str);
                     console.log('ajax success')
 <!--                     }-->
