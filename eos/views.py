@@ -173,7 +173,7 @@ def some_function(request):
 def searchData(request):
     # POST 요청일 때
     if 'searchwords':
-        p_data = Products.objects.get(sale_bar=('searchwords'))
+        p_data = Products.objects.get(sale_bar=('ssdata'))
         inputdata = p_data.p_name
         # sdata = Products.objects.get(sale_bar=(data))
 
