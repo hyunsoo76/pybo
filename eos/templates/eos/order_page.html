@@ -1,6 +1,6 @@
 {% extends 'base_eos.html' %}
 {% block content %}
-<head>
+
 
 {% if messages %}
 <ul class="absoulte top-0 right-0 left-0 flex justify-center">
@@ -147,7 +147,6 @@
 
 <script>
 
-
 $(function() {
   $( "#date-picker" ).datepicker({
     dateFormat: 'yy-mm-dd'
@@ -155,12 +154,21 @@ $(function() {
 });
 
 
+
+$(document).ready(function(){
+        searchajax();
+});
+
+
 <!--ajax-->
 $('#searchword').keyup(function() {
     data = $('#searchword').val();
     $.ajax({
-        type:'POST',
         url:'/searchData/',
+        type:'POST',
+        headers: {
+            'X-CSRFTOKEN' : '{{ csrf_token }}'
+        },
         data:JSON.stringify(data),
         success:function(json){
             console.log("data pass success",json);

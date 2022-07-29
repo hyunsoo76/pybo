@@ -167,7 +167,7 @@ def some_function(request):
 #     messages.warning(request, "낱개발주와 박스발주 같이 입력하면 낱개발주 0 으로 됨.")
 
 
-from django.http import JsonResponse
+
 
 def searchData(request):
     # POST 요청일 때

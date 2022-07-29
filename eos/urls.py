@@ -14,6 +14,6 @@ urlpatterns = [
     path('p_list/', views.p_list),
     path('order_page/', views.order_page, name='order_page'),
     path('order_create/', views.order_create, name='order_create'),
-    path('3.37.211.248/eos/searchData/', views.searchData, name='searchData'),
+    path('/searchData/', views.searchData, name='searchData'),
 
 ]
