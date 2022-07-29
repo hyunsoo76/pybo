@@ -173,7 +173,7 @@ def searchData(request):
     # POST 요청일 때
     if request.method == 'POST':
         data = json.loads(request.body)
-        # do something
+        data = Products.objects.get(sale_bar=(data))
         print(data)
 
         context = {
