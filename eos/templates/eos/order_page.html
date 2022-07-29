@@ -167,21 +167,21 @@ function searchajax(){
 $('#searchword').keyup(function() {
     data = $('#searchword').val();
     if( data != ''){
-    $.ajax({
-        url:'/order_page/searchData/',
-        type:'POST',
-        headers: {
-            'X-CSRFTOKEN' : '{{ csrf_token }}'
-        },
-        data:JSON.stringify(data),
-        success:function(json){
-            console.log("data pass success",json);
-        },
-        error : function(xhr,errmsg,err) {
-        console.log(xhr.status + ": " + xhr.responseText);
-        }
-   });
-  };
+        $.ajax({
+            url:'/order_page/searchData/',
+            type:'POST',
+            headers: {
+                'X-CSRFTOKEN' : '{{ csrf_token }}'
+            },
+            data:JSON.stringify(data),
+            success:function(json){
+                console.log("data pass success",json);
+            },
+            error : function(xhr,errmsg,err) {
+            console.log(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    }
 }
 </script>
 
