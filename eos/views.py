@@ -172,8 +172,12 @@ def some_function(request):
 @csrf_exempt
 def searchData(request):
     # POST 요청일 때
-    if 'searchwords':
+    if 'searchwords' :
         data = "뷰에서 넘오온 데이터 "
         # sdata = Products.objects.get(sale_bar=(data))
+
+        context = {
+            'result': data,
+        }
         # return HttpResponse(context)
-        return JsonResponse(data)
+        return JsonResponse(context)
