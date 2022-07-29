@@ -167,8 +167,8 @@ $('#searchword').keyup(function() {
         $.ajax({
             url:'{% url 'eos:searchData' %}',
             type:'POST',
-            var searchwords = inputdata
-            data: searchwords,
+            searchwords = inputdata
+            data: { searchwords : inputdata },
             dataType: 'json',
             success: function(result){
 <!--                if ( result.length > 0){-->
