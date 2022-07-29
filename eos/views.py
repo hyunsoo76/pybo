@@ -172,8 +172,8 @@ def some_function(request):
 @csrf_exempt
 def searchData(request):
     # POST 요청일 때
-    if 'searchwords' :
-        inputdata = Products.objects.get(sale_bar=('searchwords'))
+    if 'searchwords':
+        inputdata = Products.objects.get(sale_bar=('searchwords[0]'))
         # sdata = Products.objects.get(sale_bar=(data))
 
         context = {
