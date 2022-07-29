@@ -165,7 +165,7 @@ $(document).ready(function(){
 <!--ajax-->
 function searchajax(){
 $('#searchword').keyup(function() {
-    data = $('#searchword').val();
+    var data = $('#searchword').val();
     if( data != ''){
     $.ajax({
         url:'/order_page/searchData/',
