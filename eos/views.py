@@ -179,5 +179,5 @@ def searchData(request):
         context = {
             'results': data,
         }
-        return HttpResponse(json.dumps(context))
-        # return JsonResponse(context)
+        # return HttpResponse(json.dumps(context))
+        return JsonResponse(context)
