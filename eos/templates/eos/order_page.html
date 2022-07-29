@@ -163,7 +163,7 @@ $(document).ready(function(){
 function searchajax(){
 $('#searchword').keyup(function() {
     inputdata = $('#searchword').val();
-    if( data != ''){
+    if( inputdata != ''){
         $.ajax({
             url:'{% url 'eos:searchData' %}',
             type:'POST',
