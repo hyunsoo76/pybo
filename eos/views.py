@@ -173,11 +173,11 @@ def some_function(request):
 def searchData(request):
     # POST 요청일 때
     if 'searchwords' :
-        data = "뷰에서 넘오온 데이터 "
+        inputdata = "뷰에서 넘오온 데이터 "
         # sdata = Products.objects.get(sale_bar=(data))
 
         context = {
-            'result': data,
+            'result': inputdata,
         }
         # return HttpResponse(context)
         return JsonResponse(context)
