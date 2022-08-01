@@ -186,5 +186,5 @@ def searchData(request):
 
         # context = get_Search_Results(inputdata)
         # return HttpResponse(context)
-        return JsonResponse(context)
-        # return HttpResponse(json.dumps(context), content_type="application/json")
+        # return JsonResponse(context)
+        return HttpResponse(json.dumps(context), content_type="application/json")
