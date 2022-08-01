@@ -175,10 +175,9 @@ def searchData(request):
     if 'searchwords' in request.POST:
 
         data = request.POST['searchwords']
-        indata = json.loads(data)
         context = []
-        context = Products.objects.get(sale_bar=indata)
-        inputdata = context.p_name
+        context = Products.objects.get(sale_bar=data)
+        inputdata = "리스테린"
         # sdata = Products.objects.get(sale_bar=(data))
 
         context = {
