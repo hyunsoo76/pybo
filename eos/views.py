@@ -180,10 +180,10 @@ def searchData(request):
         inputdata = "리스테린"
         # sdata = Products.objects.get(sale_bar=(data))
 
-        # context = {
-        #     'result': inputdata,
-        # }
-        context = "리스테린"
+        context = {
+            'result': "리스테린",
+        }
+        # context = "리스테린"
         # context = get_Search_Results(inputdata)
         # return HttpResponse(context)
         return JsonResponse(context)
