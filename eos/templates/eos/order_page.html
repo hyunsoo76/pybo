@@ -167,7 +167,7 @@ $('#searchword').keyup(function() {
         $.ajax({
             url:'{% url 'eos:searchData' %}',
             type:'POST',
-            var data = '';
+            data: data,
             data: { searchwords : inputdata },
             dataType: 'json',
             success: function(result){
