@@ -170,9 +170,9 @@ $('#searchword').keyup(function() {
             data: { searchwords : inputdata },
             dataType: 'json',
             success: function(result){
-                if ( result.result > 0){
+                if ( inputdata.length > 0){
                     var str = ''
-                    for (var i=0; i<result.length; i++){
+                    for (var i=0; i<inputdata.length; i++){
                         JSON.stringify(result)
                         str += '<span>'+ result.result + '</span><br/>';
                     }
