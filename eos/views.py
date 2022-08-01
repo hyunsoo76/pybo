@@ -171,19 +171,11 @@ def some_function(request):
 
 @csrf_exempt
 def searchData(request):
-    # POST 요청일 때
     if 'searchwords' in request.POST:
         data = request.POST['searchwords']
         s_data = Products.objects.get(sale_bar=(data))
         inputdata = s_data.p_name
-        
         context = {
             'result': inputdata,
         }
-        # context = "리스테린"
-        # context = get_Search_Results(inputdata)
-        # json = dumps(context, cls=DjangoJSONEncoder)
-        # return HttpResponse(json)
-
         return JsonResponse(context)
-        # return HttpResponse(json.dumps(context), content_type="application/json")
