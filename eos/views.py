@@ -173,13 +173,11 @@ def some_function(request):
 def searchData(request):
     # POST 요청일 때
     if 'searchwords' in request.POST:
+        data = request.POST['searchwords']
+        inputdata = data
+        # s_data = Products.objects.get(sale_bar=(data))
+        # inputdata = s_data.p_name
 
-        data = json.loads(request.body)
-        # context = []
-        s_data = Products.objects.get(sale_bar=(data))
-        inputdata = s_data.p_name
-        # sdata = Products.objects.get(sale_bar=(data))
-        context = []
         context = {
             'result': inputdata,
         }
