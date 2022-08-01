@@ -183,8 +183,7 @@ $('#searchword').keyup(function() {
 <!--                     }-->
 <!--                    else{ $("#results").html(str); }-->
             },
-            error: function(e) {console.log('오류:' + e.status);}
-                    console.log(result)
+            error: function(e) {console.log('오류:' + e.status + result);}
         });
     }  else{ $("#results").html(""); }
   });
