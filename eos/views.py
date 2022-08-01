@@ -179,7 +179,7 @@ def searchData(request):
         # context = Products.objects.get(sale_bar=data)
         inputdata = "리스테린"
         # sdata = Products.objects.get(sale_bar=(data))
-
+        context = []
         context = {
             'result': inputdata,
         }
@@ -187,6 +187,6 @@ def searchData(request):
         # context = get_Search_Results(inputdata)
         json = dumps(context, cls=DjangoJSONEncoder)
         return HttpResponse(json)
-        
+
         # return JsonResponse(context)
         # return HttpResponse(json.dumps(context), content_type="application/json")
