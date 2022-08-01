@@ -174,13 +174,12 @@ $('#searchword').keyup(function() {
                     var str = ''
                     JSON.stringify(result)
                     for (var i=0; i<result.length; i++){
-<!--                        JSON.stringify(result)-->
                         str += '<span>'+ result.result + '</span><br/>';
                     }
                     $("#results").html(str);
                     console.log('ajax success')
                     console.log(result)
-
+                }
                 else{ $("#results").html(str); }
             },
             error: function(e) {console.log('오류:' + e.status);}
