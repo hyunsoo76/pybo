@@ -185,6 +185,8 @@ def searchData(request):
         }
         # context = "리스테린"
         # context = get_Search_Results(inputdata)
-        # return HttpResponse(context)
-        return JsonResponse(context)
+        json = dumps(context, cls=DjangoJSONEncoder)
+        return HttpResponse(json)
+        
+        # return JsonResponse(context)
         # return HttpResponse(json.dumps(context), content_type="application/json")
