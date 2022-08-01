@@ -175,7 +175,7 @@ $('#searchword').keyup(function() {
 <!--                    var ssdata = inputdata-->
 <!--                    for (var i=0; i<result.length; i++){-->
                     JSON.stringify(result)
-                    str += '<span>'+ result + '</span><br/>';
+                    str += '<span>'+ result.searchwords + '</span><br/>';
 <!--                    }-->
                     $("#results").html(str);
                     console.log('ajax success')
