@@ -6,8 +6,6 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
 from django.db.models import Q
-from import_export.formats.base_formats import JSON
-
 from .forms import Order_listForm
 from .models import Products
 from .models import Order_list
@@ -177,7 +175,6 @@ def searchData(request):
     if 'searchwords' in request.POST:
 
         data = json.loads(request.body)
-        JSON.stringify(data)
         # context = []
         s_data = Products.objects.get(sale_bar=(data))
         inputdata = s_data.p_name
