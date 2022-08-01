@@ -174,14 +174,14 @@ def searchData(request):
     # POST 요청일 때
     if 'searchwords' in request.POST:
 
-        data = request.POST['searchwords']
+        # data = request.POST['searchwords']
         # context = []
         # context = Products.objects.get(sale_bar=data)
         inputdata = "리스테린"
         # sdata = Products.objects.get(sale_bar=(data))
 
         context = {
-            'result': "리스테린",
+            'result': inputdata,
         }
         # context = "리스테린"
         # context = get_Search_Results(inputdata)
