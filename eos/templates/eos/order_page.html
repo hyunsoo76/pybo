@@ -172,13 +172,14 @@ $('#searchword').keyup(function() {
             success: function(result){
 <!--                if ( result.length > 0){-->
                     var str = ''
+                    var str_iq = ''
 <!--                    var ssdata = inputdata-->
 <!--                    for (var i=0; i<result.length; i++){-->
                     JSON.stringify(result)
                     str += '<span>'+ result.result + '</span><br/>';
 <!--                    }-->
                     $("#results").html(str);
-                    str += '<span>'+ result.result_iq + '</span><br/>';
+                    str_iq += '<span>'+ result.result_iq + '</span><br/>';
                     $("#results_iq").html(str);
                     console.log('ajax success')
                     console.log(result)
