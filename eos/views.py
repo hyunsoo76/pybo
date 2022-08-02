@@ -176,7 +176,6 @@ def searchData(request):
         data = request.POST['searchwords']
         s_data = Products.objects.get(sale_bar=(data))
         inputdata = s_data.p_name
-
         context = {
             'result': inputdata,
         }
