@@ -177,10 +177,16 @@ def searchData(request):
         s_data = Products.objects.get(sale_bar=(data))
         s_p_name = s_data.p_name
         s_p_iq = s_data.iq
+        s_p_price = s_data.p_price
+        s_p_location = s_data.location
+        s_p_org_bar = s_data.org_bar
 
         context = {
             'result': s_p_name,
             'result_iq': s_p_iq,
+            'result_price': s_p_price,
+            'result_location': s_p_location,
+            'result_org_bar': s_p_org_bar,
         }
 
         return JsonResponse(context)

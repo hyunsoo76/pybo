@@ -96,7 +96,7 @@
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">단가</div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">위치</div>
             <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">원바코드</div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">미출체크</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">체크</div>
         </div>
 
         <span style="line-height:50%"><br></span>
@@ -108,11 +108,9 @@
                 <input type="number"  name="input[]" pattern="\d*" id="searchword"
                        value="{{ form.od_list.0.value|default_if_none:'' }}">
             </div>
-            <div class="col-lg-2" id="results">
-
+            <div class="col-lg-2" id="results"> #상품명
             </div>
-            <div class="col-lg-1" id="results_iq">
-                <span> 입수 </span>
+            <div class="col-lg-1" id="results_iq"> #입수
             </div>
             <div class="col-lg-1">
                 <input type="number" id="test_obj" pattern="\d*"  name="input[]" class="form-control input-sm" value="{{ form.od_list.1.value|default_if_none:'' }}">
@@ -120,17 +118,14 @@
             <div class="col-lg-1">
                 <input type="number" id="test_obj1" pattern="\d*" name="input[]" class="form-control input-sm" value="{{ form.od_list.2.value|default_if_none:'' }}">
             </div>
-            <div class="col-lg-1">
-                <span> 단가 </span>
+            <div class="col-lg-1" id="results_price"> #단가
             </div>
-            <div class="col-lg-1">
-                <span> 위치 </span>
+            <div class="col-lg-1" id="results_location"> #위치
             </div>
-            <div class="col-lg-1">
-                <span> 원바코드 </span>
+            <div class="col-lg-1" id="results_org_bar" > #원코드
             </div>
-            <div class="col-lg-1">
-                <span> 미출체크 </span>
+            <div class="col-lg-1"> #체크
+                <span> </span>
             </div>
 
         </div>
@@ -173,6 +168,9 @@ $('#searchword').keyup(function() {
 <!--                if ( result.length > 0){-->
                     var str = ''
                     var str_iq = ''
+                    var str_prince =''
+                    var str_location =''
+                    var str_org_var =''
 <!--                    var ssdata = inputdata-->
 <!--                    for (var i=0; i<result.length; i++){-->
                     JSON.stringify(result)
@@ -181,6 +179,19 @@ $('#searchword').keyup(function() {
                     $("#results").html(str);
                     str_iq += '<span>'+ result.result_iq + '</span><br/>';
                     $("#results_iq").html(str_iq);
+
+                    str_price += '<span>'+ result.result_price + '</span><br/>';
+                    $("#results_price").html(str_price);
+
+                    str_location += '<span>'+ result.result_location + '</span><br/>';
+                    $("#results_location").html(str_location);
+
+                    str_org_var += '<span>'+ result.result_org_var + '</span><br/>';
+                    $("#results_org_var").html(str_org_var);
+
+
+
+
                     console.log('ajax success')
                     console.log(result)
 <!--                }-->
