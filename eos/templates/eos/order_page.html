@@ -107,17 +107,17 @@
             </div>
             <div class="col-lg-2" id="search" align="center">
                 <input type="number"  name="input[]" pattern="\d*" id="searchword"
-                       value="{{ form.od_list.0.value|default_if_none:'' }}">
+                       value="{{ form.od_list.0.value|default_if_none:'' }}" tabIndex="1" onkeydown="return tab(this, event)"/>
             </div>
             <div class="col-lg-2" id="results" align="center"> <!-- 상품명 -->
             </div>
             <div class="col-lg-1" id="results_iq" align="center"> <!-- 입수 -->
             </div>
             <div class="col-lg-1">
-                <input type="number" id="test_obj" pattern="\d*"  name="input[]" class="form-control input-sm" value="{{ form.od_list.1.value|default_if_none:'' }}">
+                <input type="number" id="test_obj" pattern="\d*"  name="input[]" class="form-control input-sm" value="{{ form.od_list.1.value|default_if_none:'' }}" tabIndex="2"/>
             </div>
             <div class="col-lg-1">
-                <input type="number" id="test_obj1" pattern="\d*" name="input[]" class="form-control input-sm" value="{{ form.od_list.2.value|default_if_none:'' }}">
+                <input type="number" id="test_obj1" pattern="\d*" name="input[]" class="form-control input-sm" value="{{ form.od_list.2.value|default_if_none:'' }}" tabIndex="3"/>
             </div>
             <div class="col-lg-1" id="results_price" align="center"> <!-- 단가 -->
             </div>
@@ -228,6 +228,27 @@ $('#searchword').keyup(function() {
 <!--    }-->
 <!--  });-->
 <!--}-->
+
+<!--input enter keydown tab move-->
+function tab(field, event) {
+    if (event.which == 13 /* IE9/Firefox/Chrome/Opera/Safari */ || event.keyCode == 13 /* IE8 and earlier */ ) {
+        for (i = 0; i < field.form.elements.length; i++){
+            if (field.form.elements[i].tabIndex == field.tabIndex + 1){
+             field.form.elements[i].focus();
+               if (field.form.elements[i].type == "text") {
+                 field.form.elements[i].select();
+                 break;
+               }
+             }
+        }
+        return false;
+    }
+    return true;
+}
+
+
+
+
 </script>
 
 
