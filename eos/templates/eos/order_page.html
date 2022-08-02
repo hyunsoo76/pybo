@@ -102,13 +102,13 @@
         <span style="line-height:50%"><br></span>
         {% for i in "x"|rjust:"20" %}
         <div class="row">
-            <div class="col-lg-1">{{ forloop.counter }}
+            <div class="col-lg-1" align="center">{{ forloop.counter }}
             </div>
-            <div class="col-lg-2" id="search">
+            <div class="col-lg-2" id="search" align="center">
                 <input type="number"  name="input[]" pattern="\d*" id="searchword"
                        value="{{ form.od_list.0.value|default_if_none:'' }}">
             </div>
-            <div class="col-lg-2" id="results"> <!-- 상품명 -->
+            <div class="col-lg-2" id="results" align="center"> <!-- 상품명 -->
             </div>
             <div class="col-lg-1" id="results_iq"> <!-- 입수 -->
             </div>
