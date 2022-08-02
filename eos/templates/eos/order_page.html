@@ -231,6 +231,11 @@ $('#searchword').keyup(function() {
 
 const move_textbox = () => {
             const box = document.getElementById("box");
+
+    const remove = (obj) => {
+            document.getElementById('box').removeChild(obj.parentNode);
+        }
+
     document.moveEventListener('keydown', function (event) {
             if (event.keyCode === 13 && event.target.nodeName === 'INPUT') {
                 var form = event.target.form;
