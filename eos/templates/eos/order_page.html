@@ -170,7 +170,7 @@ $('#searchword').keyup(function() {
             data: { searchwords : inputdata },
             dataType: 'json',
             success: function(result){
-<!--                if ( result.length > 0){-->
+                if ( result.length > 0){
                     var str = ''
 <!--                    var ssdata = inputdata-->
 <!--                    for (var i=0; i<result.length; i++){-->
@@ -180,8 +180,8 @@ $('#searchword').keyup(function() {
                     $("#results").html(str);
                     console.log('ajax success')
                     console.log(result)
-<!--                     }-->
-<!--                    else{ $("#results").html(str); }-->
+                     }
+                    else{ $("#results").html(str); }
             },
             error: function(e) {console.log('오류:' + e.status);}
         });
