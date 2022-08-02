@@ -1,5 +1,6 @@
 {% extends 'base_eos.html' %}
 {% block content %}
+{% load humanize %}
 
 {% if messages %}
 <ul class="absoulte top-0 right-0 left-0 flex justify-center" xmlns:th="http://www.w3.org/1999/xhtml"
@@ -106,7 +107,7 @@
             <span>{{ new_order_list.od_list.2 }}</span>
         </div>
         <div class="col-lg-1" align="center">
-            <span>{{ new_order_list.s_price }}</span> <!-- 단가 -->
+            <span>{{ new_order_list.s_price|intcomma }}</span> <!-- 단가 -->
         </div>
         <div class="col-lg-1" align="center">
             <span>{{ new_order_list.s_location }}</span> <!-- 위치 -->
