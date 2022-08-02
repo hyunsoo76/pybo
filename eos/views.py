@@ -175,9 +175,12 @@ def searchData(request):
     if 'searchwords' in request.POST:
         data = request.POST['searchwords']
         s_data = Products.objects.get(sale_bar=(data))
-        inputdata = s_data.p_name
+        s_p_name = s_data.p_name
+        s_p_iq = s_data.iq
+
         context = {
-            'result': inputdata,
+            'result': s_p_name,
+            'result_iq': s_p_iq,
         }
 
         return JsonResponse(context)

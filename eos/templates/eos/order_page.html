@@ -111,7 +111,7 @@
             <div class="col-lg-2" id="results">
 
             </div>
-            <div class="col-lg-1">
+            <div class="col-lg-1" id="results_iq">
                 <span> 입수 </span>
             </div>
             <div class="col-lg-1">
@@ -176,8 +176,10 @@ $('#searchword').keyup(function() {
 <!--                    for (var i=0; i<result.length; i++){-->
                     JSON.stringify(result)
                     str += '<span>'+ result.result + '</span><br/>';
+                    str += '<span>'+ result.result_iq + '</span><br/>';
 <!--                    }-->
                     $("#results").html(str);
+                    $("#results_iq").html(str);
                     console.log('ajax success')
                     console.log(result)
 <!--                }-->
