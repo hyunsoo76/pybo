@@ -172,10 +172,9 @@ $('#searchword').keyup(function() {
                     var str_price =''
                     var str_location =''
                     var str_org_bar =''
-<!--                    var ssdata = inputdata-->
-<!--                    for (var i=0; i<result.length; i++){-->
+                    for (var i=0; i<inputdata.length; i++){
                     JSON.stringify(result)
-                    str += '<span>'+ result.result + '</span><br/>';
+                    str += '<span>'+ result[i].result + '</span><br/>';
 <!--                    }-->
                     $("#results").html(str);
                     str_iq += '<span>'+ result.result_iq + '</span><br/>';
