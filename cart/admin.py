@@ -6,7 +6,7 @@ from .models import CartItem
 
 class CartAdmin(admin.ModelAdmin):
     search_fields = ['cart_id', 'date_added']
-    list_display = ('product', 'cart', 'quantity', 'active')
+    list_display = ('ordering')
 
 class CartItemAdmin(admin.ModelAdmin):
     search_fields = ['product', 'cart']
