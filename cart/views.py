@@ -13,13 +13,13 @@ def _cart_id(request):
         cart = request.session.create()
     return cart
 
-def add_cart(request,product_p_name):
-    product = Products.objects.get(p_name=product_p_name)
+def add_cart(request,product_id):
+    product = Products.objects.get(id=product_id)
     try:
         cart = Cart.objects.get(_cart_id=_cart_id(request))
     except Cart.DoesNotExist:
         cart = Cart.objects.create(
-            cart_id = _cart_id(request)
+            cart_id=_cart_id(request)
         )
         cart.save()
 
@@ -29,9 +29,9 @@ def add_cart(request,product_p_name):
         cart_item.save()
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(
-            product = product,
-            quantity = 1,
-            cart = cart
+            product=product,
+            quantity=1,
+            cart=cart
         )
         cart_item.save()
     return redirect('cart:cart_detail')
@@ -45,4 +45,4 @@ def cart_detail(request, total=0,counter=0, cart_items = None):
             counter += cart_item.quantity
     except ObjectDoesNotExist:
         pass
-    return render(request, 'cart.html', dict(cart_items = cart_items, total=total, counter = counter))
+    return render(request, 'cart.html', dict(cart_items=cart_items, total=total, counter=counter))
