@@ -13,8 +13,8 @@ def _cart_id(request):
         cart = request.session.create()
     return cart
 
-def add_cart(request,product_id):
-    product = Products.objects.get(id=product_id)
+def add_cart(request,product_p_name):
+    product = Products.objects.get(p_name=product_p_name)
     try:
         cart = Cart.objects.get(_cart_id=_cart_id(request))
     except Cart.DoesNotExist:
