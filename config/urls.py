@@ -27,5 +27,6 @@ urlpatterns = [
     path('pybo/', base_views.index),
     path('', include('polls.urls')),
     path('eos/', include('eos.urls')),
+    path('cart/', include('cart.urls')),
     
 ]
