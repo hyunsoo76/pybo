@@ -10,7 +10,7 @@ class CartAdmin(admin.ModelAdmin):
 
 class CartItemAdmin(admin.ModelAdmin):
     search_fields = ['product', 'cart']
-    list_display = ('product', 'product.sale_bar', 'cart', 'quantity', 'active')
+    list_display = ('product', 'cart', 'quantity', 'active')
 
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem, CartItemAdmin)
