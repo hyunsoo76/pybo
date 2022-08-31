@@ -48,7 +48,8 @@ def cart_detail(request, total=0,counter=0, cart_items = None):
     return render(request, 'cart/cart.html', dict(cart_items=cart_items, total=total, counter=counter))
 
 
-def cart_test(request, Cart_id):
-    cart = get_object_or_404(Cart, pk=Cart_id)
+def cart_test(request, Cart_id, esum=0):
+    cart = Cart.object.get(cart_id=_cart_id(request))
     cart_items = CartItem.objects.filter(cart=cart, active=True)
-    return render(request, 'eos/order_list.html', dict(cart_items=cart_items))
+    esum = (cart_items.product.p_price * cart_items.quantity)
+    return render(request, 'eos/order_list.html', dict(cart_items=cart_items, esum=esum))
