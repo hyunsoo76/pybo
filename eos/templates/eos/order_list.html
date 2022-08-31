@@ -104,10 +104,10 @@
             <span>{{cart_item.quantity}}</span>
         </div>
         <div class="col-lg-1" align="center">
-            <span>{{cart_item.quantity}} * {{cart_item.product.p_price}}</span>
+            <span>{{cart_item.product.p_price|intcomma }}</span> <!-- 단가 -->
         </div>
         <div class="col-lg-1" align="center">
-            <span>{{cart_item.product.p_price|intcomma }}</span> <!-- 단가 -->
+            <span>{{cart_item.quantity}} * {{cart_item.product.p_price}}</span>
         </div>
         <div class="col-lg-1" align="center">
             <span>위치</span> <!-- 위치 -->
