@@ -79,11 +79,10 @@
         <div class="col-lg-2 col-md-2 col-sm-2  text-white" align="center">상품명</div>
         <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">입수</div>
         <div class="col-lg-1 col-md-1 col-sm-1  text-white" align="center">발주</div>
-        <div class="col-lg-1 col-md-1 col-sm-1  text-white" align="center">박스발주</div>
+        <div class="col-lg-1 col-md-1 col-sm-1  text-white" align="center">합계금액</div>
         <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">단가</div>
         <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">위치</div>
         <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">원바코드</div>
-        <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block  text-white" align="center">미출체크</div>
     </div>
     <span style="line-height:50%"><br></span>
 
@@ -105,7 +104,7 @@
             <span>{{cart_item.quantity}}</span>
         </div>
         <div class="col-lg-1" align="center">
-            <span>발주박스</span>
+            <span>{{cart_item.quantity}}*{{cart_item.product.p_price|intcomma }}</span>
         </div>
         <div class="col-lg-1" align="center">
             <span>{{cart_item.product.p_price|intcomma }}</span> <!-- 단가 -->
