@@ -1,7 +1,5 @@
 from django.db import models
-
 from eos.models import Products
-
 
 class Cart(models.Model):
     cart_id = models.CharField(max_length=250, blank=True)
