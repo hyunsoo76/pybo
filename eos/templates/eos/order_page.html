@@ -14,8 +14,8 @@
 
 <p></p>
 <div class="container">
-<!--    <form method="post" name="order_create" onkeydown="return event.key != 'Enter';">-->
-    <form method="post" name="order_create">
+    <form method="post" name="order_create" onkeydown="return event.key != 'Enter';">
+<!--    <form method="post" name="order_create">-->
         {% csrf_token %}
         <!-- 오류표시 Start -->
         {% if form.errors %}
