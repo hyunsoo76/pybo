@@ -174,7 +174,7 @@ $('#searchword').keyup(function() {
 <!--                    for (var i=0; i<result.length; i++){-->
                     JSON.stringify(result)
                     str += '<span>'+ result.result + '</span><br/>';
-                    document.dispatchEvent(new KeyboardEvent('keydown', {key: 'tab'}));
+
 <!--                    }-->
                     $("#results").html(str);
                     str_iq += '<span>'+ result.result_iq + '</span><br/>';

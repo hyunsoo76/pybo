@@ -15,6 +15,7 @@ import pandas as pd
 from django.contrib import messages
 import json
 from django.http import JsonResponse
+from cart.models import Cart, CartItem
 
 
 def index(request):
@@ -128,6 +129,40 @@ def order_page(request, Order_list_id):
 #         context = {'form': form}
 #         return render(request, 'eos/order_page.html', context)
 
+# 기존 order_create--------------------------------
+# def order_create(request):
+#     if request.method == 'POST':
+#         form = Order_listForm(request.POST)
+#         if form.is_valid():
+#             new_order_list = form.save(commit=False)
+#             new_order_list.od_date = timezone.now()
+#             input_cal = request.POST.get('calender')
+#             new_order_list.d_day = input_cal
+#             input_buyer = request.POST.get('buyer_select')
+#             new_order_list.buyer_name = input_buyer
+#             # jsonfield save
+#             data = request.POST.getlist('input[]')
+#             new_order_list.od_list = data
+#
+#             # Product Class 조회 변수 저장
+#             psb = Products.objects.get(sale_bar=(new_order_list.od_list[0]))
+#             new_order_list.s_product = psb.p_name
+#             new_order_list.s_iq = psb.iq
+#             new_order_list.s_price = psb.p_price
+#             new_order_list.s_location = psb.location
+#             new_order_list.s_org_bar = psb.org_bar
+#             new_order_list.save()
+#             context = {'new_order_list': new_order_list}
+#             return render(request, 'eos/order_page_r.html', context)
+#         else:
+#             context = {'form': form}
+#             return render(request, 'eos/order_page.html', context)
+#     else:
+#         form = Order_listForm()
+#         context = {'form': form}
+#         return render(request, 'eos/order_page.html', context)
+# 기존 order_create--------------------------------
+
 def order_create(request):
     if request.method == 'POST':
         form = Order_listForm(request.POST)
@@ -159,6 +194,9 @@ def order_create(request):
         form = Order_listForm()
         context = {'form': form}
         return render(request, 'eos/order_page.html', context)
+
+
+
 
 
 def some_function(request):
