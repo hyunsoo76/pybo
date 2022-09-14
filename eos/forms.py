@@ -1,5 +1,6 @@
 from django import forms
 from eos.models import Order_list
+from cart.models import CartItem
 
 class Order_listForm(forms.ModelForm):
     class Meta:

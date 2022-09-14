@@ -152,6 +152,7 @@ def order_create(request):
             new_order_list.s_location = psb.location
             new_order_list.s_org_bar = psb.org_bar
             new_order_list.save()
+
             context = {'new_order_list': new_order_list}
             return render(request, 'eos/order_page_r.html', context)
         else:
@@ -163,74 +164,6 @@ def order_create(request):
         return render(request, 'eos/order_page.html', context)
 # 기존 order_create--------------------------------
 
-# #     cart view
-# def _cart_id(request):
-#     cart = request.session.session_key
-#     if not cart:
-#         cart = request.session.create()
-#     return cart
-#
-# def add_cart(request,product_id):
-#     product = Products.objects.get(id=product_id)
-#     try:
-#         cart = Cart.objects.get(_cart_id=_cart_id(request))
-#     except Cart.DoesNotExist:
-#         cart = Cart.objects.create(
-#             cart_id=_cart_id(request)
-#         )
-#         cart.save()
-#
-#     try:
-#         cart_item = CartItem.objects.get(product=product, cart=cart)
-#         cart_item.quantity += 1
-#         cart_item.save()
-#     except CartItem.DoesNotExist:
-#         cart_item = CartItem.objects.create(
-#             product=product,
-#             quantity=1,
-#             cart=cart
-#         )
-#         cart_item.save()
-#     return redirect('order_create')
-#
-# def order_create(request, Cart_id):
-#     if request.method == 'POST':
-#         form = Order_listForm(request.POST)
-#         if form.is_valid():
-#             new_order_list = form.save(commit=False)
-#             new_order_list.od_date = timezone.now()
-#             input_cal = request.POST.get('calender')
-#             new_order_list.d_day = input_cal
-#             input_buyer = request.POST.get('buyer_select')
-#             new_order_list.buyer_name = input_buyer
-#             # jsonfield save
-#             data = request.POST.getlist('input[]')
-#             cart_item = data
-#
-#             # Product Class 조회 변수 저장
-#             psb = Products.objects.get(sale_bar=(new_order_list.od_list[0]))
-#             cart_item.product.p_name = psb.p_name
-#             cart_item.quantity = psb.iq
-#             cart_item.product.p_price = psb.p_price
-#             # new_order_list.s_product = psb.p_name
-#             # new_order_list.s_iq = psb.iq
-#             # new_order_list.s_price = psb.p_price
-#             # new_order_list.s_location = psb.location
-#             # new_order_list.s_org_bar = psb.org_bar
-#             # new_order_list.save()
-#             # context = {'new_order_list': new_order_list}
-#
-#             cart = get_object_or_404(Cart, pk=Cart_id)
-#             cart_items = CartItem.objects.filter(cart=cart, active=True)
-#
-#             return render(request, 'eos/order_list.html', dict(cart_items=cart_items))
-#         else:
-#             context = {'form': form}
-#             return render(request, 'eos/order_page.html', context)
-#     else:
-#         form = Order_listForm()
-#         context = {'form': form}
-#         return render(request, 'eos/order_page.html', context)
 
 
 
