@@ -35,10 +35,14 @@
 
         <div class="row">
             <div class="col-3">
-                <span>발주자 : 최은주</span>
+                <span>발주자 : 카드 발주페이지</span>
             </div>
             <div class="col-5">
-                <span>발주일 : 2022-06-29</span>
+                <span>발주일 : 
+                    <script>
+                    document.getElementById("current_date").innerHTML = Date();
+                    </script>
+                </span>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 d-none d-sm-block">
                 <button type="button" class="btn btn-outline-dark">파일생성</button>
