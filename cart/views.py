@@ -1,6 +1,8 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.core.serializers.json import DjangoJSONEncoder
+
+from .forms import CartForm
 from .models import Cart, CartItem
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Products
@@ -53,3 +55,34 @@ def cart_test(request, Cart_id):
     cart_items = CartItem.objects.filter(cart=cart, active=True)
 
     return render(request, 'eos/order_list.html', dict(cart_items=cart_items))
+
+def cart_order_page(request):
+    if request.method == 'POST':
+        form = CartForm(request.POST)
+        if form.is_valid():
+            new_order_list = form.save(commit=False)
+            # Product Class 조회 변수 저장
+            psb = Products.objects.get(sale_bar=(new_order_list.od_list[0]))
+            try:
+                cart = Cart.objects.get(_cart_id=_cart_id(request))
+            except Cart.DoesNotExist:
+                cart = Cart.objects.create(
+                    cart_id=_cart_id(request)
+                )
+                cart.save()
+            new_order_list.s_product = psb.p_name
+            new_order_list.s_iq = psb.iq
+            new_order_list.s_price = psb.p_price
+            new_order_list.s_location = psb.location
+            new_order_list.s_org_bar = psb.org_bar
+            new_order_list.save()
+
+            context = {'new_order_list': new_order_list}
+            return render(request, 'eos/order_page_r.html', context)
+        else:
+            context = {'form': form}
+            return render(request, 'eos/order_page.html', context)
+    else:
+        form = CartForm()
+        context = {'form': form}
+        return render(request, 'eos/order_page.html', context)
