@@ -78,11 +78,11 @@ def cart_order_page(request):
             new_order_list.save()
 
             context = {'new_order_list': new_order_list}
-            return render(request, 'cart/cart_order_page_r.html', context)
+            return render(request, 'cart/cart_test.html', context)
         else:
             context = {'form': form}
-            return render(request, 'cart/cart_order_page_r.html', context)
+            return render(request, 'cart/cart_order_page.html', context)
     else:
         form = CartForm()
         context = {'form': form}
-        return render(request, 'cart/cart_order_page_r.html', context)
+        return render(request, 'cart/cart_order_page.html', context)
