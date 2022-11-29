@@ -147,7 +147,9 @@
 </div>
     <!-- 페이징처리 끝 -->
 
-
+<!-- 클립보드이미지 붙여넣기-->
+<p>Paste your image here…</p>
+<img id="container"/>
 
 <!-- 검색 -->
     <form id="searchForm" method="get" action="{% url 'eas:index' %}">
@@ -195,5 +197,22 @@ const maxLength = 50;
         }, 0);
     });
 
+<!-- 클립보드이미지 붙여넣기 -->
+    document.onpaste = function(pasteEvent) {
+    // 첫 번째 항목을 고려합니다(여러 항목에 대해 쉽게 확장할 수 있음)
+    var item = pasteEvent.clipboardData.items[0];
+
+    if (item.type.indexOf("image") === 0)
+    {
+        var blob = item.getAsFile();
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            document.getElementById("container").src = event.target.result;
+        };
+
+        reader.readAsDataURL(blob);
+    }
+}
     </script>
     {% endblock %}
