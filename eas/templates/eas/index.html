@@ -83,7 +83,12 @@
                 {% else %}
                     <td>{{ Request.aaa }}</td>
                 {% endif %}
-              <td>{{ Request.bbb }}</td>
+
+                {% if Request.aaa == "전결" %}
+                    <td>/</td>
+                {% endif %}
+                    <td>{{ Request.bbb }}</td>
+                {% endif %}
               <td style="text-align:right;">{{ Request.create_date|date:'y/m/d/h:i' }}</td>
             </tr>
                 {% endfor %}
