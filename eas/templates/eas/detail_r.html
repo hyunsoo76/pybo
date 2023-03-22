@@ -104,7 +104,7 @@
                                           <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="send2" name="reject1" >반려</button></div>
                                       </form>
 
-                                          <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>
+                                          <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >전결</button></div>
 
                                       <form action="{% url 'eas:detail_okupdate' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
