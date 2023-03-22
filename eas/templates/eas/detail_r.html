@@ -600,6 +600,14 @@
                 });
 
                 $(function(){
+                    $('#send3').click(function(){
+                        if($("#24_3").css("display") && $("#24_1").css("display") == "none"){
+                            $('#24_3').show();
+                        }
+                    });
+                });
+
+                $(function(){
                     $('#send2').click(function(){
                         if($("#24_1").css("display") && $("#24").css("display") == "none"){
                             $('#24_1').show();
