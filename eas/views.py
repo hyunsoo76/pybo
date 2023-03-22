@@ -219,7 +219,7 @@ def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
         temp = request.POST.get('input_reject')
-        if new_Request.aaa != "승인":
+        if new_Request.aaa != "승인" or "전결":
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
             new_Request.save()
