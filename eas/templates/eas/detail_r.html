@@ -106,7 +106,7 @@
                                           <div><button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="send2" name="reject1" >반려</button></div>
                                       </form>
 
-                                      <form action="{% url 'eas:detail_update_arbitrary' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
+                                      <form action="{% url 'eas:detail_okupdate' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
                                           {% csrf_token %}
                                       <!-- 전결 버튼 -->
                                           <input name="input_reject" type="hidden" value="전결">
