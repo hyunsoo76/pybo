@@ -64,12 +64,12 @@
                               <div class="modal-footer">
 
 <!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
-                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">취소</button>
-                                  <div><button type="button" class="btn-success btn-lg" data-bs-dismiss="modal" id="first_check_ready">저장</button></div>
+                                <button type="button" class="btn btn-outline-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">취소</button>
+                                  <div><button type="button" class="btn btn-outline-success btn-lg" data-bs-dismiss="modal" id="first_check_ready">저장</button></div>
                                     <form action="{% url 'eas:Request_create_sangsin' new_Request.id %}" method="post" onkeydown="return event.key != 'Enter';">
                                         {% csrf_token %}
                                         <input name="temp_sangsin" type="hidden" value="상신">
-                                    <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" name="first_check" value="상신">상신</button></div>
+                                    <div><button type="submit" class="btn btn-outline-danger btn-lg" data-bs-dismiss="modal" name="first_check" value="상신">상신</button></div>
                                     </form>
 
 <!--                                    <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="first_check">상신</button></div>-->
