@@ -36,33 +36,37 @@
             <div class="d-none d-sm-block">
             <form style="padding-top:18px" name="viewerForm" action="http://info.sweettracker.co.kr/tracking/4" method="post" target="viewer" onsubmit="postPopUp();">
                 {% csrf_token %}
-               <div class="input-group flex-nowrap">
-<!--                <label for="t_key"></label>-->
-                <input type="hidden" class="form-control form-control-sm" id="t_key" name="t_key" value="69c1rgzzjvYLOWwGMR70qQ">
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                <label for="t_code">택배사 코드</label>-->
-<!--                 <input type="text" class="form-control form-control-sm" name="t_code" id="t_code" placeholder="택배사 코드">-->
-                   <select class="form-select form-select-sm" aria-label="Default select example" name="t_code" id="t_code" accesskey="t">>
-                      <option selected>택배사</option>
-                      <option value="04">대한통운</option>
-                      <option value="05">한진</option>
-                      <option value="08">롯데</option>
-                      <option value="06">로젠</option>
-                      <option value="23">경동</option>
-                      <option value="32">합동</option>
-                      <option value="18">건영</option>
-                      <option value="17">천일</option>
-                      <option value="45">호남</option>
-                      <option value="01">우체국</option>
-                   </select>
-<!--                </div>-->
+                <div class="input-group flex-nowrap">
+                    <!--                <label for="t_key"></label>-->
+                    <input type="hidden" class="form-control form-control-sm" id="t_key" name="t_key"
+                           oninput="removeNonNumeric()" value="69c1rgzzjvYLOWwGMR70qQ">
+                    <!--                </div>-->
+                    <!--                <div class="form-group">--></div>
+                <div class="input-group flex-nowrap">
+                    <!--                <label for="t_code">택배사 코드</label>-->
+                    <!--                 <input type="text" class="form-control form-control-sm" name="t_code" id="t_code" placeholder="택배사 코드">-->
+                    <select class="form-select form-select-sm" aria-label="Default select example" name="t_code"
+                            id="t_code" accesskey="t">>
+                        <option selected>택배사</option>
+                        <option value="04">대한통운</option>
+                        <option value="05">한진</option>
+                        <option value="08">롯데</option>
+                        <option value="06">로젠</option>
+                        <option value="23">경동</option>
+                        <option value="32">합동</option>
+                        <option value="18">건영</option>
+                        <option value="17">천일</option>
+                        <option value="45">호남</option>
+                        <option value="01">우체국</option>
+                    </select>
+                    <!--                </div>-->
 
-<!--                <div class="form-group">-->
-<!--                  <label for="t_invoice">운송장 번호</label>-->
+                    <!--                <div class="form-group">-->
+                    <!--                  <label for="t_invoice">운송장 번호</label>-->
                     &nbsp;
-                  <input type="number" class="form-control form-control-ml" name="t_invoice" id="t_invoice" placeholder="운송장 번호">
-                  <button type="submit" class="btn btn-outline-secondary">조회</button>
+                    <input type="number" class="form-control form-control-ml" name="t_invoice" id="t_invoice"
+                           placeholder="운송장 번호">
+                    <button type="submit" class="btn btn-outline-secondary">조회</button>
                 </div>
 
             </form>
@@ -141,7 +145,11 @@
 <!--            value = value.replace("-", "");-->
 <!--            $('input[name=t_invoice]').val(value);-->
 <!--        });-->
-
+<!-- 택배조회 입력창 숫자외 문자 제외-->
+function removeNonNumeric() {
+    var input = document.getElementById("t_key");
+    input.value = input.value.replace(/[^0-9]/g, "");
+}
 
   </script>
 
