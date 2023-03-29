@@ -38,8 +38,7 @@
                 {% csrf_token %}
                 <div class="input-group flex-nowrap">
                     <!--                <label for="t_key"></label>-->
-                    <input type="hidden" class="form-control form-control-sm" id="t_key" name="t_key"
-                           oninput="removeNonNumeric()" value="69c1rgzzjvYLOWwGMR70qQ">
+                    <input type="hidden" class="form-control form-control-sm" id="t_key" name="t_key" value="69c1rgzzjvYLOWwGMR70qQ">
                     <!--                </div>-->
                     <!--                <div class="form-group">--></div>
                 <div class="input-group flex-nowrap">
@@ -65,7 +64,7 @@
                     <!--                  <label for="t_invoice">운송장 번호</label>-->
                     &nbsp;
                     <input type="number" class="form-control form-control-ml" name="t_invoice" id="t_invoice"
-                           placeholder="운송장 번호">
+                           oninput="removeNonNumeric()" placeholder="운송장 번호">
                     <button type="submit" class="btn btn-outline-secondary">조회</button>
                 </div>
 
@@ -145,10 +144,10 @@
 <!--            value = value.replace("-", "");-->
 <!--            $('input[name=t_invoice]').val(value);-->
 <!--        });-->
-<!-- 택배조회 입력창 숫자외 문자 제외 input.value = input.value.replace(/[^0123456789]\-/g, "");-->
+<!-- 택배조회 입력창 숫자외 문자 제외 -->
 function removeNonNumeric() {
-    var input = document.getElementById("t_key");
-    input.value = input.value.replace(/\-/g, '');
+    var input = document.getElementById("t_invoice");
+    input.value = input.value.replace(/[^0123456789]\-/g, "");
 }
 
   </script>
