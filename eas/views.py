@@ -12,7 +12,6 @@ from django.db.models import Q
 from asgiref.sync import sync_to_async
 
 
-
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
     kw = request.GET.get('kw', '')  # 검색어
