@@ -153,43 +153,6 @@
 </div>
     <!-- 페이징처리 끝 -->
 
-<!-- 파이스크립트 원주 실시간 뉴스 크롤링 -->
-<py-script>
-import requests
-from bs4 import BeautifulSoup
-import time
-
-# URL of the news website for Wonju, Gangwon-do
-url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%9B%90%EC%A3%BC"
-
-
-# Send a GET request to the news website
-    response = requests.get(url)
-
-    # Use BeautifulSoup to parse the HTML content of the response
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Find all the news article links on the page
-    article_links = soup.select(".list_news a")
-
-    # Print the titles and links of the new articles
-    for link in article_links:
-
-        print(link.text)
-        print(link['href'])
-        print("--------------------------------------------------------")
-        print()
-
-</py-script>
-
-
-
-
-
-
-
-
-
 
 <!-- 클립보드이미지 붙여넣기-->
 <p>Paste your image here…</p>
