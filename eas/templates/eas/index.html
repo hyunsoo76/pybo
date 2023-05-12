@@ -236,7 +236,7 @@ document.onpaste = function(pasteEvent) {
 
             // send the dataURL to the server using AJAX
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/save-image/', true);
+            xhr.open('POST', '/eas/save-image/', true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
             xhr.onload = function() {
                 if (xhr.status === 200) {
