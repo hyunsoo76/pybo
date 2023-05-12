@@ -473,16 +473,3 @@ def ds(request):
         return render(request, 'eas/ds.html')
 
 
-# 스샷 이미지 모델 저장
-def save_image(request):
-    if request.method == 'POST':
-        data_url = request.POST.get('image')
-        if data_url:
-            # convert the data URL to a file and save it to the model
-            format, imgstr = data_url.split(';base64,')
-            ext = format.split('/')[-1]
-            filename = f"picture.{ext}"
-            data = ContentFile(base64.b64decode(imgstr), name=filename)
-            Request.dojang1 = Request.objects.create(picture=data)
-            return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
