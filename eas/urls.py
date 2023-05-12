@@ -28,7 +28,7 @@ urlpatterns = [
     path('nomal_approval/', views.nomal_approval, name='nomal_approval'),
     path('nomal_approval_r/<int:Request_id>/', views.nomal_approval_r, name='nomal_approval_r'),
     path('ds.html/', views.ds, name='ds'),
-    path('save-image/', save_image, name='save_image'),
+    path('/save-image/', save_image, name='save_image'),
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
