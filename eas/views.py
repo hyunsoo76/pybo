@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.shortcuts import redirect
 # from django.template import loader
 from django.shortcuts import get_object_or_404, render
+from django.utils.baseconv import base64
 
 from . import pushmsg
 from .models import Request
@@ -10,6 +11,11 @@ from .forms import RequestForm
 from django.core.paginator import Paginator
 from django.db.models import Q
 from asgiref.sync import sync_to_async
+
+from django.http import JsonResponse
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+
 
 
 def index(request):
@@ -462,3 +468,18 @@ def ds(request):
       return render(request, 'eas/ds.html')
     else:
       return render(request, 'eas/ds.html')
+
+# 스샷 이미지 모델 저장
+def save_image(request):
+    if request.method == 'POST':
+        data_url = request.POST.get('image')
+        if data_url:
+            # convert the data URL to a file and save it to the model
+            format, imgstr = data_url.split(';base64,')
+            ext = format.split('/')[-1]
+            filename = f"picture.{ext}"
+            data = ContentFile(base64.b64decode(imgstr), name=filename)
+            Request.dojang1 = Request.objects.create(picture=data)
+            return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
+
