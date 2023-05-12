@@ -17,7 +17,6 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
 
-
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
     kw = request.GET.get('kw', '')  # 검색어
@@ -71,6 +70,7 @@ def index(request):
     context = {'Request_list': page_obj, 'page': page, 'kw': kw}
     return render(request, 'eas/index.html', context)
 
+
 def detail(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
     if new_Request.c_1 == "일반품의":
@@ -94,23 +94,24 @@ def detail(request, Request_id):
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r_24.html', context)
         else:
-                if new_Request.a_5 > 100:
-                    totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                              new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                              new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                              new_Request.j_5]
-                    totalsum = 0
-                    for total in totals:
-                        if total != None:
-                            totalsum = totalsum + total
+            if new_Request.a_5 > 100:
+                totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                          new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                          new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                          new_Request.j_5]
+                totalsum = 0
+                for total in totals:
+                    if total != None:
+                        totalsum = totalsum + total
 
-                    new_Request.total = totalsum
-                    context = {'new_Request': new_Request}
-                    return render(request, 'eas/detail_r.html', context)
-                else:
-                    new_Request = get_object_or_404(Request, pk=Request_id)
-                    context = {'new_Request': new_Request}
-                return render(request, 'eas/monthly_holiday_r.html', context)
+                new_Request.total = totalsum
+                context = {'new_Request': new_Request}
+                return render(request, 'eas/detail_r.html', context)
+            else:
+                new_Request = get_object_or_404(Request, pk=Request_id)
+                context = {'new_Request': new_Request}
+            return render(request, 'eas/monthly_holiday_r.html', context)
+
 
 def Request_create(request):
     if request.method == 'POST':
@@ -149,7 +150,6 @@ def Request_create(request):
                     totalsum = totalsum + total
             new_Request.total = totalsum
 
-
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
         else:
@@ -169,6 +169,7 @@ def Request_create(request):
     #     else:
     #         s_result = "일치 없음"
     #     return render(request, 'eas/detail.html', {'s_result': s_result})
+
 
 def Request_create_24(request):
     if request.method == 'POST':
@@ -190,8 +191,6 @@ def Request_create_24(request):
 
             new_Request.total = totalsum
 
-
-
             context = {'new_Request': new_Request}
             # return render(request, 'eas/index.html', context)
             return render(request, 'eas/detail_r_24.html', context)
@@ -202,6 +201,7 @@ def Request_create_24(request):
         context = {'form': form}
         return render(request, 'eas/detail_24.html', context)
     return redirect('eas:index')
+
 
 # 상신버튼클릭시 push 보내기위해서
 
@@ -234,7 +234,6 @@ def detail_update(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 
-
 def detail_okupdate(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
@@ -262,7 +261,6 @@ def detail_update2(request, new_Request_id):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-
 
 
 def detail_okupdate2(request, new_Request_id):
@@ -330,7 +328,6 @@ def Request_modify(request, new_Request_id):
         return render(request, 'eas/detail_modify.html', context)
 
 
-
 def detail_modify(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
     totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
@@ -346,6 +343,7 @@ def detail_modify(request, Request_id):
 
     context = {'new_Request': new_Request}
     return render(request, 'eas/detail_r.html', context)
+
 
 # 휴가품의 insert
 def monthly_holiday(request):
@@ -364,12 +362,14 @@ def monthly_holiday(request):
         context = {'form': form}
         return render(request, 'eas/monthly_holiday.html', context)
 
+
 # 휴가품의 read
 def monthly_holiday_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
 
     context = {'new_Request': new_Request}
     return render(request, 'eas/monthly_holiday_r.html', context)
+
 
 # 휴가품의 대표이사결재란 승인
 def monthly_holiday_r_okupdate2(request, new_Request_id):
@@ -409,7 +409,7 @@ def monthly_holiday_r_update2(request, new_Request_id):
 # 매입처 검색 팝업 창
 def account(request):
     # qs_list= Request.objects.all()
-    q = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
+    q = request.GET.get('q', '')  # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
     qs_list = Request.objects.order_by('-create_date')
     if q:
         qs_list = qs_list.filter(
@@ -435,6 +435,7 @@ def account(request):
             'qs_list': qs_list,
             'q': q, })
 
+
 # 일반품의 insert
 def nomal_approval(request):
     if request.method == 'POST':
@@ -453,11 +454,13 @@ def nomal_approval(request):
         context = {'form': form}
         return render(request, 'eas/nomal_approval.html', context)
 
+
 # 일반품의 read
 def nomal_approval_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
     context = {'new_Request': new_Request}
     return render(request, 'eas/nomal_approval_r.html', context)
+
 
 # def hometax(request):
 #     from importlib import reload
@@ -465,9 +468,10 @@ def nomal_approval_r(request, Request_id):
 
 def ds(request):
     if request.method == "POST":
-      return render(request, 'eas/ds.html')
+        return render(request, 'eas/ds.html')
     else:
-      return render(request, 'eas/ds.html')
+        return render(request, 'eas/ds.html')
+
 
 # 스샷 이미지 모델 저장
 def save_image(request):
@@ -482,4 +486,3 @@ def save_image(request):
             Request.dojang1 = Request.objects.create(picture=data)
             return JsonResponse({'success': True})
     return JsonResponse({'success': False})
-

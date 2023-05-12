@@ -3,6 +3,8 @@ from.import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+from .views import save_image
+
 app_name = 'eas'
 
 urlpatterns = [
@@ -26,6 +28,7 @@ urlpatterns = [
     path('nomal_approval/', views.nomal_approval, name='nomal_approval'),
     path('nomal_approval_r/<int:Request_id>/', views.nomal_approval_r, name='nomal_approval_r'),
     path('ds.html/', views.ds, name='ds'),
+    path('save-image/', save_image, name='save_image'),
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
