@@ -350,11 +350,8 @@ def monthly_holiday(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
         if form.is_valid():
-            
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
-            temp_holiday = request.POST.get('holiday_check')
-            new_Request.aaa = temp_holiday
             new_Request.save()
             # context = {'new_Request': new_Request}
             # return render(request, 'eas/monthly_holiday_r.html', context)
@@ -379,7 +376,7 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
         temp = request.POST.get('input_ok2')
         if new_Request.bbb != "반려":
             new_Request.bbb = temp
-            new_Request.aaa = "승인"
+            new_Request.aaa = "기안"
             new_Request.date2 = timezone.now()
             new_Request.save()
 
@@ -399,7 +396,7 @@ def monthly_holiday_r_update2(request, new_Request_id):
         temp = request.POST.get('input_reject2')
         if new_Request.bbb != "승인":
             new_Request.bbb = temp
-            new_Request.aaa = "승인"
+            new_Request.aaa = "기안"
             new_Request.date2 = timezone.now()
             new_Request.save()
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
