@@ -352,7 +352,7 @@ def monthly_holiday(request):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
-            new_Request.aaa = "기안"
+            new_Request.aaa = '기안'
             new_Request.save()
             # context = {'new_Request': new_Request}
             # return render(request, 'eas/monthly_holiday_r.html', context)
@@ -444,7 +444,7 @@ def nomal_approval(request):
             new_Request = form.save(commit=False)
             temp = request.POST.get('nomal')
             new_Request.jisi1 = temp
-            new_Request.aaa = "기안"
+            new_Request.aaa = '기안'
             new_Request.create_date = timezone.now()
             new_Request.save()
             # context = {'new_Request': new_Request}
