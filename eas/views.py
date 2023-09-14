@@ -352,7 +352,7 @@ def monthly_holiday(request):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
-            new_Request.aaa = "승인"
+            new_Request.aaa = "기안"
             new_Request.save()
             # context = {'new_Request': new_Request}
             # return render(request, 'eas/monthly_holiday_r.html', context)
@@ -391,7 +391,7 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
     reload(pushmsg)
 
 
-# 휴가품의 대표결재란 번려
+# 휴가품의 대표결재란 반려
 def monthly_holiday_r_update2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
@@ -444,6 +444,7 @@ def nomal_approval(request):
             new_Request = form.save(commit=False)
             temp = request.POST.get('nomal')
             new_Request.jisi1 = temp
+            new_Request.aaa = "기안"
             new_Request.create_date = timezone.now()
             new_Request.save()
             # context = {'new_Request': new_Request}
