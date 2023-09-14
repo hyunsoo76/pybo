@@ -439,6 +439,7 @@ def account(request):
 def nomal_approval(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
+        new_Request.aaa = '기안'
         if form.is_valid():
             new_Request = form.save(commit=False)
             temp = request.POST.get('nomal')
