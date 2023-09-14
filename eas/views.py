@@ -359,7 +359,6 @@ def monthly_holiday(request):
             return redirect('eas:index')
     else:
         form = RequestForm()
-        new_Request.aaa = '기안'
         context = {'form': form}
         return render(request, 'eas/monthly_holiday.html', context)
 
@@ -367,7 +366,7 @@ def monthly_holiday(request):
 # 휴가품의 read
 def monthly_holiday_r(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
-
+    new_Request.aaa = '기안'
     context = {'new_Request': new_Request}
     return render(request, 'eas/monthly_holiday_r.html', context)
 
