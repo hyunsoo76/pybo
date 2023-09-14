@@ -350,9 +350,11 @@ def monthly_holiday(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
         if form.is_valid():
+            
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
-            new_Request.aaa = '기안'
+            temp_holiday = request.POST.get('holiday_check')
+            new_Request.aaa = temp_holiday
             new_Request.save()
             # context = {'new_Request': new_Request}
             # return render(request, 'eas/monthly_holiday_r.html', context)
@@ -439,7 +441,6 @@ def account(request):
 def nomal_approval(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
-        new_Request.aaa = '기안'
         if form.is_valid():
             new_Request = form.save(commit=False)
             temp = request.POST.get('nomal')
