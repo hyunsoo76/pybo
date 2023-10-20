@@ -139,7 +139,7 @@ def Request_create(request):
             elif new_Request.b_1:
                 new_Request.fff = 1
 
-            
+            new_Request.save()
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
