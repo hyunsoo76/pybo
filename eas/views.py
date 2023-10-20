@@ -89,8 +89,8 @@ def detail(request, Request_id):
                 if total != None:
                     totalsum = totalsum + total
 
-            new_Request.total = totalsum            
-            detail_modify()
+            new_Request.total = totalsum
+
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r_24.html', context)
         else:
@@ -153,7 +153,6 @@ def Request_create(request):
             # new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
-            
         else:
             form = RequestForm(request.POST)
             context = {'form': form}
