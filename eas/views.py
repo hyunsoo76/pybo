@@ -212,25 +212,21 @@ def Request_create_sangsin(request, new_Request_id):
         temp_s = request.POST.get('temp_sangsin')
         if temp_s == "상신":
             new_Request.ccc = '기안'
-
+            
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
                       new_Request.j_5]
             totalsum = 0
             for total in totals:
-                totalsum = totalsum + total
-            new_Request.total = totalsum    
-
-
-
+                if total != None:
+                    totalsum = totalsum + total
+            new_Request.total = totalsum
+                
             new_Request.save()
             from importlib import reload
             reload(pushmsg)
             # await reload(sync_to_async(pushmsg.main()))
-
-
-
             return redirect('eas:index')
     else:
         return redirect('eas:index')
