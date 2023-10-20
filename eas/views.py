@@ -89,8 +89,8 @@ def detail(request, Request_id):
                 if total != None:
                     totalsum = totalsum + total
 
-            new_Request.total = totalsum
-
+            new_Request.total = totalsum            
+            detail_modify()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r_24.html', context)
         else:
@@ -104,7 +104,7 @@ def detail(request, Request_id):
                     if total != None:
                         totalsum = totalsum + total
 
-                new_Request.ggg = totalsum
+                new_Request.total = totalsum
                 # new_Request.save()
                 context = {'new_Request': new_Request}
                 return render(request, 'eas/detail_r.html', context)
@@ -112,6 +112,7 @@ def detail(request, Request_id):
                 new_Request = get_object_or_404(Request, pk=Request_id)
                 context = {'new_Request': new_Request}
             return render(request, 'eas/monthly_holiday_r.html', context)
+
 
 
 def Request_create(request):
@@ -152,6 +153,7 @@ def Request_create(request):
             # new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
+            
         else:
             form = RequestForm(request.POST)
             context = {'form': form}
