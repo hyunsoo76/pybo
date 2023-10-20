@@ -71,8 +71,8 @@ def index(request):
     return render(request, 'eas/index.html', context)
 
 
-def detail(request, new_Request_id):
-    new_Request = get_object_or_404(Request, pk=new_Request_id)
+def detail(request, Request_id):
+    new_Request = get_object_or_404(Request, pk=Request_id)
     if new_Request.c_1 == "일반품의":
         context = {'new_Request': new_Request}
         return render(request, 'eas/nomal_approval_r.html', context)
