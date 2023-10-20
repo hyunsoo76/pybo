@@ -71,8 +71,8 @@ def index(request):
     return render(request, 'eas/index.html', context)
 
 
-def detail(request, Request_id):
-    new_Request = get_object_or_404(Request, pk=Request_id)
+def detail(request, new_Request_id):
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
     if new_Request.c_1 == "일반품의":
         context = {'new_Request': new_Request}
         return render(request, 'eas/nomal_approval_r.html', context)
@@ -140,7 +140,6 @@ def Request_create(request):
             elif new_Request.b_1:
                 new_Request.fff = 1
 
-            new_Request.save()
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
