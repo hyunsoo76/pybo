@@ -299,15 +299,16 @@ def Request_modify(request, new_Request_id):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()  # 수정일시 저장
 
-            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                      new_Request.j_5]
-            totalsum = 0
-            for total in totals:
-                if total != None:
-                    totalsum = totalsum + total
-            new_Request.total = totalsum
+            # totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+            #           new_Request.d_5, new_Request.e_5, new_Request.f_5,
+            #           new_Request.g_5, new_Request.h_5, new_Request.i_5,
+            #           new_Request.j_5]
+            # totalsum = 0
+            # for total in totals:
+            #     if total != None:
+            #         totalsum = totalsum + total
+            # new_Request.total = totalsum
+            
             # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
                 new_Request.fff = 9
