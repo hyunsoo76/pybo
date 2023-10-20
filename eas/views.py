@@ -219,9 +219,7 @@ def Request_create_sangsin(request, new_Request_id):
                       new_Request.j_5]
             totalsum = 0
             for total in totals:
-                if total != None:
-                    totalsum = totalsum + total
-
+                totalsum = totalsum + total
             new_Request.total = totalsum    
 
 
