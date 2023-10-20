@@ -238,18 +238,6 @@ def detail_update(request, new_Request_id):
         if new_Request.aaa != "승인" or "전결":
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
-            
-            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                      new_Request.j_5]
-            totalsum = 0
-            for total in totals:
-                if total != None:
-                    totalsum = totalsum + total
-
-            new_Request.total = totalsum
-
             new_Request.save()
             # messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
