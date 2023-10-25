@@ -147,7 +147,7 @@ def Request_create(request):
                       new_Request.j_5]
             totalsum = 0
             for total in totals:
-                if total != None:
+                if total == int:
                     totalsum = totalsum + total
             new_Request.total = totalsum
             new_Request.save()
