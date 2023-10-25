@@ -87,10 +87,10 @@ class Request(models.Model):
     bbb = models.CharField(max_length=200, blank=True) #대표이사결재
     ccc = models.CharField(max_length=200, blank=True) #상신버튼체크
     ddd = models.CharField(max_length=200, blank=True) #이사결재체크
-    eee = models.CharField(max_length=200, blank=True)
+    eee = models.CharField(max_length=200, blank=True) 
     fff = models.IntegerField(blank=True, null=True) #index 외 몇개 매입처 표기
     ggg = models.IntegerField(blank=True, null=True) # detail에서 최초 생성시 total 값 넘겨받기
-    hhh = models.IntegerField(blank=True, null=True)
+    hhh = models.IntegerField(blank=True, null=True) # total 최소 생성시 값이 안들어가서 이걸로해봄 
 
 
 
