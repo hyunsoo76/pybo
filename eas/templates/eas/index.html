@@ -76,7 +76,7 @@
               <a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{Request.subject }} </a>
               {% endif %}
               </td>
-              <td align="right"><a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{ Request.id.total|intcomma }}</a></td>
+              <td align="right"><a href ="/eas/{{ Request.id }}/" style="text-decoration:none">{{ Request.total|intcomma }}</a></td>
                 {% if Request.ccc == "기안" %}
                     <td>기안</td>
                 {% else %}
