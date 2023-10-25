@@ -145,9 +145,6 @@ def Request_create(request):
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
                       new_Request.j_5]
-            # None 값을 0으로 바꾸는 리스트 컴프리헨션
-            totals = [0 if x is None else x for x in totals]
-            
             totalsum = 0
             for total in totals:
                 if total != None:
