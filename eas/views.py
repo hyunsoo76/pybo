@@ -147,9 +147,10 @@ def Request_create(request):
                       new_Request.j_5]
             totalsum = 0
             for total in totals:
-                if total == int:
+                if total == None:
                     totalsum = totalsum + total
             new_Request.total = totalsum
+            new_Request.total = new_Request.a_5 + new_Request.b_5 + new_Request.c_5 + new_Request.d_5+ new_Request.e_5+ new_Request.f_5+new_Request.g_5+ new_Request.h_5+ new_Request.i_5+new_Request.j_5
             new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
