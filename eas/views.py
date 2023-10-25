@@ -90,7 +90,7 @@ def detail(request, Request_id):
                     totalsum = totalsum + total
 
             new_Request.total = totalsum
-
+            new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r_24.html', context)
         else:
