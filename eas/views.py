@@ -105,7 +105,7 @@ def detail(request, Request_id):
                         totalsum = totalsum + total
 
                 new_Request.total = totalsum
-                # new_Request.save()
+                new_Request.save()
                 context = {'new_Request': new_Request}
                 return render(request, 'eas/detail_r.html', context)
             else:
@@ -150,7 +150,6 @@ def Request_create(request):
                 if total != None:
                     totalsum = totalsum + total
             new_Request.total = totalsum
-            new_Request.hhh = totalsum
             new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
@@ -162,6 +161,7 @@ def Request_create(request):
         form = RequestForm()
         context = {'form': form}
         return render(request, 'eas/detail.html', context)
+    
     # else:
     #
     #     query = request.GET.get('j_1', '')
