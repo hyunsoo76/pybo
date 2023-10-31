@@ -80,16 +80,16 @@ def detail(request, Request_id):
 
         if new_Request.ddd == "이사":
 
-            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                      new_Request.j_5]
-            totalsum = 0
-            for total in totals:
-                if total != None:
-                    totalsum = totalsum + total
+            # totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+            #           new_Request.d_5, new_Request.e_5, new_Request.f_5,
+            #           new_Request.g_5, new_Request.h_5, new_Request.i_5,
+            #           new_Request.j_5]
+            # totalsum = 0
+            # for total in totals:
+            #     if total != None:
+            #         totalsum = totalsum + total
 
-            new_Request.total = totalsum
+            # new_Request.total = totalsum
             new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r_24.html', context)
