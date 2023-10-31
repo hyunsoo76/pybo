@@ -150,6 +150,10 @@ def Request_create(request):
                 if total != None:
                     totalsum = totalsum + total
             new_Request.total = totalsum
+            
+            if new_Request.total == None :
+                new_Request = 1111
+
             new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
