@@ -95,16 +95,16 @@ def detail(request, Request_id):
             return render(request, 'eas/detail_r_24.html', context)
         else:
             if new_Request.ddd != "이사":
-                # totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                #           new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                #           new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                #           new_Request.j_5]
-                # totalsum = 0
-                # for total in totals:
-                #     if total != None :
-                #         totalsum = totalsum + total
+                totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                          new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                          new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                          new_Request.j_5]
+                totalsum = 0
+                for total in totals:
+                    if total != None :
+                        totalsum = totalsum + total
 
-                # new_Request.total = totalsum
+                new_Request.total = totalsum
                 new_Request.save()
                 context = {'new_Request': new_Request}
                 return render(request, 'eas/detail_r.html', context)
@@ -122,24 +122,24 @@ def Request_create(request):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             # 외 몇개의 매입처인지 표기하기기 위해
-            # if new_Request.j_1:
-            #     new_Request.fff = 9
-            # elif new_Request.i_1:
-            #     new_Request.fff = 8
-            # elif new_Request.h_1:
-            #     new_Request.fff = 7
-            # elif new_Request.g_1:
-            #     new_Request.fff = 6
-            # elif new_Request.f_1:
-            #     new_Request.fff = 5
-            # elif new_Request.e_1:
-            #     new_Request.fff = 4
-            # elif new_Request.d_1:
-            #     new_Request.fff = 3
-            # elif new_Request.c_1:
-            #     new_Request.fff = 2
-            # elif new_Request.b_1:
-            #     new_Request.fff = 1
+            if new_Request.j_1:
+                new_Request.fff = 9
+            elif new_Request.i_1:
+                new_Request.fff = 8
+            elif new_Request.h_1:
+                new_Request.fff = 7
+            elif new_Request.g_1:
+                new_Request.fff = 6
+            elif new_Request.f_1:
+                new_Request.fff = 5
+            elif new_Request.e_1:
+                new_Request.fff = 4
+            elif new_Request.d_1:
+                new_Request.fff = 3
+            elif new_Request.c_1:
+                new_Request.fff = 2
+            elif new_Request.b_1:
+                new_Request.fff = 1
             
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
@@ -301,35 +301,35 @@ def Request_modify(request, new_Request_id):
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()  # 수정일시 저장
 
-            # totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-            #           new_Request.d_5, new_Request.e_5, new_Request.f_5,
-            #           new_Request.g_5, new_Request.h_5, new_Request.i_5,
-            #           new_Request.j_5]
-            # totalsum = 0
-            # for total in totals:
-            #     if total != None:
-            #         totalsum = totalsum + total
-            # new_Request.total = totalsum
+            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                      new_Request.j_5]
+            totalsum = 0
+            for total in totals:
+                if total != None:
+                    totalsum = totalsum + total
+            new_Request.total = totalsum
 
             # 외 몇개의 매입처인지 표기하기기 위해
-            # if new_Request.j_1:
-            #     new_Request.fff = 9
-            # elif new_Request.i_1:
-            #     new_Request.fff = 8
-            # elif new_Request.h_1:
-            #     new_Request.fff = 7
-            # elif new_Request.g_1:
-            #     new_Request.fff = 6
-            # elif new_Request.f_1:
-            #     new_Request.fff = 5
-            # elif new_Request.e_1:
-            #     new_Request.fff = 4
-            # elif new_Request.d_1:
-            #     new_Request.fff = 3
-            # elif new_Request.c_1:
-            #     new_Request.fff = 2
-            # elif new_Request.b_1:
-            #     new_Request.fff = 1
+            if new_Request.j_1:
+                new_Request.fff = 9
+            elif new_Request.i_1:
+                new_Request.fff = 8
+            elif new_Request.h_1:
+                new_Request.fff = 7
+            elif new_Request.g_1:
+                new_Request.fff = 6
+            elif new_Request.f_1:
+                new_Request.fff = 5
+            elif new_Request.e_1:
+                new_Request.fff = 4
+            elif new_Request.d_1:
+                new_Request.fff = 3
+            elif new_Request.c_1:
+                new_Request.fff = 2
+            elif new_Request.b_1:
+                new_Request.fff = 1
 
             new_Request.save()
             context = {'new_Request': new_Request}
@@ -345,16 +345,16 @@ def Request_modify(request, new_Request_id):
 
 def detail_modify(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
-    # totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-    #           new_Request.d_5, new_Request.e_5, new_Request.f_5,
-    #           new_Request.g_5, new_Request.h_5, new_Request.i_5,
-    #           new_Request.j_5]
-    # totalsum = 0
-    # for total in totals:
-    #     if total != None:
-    #         totalsum = totalsum + total
+    totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
+              new_Request.d_5, new_Request.e_5, new_Request.f_5,
+              new_Request.g_5, new_Request.h_5, new_Request.i_5,
+              new_Request.j_5]
+    totalsum = 0
+    for total in totals:
+        if total != None:
+            totalsum = totalsum + total
 
-    # new_Request.total = totalsum
+    new_Request.total = totalsum
 
     context = {'new_Request': new_Request}
     return render(request, 'eas/detail_r.html', context)
