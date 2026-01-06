@@ -233,6 +233,7 @@ def Request_create_sangsin(request, new_Request_id):
                 url="http://3.37.211.248/eas/",
                 url_title="전자문서결재"
             )
+            print("POST:", request.POST)
             # await reload(sync_to_async(pushmsg.main()))
             return redirect('eas:index')
     else:
