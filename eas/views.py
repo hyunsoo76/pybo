@@ -16,6 +16,7 @@ from django.http import JsonResponse
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from eas.pushmsg import send_push
+import logging
 
 
 
@@ -213,6 +214,7 @@ def Request_create_24(request):
 def Request_create_sangsin(request, new_Request_id):
     print("🔥 상신 view 진입함", flush=True)
     new_Request = get_object_or_404(Request, pk=new_Request_id)
+    logger = logging.getLogger(__name__)
     if request.method == 'POST':
         temp_s = request.POST.get('temp_sangsin')
         if temp_s == "상신":
@@ -229,12 +231,14 @@ def Request_create_sangsin(request, new_Request_id):
             new_Request.total = totalsum
                 
             new_Request.save()
+            logger.error("🔥 send_push 호출 직전")
             send_push(
                 title="대진산업",
                 message="기안이 상신되었습니다",
                 url="http://3.37.211.248/eas/",
                 url_title="전자문서결재"
             )
+            logger.error("🔥 send_push 호출 완료")
             print("POST:", request.POST)
             # await reload(sync_to_async(pushmsg.main()))
             return redirect('eas:index')
