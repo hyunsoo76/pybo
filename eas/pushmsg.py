@@ -70,7 +70,7 @@ def send_push(
         "c": "#00CC00",      # 아이콘 색상
         "u": url,            # 클릭 시 열리는 URL
         "ut": url_title,     # URL 제목
-        "k": "V7n0IT68dTeoYJU6YQiW",  # Pushsafer 키 (기존 값 사용)
+        "k": "V7n0lT68dTeoYJU6YQiW",  # Pushsafer 키 (기존 값 사용)
     }
 
     request = Request(PUSHSAFER_API_URL, urlencode(post_fields).encode())
