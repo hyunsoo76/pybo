@@ -18,6 +18,7 @@ from django.core.files.storage import default_storage
 from eas.pushmsg import send_push
 
 
+
 def index(request):
     page = request.GET.get('page', '1')  # 페이지
     kw = request.GET.get('kw', '')  # 검색어
@@ -210,6 +211,7 @@ def Request_create_24(request):
 # 상신버튼클릭시 push 보내기위해서
 
 def Request_create_sangsin(request, new_Request_id):
+    print("🔥 상신 view 진입함", flush=True)
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == 'POST':
         temp_s = request.POST.get('temp_sangsin')
