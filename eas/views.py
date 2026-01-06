@@ -15,6 +15,7 @@ from asgiref.sync import sync_to_async
 from django.http import JsonResponse
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from eas.pushmsg import send_push
 
 
 def index(request):
@@ -226,8 +227,12 @@ def Request_create_sangsin(request, new_Request_id):
             new_Request.total = totalsum
                 
             new_Request.save()
-            from importlib import reload
-            reload(pushmsg)
+            send_push(
+                title="대진산업",
+                message="기안이 상신되었습니다",
+                url="http://3.37.211.248/eas/",
+                url_title="전자문서결재"
+            )
             # await reload(sync_to_async(pushmsg.main()))
             return redirect('eas:index')
     else:
@@ -270,8 +275,12 @@ def detail_update2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            from importlib import reload
-            reload(pushmsg)
+            send_push(
+                title="대진산업",
+                message="기안이 상신되었습니다",
+                url="http://3.37.211.248/eas/",
+                url_title="전자문서결재"
+            )
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
@@ -285,8 +294,12 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
-            from importlib import reload
-            reload(pushmsg)
+            send_push(
+                title="대진산업",
+                message="기안이 상신되었습니다",
+                url="http://3.37.211.248/eas/",
+                url_title="전자문서결재"
+            )
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
         else:
@@ -400,8 +413,12 @@ def monthly_holiday_r_okupdate2(request, new_Request_id):
 
         else:
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-    from importlib import reload
-    reload(pushmsg)
+    send_push(
+                title="대진산업",
+                message="기안이 상신되었습니다",
+                url="http://3.37.211.248/eas/",
+                url_title="전자문서결재"
+            )
 
 
 # 휴가품의 대표결재란 반려
