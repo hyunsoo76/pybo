@@ -296,7 +296,7 @@ def detail_update2(request, new_Request_id):
             new_Request.save()
             send_push(
                 title="대진산업",
-                message="기안이 상신되었습니다",
+                message="기안이 반려처리 되었습니다",
                 url="http://3.37.211.248/eas/",
                 url_title="전자문서결재"
             )
@@ -315,7 +315,7 @@ def detail_okupdate2(request, new_Request_id):
             new_Request.save()
             send_push(
                 title="대진산업",
-                message="기안이 상신되었습니다",
+                message="기안이 대표이사 승인처리 되었습니다",
                 url="http://3.37.211.248/eas/",
                 url_title="전자문서결재"
             )
