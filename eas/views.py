@@ -254,6 +254,12 @@ def detail_update(request, new_Request_id):
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
             new_Request.save()
+            send_push(
+                title="대진산업",
+                message="대표이사 결재(반려) 처리되었습니다",
+                url="http://3.37.211.248/eas/",
+                url_title="전자문서결재"
+            )
             # messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
@@ -268,6 +274,12 @@ def detail_okupdate(request, new_Request_id):
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
             new_Request.save()
+            send_push(
+                title="대진산업",
+                message="대표이사 결재(승인) 처리되었습니다",
+                url="http://3.37.211.248/eas/",
+                url_title="전자문서결재"
+            )
             # messages.warning(request, "결재완료")
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
