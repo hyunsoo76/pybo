@@ -291,3 +291,22 @@
     });
   });
 })();
+
+// ✅ vendor 입력칸 밖으로 포커스가 이동하면 열려있는 드롭다운을 무조건 닫는다
+    document.addEventListener("focusin", (ev) => {
+      const target = ev.target;
+
+      document.querySelectorAll("input[id]").forEach((el) => {
+        if (!el._vendorDropdown) return;
+        if (el._vendorDropdown.style.display !== "block") return;
+
+        // 지금 포커스가 해당 vendor input 자신이거나, 드롭다운 내부면 유지
+        const isSameInput = target === el;
+        const isInsideDropdown = el._vendorDropdown.contains(target);
+
+        // ✅ vendor input이 아닌 곳(예: 금액칸)으로 이동하면 닫기
+        if (!isSameInput && !isInsideDropdown) {
+          closeDropdown(el);
+        }
+      });
+    });
