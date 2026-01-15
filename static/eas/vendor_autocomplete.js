@@ -176,11 +176,17 @@
     const elBank = document.getElementById(`${prefix}_3`);
     const elAccName = document.getElementById(`${prefix}_4`);
     const elAmount = document.getElementById(`${prefix}_5`);
+    const elType     = document.getElementById(`${prefix}_6`); // ✅ 구분 칸
 
     if (elVendor) elVendor.value = it.vendor || "";
     if (elAccNo) elAccNo.value = it.account_no || "";
     if (elBank) elBank.value = it.bank || "";
     if (elAccName) elAccName.value = it.account_name || "";
+
+    // ✅ 매입처가 한국3M(자체)면 구분 자동 입력
+    if (elType && (it.vendor || "").trim() === "한국3M(자체)") {
+      elType.value = "대진상사";
+    }
 
     // ✅ 혹시 다른 input dropdown이 열려있으면 전부 닫기
     closeAllDropdowns();
