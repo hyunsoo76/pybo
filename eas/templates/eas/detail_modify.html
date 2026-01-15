@@ -1,4 +1,5 @@
 {% extends 'base_eas.html' %}
+{% load static %}
 {% block content %}
         <p></p>
 <!--         {% if messages %}-->
@@ -579,5 +580,6 @@
 
 
                  </script>
+                 <script src="{% static 'eas/vendor_autocomplete.js' %}"></script>
 
 {% endblock %}

@@ -18,6 +18,9 @@ from django.core.files.storage import default_storage
 from eas.pushmsg import send_push
 import logging
 
+import re
+from django.views.decorators.http import require_GET
+
 
 
 def index(request):
@@ -523,3 +526,67 @@ def ds(request):
         return render(request, 'eas/ds.html')
 
 
+# eas/views.py (맨 아래쪽에 추가)
+
+# eas/views.py (맨 아래쪽 아무데나)
+import re
+from django.http import JsonResponse
+from django.db.models import Q
+
+def vendor_suggest(request):
+    q = (request.GET.get("q") or "").strip()
+    limit = int(request.GET.get("limit") or "10")
+
+    if not q:
+        return JsonResponse({"items": []})
+
+    vendor_slots = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+
+    # 1) 검색 조건 만들기
+    if ("%" in q) or ("_" in q):
+        # LIKE 패턴을 regex로 변환: % -> .* , _ -> .
+        # LIKE는 문자열 전체 매칭이므로 ^...$ 앵커
+        pat = re.escape(q)
+        pat = pat.replace(r"\%", ".*").replace(r"\_", ".")
+        regex = f"^{pat}$"
+
+        cond = Q()
+        for s in vendor_slots:
+            cond |= Q(**{f"{s}_1__iregex": regex})
+    else:
+        cond = Q()
+        for s in vendor_slots:
+            cond |= Q(**{f"{s}_1__icontains": q})
+
+    qs = Request.objects.filter(cond).order_by("-create_date")
+
+    # 2) Request 1건 안에 a~j 라인이 있으니, "라인 단위"로 펼쳐서 10개 만들기
+    items = []
+    for r in qs:
+        for s in vendor_slots:
+            vendor = getattr(r, f"{s}_1", "") or ""
+            if not vendor:
+                continue
+
+            # 실제로 이 vendor가 q와 매칭되는지(라인 단위로 한번 더 체크)
+            if ("%" in q) or ("_" in q):
+                if not re.match(regex, vendor, flags=re.IGNORECASE):
+                    continue
+            else:
+                if q.lower() not in vendor.lower():
+                    continue
+
+            items.append({
+                "vendor": vendor,
+                "account_no": getattr(r, f"{s}_2", "") or "",
+                "bank": getattr(r, f"{s}_3", "") or "",
+                "account_name": getattr(r, f"{s}_4", "") or "",
+                "amount": getattr(r, f"{s}_5", None),
+                "note": getattr(r, f"{s}_7", "") or "",
+                "used_at": r.create_date.isoformat() if r.create_date else None,
+            })
+
+            if len(items) >= limit:
+                return JsonResponse({"items": items})
+
+    return JsonResponse({"items": items})

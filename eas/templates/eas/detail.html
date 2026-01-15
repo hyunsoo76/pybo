@@ -1,4 +1,5 @@
 {% extends 'base_eas.html' %}
+{% load static %}
 {% block content %}
 <p></p>
 {% if messages %}
@@ -304,7 +305,11 @@
                  align="center">1
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_1" name="a_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="a_1" name="a_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.a_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.a_2.focus();">
             </div>
@@ -344,7 +349,12 @@
                  align="center">2
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_1" name="b_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="b_1" name="b_1" 
+                    autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.b_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.b_2.focus();">
             </div>
@@ -384,7 +394,11 @@
                  align="center">3
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_1" name="c_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="c_1" name="c_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.c_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.c_2.focus();">
             </div>
@@ -424,7 +438,11 @@
                  align="center">4
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_1" name="d_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="d_1" name="d_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.d_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.d_2.focus();">
             </div>
@@ -464,7 +482,11 @@
                  align="center">5
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_1" name="e_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="e_1" name="e_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.e_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.e_2.focus();">
             </div>
@@ -504,7 +526,11 @@
                  align="center">6
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_1" name="f_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="f_1" name="f_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.f_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.f_2.focus();">
             </div>
@@ -544,7 +570,11 @@
                  align="center">7
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_1" name="g_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="g_1" name="g_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.g_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.g_2.focus();">
             </div>
@@ -584,7 +614,11 @@
                  align="center">8
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_1" name="h_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="h_1" name="h_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.h_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.h_2.focus();">
             </div>
@@ -624,7 +658,11 @@
                  align="center">9
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_1" name="i_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="i_1" name="i_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.i_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.i_2.focus();">
             </div>
@@ -665,7 +703,11 @@
                  align="center">10
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_1" name="j_1"
+                <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="j_1" name="j_1" autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        inputmode="text"
                        value="{{ form.j_1.value|default_if_none:'' }}"
                        onkeydown="if(event.keyCode==13)detail_input.j_2.focus();">
             </div>
@@ -836,5 +878,5 @@
 
 
 </script>
-
+<script src="{% static 'eas/vendor_autocomplete.js' %}"></script>
 {% endblock %}
