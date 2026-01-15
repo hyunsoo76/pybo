@@ -7,6 +7,7 @@ def index(request):
     paystub 목록 출력
     """
     # 조회
+<<<<<<< Updated upstream
     pay_list = Pay_list.objects.order_by('-id')
     # pay_list = pay_list
 
@@ -14,6 +15,12 @@ def index(request):
 
     context = {'pay_list': pay_list}
 
+=======
+    Pay_list = Pay_list.objects.order_by('-id')
+
+    # pay_list = pay_list
+    context = {'pay_list': pay_list}
+>>>>>>> Stashed changes
     return render(request, 'paystub/main.html', context)
 
 def detail(request, pay_list_id):

@@ -1,3 +1,4 @@
+
 from urllib import request
 
 from django.contrib.auth import authenticate, login
@@ -20,5 +21,8 @@ def signup(request):
             return redirect('index')
     else:
         form = UserForm()
+
     return render(request, 'common/signup.html', {'form': form})
+
+
 

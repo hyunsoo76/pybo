@@ -4,4 +4,15 @@ db.sqlite3
 __pycache__
 .DS_Store
 venv/
-media/
+media/# editor backups
+*~
+*.save
+*.swp
+
+# server local secrets
+.env
+
+# build artifacts / collected static
+staticfiles/
+# git bundles (recovery artifacts)
+*.bundle
