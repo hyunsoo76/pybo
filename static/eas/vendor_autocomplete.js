@@ -51,12 +51,11 @@
     const dd = input._vendorDropdown;
     if (!dd) return;
     dd.style.display = "none";
+    dd.innerHTML = "";
     input._vendorActiveIndex = -1;
     input._vendorItems = [];
-    dd.innerHTML = "";
   }
 
-  // ✅ 모든 입력칸의 열려있는 vendor dropdown을 전부 닫기
   function closeAllDropdowns() {
     document.querySelectorAll("input[id]").forEach((el) => {
       if (!el._vendorDropdown) return;
@@ -86,12 +85,12 @@
 
     dd.innerHTML = "";
 
-    if (!items.length) {
+    if (!input._vendorItems.length) {
       dd.style.display = "none";
       return;
     }
 
-    items.forEach((it, idx) => {
+    input._vendorItems.forEach((it, idx) => {
       const row = document.createElement("div");
       row.className = "vendor-suggest-row";
       row.dataset.index = String(idx);
@@ -129,7 +128,6 @@
 
       top.appendChild(left);
       top.appendChild(right);
-
       row.appendChild(top);
 
       row.addEventListener("mouseenter", () => {
@@ -155,9 +153,7 @@
     if (!dd) return;
 
     const rows = dd.querySelectorAll(".vendor-suggest-row");
-    rows.forEach((r) => {
-      r.style.background = "white";
-    });
+    rows.forEach((r) => (r.style.background = "white"));
 
     const idx = input._vendorActiveIndex;
     if (idx >= 0 && rows[idx]) {
@@ -171,6 +167,9 @@
     const it = items[idx];
     if (!it) return;
 
+    // ✅ 먼저 현재 dropdown을 즉시 닫아버리고(잔상 방지)
+    closeDropdown(input);
+
     const prefix = input.id.split("_")[0]; // a,b,c...
     const elVendor = document.getElementById(`${prefix}_1`);
     const elAccNo = document.getElementById(`${prefix}_2`);
@@ -183,7 +182,7 @@
     if (elBank) elBank.value = it.bank || "";
     if (elAccName) elAccName.value = it.account_name || "";
 
-    // ✅ 선택 시 “현재 것만” 닫지 말고, 열려있는 dropdown 전부 닫기
+    // ✅ 혹시 다른 input dropdown이 열려있으면 전부 닫기
     closeAllDropdowns();
 
     // 선택 후 금액으로 포커스 이동
@@ -237,38 +236,41 @@
     const items = input._vendorItems || [];
     if (!items.length) return;
 
+    // ✅ 메뉴 열려있을 때는 기존 페이지의 엔터/이동 로직이 못 먹게 막는다
+    if (["ArrowDown", "ArrowUp", "Enter", "Escape", "Tab"].includes(e.key)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    // activeIndex가 이상하면 0으로 보정
+    if (typeof input._vendorActiveIndex !== "number" || input._vendorActiveIndex < 0) {
+      input._vendorActiveIndex = 0;
+      paintActive(input);
+    }
+
     if (e.key === "ArrowDown") {
-      e.preventDefault();
-      input._vendorActiveIndex = Math.min(
-        items.length - 1,
-        (input._vendorActiveIndex ?? 0) + 1
-      );
+      input._vendorActiveIndex = Math.min(items.length - 1, input._vendorActiveIndex + 1);
       paintActive(input);
       return;
     }
+
     if (e.key === "ArrowUp") {
-      e.preventDefault();
-      input._vendorActiveIndex = Math.max(
-        0,
-        (input._vendorActiveIndex ?? 0) - 1
-      );
+      input._vendorActiveIndex = Math.max(0, input._vendorActiveIndex - 1);
       paintActive(input);
       return;
     }
+
     if (e.key === "Enter") {
-      // 드롭다운 열려있으면 "선택"
-      e.preventDefault();
-      applySelection(input, input._vendorActiveIndex ?? 0);
+      applySelection(input, input._vendorActiveIndex);
       return;
     }
+
     if (e.key === "Escape") {
-      e.preventDefault();
       closeDropdown(input);
       return;
     }
 
-    // Tab은 "선택 안 하고 이동"이 요구사항이므로
-    // 드롭다운만 닫고, 기본 이동은 막지 않음
+    // Tab은 “선택 안 하고 이동”
     if (e.key === "Tab") {
       closeDropdown(input);
       return;
@@ -290,7 +292,10 @@
   function bind(input) {
     ensureDropdown(input);
     input.addEventListener("input", onInput);
-    input.addEventListener("keydown", onKeyDown);
+
+    // ✅ 캡처 단계에서 키다운을 먼저 가로채기 (다른 스크립트보다 우선)
+    input.addEventListener("keydown", onKeyDown, true);
+
     input.addEventListener("focus", onFocus);
     input.addEventListener("blur", onBlur);
   }
@@ -301,21 +306,19 @@
       if (VENDOR_INPUT_ID_RE.test(el.id)) bind(el);
     });
 
-    // ✅ vendor 입력칸 밖으로 포커스 이동하면 열려있는 드롭다운은 무조건 닫기
+    // ✅ vendor input 밖(예: 금액칸)으로 포커스 이동하면 무조건 닫기
     document.addEventListener("focusin", (ev) => {
       const target = ev.target;
 
-      // focus가 vendor input이거나, dropdown 내부면 유지
-      const isVendorInput = target && target.id && VENDOR_INPUT_ID_RE.test(target.id);
+      const isVendorInput =
+        target && target.id && VENDOR_INPUT_ID_RE.test(target.id);
 
-      // dropdown 내부 여부 체크
       let isInsideAnyDropdown = false;
       document.querySelectorAll("input[id]").forEach((el) => {
         if (!el._vendorDropdown) return;
         if (el._vendorDropdown.contains(target)) isInsideAnyDropdown = true;
       });
 
-      // vendor input 밖(예: 금액칸)으로 이동하면 전부 닫기
       if (!isVendorInput && !isInsideAnyDropdown) {
         closeAllDropdowns();
       }
@@ -324,7 +327,6 @@
     window.addEventListener(
       "scroll",
       () => {
-        // 열려있는 드롭다운 위치 재계산
         document.querySelectorAll("input[id]").forEach((el) => {
           if (!el._vendorDropdown) return;
           if (el._vendorDropdown.style.display !== "block") return;
