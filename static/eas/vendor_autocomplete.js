@@ -56,11 +56,21 @@
     dd.innerHTML = "";
   }
 
+  // ✅ 모든 입력칸의 열려있는 vendor dropdown을 전부 닫기
+  function closeAllDropdowns() {
+    document.querySelectorAll("input[id]").forEach((el) => {
+      if (!el._vendorDropdown) return;
+      if (el._vendorDropdown.style.display !== "block") return;
+      closeDropdown(el);
+    });
+  }
+
   function renderDropdown(input, items) {
     const dd = ensureDropdown(input);
     positionDropdown(input, dd);
 
-    const prevIdx = (typeof input._vendorActiveIndex === "number") ? input._vendorActiveIndex : 0;
+    const prevIdx =
+      typeof input._vendorActiveIndex === "number" ? input._vendorActiveIndex : 0;
 
     input._vendorItems = items || [];
 
@@ -68,7 +78,10 @@
       input._vendorActiveIndex = -1;
     } else {
       // 이전 인덱스 유지 + 범위만 보정
-      input._vendorActiveIndex = Math.min(Math.max(prevIdx, 0), input._vendorItems.length - 1);
+      input._vendorActiveIndex = Math.min(
+        Math.max(prevIdx, 0),
+        input._vendorItems.length - 1
+      );
     }
 
     dd.innerHTML = "";
@@ -97,15 +110,22 @@
       const left = document.createElement("div");
       left.innerHTML = `<strong>${escapeHtml(it.vendor)}</strong>
         <span style="margin-left:10px;color:#666;font-size:12px;">
-          ${escapeHtml(it.account_no)} / ${escapeHtml(it.bank)} / ${escapeHtml(it.account_name)}
+          ${escapeHtml(it.account_no)} / ${escapeHtml(it.bank)} / ${escapeHtml(
+        it.account_name
+      )}
         </span>`;
 
       const right = document.createElement("div");
       right.style.color = "#333";
       right.style.fontSize = "12px";
-      const amountText = (it.amount === null || it.amount === undefined) ? "" : String(it.amount);
-      right.innerHTML = `<span style="color:#0f766e;">${escapeHtml(amountText)}</span>
-        <span style="margin-left:10px;color:#666;">${escapeHtml(it.note || "")}</span>`;
+      const amountText =
+        it.amount === null || it.amount === undefined ? "" : String(it.amount);
+      right.innerHTML = `<span style="color:#0f766e;">${escapeHtml(
+        amountText
+      )}</span>
+        <span style="margin-left:10px;color:#666;">${escapeHtml(
+          it.note || ""
+        )}</span>`;
 
       top.appendChild(left);
       top.appendChild(right);
@@ -163,8 +183,8 @@
     if (elBank) elBank.value = it.bank || "";
     if (elAccName) elAccName.value = it.account_name || "";
 
-    // 금액/비고는 "채우지 않음" (요구사항)
-    closeDropdown(input);
+    // ✅ 선택 시 “현재 것만” 닫지 말고, 열려있는 dropdown 전부 닫기
+    closeAllDropdowns();
 
     // 선택 후 금액으로 포커스 이동
     if (elAmount) elAmount.focus();
@@ -183,7 +203,9 @@
     const url = new URL(API_URL, window.location.origin);
     url.searchParams.set("q", q);
     url.searchParams.set("limit", String(LIMIT));
-    const res = await fetch(url.toString(), { headers: { "X-Requested-With": "XMLHttpRequest" } });
+    const res = await fetch(url.toString(), {
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+    });
     if (!res.ok) return [];
     const data = await res.json();
     return data.items || [];
@@ -217,13 +239,19 @@
 
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      input._vendorActiveIndex = Math.min(items.length - 1, (input._vendorActiveIndex ?? 0) + 1);
+      input._vendorActiveIndex = Math.min(
+        items.length - 1,
+        (input._vendorActiveIndex ?? 0) + 1
+      );
       paintActive(input);
       return;
     }
     if (e.key === "ArrowUp") {
       e.preventDefault();
-      input._vendorActiveIndex = Math.max(0, (input._vendorActiveIndex ?? 0) - 1);
+      input._vendorActiveIndex = Math.max(
+        0,
+        (input._vendorActiveIndex ?? 0) - 1
+      );
       paintActive(input);
       return;
     }
@@ -273,14 +301,38 @@
       if (VENDOR_INPUT_ID_RE.test(el.id)) bind(el);
     });
 
-    window.addEventListener("scroll", () => {
-      // 열려있는 드롭다운 위치 재계산
+    // ✅ vendor 입력칸 밖으로 포커스 이동하면 열려있는 드롭다운은 무조건 닫기
+    document.addEventListener("focusin", (ev) => {
+      const target = ev.target;
+
+      // focus가 vendor input이거나, dropdown 내부면 유지
+      const isVendorInput = target && target.id && VENDOR_INPUT_ID_RE.test(target.id);
+
+      // dropdown 내부 여부 체크
+      let isInsideAnyDropdown = false;
       document.querySelectorAll("input[id]").forEach((el) => {
         if (!el._vendorDropdown) return;
-        if (el._vendorDropdown.style.display !== "block") return;
-        positionDropdown(el, el._vendorDropdown);
+        if (el._vendorDropdown.contains(target)) isInsideAnyDropdown = true;
       });
-    }, { passive: true });
+
+      // vendor input 밖(예: 금액칸)으로 이동하면 전부 닫기
+      if (!isVendorInput && !isInsideAnyDropdown) {
+        closeAllDropdowns();
+      }
+    });
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        // 열려있는 드롭다운 위치 재계산
+        document.querySelectorAll("input[id]").forEach((el) => {
+          if (!el._vendorDropdown) return;
+          if (el._vendorDropdown.style.display !== "block") return;
+          positionDropdown(el, el._vendorDropdown);
+        });
+      },
+      { passive: true }
+    );
 
     window.addEventListener("resize", () => {
       document.querySelectorAll("input[id]").forEach((el) => {
@@ -291,22 +343,3 @@
     });
   });
 })();
-
-// ✅ vendor 입력칸 밖으로 포커스가 이동하면 열려있는 드롭다운을 무조건 닫는다
-    document.addEventListener("focusin", (ev) => {
-      const target = ev.target;
-
-      document.querySelectorAll("input[id]").forEach((el) => {
-        if (!el._vendorDropdown) return;
-        if (el._vendorDropdown.style.display !== "block") return;
-
-        // 지금 포커스가 해당 vendor input 자신이거나, 드롭다운 내부면 유지
-        const isSameInput = target === el;
-        const isInsideDropdown = el._vendorDropdown.contains(target);
-
-        // ✅ vendor input이 아닌 곳(예: 금액칸)으로 이동하면 닫기
-        if (!isSameInput && !isInsideDropdown) {
-          closeDropdown(el);
-        }
-      });
-    });
