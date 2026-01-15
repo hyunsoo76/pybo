@@ -30,7 +30,7 @@
     dd.style.boxShadow = "0 6px 18px rgba(0,0,0,0.08)";
     dd.style.maxHeight = "320px";
     dd.style.overflowY = "auto";
-    dd.style.minWidth = "520px";
+    dd.style.minWidth = "900px";
 
     document.body.appendChild(dd);
     input._vendorDropdown = dd;
@@ -44,7 +44,7 @@
     const r = input.getBoundingClientRect();
     dd.style.left = `${window.scrollX + r.left}px`;
     dd.style.top = `${window.scrollY + r.bottom + 6}px`;
-    dd.style.width = `${Math.max(r.width, 520)}px`;
+    dd.style.width = `${Math.max(r.width, 900)}px`;
   }
 
   function closeDropdown(input) {
@@ -85,6 +85,9 @@
       row.style.padding = "10px 12px";
       row.style.cursor = "pointer";
       row.style.borderBottom = "1px solid #f1f1f1";
+      row.style.whiteSpace = "nowrap";
+      row.style.overflow = "hidden";
+      row.style.textOverflow = "ellipsis";
 
       const top = document.createElement("div");
       top.style.display = "flex";
