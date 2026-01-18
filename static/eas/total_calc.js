@@ -85,6 +85,42 @@
     calcAndRenderTotal();
   }
 
+    function nextAmountTargetId(currentId) {
+    // a_5 -> a_6 (비고/다음칸 규칙이 있다면 여기서 제어)
+    // 너 화면 흐름 기준: 금액(5) 입력 후 "비고(6)"로 가는 게 자연스럽다고 가정
+    const [prefix, col] = currentId.split("_");
+    if (!prefix || !col) return null;
+
+    // 5 다음은 6으로
+    const nextId = `${prefix}_6`;
+    if (document.getElementById(nextId)) return nextId;
+
+    // 혹시 _6이 없으면 다음 줄의 _1로
+    const letters = "abcdefghij";
+    const idx = letters.indexOf(prefix);
+    if (idx >= 0 && idx < letters.length - 1) {
+        const fallback = `${letters[idx + 1]}_1`;
+        if (document.getElementById(fallback)) return fallback;
+    }
+    return null;
+    }
+
+    function onAmountKeyDown(e) {
+    if (e.key !== "Enter") return;
+
+    // Enter 기본 동작(폼 submit 등) 막고, 다음 칸으로 이동
+    e.preventDefault();
+    e.stopPropagation();
+
+    const el = e.target;
+    const nextId = nextAmountTargetId(el.id);
+    if (nextId) {
+        const nextEl = document.getElementById(nextId);
+        if (nextEl) nextEl.focus();
+    }
+    }
+
+
   function bind() {
     for (const id of AMOUNT_IDS) {
       const el = document.getElementById(id);
@@ -96,6 +132,7 @@
 
       el.addEventListener("input", onAmountInput);
       el.addEventListener("blur", onBlur);
+      el.addEventListener("keydown", onAmountKeyDown); // ✅ 추가
     }
 
     // 수정 페이지에서 기존 값도 콤마 포맷 적용 + 합계 1회 계산
