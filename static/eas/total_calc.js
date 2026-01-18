@@ -86,23 +86,25 @@
   }
 
     function nextAmountTargetId(currentId) {
-    // a_5 -> a_6 (비고/다음칸 규칙이 있다면 여기서 제어)
-    // 너 화면 흐름 기준: 금액(5) 입력 후 "비고(6)"로 가는 게 자연스럽다고 가정
-    const [prefix, col] = currentId.split("_");
-    if (!prefix || !col) return null;
+        const [prefix, col] = currentId.split("_");
+        if (!prefix || !col) return null;
 
-    // 5 다음은 6으로
-    const nextId = `${prefix}_6`;
-    if (document.getElementById(nextId)) return nextId;
+        // ✅ 금액(5) 다음은 "비고"를 최우선으로: _7
+        const memoId = `${prefix}_7`;
+        if (document.getElementById(memoId)) return memoId;
 
-    // 혹시 _6이 없으면 다음 줄의 _1로
-    const letters = "abcdefghij";
-    const idx = letters.indexOf(prefix);
-    if (idx >= 0 && idx < letters.length - 1) {
-        const fallback = `${letters[idx + 1]}_1`;
-        if (document.getElementById(fallback)) return fallback;
-    }
-    return null;
+        // (혹시 비고가 _6인 화면도 있을 수 있어서 fallback)
+        const memoFallback = `${prefix}_6`;
+        if (document.getElementById(memoFallback)) return memoFallback;
+
+        // 마지막 fallback: 다음 줄 매입처
+        const letters = "abcdefghij";
+        const idx = letters.indexOf(prefix);
+        if (idx >= 0 && idx < letters.length - 1) {
+            const nextVendor = `${letters[idx + 1]}_1`;
+            if (document.getElementById(nextVendor)) return nextVendor;
+        }
+        return null;
     }
 
     function onAmountKeyDown(e) {
@@ -111,6 +113,7 @@
     // Enter 기본 동작(폼 submit 등) 막고, 다음 칸으로 이동
     e.preventDefault();
     e.stopPropagation();
+    e.stopImmediatePropagation(); // ✅ inline onkeydown까지 확실히 차단
 
     const el = e.target;
     const nextId = nextAmountTargetId(el.id);
@@ -132,7 +135,7 @@
 
       el.addEventListener("input", onAmountInput);
       el.addEventListener("blur", onBlur);
-      el.addEventListener("keydown", onAmountKeyDown); // ✅ 추가
+      el.addEventListener("keydown", onAmountKeyDown, true); // ✅ 추가
     }
 
     // 수정 페이지에서 기존 값도 콤마 포맷 적용 + 합계 1회 계산
