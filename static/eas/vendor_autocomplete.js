@@ -123,12 +123,15 @@
       // ✅ 레이아웃: 좌/우 간격 줄이고 금액을 왼쪽으로 당김
       const top = document.createElement("div");
       top.style.display = "grid";
-      top.style.gridTemplateColumns = "1fr auto";
+      top.style.gridTemplateColumns = "560px auto";  // ✅ 변경 (원하면 520~650 사이로 조절)
       top.style.columnGap = "14px";
       top.style.alignItems = "center";
 
       const left = document.createElement("div");
       left.style.minWidth = "0";
+      left.style.whiteSpace = "nowrap";      // ✅ 추가
+      left.style.overflow = "hidden";        // ✅ 추가
+      left.style.textOverflow = "ellipsis";  // ✅ 추가
       left.innerHTML = `<strong>${escapeHtml(it.vendor)}</strong>
         <span style="margin-left:10px;color:#666;font-size:12px;">
           ${escapeHtml(it.account_no)} / ${escapeHtml(it.bank)} / ${escapeHtml(it.account_name)}
@@ -141,19 +144,17 @@
       right.style.fontSize = "12px";
       right.style.whiteSpace = "nowrap";
 
-      const amountText =
-        it.amount === null || it.amount === undefined ? "" : String(it.amount);
-
-      // ✅ dateText 변수 반드시 선언!
+      const amountText = it.amount === null || it.amount === undefined ? "" : String(it.amount);
       const dateText = formatUsedAt(it.used_at);
 
       right.innerHTML = `
-        <span style="color:#666;">${escapeHtml(dateText)}</span>
-        <span style="color:#0f766e;">${escapeHtml(amountText)}</span>
-        <span style="color:#666;max-width:380px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+        <span style="color:#666;min-width:92px;text-align:right;">${escapeHtml(dateText)}</span>
+        <span style="color:#0f766e;min-width:90px;text-align:right;">${escapeHtml(amountText)}</span>
+        <span style="color:#666;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
           ${escapeHtml(it.note || "")}
         </span>
       `;
+
 
       top.appendChild(left);
       top.appendChild(right);
