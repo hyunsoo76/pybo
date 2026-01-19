@@ -575,7 +575,7 @@ def vendor_suggest(request):
             else:
                 if q.lower() not in vendor.lower():
                     continue
-
+            dt = r.create_date            
             items.append({
                 "vendor": vendor,
                 "account_no": getattr(r, f"{s}_2", "") or "",
@@ -583,7 +583,8 @@ def vendor_suggest(request):
                 "account_name": getattr(r, f"{s}_4", "") or "",
                 "amount": getattr(r, f"{s}_5", None),
                 "note": getattr(r, f"{s}_7", "") or "",
-                "used_at": r.create_date.isoformat() if r.create_date else None,
+                "used_at": dt.isoformat() if dt else None,                 # 원본 (정렬/디버그용)
+                "date_text": dt.strftime("%Y-%m-%d") if dt else "",           # 표시용 (예: 01/15)
             })
 
             if len(items) >= limit:

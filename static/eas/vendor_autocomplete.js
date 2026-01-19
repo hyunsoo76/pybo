@@ -119,12 +119,11 @@
       right.style.fontSize = "12px";
       const amountText =
         it.amount === null || it.amount === undefined ? "" : String(it.amount);
-      right.innerHTML = `<span style="color:#0f766e;">${escapeHtml(
-        amountText
-      )}</span>
-        <span style="margin-left:10px;color:#666;">${escapeHtml(
-          it.note || ""
-        )}</span>`;
+      right.innerHTML = `
+          <span style="color:#666;margin-right:12px;">${escapeHtml(dateText)}</span>
+          <span style="color:#0f766e;">${escapeHtml(amountText)}</span>
+          <span style="margin-left:10px;color:#666;">${escapeHtml(it.note || "")}</span>
+        `;
 
       top.appendChild(left);
       top.appendChild(right);
