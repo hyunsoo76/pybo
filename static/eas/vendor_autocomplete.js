@@ -123,7 +123,7 @@
       // ✅ 레이아웃: 좌/우 간격 줄이고 금액을 왼쪽으로 당김
       const top = document.createElement("div");
       top.style.display = "grid";
-      top.style.gridTemplateColumns = "3800px auto";  // ✅ 변경 (원하면 520~650 사이로 조절)
+      top.style.gridTemplateColumns = "minmax(320px, 1fr) max-content"; // ✅ 우측은 내용만큼
       top.style.columnGap = "14px";
       top.style.alignItems = "center";
 
@@ -138,6 +138,8 @@
         </span>`;
 
       const right = document.createElement("div");
+      right.style.minWidth = "320px";          // ✅ 우측이 너무 줄어서 사라지는 것 방지
+      right.style.justifySelf = "end";         // ✅ 우측 끝 정렬
       right.style.display = "flex";
       right.style.alignItems = "center";
       right.style.gap = "10px";
