@@ -15,6 +15,14 @@
     };
   }
 
+  function formatNumber(n) {
+  if (n === null || n === undefined || n === "") return "";
+  const num = Number(n);
+  if (Number.isNaN(num)) return "";
+  return num.toLocaleString("ko-KR");
+}
+
+
   function ensureDropdown(input) {
     let dd = input._vendorDropdown;
     if (dd) return dd;
@@ -147,8 +155,7 @@
       right.style.fontSize = "12px";
       right.style.whiteSpace = "nowrap";
 
-      const amountText =
-          it.amount === null || it.amount === undefined ? "" : String(it.amount);
+      const amountText = formatNumber(it.amount);
 
         const dateText = formatUsedAt(it.used_at);
 
