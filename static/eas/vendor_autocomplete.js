@@ -123,39 +123,48 @@
       // ✅ 레이아웃: 좌/우 간격 줄이고 금액을 왼쪽으로 당김
       const top = document.createElement("div");
       top.style.display = "grid";
-      top.style.gridTemplateColumns = "minmax(320px, 1fr) max-content"; // ✅ 우측은 내용만큼
+      top.style.gridTemplateColumns = "auto 460px"; // ✅ 우측은 내용만큼
       top.style.columnGap = "14px";
-      top.style.alignItems = "center";
+      top.style.justifyContent = "space-between"; // ✅ 양쪽을 끝으로 밀착
 
       const left = document.createElement("div");
       left.style.minWidth = "0";
-      left.style.whiteSpace = "nowrap";      // ✅ 추가
+      left.style.whiteSpace = "nowrap";
+      left.style.maxWidth = "620px";        // ✅ 추가
       left.style.overflow = "hidden";        // ✅ 추가
       left.style.textOverflow = "ellipsis";  // ✅ 추가
-      left.innerHTML = `<strong>${escapeHtml(it.vendor)}</strong>
+      left.innerHTML = `
+        <strong>${escapeHtml(it.vendor)}</strong>
         <span style="margin-left:10px;color:#666;font-size:12px;">
           ${escapeHtml(it.account_no)} / ${escapeHtml(it.bank)} / ${escapeHtml(it.account_name)}
-        </span>`;
-
+        </span>
+      `;
       const right = document.createElement("div");
-      right.style.minWidth = "320px";          // ✅ 우측이 너무 줄어서 사라지는 것 방지
-      right.style.justifySelf = "end";         // ✅ 우측 끝 정렬
-      right.style.display = "flex";
+      right.style.display = "grid";
+      right.style.gridTemplateColumns = "110px 90px 1fr"; // 날짜 / 금액 / 비고
       right.style.alignItems = "center";
       right.style.gap = "10px";
       right.style.fontSize = "12px";
       right.style.whiteSpace = "nowrap";
 
-      const amountText = it.amount === null || it.amount === undefined ? "" : String(it.amount);
-      const dateText = formatUsedAt(it.used_at);
+      const amountText =
+          it.amount === null || it.amount === undefined ? "" : String(it.amount);
 
-      right.innerHTML = `
-        <span style="color:#666;min-width:92px;text-align:right;">${escapeHtml(dateText)}</span>
-        <span style="color:#0f766e;min-width:90px;text-align:right;">${escapeHtml(amountText)}</span>
-        <span style="color:#666;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-          ${escapeHtml(it.note || "")}
-        </span>
-      `;
+        const dateText = formatUsedAt(it.used_at);
+
+        right.innerHTML = `
+          <span style="color:#666;text-align:center;">
+            ${escapeHtml(dateText)}
+          </span>
+
+          <span style="color:#0f766e;text-align:right;font-weight:600;">
+            ${escapeHtml(amountText)}
+          </span>
+
+          <span style="color:#666;overflow:hidden;text-overflow:ellipsis;">
+            ${escapeHtml(it.note || "")}
+          </span>
+        `;
 
 
       top.appendChild(left);
