@@ -64,6 +64,26 @@
     });
   }
 
+  function escapeHtml(s) {
+    return String(s ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  // ✅ used_at (ISO 문자열) -> "YYYY-MM-DD" 표시
+  function formatUsedAt(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "";
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
+
   function renderDropdown(input, items) {
     const dd = ensureDropdown(input);
     positionDropdown(input, dd);
@@ -76,7 +96,6 @@
     if (!input._vendorItems.length) {
       input._vendorActiveIndex = -1;
     } else {
-      // 이전 인덱스 유지 + 범위만 보정
       input._vendorActiveIndex = Math.min(
         Math.max(prevIdx, 0),
         input._vendorItems.length - 1
@@ -101,29 +120,40 @@
       row.style.overflow = "hidden";
       row.style.textOverflow = "ellipsis";
 
+      // ✅ 레이아웃: 좌/우 간격 줄이고 금액을 왼쪽으로 당김
       const top = document.createElement("div");
-      top.style.display = "flex";
-      top.style.justifyContent = "space-between";
-      top.style.gap = "12px";
+      top.style.display = "grid";
+      top.style.gridTemplateColumns = "1fr auto";
+      top.style.columnGap = "14px";
+      top.style.alignItems = "center";
 
       const left = document.createElement("div");
+      left.style.minWidth = "0";
       left.innerHTML = `<strong>${escapeHtml(it.vendor)}</strong>
         <span style="margin-left:10px;color:#666;font-size:12px;">
-          ${escapeHtml(it.account_no)} / ${escapeHtml(it.bank)} / ${escapeHtml(
-        it.account_name
-      )}
+          ${escapeHtml(it.account_no)} / ${escapeHtml(it.bank)} / ${escapeHtml(it.account_name)}
         </span>`;
 
       const right = document.createElement("div");
-      right.style.color = "#333";
+      right.style.display = "flex";
+      right.style.alignItems = "center";
+      right.style.gap = "10px";
       right.style.fontSize = "12px";
+      right.style.whiteSpace = "nowrap";
+
       const amountText =
         it.amount === null || it.amount === undefined ? "" : String(it.amount);
+
+      // ✅ dateText 변수 반드시 선언!
+      const dateText = formatUsedAt(it.used_at);
+
       right.innerHTML = `
-          <span style="color:#666;margin-right:12px;">${escapeHtml(dateText)}</span>
-          <span style="color:#0f766e;">${escapeHtml(amountText)}</span>
-          <span style="margin-left:10px;color:#666;">${escapeHtml(it.note || "")}</span>
-        `;
+        <span style="color:#666;">${escapeHtml(dateText)}</span>
+        <span style="color:#0f766e;">${escapeHtml(amountText)}</span>
+        <span style="color:#666;max-width:380px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+          ${escapeHtml(it.note || "")}
+        </span>
+      `;
 
       top.appendChild(left);
       top.appendChild(right);
@@ -135,8 +165,7 @@
       });
 
       row.addEventListener("mousedown", (e) => {
-        // blur보다 먼저 선택되도록 mousedown에서 처리
-        e.preventDefault();
+        e.preventDefault(); // blur보다 먼저
         applySelection(input, idx);
       });
 
@@ -166,8 +195,9 @@
     const it = items[idx];
     if (!it) return;
 
-    // ✅ 먼저 현재 dropdown을 즉시 닫아버리고(잔상 방지)
+    // ✅ 잔상 방지: 선택 즉시 닫기
     closeDropdown(input);
+    closeAllDropdowns();
 
     const prefix = input.id.split("_")[0]; // a,b,c...
     const elVendor = document.getElementById(`${prefix}_1`);
@@ -175,7 +205,7 @@
     const elBank = document.getElementById(`${prefix}_3`);
     const elAccName = document.getElementById(`${prefix}_4`);
     const elAmount = document.getElementById(`${prefix}_5`);
-    const elType     = document.getElementById(`${prefix}_6`); // ✅ 구분 칸
+    const elType = document.getElementById(`${prefix}_6`); // 구분
 
     if (elVendor) elVendor.value = it.vendor || "";
     if (elAccNo) elAccNo.value = it.account_no || "";
@@ -187,26 +217,14 @@
       elType.value = "대진상사";
     }
 
-    // ✅ 혹시 다른 input dropdown이 열려있으면 전부 닫기
-    closeAllDropdowns();
-
-    // 선택 후 금액으로 포커스 이동
     if (elAmount) elAmount.focus();
-  }
-
-  function escapeHtml(s) {
-    return String(s ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
   }
 
   async function fetchSuggest(q) {
     const url = new URL(API_URL, window.location.origin);
     url.searchParams.set("q", q);
     url.searchParams.set("limit", String(LIMIT));
+
     const res = await fetch(url.toString(), {
       headers: { "X-Requested-With": "XMLHttpRequest" },
     });
@@ -241,13 +259,12 @@
     const items = input._vendorItems || [];
     if (!items.length) return;
 
-    // ✅ 메뉴 열려있을 때는 기존 페이지의 엔터/이동 로직이 못 먹게 막는다
+    // 메뉴 열려있을 때는 기존 페이지 엔터/이동 로직 막기
     if (["ArrowDown", "ArrowUp", "Enter", "Escape", "Tab"].includes(e.key)) {
       e.preventDefault();
       e.stopPropagation();
     }
 
-    // activeIndex가 이상하면 0으로 보정
     if (typeof input._vendorActiveIndex !== "number" || input._vendorActiveIndex < 0) {
       input._vendorActiveIndex = 0;
       paintActive(input);
@@ -290,7 +307,6 @@
 
   function onBlur(e) {
     const input = e.target;
-    // 클릭 선택(mousedown)과 충돌 방지 위해 약간 늦게 닫기
     setTimeout(() => closeDropdown(input), 120);
   }
 
@@ -298,7 +314,7 @@
     ensureDropdown(input);
     input.addEventListener("input", onInput);
 
-    // ✅ 캡처 단계에서 키다운을 먼저 가로채기 (다른 스크립트보다 우선)
+    // 캡처 단계에서 키다운 먼저 가로채기
     input.addEventListener("keydown", onKeyDown, true);
 
     input.addEventListener("focus", onFocus);
@@ -311,7 +327,7 @@
       if (VENDOR_INPUT_ID_RE.test(el.id)) bind(el);
     });
 
-    // ✅ vendor input 밖(예: 금액칸)으로 포커스 이동하면 무조건 닫기
+    // vendor input 밖으로 포커스 이동하면 닫기
     document.addEventListener("focusin", (ev) => {
       const target = ev.target;
 
