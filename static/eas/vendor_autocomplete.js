@@ -123,7 +123,7 @@
       // ✅ 레이아웃: 좌/우 간격 줄이고 금액을 왼쪽으로 당김
       const top = document.createElement("div");
       top.style.display = "grid";
-      top.style.gridTemplateColumns = "560px auto";  // ✅ 변경 (원하면 520~650 사이로 조절)
+      top.style.gridTemplateColumns = "3800px auto";  // ✅ 변경 (원하면 520~650 사이로 조절)
       top.style.columnGap = "14px";
       top.style.alignItems = "center";
 
