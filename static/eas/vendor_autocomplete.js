@@ -119,6 +119,7 @@
 
     input._vendorItems.forEach((it, idx) => {
       const row = document.createElement("div");
+      row.title = `${it.vendor} | ${it.account_no} / ${it.bank} / ${it.account_name}`;
       row.className = "vendor-suggest-row";
       row.dataset.index = String(idx);
       row.style.padding = "10px 12px";
@@ -143,13 +144,13 @@
       left.style.textOverflow = "ellipsis";  // ✅ 추가
       left.innerHTML = `
         <strong>${escapeHtml(it.vendor)}</strong>
-        <span style="margin-left:10px;color:#666;font-size:12px;">
-          ${escapeHtml(it.account_no)} / ${escapeHtml(it.bank)} / ${escapeHtml(it.account_name)}
+        <span style="margin-left:8px;color:#666;font-size:12px;">
+          ${escapeHtml(it.account_no)}
         </span>
       `;
       const right = document.createElement("div");
       right.style.display = "grid";
-      right.style.gridTemplateColumns = "110px 90px 1fr"; // 날짜 / 금액 / 비고
+      right.style.gridTemplateColumns = "90px 90px minmax(120px, 1fr)"; // 날짜 / 금액 / 비고
       right.style.alignItems = "center";
       right.style.gap = "10px";
       right.style.fontSize = "12px";
@@ -160,18 +161,14 @@
         const dateText = formatUsedAt(it.used_at);
 
         right.innerHTML = `
-          <span style="color:#666;text-align:center;">
-            ${escapeHtml(dateText)}
-          </span>
-
-          <span style="color:#0f766e;text-align:right;font-weight:600;">
-            ${escapeHtml(amountText)}
-          </span>
-
-          <span style="color:#666;overflow:hidden;text-overflow:ellipsis;">
-            ${escapeHtml(it.note || "")}
-          </span>
-        `;
+            <span style="color:#666;">${escapeHtml(dateText)}</span>
+            <span style="color:#0f766e;text-align:right;">
+              ${formatNumber(amountText)}
+            </span>
+            <span style="color:#666;overflow:hidden;text-overflow:ellipsis;">
+              ${escapeHtml(it.note || "")}
+            </span>
+          `;
 
 
       top.appendChild(left);
