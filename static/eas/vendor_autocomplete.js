@@ -131,7 +131,7 @@
       // ✅ 레이아웃: 좌/우 간격 줄이고 금액을 왼쪽으로 당김
       const top = document.createElement("div");
       top.style.display = "grid";
-      top.style.gridTemplateColumns = "auto 520px"; // ✅ 우측은 내용만큼
+      top.style.gridTemplateColumns = "auto 480px"; // ✅ 우측은 내용만큼
       top.style.columnGap = "14px";
       top.style.justifyContent = "space-between"; // ✅ 양쪽을 끝으로 밀착
 
