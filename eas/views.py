@@ -17,7 +17,6 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from eas.pushmsg import send_push
 import logging
-from django.http import HttpResponse
 import re
 from django.views.decorators.http import require_GET
 
@@ -122,7 +121,6 @@ def detail(request, Request_id):
 
 def Request_create(request):
     if request.method == 'POST':
-        return HttpResponse(repr(request.POST.get('manager_name')))
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
@@ -158,6 +156,7 @@ def Request_create(request):
                     totalsum = totalsum + total
             
             new_Request.total = totalsum
+            new_Request.manager_name = '혁만'
             new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
