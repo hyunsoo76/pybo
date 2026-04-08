@@ -123,13 +123,11 @@ def detail(request, Request_id):
 
 def Request_create(request):
     if request.method == 'POST':
-        return HttpResponse(f"manager_name={request.POST.get('manager_name')!r}")
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
             new_Request.manager_name = request.POST.get('manager_name') or '혁만'
-            print("saved manager_name =", new_Request.manager_name, flush=True)
             # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
                 new_Request.fff = 9
