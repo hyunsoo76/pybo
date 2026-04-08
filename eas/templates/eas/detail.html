@@ -14,7 +14,7 @@
 
 <p></p>
 <div class="container">
-    <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
+    <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';" onsubmit="document.getElementById('manager_name').value = window.selectedManager || '혁만';">
         {% csrf_token %}
         <input type="hidden" name="manager_name" id="manager_name" value="혁만">
         <!-- 오류표시 Start -->
@@ -800,6 +800,8 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 <script>
+window.selectedManager = '혁만';
+
 $(function(){
     $('.manager-open-btn').click(function(){
         const manager = $(this).data('manager');
@@ -813,13 +815,13 @@ $(function(){
             imgAlt = '신경미';
         }
 
-        $('#manager_name').val(manager);
-        $('#selected_manager_label').text(label);
-        $('#firstcheck').attr('src', imgSrc);
-        $('#firstcheck').attr('alt', imgAlt);
+        window.selectedManager = manager;
+        document.getElementById('manager_name').value = manager;
+        document.getElementById('selected_manager_label').innerText = label;
+        document.getElementById('firstcheck').src = imgSrc;
+        document.getElementById('firstcheck').alt = imgAlt;
     });
 });
-
 // 담당 모달창 닫힐때 이벤트
 $(document).ready(function(){
     $('#exampleModal1').on('hidden.bs.modal', function () {
