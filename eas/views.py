@@ -123,9 +123,12 @@ def Request_create(request):
     if request.method == 'POST':
         form = RequestForm(request.POST)
         if form.is_valid():
-            new_Request = form.save(commit=False)
-            new_Request.create_date = timezone.now()
-            new_Request.manager_name = request.POST.get('manager_name') or '혁만'
+            cleaned = form.cleaned_data.copy()
+            cleaned['create_date'] = timezone.now()
+            cleaned['manager_name'] = request.POST.get('manager_name') or '혁만'
+
+            new_Request = Request(**cleaned)
+
             # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
                 new_Request.fff = 9
@@ -145,7 +148,7 @@ def Request_create(request):
                 new_Request.fff = 2
             elif new_Request.b_1:
                 new_Request.fff = 1
-            
+
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
@@ -154,7 +157,7 @@ def Request_create(request):
             for total in totals:
                 if total != None:
                     totalsum = totalsum + total
-            
+
             new_Request.total = totalsum
             new_Request.save()
             context = {'new_Request': new_Request}
