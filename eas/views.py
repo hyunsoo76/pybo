@@ -20,7 +20,6 @@ import logging
 
 import re
 from django.views.decorators.http import require_GET
-from django.http import HttpResponse
 
 
 def index(request):
