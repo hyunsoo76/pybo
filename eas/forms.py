@@ -21,4 +21,4 @@ class RequestForm(forms.ModelForm):
                   'chamjo1', 'jisi1', 'total', 'date1', 'date2',
                   'date3', 'dojang1', 'dojang2', 'dojang3',
                   'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg',
-                  'hhh']
+                  'hhh', 'manager_name']
