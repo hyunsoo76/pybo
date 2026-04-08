@@ -127,7 +127,7 @@ def Request_create(request):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
-            new_Request.manager_name = request.POST.get('manager_name', '혁만')
+            new_Request.manager_name = request.POST.get('manager_name') or '혁만'
             # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
                 new_Request.fff = 9
