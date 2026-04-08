@@ -19,6 +19,7 @@ from eas.pushmsg import send_push
 import logging
 import re
 from django.views.decorators.http import require_GET
+from django.http import HttpResponse
 
 
 def index(request):
@@ -156,7 +157,7 @@ def Request_create(request):
                     totalsum = totalsum + total
             
             new_Request.total = totalsum
-            new_Request.manager_name = '혁만'
+            return HttpResponse(repr(new_Request.manager_name))
             new_Request.save()
             context = {'new_Request': new_Request}
             return render(request, 'eas/detail_r.html', context)
