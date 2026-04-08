@@ -50,20 +50,29 @@
                         <td height="10px">
                             <div class="d-flex gap-1 justify-content-center">
                                 <button type="button"
-                                        class="btn btn-outline-secondary btn-sm manager-open-btn"
-                                        data-manager="혁만"
-                                        data-manager-label="권혁만"
+                                        class="btn btn-outline-secondary btn-sm"
                                         data-bs-toggle="modal"
                                         data-bs-target="#exampleModal1"
-                                        accesskey="z">
+                                        accesskey="z"
+                                        onclick="
+                                            document.getElementById('manager_name').value='혁만';
+                                            document.getElementById('selected_manager_label').innerText='권혁만';
+                                            document.getElementById('firstcheck').src='/static/img/hyuckman.JPG';
+                                            document.getElementById('firstcheck').alt='권혁만';
+                                        ">
                                     <b>혁만</b>
                                 </button>
+
                                 <button type="button"
-                                        class="btn btn-outline-secondary btn-sm manager-open-btn"
-                                        data-manager="경미"
-                                        data-manager-label="신경미"
+                                        class="btn btn-outline-secondary btn-sm"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal1">
+                                        data-bs-target="#exampleModal1"
+                                        onclick="
+                                            document.getElementById('manager_name').value='경미';
+                                            document.getElementById('selected_manager_label').innerText='신경미';
+                                            document.getElementById('firstcheck').src='/static/img/kyungmi.JPG';
+                                            document.getElementById('firstcheck').alt='신경미';
+                                        ">
                                     <b>경미</b>
                                 </button>
                             </div>
