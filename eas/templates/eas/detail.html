@@ -101,9 +101,15 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
-                                            <button type="submit" class="btn-success btn-lg" name="manager_name" value="혁만" id="first_check_ready_hyukman">
-                                                저장
-                                            </button>
+                                            <button type="button"
+                                                class="btn-success btn-lg"
+                                                id="first_check_ready_hyukman"
+                                                onclick="
+                                                    document.getElementById('manager_name').value='혁만';
+                                                    document.detail_input.submit();
+                                                ">
+                                            저장
+                                        </button>
                                         </div>
                                     </div>
                                 </div>
@@ -123,10 +129,15 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
-                                            <button type="submit" class="btn-success btn-lg" name="manager_name" value="경미" id="first_check_ready_kyungmi">
+                                            <button type="button"
+                                                    class="btn-success btn-lg"
+                                                    id="first_check_ready_kyungmi"
+                                                    onclick="
+                                                        document.getElementById('manager_name').value='경미';
+                                                        document.detail_input.submit();
+                                                    ">
                                                 저장
-                                            </button>
-                                        </div>
+                                            </button>                                        </div>
                                     </div>
                                 </div>
                             </div>
