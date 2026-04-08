@@ -14,7 +14,7 @@
 
 <p></p>
 <div class="container">
-    <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';" onsubmit="document.getElementById('manager_name').value = window.selectedManager || '혁만';">
+    <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <input type="hidden" name="manager_name" id="manager_name" value="혁만">
         <!-- 오류표시 Start -->
