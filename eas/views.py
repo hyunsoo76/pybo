@@ -162,8 +162,8 @@ def Request_create(request):
 
             new_Request.total = totalsum
             new_Request.save()
-            context = {'new_Request': new_Request}
-            return render(request, 'eas/detail_r.html', context)
+            return redirect('eas:detail_r', Request_id=new_Request.id)
+
         else:
             context = {'form': form}
             return render(request, 'eas/detail.html', context)
@@ -201,12 +201,8 @@ def Request_create_24(request):
                     totalsum = totalsum + total
 
             new_Request.total = totalsum
-
-            context = {'new_Request': new_Request}
-            # return render(request, 'eas/index.html', context)
-            return render(request, 'eas/detail_r_24.html', context)
-
-
+            new_Request.save()
+            return redirect('eas:detail_r', Request_id=new_Request.id)
     else:
         form = RequestForm()
         context = {'form': form}
@@ -255,20 +251,12 @@ def detail_update(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
         temp = request.POST.get('input_reject')
-        if new_Request.aaa != "승인" and new_Request.aaa != "전결": 
+        if new_Request.aaa != "승인" and new_Request.aaa != "전결":
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
             new_Request.save()
-            # send_push(
-            #     title="대진산업",
-            #     message="대표이사 결재(반려) 처리되었습니다",
-            #     url="http://3.37.211.248/eas/",
-            #     url_title="전자문서결재"
-            # )
-            # messages.warning(request, "결재완료")
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-        else:
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        return redirect('eas:detail_r', Request_id=new_Request.id)
+    return redirect('eas:detail_r', Request_id=new_Request.id)
 
 
 def detail_okupdate(request, new_Request_id):
@@ -279,35 +267,26 @@ def detail_okupdate(request, new_Request_id):
             new_Request.aaa = temp
             new_Request.date1 = timezone.now()
             new_Request.save()
-            # send_push(
-            #     title="대진산업",
-            #     message="대표이사 결재(승인) 처리되었습니다",
-            #     url="http://3.37.211.248/eas/",
-            #     url_title="전자문서결재"
-            # )
-            # messages.warning(request, "결재완료")
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-        else:
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        return redirect('eas:detail_r', Request_id=new_Request.id)
+    return redirect('eas:detail_r', Request_id=new_Request.id)
 
 
-def detail_update2(request, new_Request_id):
+def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
-        temp = request.POST.get('input_reject2')
-        if new_Request.bbb != "승인":
+        temp = request.POST.get('input_ok2')
+        if new_Request.bbb != "반려":
             new_Request.bbb = temp
             new_Request.date2 = timezone.now()
             new_Request.save()
             send_push(
                 title="대진산업",
-                message="기안이 반려처리 되었습니다",
+                message="기안이 대표이사 승인처리 되었습니다",
                 url="http://3.37.211.248/eas/",
                 url_title="전자문서결재"
             )
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-        else:
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        return redirect('eas:detail_r', Request_id=new_Request.id)
+    return redirect('eas:detail_r', Request_id=new_Request.id)
 
 
 def detail_okupdate2(request, new_Request_id):
@@ -369,8 +348,7 @@ def Request_modify(request, new_Request_id):
                 new_Request.fff = 1
 
             new_Request.save()
-            context = {'new_Request': new_Request}
-            return render(request, 'eas/detail_r.html', context)
+            return redirect('eas:detail_r', Request_id=new_Request.id)
 
             # return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
             # return redirect('eas:index')
