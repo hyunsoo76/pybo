@@ -14,7 +14,7 @@
 
 <p></p>
 <div class="container">
-    <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
+    <form id="detail_input_form" method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <input type="hidden" name="manager_name" id="manager_name" value="혁만">
         <!-- 오류표시 Start -->
@@ -102,6 +102,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
                                             <button type="submit"
+                                                    form="detail_input_form"
                                                     class="btn-success btn-lg"
                                                     id="first_check_ready_hyukman"
                                                     onclick="document.getElementById('manager_name').value='혁만';">
@@ -127,6 +128,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
                                             <button type="submit"
+                                                    form="detail_input_form"
                                                     class="btn-success btn-lg"
                                                     id="first_check_ready_kyungmi"
                                                     onclick="document.getElementById('manager_name').value='경미';">
