@@ -16,6 +16,7 @@
 <div class="container">
     <form id="detail_input_form" method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
+        <input type="hidden" name="manager_name" id="manager_name" value="혁만">
         <!-- 오류표시 Start -->
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
@@ -100,12 +101,13 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
-                                            <button type="submit"
-                                                    form="detail_input_form"
+                                            <button type="button"
                                                     class="btn-success btn-lg"
                                                     id="first_check_ready_hyukman"
-                                                    name="manager_name"
-                                                    value="혁만">
+                                                    onclick="
+                                                        document.getElementById('manager_name').value='혁만';
+                                                        document.getElementById('detail_input_form').requestSubmit();
+                                                    ">
                                                 저장
                                             </button>
                                         </div>
@@ -127,12 +129,13 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
-                                           <button type="submit"
-                                                    form="detail_input_form"
+                                           <button type="button"
                                                     class="btn-success btn-lg"
                                                     id="first_check_ready_kyungmi"
-                                                    name="manager_name"
-                                                    value="경미">
+                                                    onclick="
+                                                        document.getElementById('manager_name').value='경미';
+                                                        document.getElementById('detail_input_form').requestSubmit();
+                                                    ">
                                                 저장
                                             </button>
                                             </div>
