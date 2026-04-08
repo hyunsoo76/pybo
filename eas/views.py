@@ -19,6 +19,7 @@ from eas.pushmsg import send_push
 import logging
 import re
 from django.views.decorators.http import require_GET
+from django.http import HttpResponse
 
 
 def index(request):
@@ -159,10 +160,12 @@ def Request_create(request):
                     totalsum = totalsum + total
 
             new_Request.total = totalsum
-            new_Request.save()
-            context = {'new_Request': new_Request}
-            return render(request, 'eas/detail_r.html', context)
-        else:
+            return HttpResponse(repr({
+                'manager_name': new_Request.manager_name,
+                'cleaned_manager_name': cleaned.get('manager_name'),
+                'post_manager_name': request.POST.get('manager_name'),
+            }))
+            else:
             form = RequestForm(request.POST)
             context = {'form': form}
             return render(request, 'eas/detail.html', context)
