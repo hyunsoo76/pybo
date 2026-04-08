@@ -16,6 +16,7 @@
 <div class="container">
     <form method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
+        <input type="hidden" name="manager_name" id="manager_name" value="혁만">
         <!-- 오류표시 Start -->
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
@@ -47,9 +48,25 @@
                     <tr class="table-secondary" align="center">
                         <!--                      <td height = "10px"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a></td>-->
                         <td height="10px">
-                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal1" accesskey="z"><B>&nbsp;담&nbsp;당&nbsp;[alt+z]</b>
-                            </button>
+                            <div class="d-flex gap-1 justify-content-center">
+                                <button type="button"
+                                        class="btn btn-outline-secondary btn-sm manager-open-btn"
+                                        data-manager="혁만"
+                                        data-manager-label="권혁만"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal1"
+                                        accesskey="z">
+                                    <b>혁만</b>
+                                </button>
+                                <button type="button"
+                                        class="btn btn-outline-secondary btn-sm manager-open-btn"
+                                        data-manager="경미"
+                                        data-manager-label="신경미"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal1">
+                                    <b>경미</b>
+                                </button>
+                            </div>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"
@@ -93,6 +110,7 @@
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
+                                            선택 담당: <strong id="selected_manager_label">권혁만</strong><br>
                                             검토 후 재가바랍니다.!
                                         </div>
                                         <div class="modal-footer">
@@ -773,111 +791,107 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 <script>
-    <!--  담당 모달창 닫힐때 이벤트-->
-                    $(document).ready(function(){
-                        $('#exampleModal1').on('hidden.bs.modal', function () {
-                                if($("#first_comfirm").css("display") != "none"){
-                                  alert("전송완료");
-                                }
-                        });
-    <!--이사결재란 모달 닫힐때 이벤트-->
-                    });
+$(function(){
+    $('.manager-open-btn').click(function(){
+        const manager = $(this).data('manager');
+        const label = $(this).data('manager-label');
 
-                    $(document).ready(function(){
-                        $('#exampleModal2').on('hidden.bs.modal', function () {
-<!--                                if($("#24").css("display")!= "none"){-->
-                                    alert("전송완료");
-                                    }
-                        });
+        let imgSrc = '/static/img/hyuckman.JPG';
+        let imgAlt = '권혁만';
 
-                    });
+        if (manager === '경미') {
+            imgSrc = '/static/img/kyungmi.JPG';
+            imgAlt = '신경미';
+        }
 
-                    $(document).ready(function(){
-                        $('#exampleModal2').on('hidden.bs.modal', function () {
-<!--                                if($("#24_1").css("display") != "none"){-->
-                                    alert("전송완료");
-                                    }
-                        });
-    <!--대표결제란 모델 닫힐때 이벤트-->
-                    });
+        $('#manager_name').val(manager);
+        $('#selected_manager_label').text(label);
+        $('#firstcheck').attr('src', imgSrc);
+        $('#firstcheck').attr('alt', imgAlt);
+    });
+});
 
-                    $(document).ready(function(){
-                        $('#exampleModal3').on('hidden.bs.modal', function () {
-                                if($("#director").css("display")!= "none"){
-                                    alert("전송완료");
-                                    }
-                        });
+// 담당 모달창 닫힐때 이벤트
+$(document).ready(function(){
+    $('#exampleModal1').on('hidden.bs.modal', function () {
+        if ($("#first_comfirm").css("display") != "none") {
+            alert("전송완료");
+        }
+    });
+});
 
-                    });
+// 이사결재란 모달 닫힐때 이벤트
+$(document).ready(function(){
+    $('#exampleModal2').on('hidden.bs.modal', function () {
+        alert("전송완료");
+    });
+});
 
-                    $(document).ready(function(){
-                        $('#exampleModal3').on('hidden.bs.modal', function () {
-                                if($("#director_1").css("display") != "none"){
-                                    alert("전송완료");
-                                    }
-                        });
+$(document).ready(function(){
+    $('#exampleModal2').on('hidden.bs.modal', function () {
+        alert("전송완료");
+    });
+});
 
-                    });
+// 대표결재란 모달 닫힐때 이벤트
+$(document).ready(function(){
+    $('#exampleModal3').on('hidden.bs.modal', function () {
+        if ($("#director").css("display") != "none") {
+            alert("전송완료");
+        }
+    });
+});
 
+$(document).ready(function(){
+    $('#exampleModal3').on('hidden.bs.modal', function () {
+        if ($("#director_1").css("display") != "none") {
+            alert("전송완료");
+        }
+    });
+});
 
+// 이사 모달창 버튼 클릭시 이벤트
+$(function(){
+    $('#24_send').click(function(){
+        if ($("#24").css("display") && $("#24_1").css("display") == "none") {
+            $('#24').show();
+        }
+    });
+});
 
+$(function(){
+    $('#send2').click(function(){
+        if ($("#24_1").css("display") && $("#24").css("display") == "none") {
+            $('#24_1').show();
+        }
+    });
+});
 
+// 담당 모달창 버튼 클릭시 이벤트
+$(function(){
+    $('#first_check_ready').click(function(){
+        if ($("#first_comfirm").css("display") == "none") {
+            $('#first_comfirm').show();
+        }
+    });
+});
 
-    <!-- 이사 모달창 버튼 클릭시 이벤트-->
+// 대표 모달창 버튼 클릭시 이벤트
+$(function(){
+    $('#final').click(function(){
+        if ($("#director").css("display") && $("#director_1").css("display") == "none") {
+            $('#director').show();
+        }
+    });
+});
 
-                    $(function(){
-                        $('#24_send').click(function(){
-                            if($("#24").css("display") && $("#24_1").css("display") == "none"){
-                                $('#24').show();
-                            }
-                        });
-                    });
-
-                    $(function(){
-                        $('#send2').click(function(){
-                            if($("#24_1").css("display") && $("#24").css("display") == "none"){
-                                $('#24_1').show();
-
-                            }
-                        });
-                    });
-    <!-- 담당 모달창 버튼 클릭시 이벤트-->
-                    $(function(){
-                        $('#first_check').click(function(){
-                            if($("#first_comfirm").css("display") == "none"){
-                                $('#first_comfirm').show();
-
-                            }
-                        });
-                    });
-    <!-- 대표 모달창 버튼 클릭시 이벤트-->
-                    $(function(){
-                        $('#final').click(function(){
-                            if($("#director").css("display") && $("#director_1").css("display") == "none"){
-                                $('#director').show();
-                            }
-                        });
-                    });
-
-                    $(function(){
-                        $('#reject_2').click(function(){
-                            if($("#director_1").css("display") && $("#director").css("display") == "none"){
-                                $('#director_1').show();
-
-                            }
-                        });
-                    });
-
-<!--                    document.insertform.addEventListener("keydown", evt => {-->
-<!--                      if ((evt.keyCode || evt.which) === 13) {-->
-<!--                      evt.preventDefault();-->
-<!--                    });-->
-
-
-
-
-
+$(function(){
+    $('#reject_2').click(function(){
+        if ($("#director_1").css("display") && $("#director").css("display") == "none") {
+            $('#director_1').show();
+        }
+    });
+});
 </script>
 <script src="{% static 'eas/vendor_autocomplete.js' %}"></script>
-<script src="{% static 'eas/total_calc.js' %}"></script>
-{% endblock %}
+<script src="{% static 'eas/total_calc.js' %}"></script>{% endblock %}

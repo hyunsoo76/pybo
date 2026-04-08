@@ -91,6 +91,7 @@ class Request(models.Model):
     fff = models.IntegerField(blank=True, null=True) #index 외 몇개 매입처 표기
     ggg = models.IntegerField(blank=True, null=True) # detail에서 최초 생성시 total 값 넘겨받기
     hhh = models.IntegerField(blank=True, null=True) # total 최소 생성시 값이 안들어가서 이걸로해봄 
+    manager_name = models.CharField(max_length=20, blank=True, default='혁만')
 
 
 

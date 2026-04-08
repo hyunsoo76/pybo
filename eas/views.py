@@ -127,6 +127,7 @@ def Request_create(request):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()
+            new_Request.manager_name = request.POST.get('manager_name', '혁만')
             # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
                 new_Request.fff = 9
@@ -335,7 +336,7 @@ def Request_modify(request, new_Request_id):
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()  # 수정일시 저장
-
+            new_Request.manager_name = request.POST.get('manager_name', new_Request.manager_name or '혁만')
             totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
                       new_Request.d_5, new_Request.e_5, new_Request.f_5,
                       new_Request.g_5, new_Request.h_5, new_Request.i_5,
