@@ -19,7 +19,6 @@ from eas.pushmsg import send_push
 import logging
 import re
 from django.views.decorators.http import require_GET
-from django.http import HttpResponse
 
 
 def index(request):
@@ -150,30 +149,28 @@ def Request_create(request):
             elif new_Request.b_1:
                 new_Request.fff = 1
 
-            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                      new_Request.j_5]
+            totals = [
+                new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                new_Request.j_5
+            ]
             totalsum = 0
             for total in totals:
-                if total != None:
-                    totalsum = totalsum + total
+                if total is not None:
+                    totalsum += total
 
             new_Request.total = totalsum
-            return HttpResponse(repr({
-                'manager_name': new_Request.manager_name,
-                'cleaned_manager_name': cleaned.get('manager_name'),
-                'post_manager_name': request.POST.get('manager_name'),
-            }))
-            else:
-            form = RequestForm(request.POST)
+            new_Request.save()
+            context = {'new_Request': new_Request}
+            return render(request, 'eas/detail_r.html', context)
+        else:
             context = {'form': form}
             return render(request, 'eas/detail.html', context)
     else:
         form = RequestForm()
         context = {'form': form}
-        return render(request, 'eas/detail.html', context)
-    
+        return render(request, 'eas/detail.html', context)    
     # else:
     #
     #     query = request.GET.get('j_1', '')
