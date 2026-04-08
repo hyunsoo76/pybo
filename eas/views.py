@@ -20,7 +20,7 @@ import logging
 
 import re
 from django.views.decorators.http import require_GET
-
+from django.http import HttpResponse
 
 
 def index(request):
@@ -123,7 +123,7 @@ def detail(request, Request_id):
 
 def Request_create(request):
     if request.method == 'POST':
-        print("POST manager_name =", request.POST.get('manager_name'), flush=True)
+        return HttpResponse(f"manager_name={request.POST.get('manager_name')!r}")
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
