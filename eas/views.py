@@ -573,3 +573,16 @@ def detail_update2(request, new_Request_id):
         return redirect('eas:detail_r', Request_id=new_Request.id)
 
     return redirect('eas:detail_r', Request_id=new_Request.id)
+
+def Request_delete(request, new_Request_id):
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
+
+    if request.method == "POST":
+        # 상신 전(= ccc 값 없음)인 경우만 삭제 허용
+        if not new_Request.ccc:
+            new_Request.delete()
+            return redirect('eas:index')
+
+        return redirect('eas:detail_r', Request_id=new_Request.id)
+
+    return redirect('eas:detail_r', Request_id=new_Request.id)

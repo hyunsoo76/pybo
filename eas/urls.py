@@ -21,6 +21,7 @@ urlpatterns = [
     path("detail/update/<int:new_Request_id>/", views.detail_update, name="detail_update"),
     path("detail/okupdate/<int:new_Request_id>/", views.detail_okupdate, name="detail_okupdate"),
     path("detail/update2/<int:new_Request_id>/", views.detail_update2, name="detail_update2"),
+    path("detail/delete/<int:new_Request_id>/", views.Request_delete, name="Request_delete"),
     path("detail/okupdate2/<int:new_Request_id>/", views.detail_okupdate2, name="detail_okupdate2"),
 
     path("detail_modify/<int:new_Request_id>/", views.Request_modify, name="Request_modify"),

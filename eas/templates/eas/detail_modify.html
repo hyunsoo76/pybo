@@ -6,7 +6,7 @@
 <div class="container">
     <form method="post" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
-
+        <input type="hidden" name="manager_name" id="manager_name" value="{{ form.instance.manager_name|default:'혁만' }}">
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
             {% for field in form %}
@@ -54,9 +54,15 @@
                         <tr align="center">
                             <!-- 담당 -->
                             <td height="80px" width="150px" bgcolor="#D8D8D8">
+                                {% if form.instance.manager_name == "경미" %}
                                 <div id="first_comfirm">
-                                    <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="first_comfirm" id="firstcheck">
+                                    <img src="{% static 'img/kyungmi.JPG' %}" class="img-fluid" alt="신경미" id="firstcheck" style="height:90px;">
                                 </div>
+                                {% else %}
+                                <div id="first_comfirm">
+                                    <img src="{% static 'img/hyuckman.JPG' %}" class="img-fluid" alt="권혁만" id="firstcheck">
+                                </div>
+                                {% endif %}
 
                                 <div class="modal fade modal-auto-clear" data-timer="3000" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
                                     <div class="modal-dialog">

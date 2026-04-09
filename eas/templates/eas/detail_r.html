@@ -478,9 +478,16 @@
 
     <p></p>
 
-    <div align="left">
+    <div align="left" class="d-flex gap-2">
         {% if not new_Request.aaa %}
             <a href="{% url 'eas:Request_modify' new_Request.id %}" class="btn btn-sm btn-outline-success">&nbsp;&nbsp;수&nbsp;정&nbsp;&nbsp;</a>
+        {% endif %}
+
+        {% if not new_Request.ccc %}
+            <form action="{% url 'eas:Request_delete' new_Request.id %}" method="post" onsubmit="return confirm('이 품의서를 삭제하시겠습니까?');" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-danger">&nbsp;&nbsp;삭&nbsp;제&nbsp;&nbsp;</button>
+            </form>
         {% endif %}
     </div>
 
