@@ -446,7 +446,11 @@
     <div class="row g-0 approval-grid" align="center">
         <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
         <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left">
-            <span id="chamjo1">{{ new_Request.chamjo1 }}</span>
+            <textarea id="note_input"
+                class="form-control"
+                style="height:120px;"
+                placeholder="여기에 텍스트 또는 이미지 붙여넣기"></textarea>
+            <div id="note_preview"></div>
         </div>
     </div>
 
@@ -484,6 +488,32 @@ $(function () {
         $('#director_1').show();
     });
 });
+
+
+
+document.getElementById('note_input').addEventListener('paste', function(e) {
+    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+            const file = items[i].getAsFile();
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.style.maxWidth = '300px';
+                img.style.display = 'block';
+                img.style.marginTop = '10px';
+
+                document.getElementById('note_preview').appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+});
+
 </script>
 
 {% endblock %}
