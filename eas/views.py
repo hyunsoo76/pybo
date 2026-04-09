@@ -271,23 +271,6 @@ def detail_okupdate(request, new_Request_id):
     return redirect('eas:detail_r', Request_id=new_Request.id)
 
 
-def detail_okupdate2(request, new_Request_id):
-    new_Request = get_object_or_404(Request, pk=new_Request_id)
-    if request.method == "POST":
-        temp = request.POST.get('input_ok2')
-        if new_Request.bbb != "반려":
-            new_Request.bbb = temp
-            new_Request.date2 = timezone.now()
-            new_Request.save()
-            send_push(
-                title="대진산업",
-                message="기안이 대표이사 승인처리 되었습니다",
-                url="http://3.37.211.248/eas/",
-                url_title="전자문서결재"
-            )
-        return redirect('eas:detail_r', Request_id=new_Request.id)
-    return redirect('eas:detail_r', Request_id=new_Request.id)
-
 
 def detail_okupdate2(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
@@ -571,3 +554,21 @@ def vendor_suggest(request):
                 return JsonResponse({"items": items})
 
     return JsonResponse({"items": items})
+
+def detail_update2(request, new_Request_id):
+    from django.shortcuts import get_object_or_404, redirect
+    from .models import Request
+
+    new_Request = get_object_or_404(Request, pk=new_Request_id)
+
+    if request.method == "POST":
+        temp = request.POST.get('input_reject2')
+
+        if new_Request.bbb != "승인":
+            new_Request.bbb = temp
+            new_Request.date2 = timezone.now()
+            new_Request.save()
+
+        return redirect('eas:detail_r', Request_id=new_Request.id)
+
+    return redirect('eas:detail_r', Request_id=new_Request.id)
