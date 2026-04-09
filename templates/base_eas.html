@@ -33,17 +33,12 @@
           <div class="navbar-collapse collapse justify-content-end" id="navbarSupportedContent">
 
 <!-- --------------택배조회 -->
-            <div class="d-none d-sm-block">
+            <!-- <div class="d-none d-sm-block">
             <form style="padding-top:18px" name="viewerForm" action="http://info.sweettracker.co.kr/tracking/4" method="post" target="viewer" onsubmit="postPopUp();">
                 {% csrf_token %}
                 <div class="input-group flex-nowrap">
-                    <!--                <label for="t_key"></label>-->
                     <input type="hidden" class="form-control form-control-sm" id="t_key" name="t_key" value="huQxmfgXgANLMwhwpq9JjQ">
-                    <!--                </div>-->
-                    <!--                <div class="form-group">--></div>
                 <div class="input-group flex-nowrap">
-                    <!--                <label for="t_code">택배사 코드</label>-->
-                    <!--                 <input type="text" class="form-control form-control-sm" name="t_code" id="t_code" placeholder="택배사 코드">-->
                     <select class="form-select form-select-sm" aria-label="Default select example" name="t_code"
                             id="t_code" accesskey="t">>
                         <option selected>택배사</option>
@@ -66,7 +61,7 @@
 
             </form>
             </div>
-              &nbsp;&nbsp;
+              &nbsp;&nbsp; -->
 <!-- --------------택배조회 끝-->
 <!--             <form id="search">-->
                <button class="btn btn-outline-light" type="button" onclick="window.open('http://3.37.211.248/eas/account.html','window_name','width=730,height=195, left=710, top=86, location=no,status=no,scrollbars=yes');" accesskey="q" onMouseOver="this.innerHTML=' ALT+Q '" onMouseOut="this.innerHTML='계좌조회'">계좌조회</button>
@@ -114,37 +109,37 @@
 <!--  </script>-->
   </body>
   <script type="text/javascript">
-      function postPopUp(viewerForm) {
+      // function postPopUp(viewerForm) {
 
-        frm = document.getElementById(viewerForm);
-        window.open('', 'viewer', 'width=500, height=800 left=710, top=86, location=no,status=no,scrollbars=yes');
+      //   frm = document.getElementById(viewerForm);
+      //   window.open('', 'viewer', 'width=500, height=800 left=710, top=86, location=no,status=no,scrollbars=yes');
 
-       }
+      //  }
 
-<!--      function regExp(t_invoice){-->
-<!--      var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi-->
-<!--      //특수문자 검증-->
-<!--      if(reg.test(t_invoice)){-->
-<!--        //특수문자 제거후 리턴-->
-<!--        return t_invoice.replace(reg, "");-->
-<!--      } else {-->
-<!--        //특수문자가 없으므로 본래 문자 리턴-->
-<!--        return str;-->
-<!--        }-->
-<!--      }-->
+//     function regExp(t_invoice){-->
+  //    var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi-->
+  //     //특수문자 검증-->
+  //     if(reg.test(t_invoice)){-->
+  //        //특수문자 제거후 리턴-->
+  //        return t_invoice.replace(reg, "");-->
+  //      } else {-->
+  //        //특수문자가 없으므로 본래 문자 리턴-->
+  //        return str;-->
+  //        }-->
+  //      }-->
 
-<!--     $('body').on('input', 'input[name=t_invoice]', function() {-->
-<!--          var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi-->
-<!--          $(this).val($(this).val().replace(reg, ''));-->
-<!--          var value = $('input[name=t_invoice]').val();-->
-<!--            value = value.replace("-", "");-->
-<!--            $('input[name=t_invoice]').val(value);-->
-<!--        });-->
-<!-- 택배조회 입력창 숫자외 문자 제외 -->
-function removeNonNumeric() {
-    var input = document.getElementById("t_invoice");
-    input.value = input.value.replace(/[^0-9]/g, "");
-}
+  //     $('body').on('input', 'input[name=t_invoice]', function() {-->
+  //          var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi-->
+  //          $(this).val($(this).val().replace(reg, ''));-->
+  //          var value = $('input[name=t_invoice]').val();-->
+  //            value = value.replace("-", "");-->
+  //            $('input[name=t_invoice]').val(value);-->
+//        });-->
+// 택배조회 입력창 숫자외 문자 제외 -->
+// function removeNonNumeric() {
+//     var input = document.getElementById("t_invoice");
+//     input.value = input.value.replace(/[^0-9]/g, "");
+// }
 
   </script>
 
