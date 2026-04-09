@@ -182,15 +182,22 @@
                                 </div>
 
                             {% elif "대결:" in new_Request.aaa %}
-                                <div style="text-align:center;">
-                                    {% if new_Request.manager_name == "경미" %}
-                                        <img src="{% static 'img/kyungmi.JPG' %}" style="height:90px;"><br>
-                                    {% else %}
-                                        <img src="{% static 'img/hyuckman.JPG' %}" style="height:90px;"><br>
-                                    {% endif %}
-                                    <div style="font-size:15px; font-weight:700; color:#1e40af; margin-top:4px;">
+                                <div style="display:flex; align-items:center; justify-content:center; gap:10px;">
+                                    
+                                    <!-- 왼쪽: 대결 텍스트 -->
+                                    <div style="font-size:15px; font-weight:700; color:#1e40af;">
                                         대결
                                     </div>
+
+                                    <!-- 오른쪽: 도장 -->
+                                    <div>
+                                        {% if new_Request.manager_name == "경미" %}
+                                            <img src="{% static 'img/kyungmi.JPG' %}" style="height:90px;">
+                                        {% else %}
+                                            <img src="{% static 'img/hyuckman.JPG' %}" style="height:90px;">
+                                        {% endif %}
+                                    </div>
+
                                 </div>
 
                             {% else %}
