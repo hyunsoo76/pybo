@@ -94,7 +94,7 @@ DATABASES = {
     },
     'leave': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/Users/jeong/project/dev/leave/db.sqlite3',
+        'NAME': '/home/ubuntu/projects/leave/db.sqlite3',
     }
 }
 
