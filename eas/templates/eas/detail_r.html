@@ -478,13 +478,13 @@
 
     <p></p>
 
-    <div align="left" class="d-flex gap-2">
+    <div style="display:flex; gap:8px; align-items:center; justify-content:flex-start; margin-top:12px;">
         {% if not new_Request.aaa %}
             <a href="{% url 'eas:Request_modify' new_Request.id %}" class="btn btn-sm btn-outline-success">&nbsp;&nbsp;수&nbsp;정&nbsp;&nbsp;</a>
         {% endif %}
 
         {% if not new_Request.ccc %}
-            <form action="{% url 'eas:Request_delete' new_Request.id %}" method="post" onsubmit="return confirm('이 품의서를 삭제하시겠습니까?');" style="display:inline;">
+            <form action="{% url 'eas:Request_delete' new_Request.id %}" method="post" onsubmit="return confirm('이 품의서를 삭제하시겠습니까?');" style="margin:0;">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-sm btn-outline-danger">&nbsp;&nbsp;삭&nbsp;제&nbsp;&nbsp;</button>
             </form>
@@ -519,33 +519,6 @@ $(function () {
 });
 
 
-const noteInput = document.getElementById('note_input');
-
-noteInput.addEventListener('paste', function (e) {
-  const items = e.clipboardData.items;
-
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
-
-    if (item.type.indexOf('image') !== -1) {
-      e.preventDefault();
-
-      const file = item.getAsFile();
-      const reader = new FileReader();
-
-      reader.onload = function (event) {
-        const img = document.createElement('img');
-        img.src = event.target.result;
-        img.style.maxWidth = '100%';
-        img.style.marginTop = '10px';
-
-        noteInput.appendChild(img);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  }
-});
 
 
 const noteView = document.getElementById('chamjo1');
