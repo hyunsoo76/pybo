@@ -19,6 +19,7 @@ from eas.pushmsg import send_push
 import logging
 import re
 from django.views.decorators.http import require_GET
+from .utils import is_director_absent
 
 
 def index(request):
@@ -120,6 +121,8 @@ def detail(request, Request_id):
 
 
 def Request_create(request):
+    director_proxy_mode = is_director_absent(timezone.now())
+
     if request.method == 'POST':
         form = RequestForm(request.POST, request.FILES)
         if form.is_valid():
@@ -127,8 +130,15 @@ def Request_create(request):
             cleaned['create_date'] = timezone.now()
             cleaned['manager_name'] = request.POST.get('manager_name') or '혁만'
 
+            # 이사 부재 시 화면에서 후처리할 수 있게 값 보관
+            cleaned['director_proxy_mode'] = director_proxy_mode
+            cleaned['director_proxy_name'] = cleaned['manager_name'] if director_proxy_mode else ''
+
             new_Request = Request(**cleaned)
             new_Request.note_image = request.FILES.get('note_image')
+            # ✅ 이사 부재시 대결 처리
+            if director_proxy_mode:
+                new_Request.aaa = f"대결:{cleaned['manager_name']}"
 
             # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
@@ -166,21 +176,18 @@ def Request_create(request):
             return redirect('eas:detail_r', Request_id=new_Request.id)
 
         else:
-            context = {'form': form}
+            context = {
+                'form': form,
+                'director_proxy_mode': director_proxy_mode,
+            }
             return render(request, 'eas/detail.html', context)
     else:
         form = RequestForm()
-        context = {'form': form}
-        return render(request, 'eas/detail.html', context)    
-    # else:
-    #
-    #     query = request.GET.get('j_1', '')
-    #     s_result = Request.objects.all()
-    #     if query:
-    #         s_result = Request.object.fillter(j_1__contains=query)
-    #     else:
-    #         s_result = "일치 없음"
-    #     return render(request, 'eas/detail.html', {'s_result': s_result})
+        context = {
+            'form': form,
+            'director_proxy_mode': director_proxy_mode,
+        }
+        return render(request, 'eas/detail.html', context)
 
 
 def Request_create_24(request):
