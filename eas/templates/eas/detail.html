@@ -14,7 +14,7 @@
 
 <p></p>
 <div class="container">
-    <form id="detail_input_form" method="post" name="detail_input" onkeydown="return event.key != 'Enter';">
+    <form id="detail_input_form" method="post" name="detail_input" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <input type="hidden" name="manager_name" id="manager_name" value="혁만">
         <!-- 오류표시 Start -->
@@ -783,10 +783,9 @@
             <!--                  </div>-->
             <!--                </div>-->
         </div>
-        <div>
-<!--            &nbsp;<input type="file" name="note_img">-->
-        </div>
-    </form>
+        <div class="mt-2">
+            <input type="file" class="form-control" name="note_image" accept="image/*">
+        </div>    </form>
 </div>
 
 
