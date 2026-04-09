@@ -345,6 +345,7 @@ def Request_modify(request, new_Request_id):
             new_Request.save()
             return redirect('eas:detail_r', Request_id=new_Request.id)
 
+        print("DEBUG form.errors =", form.errors, flush=True)
         context = {'form': form}
         return render(request, 'eas/detail_modify.html', context)
 
