@@ -484,8 +484,9 @@
         {% endif %}
 
         {% if not new_Request.ccc %}
-            <form action="/eas/detail/delete/{{ new_Request.id }}/" method="post" onsubmit="return confirm('이 품의서를 삭제하시겠습니까?');" style="margin:0;">
+            <form action="{% url 'eas:Request_modify' new_Request.id %}" method="post" onsubmit="return confirm('이 품의서를 삭제하시겠습니까?');" style="margin:0;">
                 {% csrf_token %}
+                <input type="hidden" name="action" value="delete">
                 <button type="submit" class="btn btn-sm btn-outline-danger">&nbsp;&nbsp;삭&nbsp;제&nbsp;&nbsp;</button>
             </form>
         {% endif %}

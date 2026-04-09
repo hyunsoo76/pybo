@@ -295,7 +295,14 @@ def detail_okupdate2(request, new_Request_id):
 
 def Request_modify(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
+
     if request.method == "POST":
+        if request.POST.get("action") == "delete":
+            if not new_Request.ccc:
+                new_Request.delete()
+                return redirect('eas:index')
+            return redirect('eas:detail_r', Request_id=new_Request.id)
+
         form = RequestForm(request.POST, request.FILES, instance=new_Request)
         if form.is_valid():
             new_Request = form.save(commit=False)
@@ -311,7 +318,6 @@ def Request_modify(request, new_Request_id):
                     totalsum = totalsum + total
             new_Request.total = totalsum
 
-            # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
                 new_Request.fff = 9
             elif new_Request.i_1:
@@ -333,14 +339,10 @@ def Request_modify(request, new_Request_id):
 
             new_Request.save()
             return redirect('eas:detail_r', Request_id=new_Request.id)
-
-            # return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-            # return redirect('eas:index')
     else:
         form = RequestForm(instance=new_Request)
         context = {'form': form}
         return render(request, 'eas/detail_modify.html', context)
-
 
 def detail_modify(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
