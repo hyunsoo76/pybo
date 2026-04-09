@@ -490,29 +490,61 @@ $(function () {
 });
 
 
+window.addEventListener('DOMContentLoaded', function () {
+  const noteInput = document.getElementById('note_input');
+  const notePreview = document.getElementById('note_preview');
 
-document.getElementById('note_input').addEventListener('paste', function(e) {
-    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+  if (!noteInput || !notePreview) return;
+
+  noteInput.addEventListener('paste', function (e) {
+    const clipboard = e.clipboardData || window.clipboardData;
+    if (!clipboard) return;
+
+    const items = clipboard.items;
+    if (!items || !items.length) return;
+
+    let handled = false;
 
     for (let i = 0; i < items.length; i++) {
-        if (items[i].type.indexOf('image') !== -1) {
-            const file = items[i].getAsFile();
-            const reader = new FileReader();
+      const item = items[i];
 
-            reader.onload = function(event) {
-                const img = document.createElement('img');
-                img.src = event.target.result;
-                img.style.maxWidth = '300px';
-                img.style.display = 'block';
-                img.style.marginTop = '10px';
+      if (item.kind === 'file' && item.type.startsWith('image/')) {
+        e.preventDefault();
 
-                document.getElementById('note_preview').appendChild(img);
-            };
+        const file = item.getAsFile();
+        if (!file) continue;
 
-            reader.readAsDataURL(file);
-        }
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          notePreview.innerHTML = '';
+
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          img.alt = '붙여넣은 이미지';
+          img.style.maxWidth = '100%';
+          img.style.maxHeight = '400px';
+          img.style.display = 'block';
+          img.style.marginTop = '10px';
+          img.style.border = '1px solid #d9dee3';
+          img.style.borderRadius = '6px';
+
+          notePreview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+
+        handled = true;
+        break;
+      }
     }
+
+    if (!handled) {
+      console.log('클립보드에 이미지 파일 없음');
+    }
+  });
 });
+
+
+
 
 </script>
 
