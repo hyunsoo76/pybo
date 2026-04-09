@@ -306,16 +306,19 @@ def Request_modify(request, new_Request_id):
         form = RequestForm(request.POST, request.FILES, instance=new_Request)
         if form.is_valid():
             new_Request = form.save(commit=False)
-            new_Request.create_date = timezone.now()  # 수정일시 저장
+            new_Request.create_date = timezone.now()
             new_Request.manager_name = request.POST.get('manager_name', new_Request.manager_name or '혁만')
-            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                      new_Request.j_5]
+
+            totals = [
+                new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                new_Request.j_5
+            ]
             totalsum = 0
             for total in totals:
-                if total != None:
-                    totalsum = totalsum + total
+                if total is not None:
+                    totalsum += total
             new_Request.total = totalsum
 
             if new_Request.j_1:
@@ -336,13 +339,18 @@ def Request_modify(request, new_Request_id):
                 new_Request.fff = 2
             elif new_Request.b_1:
                 new_Request.fff = 1
+            else:
+                new_Request.fff = None
 
             new_Request.save()
             return redirect('eas:detail_r', Request_id=new_Request.id)
-    else:
-        form = RequestForm(instance=new_Request)
+
         context = {'form': form}
         return render(request, 'eas/detail_modify.html', context)
+
+    form = RequestForm(instance=new_Request)
+    context = {'form': form}
+    return render(request, 'eas/detail_modify.html', context)
 
 def detail_modify(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
