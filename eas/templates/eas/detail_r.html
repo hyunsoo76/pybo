@@ -171,6 +171,11 @@
                             {% elif new_Request.aaa == "반려" %}
                                 <div id="24_1"><img src="{% static 'img/reject_img.jpg' %}" class="img-fluid" alt="24_1" id="secondcheck1"></div>
                             {% elif new_Request.aaa == "전결" %}
+                            {% elif "대결" in new_Request.aaa %}
+                                <div style="text-align:center;">
+                                    <img src="{% static 'img/hyunsoo_1.JPG' %}" class="img-fluid"><br>
+                                    <span style="font-size:12px; color:red;">{{ new_Request.aaa }}</span>
+                                </div>
                                 <div id="24_3"><img src="{% static 'img/pass1_1.jpg' %}" class="img-fluid" alt="24_3" id="secondcheck3" align="left"></div>
                             {% else %}
                                 <div id="24_2"></div>
