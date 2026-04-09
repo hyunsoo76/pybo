@@ -487,16 +487,17 @@
         <div class="row" align="center">
             <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">Note</div>
             <div class="col">
-                <div id="note_editor"
-                     contenteditable="true"
-                     class="form-control"
-                     style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
-                <input type="hidden" name="chamjo1" id="chamjo1_hidden">
-            </div>
-        </div>
+                    <div id="note_editor"
+                        contenteditable="true"
+                        class="form-control"
+                        style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
+                    <input type="hidden" name="chamjo1" id="chamjo1_hidden">
+                </div>
+                </div>
 
-        <br>
-    </form>
+                <br>
+                <button type="submit" name="action" value="delete" class="btn btn-danger">삭제</button>
+                </form>
 </div>
 
 <!-- Note 이미지 확대 팝업 -->
