@@ -130,10 +130,6 @@ def Request_create(request):
             cleaned['create_date'] = timezone.now()
             cleaned['manager_name'] = request.POST.get('manager_name') or '혁만'
 
-            # 이사 부재 시 화면에서 후처리할 수 있게 값 보관
-            cleaned['director_proxy_mode'] = director_proxy_mode
-            cleaned['director_proxy_name'] = cleaned['manager_name'] if director_proxy_mode else ''
-
             new_Request = Request(**cleaned)
             new_Request.note_image = request.FILES.get('note_image')
             # ✅ 이사 부재시 대결 처리
