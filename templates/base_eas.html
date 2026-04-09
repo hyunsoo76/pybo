@@ -30,47 +30,32 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-          <div class="navbar-collapse collapse justify-content-end" id="navbarSupportedContent">
+          <div class="navbar-collapse collapse justify-content-end align-items-center" id="navbarSupportedContent">
 
-<!-- --------------택배조회 -->
-            <!-- <div class="d-none d-sm-block">
-            <form style="padding-top:18px" name="viewerForm" action="http://info.sweettracker.co.kr/tracking/4" method="post" target="viewer" onsubmit="postPopUp();">
-                {% csrf_token %}
-                <div class="input-group flex-nowrap">
-                    <input type="hidden" class="form-control form-control-sm" id="t_key" name="t_key" value="huQxmfgXgANLMwhwpq9JjQ">
-                <div class="input-group flex-nowrap">
-                    <select class="form-select form-select-sm" aria-label="Default select example" name="t_code"
-                            id="t_code" accesskey="t">>
-                        <option selected>택배사</option>
-                        <option value="04">대한통운</option>
-                        <option value="05">한진</option>
-                        <option value="08">롯데</option>
-                        <option value="06">로젠</option>
-                        <option value="23">경동</option>
-                        <option value="32">합동</option>
-                        <option value="18">건영</option>
-                        <option value="17">천일</option>
-                        <option value="45">호남</option>
-                        <option value="01">우체국</option>
-                    </select>
-                    &nbsp;
-                    <input class="form-control form-control-ml" name="t_invoice" id="t_invoice"
-                           oninput="removeNonNumeric()" placeholder="송장 번호">
-                    <button type="submit" class="btn btn-outline-secondary">Search</button>
-                </div>
-
+            <form id="navbarSearchForm" class="d-flex align-items-center me-2" method="get" action="{% url 'eas:index' %}">
+                <input
+                    type="text"
+                    id="navbar_search_kw"
+                    name="kw"
+                    class="form-control form-control-sm"
+                    accesskey="a"
+                    value="{{ kw|default_if_none:'' }}"
+                    placeholder="상세검색 alt+a"
+                    style="width: 320px;"
+                >
+                <input type="hidden" name="page" value="1">
+                <button class="btn btn-outline-light btn-sm ms-2" type="submit">검색</button>
             </form>
-            </div>
-              &nbsp;&nbsp; -->
-<!-- --------------택배조회 끝-->
-<!--             <form id="search">-->
-               <button class="btn btn-outline-light" type="button" onclick="window.open('http://3.37.211.248/eas/account.html','window_name','width=730,height=195, left=710, top=86, location=no,status=no,scrollbars=yes');" accesskey="q" onMouseOver="this.innerHTML=' ALT+Q '" onMouseOut="this.innerHTML='계좌조회'">계좌조회</button>
 
-<!--             </form>-->
+            <button class="btn btn-outline-light btn-sm" type="button"
+                    onclick="window.open('http://3.37.211.248/eas/account.html','window_name','width=730,height=195,left=710,top=86,location=no,status=no,scrollbars=yes');"
+                    accesskey="q"
+                    onMouseOver="this.innerHTML=' ALT+Q '"
+                    onMouseOut="this.innerHTML='계좌조회'">계좌조회</button>
 
         </div>
 
-       </div>
+       
 
 
 
@@ -108,39 +93,6 @@
 <!--      });-->
 <!--  </script>-->
   </body>
-  <script type="text/javascript">
-      // function postPopUp(viewerForm) {
 
-      //   frm = document.getElementById(viewerForm);
-      //   window.open('', 'viewer', 'width=500, height=800 left=710, top=86, location=no,status=no,scrollbars=yes');
-
-      //  }
-
-//     function regExp(t_invoice){-->
-  //    var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi-->
-  //     //특수문자 검증-->
-  //     if(reg.test(t_invoice)){-->
-  //        //특수문자 제거후 리턴-->
-  //        return t_invoice.replace(reg, "");-->
-  //      } else {-->
-  //        //특수문자가 없으므로 본래 문자 리턴-->
-  //        return str;-->
-  //        }-->
-  //      }-->
-
-  //     $('body').on('input', 'input[name=t_invoice]', function() {-->
-  //          var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi-->
-  //          $(this).val($(this).val().replace(reg, ''));-->
-  //          var value = $('input[name=t_invoice]').val();-->
-  //            value = value.replace("-", "");-->
-  //            $('input[name=t_invoice]').val(value);-->
-//        });-->
-// 택배조회 입력창 숫자외 문자 제외 -->
-// function removeNonNumeric() {
-//     var input = document.getElementById("t_invoice");
-//     input.value = input.value.replace(/[^0-9]/g, "");
-// }
-
-  </script>
 
 </html>

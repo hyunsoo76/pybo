@@ -10,6 +10,7 @@ from .models import Request
 from .forms import RequestForm
 from django.core.paginator import Paginator
 from django.db.models import Q
+from types import SimpleNamespace
 from asgiref.sync import sync_to_async
 
 from django.http import JsonResponse
@@ -23,58 +24,77 @@ from .utils import is_director_absent
 
 
 def index(request):
-    page = request.GET.get('page', '1')  # 페이지
-    kw = request.GET.get('kw', '')  # 검색어
-    Request_list = Request.objects.order_by('-create_date')
-    if kw:
-        Request_list = Request_list.filter(
-            Q(subject__icontains=kw) |  # 제목 검색
-            Q(a_1__icontains=kw) |  # 매입처명
-            Q(b_1__icontains=kw) |
-            Q(c_1__icontains=kw) |
-            Q(d_1__icontains=kw) |
-            Q(e_1__icontains=kw) |
-            Q(f_1__icontains=kw) |
-            Q(g_1__icontains=kw) |
-            Q(h_1__icontains=kw) |
-            Q(i_1__icontains=kw) |
-            Q(j_1__icontains=kw) |
-            Q(a_4__icontains=kw) |  # 계좌명
-            Q(b_4__icontains=kw) |
-            Q(d_4__icontains=kw) |
-            Q(e_4__icontains=kw) |
-            Q(f_4__icontains=kw) |
-            Q(g_4__icontains=kw) |
-            Q(h_4__icontains=kw) |
-            Q(i_4__icontains=kw) |
-            Q(j_4__icontains=kw) |
-            Q(a_5__icontains=kw) |  # 금액
-            Q(b_5__icontains=kw) |
-            Q(c_5__icontains=kw) |
-            Q(d_5__icontains=kw) |
-            Q(e_5__icontains=kw) |
-            Q(f_5__icontains=kw) |
-            Q(g_5__icontains=kw) |
-            Q(h_5__icontains=kw) |
-            Q(i_5__icontains=kw) |
-            Q(j_5__icontains=kw) |
-            Q(a_7__icontains=kw) |  # 비고
-            Q(b_7__icontains=kw) |
-            Q(c_7__icontains=kw) |
-            Q(d_7__icontains=kw) |
-            Q(e_7__icontains=kw) |
-            Q(f_7__icontains=kw) |
-            Q(g_7__icontains=kw) |
-            Q(h_7__icontains=kw) |
-            Q(i_7__icontains=kw) |
-            Q(j_7__icontains=kw)
-        ).distinct()
-    # context = {'Request_list': Request_list}
-    paginator = Paginator(Request_list, 10)  # 페이지당 10개씩 보여주기
-    page_obj = paginator.get_page(page)
-    context = {'Request_list': page_obj, 'page': page, 'kw': kw}
-    return render(request, 'eas/index.html', context)
+    page = request.GET.get('page', '1')
+    kw = (request.GET.get('kw') or '').strip()
 
+    request_qs = Request.objects.order_by('-create_date')
+    vendor_slots = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+
+    if kw:
+        search_cond = Q(subject__icontains=kw)
+        for s in vendor_slots:
+            search_cond |= Q(**{f"{s}_1__icontains": kw})   # 거래처
+            search_cond |= Q(**{f"{s}_2__icontains": kw})   # 계좌번호
+            search_cond |= Q(**{f"{s}_3__icontains": kw})   # 은행
+            search_cond |= Q(**{f"{s}_4__icontains": kw})   # 예금주
+            search_cond |= Q(**{f"{s}_5__icontains": kw})   # 금액
+            search_cond |= Q(**{f"{s}_7__icontains": kw})   # 비고
+
+        request_qs = request_qs.filter(search_cond).distinct()
+
+    detail_rows = []
+
+    for req in request_qs:
+        for idx, s in enumerate(vendor_slots, start=1):
+            vendor = getattr(req, f"{s}_1", None)
+            account_no = getattr(req, f"{s}_2", None)
+            bank = getattr(req, f"{s}_3", None)
+            account_name = getattr(req, f"{s}_4", None)
+            amount = getattr(req, f"{s}_5", None)
+            note = getattr(req, f"{s}_7", None)
+
+            has_line = any([vendor, account_no, bank, account_name, amount, note])
+            if not has_line:
+                continue
+
+            if kw:
+                line_values = [
+                    req.subject or "",
+                    vendor or "",
+                    account_no or "",
+                    bank or "",
+                    account_name or "",
+                    "" if amount is None else str(amount),
+                    note or "",
+                ]
+                if kw.lower() not in " ".join(line_values).lower():
+                    continue
+
+            detail_rows.append(SimpleNamespace(
+                request_id=req.id,
+                subject=req.subject,
+                line_no=idx,
+                vendor=vendor or "",
+                account_no=account_no or "",
+                bank=bank or "",
+                account_name=account_name or "",
+                amount=amount,
+                note=note or "",
+                create_date=req.create_date,
+                ccc=req.ccc,
+                aaa=req.aaa,
+                bbb=req.bbb,
+            ))
+
+    paginator = Paginator(detail_rows, 15)
+    page_obj = paginator.get_page(page)
+
+    context = {
+        'Request_list': page_obj,
+        'page': page,
+        'kw': kw,
+    }
+    return render(request, 'eas/index.html', context)
 
 def detail(request, Request_id):
     new_Request = get_object_or_404(Request, pk=Request_id)
