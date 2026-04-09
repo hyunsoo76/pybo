@@ -167,44 +167,35 @@
                         <!-- 이사 -->
                         <td width="150px">
                             {% if new_Request.aaa == "승인" %}
-                                    <div id="24">
-                                        <img src="{% static 'img/hyunsoo_1.JPG' %}" class="img-fluid" alt="24" id="secondcheck">
-                                    </div>
-                                {% elif new_Request.aaa == "반려" %}
-                                    <div id="24_1">
-                                        <img src="{% static 'img/reject_img.jpg' %}" class="img-fluid" alt="24_1" id="secondcheck1">
-                                    </div>
-                                {% elif new_Request.aaa == "전결" %}
-                                    <div id="24_3">
-                                        <img src="{% static 'img/pass1_1.jpg' %}" class="img-fluid" alt="24_3" id="secondcheck3" align="left">
-                                    </div>
-                                {% elif "대결:" in new_Request.aaa %}
-                                    <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
-                                        
-                                        <!-- 텍스트 -->
-                                        <div style="text-align:center;">
-                                            {% if new_Request.manager_name == "경미" %}
-                                                <img src="{% static 'img/kyungmi.JPG' %}" style="height:90px;"><br>
-                                            {% else %}
-                                                <img src="{% static 'img/hyuckman.JPG' %}" style="height:90px;"><br>
-                                            {% endif %}
-                                            <span style="font-size:12px; color:#555;">대결</span>
-                                        </div>
+                                <div id="24">
+                                    <img src="{% static 'img/hyunsoo_1.JPG' %}" class="img-fluid">
+                                </div>
 
-                                        <!-- 도장 (원래 크기) -->
-                                        <div>
-                                            {% if new_Request.manager_name == "경미" %}
-                                                <img src="{% static 'img/kyungmi.JPG' %}" style="height:90px;">
-                                            {% else %}
-                                                <img src="{% static 'img/hyuckman.JPG' %}" style="height:90px;">
-                                            {% endif %}
-                                        </div>
+                            {% elif new_Request.aaa == "반려" %}
+                                <div id="24_1">
+                                    <img src="{% static 'img/reject_img.jpg' %}" class="img-fluid">
+                                </div>
 
+                            {% elif new_Request.aaa == "전결" %}
+                                <div id="24_3">
+                                    <img src="{% static 'img/pass1_1.jpg' %}" class="img-fluid">
+                                </div>
+
+                            {% elif "대결:" in new_Request.aaa %}
+                                <div style="text-align:center;">
+                                    {% if new_Request.manager_name == "경미" %}
+                                        <img src="{% static 'img/kyungmi.JPG' %}" style="height:90px;"><br>
+                                    {% else %}
+                                        <img src="{% static 'img/hyuckman.JPG' %}" style="height:90px;"><br>
+                                    {% endif %}
+                                    <div style="font-size:15px; font-weight:700; color:#1e40af; margin-top:4px;">
+                                        대결
                                     </div>
-                                {% else %}
-                                    <div id="24_2"></div>
-                                {% endif %}
+                                </div>
 
+                            {% else %}
+                                <div id="24_2"></div>
+                            {% endif %}
                             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
