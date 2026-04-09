@@ -1,6 +1,14 @@
 {% extends 'base_eas.html' %}
 {% load static %}
 {% block content %}
+
+<style>
+#note_editor.note-placeholder:empty::before{
+    content: attr(data-placeholder);
+    color: #6c757d;
+    pointer-events: none;
+}
+</style>
 <p></p>
 {% if messages %}
 <ul class="absoulte top-0 right-0 left-0 flex justify-center">
@@ -771,7 +779,8 @@
             </div>
             <div id="note_editor"
                 contenteditable="true"
-                class="form-control"
+                class="form-control note-placeholder"
+                data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
                 style="min-height:120px; overflow:auto;">
             </div>
 
