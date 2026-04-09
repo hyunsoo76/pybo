@@ -179,10 +179,12 @@
                                         <img src="{% static 'img/pass1_1.jpg' %}" class="img-fluid" alt="24_3" id="secondcheck3" align="left">
                                     </div>
                                 {% elif "대결:" in new_Request.aaa %}
-                                    <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
-                                        <div style="text-align:left; font-size:12px; color:#1e40af; line-height:1.25; font-weight:600;">
-                                            <div>대결</div>
-                                            <div>
+                                    <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
+                                        
+                                        <!-- 텍스트 -->
+                                        <div style="text-align:left; color:#1e40af; line-height:1.2; font-weight:700;">
+                                            <div style="font-size:14px;">대 결</div>
+                                            <div style="font-size:15px;">
                                                 {% if new_Request.manager_name == "경미" %}
                                                     신경미
                                                 {% else %}
@@ -191,13 +193,15 @@
                                             </div>
                                         </div>
 
+                                        <!-- 도장 (원래 크기) -->
                                         <div>
                                             {% if new_Request.manager_name == "경미" %}
-                                                <img src="{% static 'img/kyungmi.JPG' %}" class="img-fluid" alt="신경미" style="max-height:80px;">
+                                                <img src="{% static 'img/kyungmi.JPG' %}" style="height:90px;">
                                             {% else %}
-                                                <img src="{% static 'img/hyuckman.JPG' %}" class="img-fluid" alt="권혁만" style="max-height:80px;">
+                                                <img src="{% static 'img/hyuckman.JPG' %}" style="height:90px;">
                                             {% endif %}
                                         </div>
+
                                     </div>
                                 {% else %}
                                     <div id="24_2"></div>
