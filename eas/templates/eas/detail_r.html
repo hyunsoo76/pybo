@@ -497,54 +497,44 @@ window.addEventListener('DOMContentLoaded', function () {
   if (!noteInput || !notePreview) return;
 
   noteInput.addEventListener('paste', function (e) {
-    const clipboard = e.clipboardData || window.clipboardData;
+    const clipboard = e.clipboardData;
     if (!clipboard) return;
 
     const items = clipboard.items;
-    if (!items || !items.length) return;
-
-    let handled = false;
 
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
 
-      if (item.kind === 'file' && item.type.startsWith('image/')) {
+      // 핵심: type만 체크 (file 조건 제거)
+      if (item.type.indexOf('image') !== -1) {
         e.preventDefault();
 
         const file = item.getAsFile();
-        if (!file) continue;
+        if (!file) return;
 
         const reader = new FileReader();
+
         reader.onload = function (event) {
           notePreview.innerHTML = '';
 
           const img = document.createElement('img');
           img.src = event.target.result;
-          img.alt = '붙여넣은 이미지';
           img.style.maxWidth = '100%';
           img.style.maxHeight = '400px';
-          img.style.display = 'block';
-          img.style.marginTop = '10px';
           img.style.border = '1px solid #d9dee3';
-          img.style.borderRadius = '6px';
+          img.style.marginTop = '10px';
 
           notePreview.appendChild(img);
         };
-        reader.readAsDataURL(file);
 
-        handled = true;
-        break;
+        reader.readAsDataURL(file);
+        return;
       }
     }
 
-    if (!handled) {
-      console.log('클립보드에 이미지 파일 없음');
-    }
+    console.log('이미지 없음');
   });
 });
-
-
-
 
 </script>
 
