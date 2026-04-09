@@ -497,6 +497,8 @@ window.addEventListener('DOMContentLoaded', function () {
   if (!noteInput || !notePreview) return;
 
   noteInput.addEventListener('paste', function (e) {
+    alert('paste 감지됨');
+
     const clipboard = e.clipboardData;
     if (!clipboard) return;
 
@@ -505,7 +507,6 @@ window.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
 
-      // 핵심: type만 체크 (file 조건 제거)
       if (item.type.indexOf('image') !== -1) {
         e.preventDefault();
 
