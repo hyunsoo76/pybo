@@ -64,8 +64,31 @@
     word-break: break-all;
     overflow-wrap: break-word;
     font-size: 14px;
-    line-height: 1.2;
+    line-height: 1.2;}
+    
+    .note-view img{
+        max-width: 100%;
+        height: auto;
+        cursor: zoom-in;
     }
+
+.note-lightbox{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: zoom-out;
+}
+
+.note-lightbox img{
+  max-width: 95vw;
+  max-height: 95vh;
+  object-fit: contain;
+}
 </style>
 
 <p></p>
@@ -446,8 +469,11 @@
     <div class="row g-0 approval-grid" align="center">
         <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
         <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
-            <div id="chamjo1" style="width:100%;">{{ new_Request.chamjo1|safe }}</div>
+            <div id="chamjo1" class="note-view" style="width:100%;">{{ new_Request.chamjo1|safe }}</div>
         </div>
+    </div>
+    <div id="noteLightbox" class="note-lightbox">
+        <img id="noteLightboxImg" src="" alt="확대 이미지">
     </div>
 
     <p></p>
@@ -514,6 +540,24 @@ noteInput.addEventListener('paste', function (e) {
   }
 });
 
+
+const noteView = document.getElementById('chamjo1');
+const noteLightbox = document.getElementById('noteLightbox');
+const noteLightboxImg = document.getElementById('noteLightboxImg');
+
+if (noteView && noteLightbox && noteLightboxImg) {
+    noteView.addEventListener('click', function (e) {
+        if (e.target.tagName === 'IMG') {
+            noteLightboxImg.src = e.target.src;
+            noteLightbox.style.display = 'flex';
+        }
+    });
+
+    noteLightbox.addEventListener('click', function () {
+        noteLightbox.style.display = 'none';
+        noteLightboxImg.src = '';
+    });
+}
 </script>
 
 {% endblock %}

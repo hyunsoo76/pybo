@@ -121,13 +121,14 @@ def detail(request, Request_id):
 
 def Request_create(request):
     if request.method == 'POST':
-        form = RequestForm(request.POST)
+        form = RequestForm(request.POST, request.FILES)
         if form.is_valid():
             cleaned = form.cleaned_data.copy()
             cleaned['create_date'] = timezone.now()
             cleaned['manager_name'] = request.POST.get('manager_name') or '혁만'
 
             new_Request = Request(**cleaned)
+            new_Request.note_image = request.FILES.get('note_image')
 
             # 외 몇개의 매입처인지 표기하기기 위해
             if new_Request.j_1:
@@ -295,7 +296,7 @@ def detail_okupdate2(request, new_Request_id):
 def Request_modify(request, new_Request_id):
     new_Request = get_object_or_404(Request, pk=new_Request_id)
     if request.method == "POST":
-        form = RequestForm(request.POST, instance=new_Request)
+        form = RequestForm(request.POST, request.FILES, instance=new_Request)
         if form.is_valid():
             new_Request = form.save(commit=False)
             new_Request.create_date = timezone.now()  # 수정일시 저장

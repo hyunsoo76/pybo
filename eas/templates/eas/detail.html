@@ -3,12 +3,17 @@
 {% block content %}
 
 <style>
-#note_editor.note-placeholder:empty::before{
+#note_editor{
+    position: relative;
+}
+
+#note_editor.is-empty::before{
     content: attr(data-placeholder);
     color: #6c757d;
     pointer-events: none;
 }
 </style>
+
 <p></p>
 {% if messages %}
 <ul class="absoulte top-0 right-0 left-0 flex justify-center">
@@ -779,10 +784,9 @@
             </div>
             <div id="note_editor"
                 contenteditable="true"
-                class="form-control note-placeholder"
+                class="form-control"
                 data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-                style="min-height:120px; overflow:auto;">
-            </div>
+                style="min-height:120px; overflow:auto;"></div>
 
             <input type="hidden" name="chamjo1" id="chamjo1_hidden">        </div>
        </form>
@@ -911,6 +915,23 @@ editor.addEventListener('paste', function (e) {
 document.getElementById('detail_input_form').addEventListener('submit', function () {
   hiddenInput.value = editor.innerHTML;
 });
+
+const createEditor = document.getElementById('note_editor');
+
+function toggleCreateEditorPlaceholder() {
+    if (!createEditor) return;
+    const hasContent = createEditor.innerHTML.replace(/<br\s*\/?>/gi, '').replace(/&nbsp;/gi, '').trim() !== '';
+    createEditor.classList.toggle('is-empty', !hasContent);
+}
+
+if (createEditor) {
+    toggleCreateEditorPlaceholder();
+
+    createEditor.addEventListener('focus', toggleCreateEditorPlaceholder);
+    createEditor.addEventListener('input', toggleCreateEditorPlaceholder);
+    createEditor.addEventListener('blur', toggleCreateEditorPlaceholder);
+}
+
 
 </script>
 <script src="{% static 'eas/vendor_autocomplete.js' %}"></script>
