@@ -2,6 +2,62 @@
 {% load humanize static %}
 {% block content %}
 
+<style>
+  .approval-grid .row{
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .approval-grid > .row > div{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .approval-cell{
+    border: 1px solid #d9dee3 !important;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    background: #fff;
+  }
+
+  .approval-cell.head{
+    background: #6c757d !important;
+    color: #fff !important;
+    font-weight: 600;
+    min-height: 34px;
+  }
+
+  .approval-cell.no{
+    background: #f1f3f5 !important;
+    font-weight: 600;
+  }
+
+  .approval-cell.text-left{
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .approval-cell.text-right{
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .approval-cell span.form-control,
+  .approval-cell .form-control{
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+</style>
+
 <p></p>
 <div class="container">
 
