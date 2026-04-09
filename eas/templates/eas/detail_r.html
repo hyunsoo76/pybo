@@ -490,31 +490,38 @@ $(function () {
 });
 
 
-window.addEventListener('DOMContentLoaded', function () {
+(function () {
   const noteInput = document.getElementById('note_input');
   const notePreview = document.getElementById('note_preview');
 
-  if (!noteInput || !notePreview) return;
+  if (!noteInput || !notePreview) {
+    alert('note_input 또는 note_preview를 못 찾음');
+    return;
+  }
 
-  noteInput.addEventListener('paste', function (e) {
+  noteInput.onpaste = function (e) {
     alert('paste 감지됨');
 
     const clipboard = e.clipboardData;
-    if (!clipboard) return;
+    if (!clipboard) {
+      alert('clipboard 없음');
+      return;
+    }
 
-    const items = clipboard.items;
-
+    const items = clipboard.items || [];
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
 
-      if (item.type.indexOf('image') !== -1) {
+      if (item.type && item.type.indexOf('image') !== -1) {
         e.preventDefault();
 
         const file = item.getAsFile();
-        if (!file) return;
+        if (!file) {
+          alert('image file 변환 실패');
+          return;
+        }
 
         const reader = new FileReader();
-
         reader.onload = function (event) {
           notePreview.innerHTML = '';
 
@@ -524,6 +531,7 @@ window.addEventListener('DOMContentLoaded', function () {
           img.style.maxHeight = '400px';
           img.style.border = '1px solid #d9dee3';
           img.style.marginTop = '10px';
+          img.style.display = 'block';
 
           notePreview.appendChild(img);
         };
@@ -533,9 +541,9 @@ window.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    console.log('이미지 없음');
-  });
-});
+    alert('클립보드에 이미지 없음');
+  };
+})();
 
 </script>
 
