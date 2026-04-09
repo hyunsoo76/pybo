@@ -27,20 +27,35 @@ def index(request):
     page = request.GET.get('page', '1')
     kw = (request.GET.get('kw') or '').strip()
 
-    request_qs = Request.objects.order_by('-create_date')
     vendor_slots = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
 
-    if kw:
-        search_cond = Q(subject__icontains=kw)
-        for s in vendor_slots:
-            search_cond |= Q(**{f"{s}_1__icontains": kw})   # 거래처
-            search_cond |= Q(**{f"{s}_2__icontains": kw})   # 계좌번호
-            search_cond |= Q(**{f"{s}_3__icontains": kw})   # 은행
-            search_cond |= Q(**{f"{s}_4__icontains": kw})   # 예금주
-            search_cond |= Q(**{f"{s}_5__icontains": kw})   # 금액
-            search_cond |= Q(**{f"{s}_7__icontains": kw})   # 비고
+    # 검색 안 했을 때: 기존 품의서 리스트
+    if not kw:
+        Request_list = Request.objects.order_by('-create_date')
+        paginator = Paginator(Request_list, 10)
+        page_obj = paginator.get_page(page)
 
-        request_qs = request_qs.filter(search_cond).distinct()
+        context = {
+            'Request_list': page_obj,
+            'page': page,
+            'kw': kw,
+            'is_detail_search': False,
+        }
+        return render(request, 'eas/index.html', context)
+
+    # 검색 했을 때: 상세 라인 검색
+    request_qs = Request.objects.order_by('-create_date')
+
+    search_cond = Q(subject__icontains=kw)
+    for s in vendor_slots:
+        search_cond |= Q(**{f"{s}_1__icontains": kw})   # 거래처
+        search_cond |= Q(**{f"{s}_2__icontains": kw})   # 계좌번호
+        search_cond |= Q(**{f"{s}_3__icontains": kw})   # 은행
+        search_cond |= Q(**{f"{s}_4__icontains": kw})   # 예금주
+        search_cond |= Q(**{f"{s}_5__icontains": kw})   # 금액
+        search_cond |= Q(**{f"{s}_7__icontains": kw})   # 비고
+
+    request_qs = request_qs.filter(search_cond).distinct()
 
     detail_rows = []
 
@@ -57,18 +72,17 @@ def index(request):
             if not has_line:
                 continue
 
-            if kw:
-                line_values = [
-                    req.subject or "",
-                    vendor or "",
-                    account_no or "",
-                    bank or "",
-                    account_name or "",
-                    "" if amount is None else str(amount),
-                    note or "",
-                ]
-                if kw.lower() not in " ".join(line_values).lower():
-                    continue
+            line_values = [
+                req.subject or "",
+                vendor or "",
+                account_no or "",
+                bank or "",
+                account_name or "",
+                "" if amount is None else str(amount),
+                note or "",
+            ]
+            if kw.lower() not in " ".join(line_values).lower():
+                continue
 
             detail_rows.append(SimpleNamespace(
                 request_id=req.id,
@@ -81,9 +95,6 @@ def index(request):
                 amount=amount,
                 note=note or "",
                 create_date=req.create_date,
-                ccc=req.ccc,
-                aaa=req.aaa,
-                bbb=req.bbb,
             ))
 
     paginator = Paginator(detail_rows, 15)
@@ -93,6 +104,7 @@ def index(request):
         'Request_list': page_obj,
         'page': page,
         'kw': kw,
+        'is_detail_search': True,
     }
     return render(request, 'eas/index.html', context)
 
