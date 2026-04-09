@@ -446,11 +446,11 @@
     <div class="row g-0 approval-grid" align="center">
         <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
         <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left">
-            <textarea id="note_input"
+            <div id="note_input"
+                contenteditable="true"
                 class="form-control"
-                style="height:120px;"
-                placeholder="여기에 텍스트 또는 이미지 붙여넣기"></textarea>
-            <div id="note_preview"></div>
+                style="min-height:120px; overflow:auto;">
+            </div>
         </div>
     </div>
 
@@ -490,60 +490,33 @@ $(function () {
 });
 
 
-(function () {
-  const noteInput = document.getElementById('note_input');
-  const notePreview = document.getElementById('note_preview');
+const noteInput = document.getElementById('note_input');
 
-  if (!noteInput || !notePreview) {
-    alert('note_input 또는 note_preview를 못 찾음');
-    return;
+noteInput.addEventListener('paste', function (e) {
+  const items = e.clipboardData.items;
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+
+    if (item.type.indexOf('image') !== -1) {
+      e.preventDefault();
+
+      const file = item.getAsFile();
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const img = document.createElement('img');
+        img.src = event.target.result;
+        img.style.maxWidth = '100%';
+        img.style.marginTop = '10px';
+
+        noteInput.appendChild(img);
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
-
-  noteInput.onpaste = function (e) {
-    alert('paste 감지됨');
-
-    const clipboard = e.clipboardData;
-    if (!clipboard) {
-      alert('clipboard 없음');
-      return;
-    }
-
-    const items = clipboard.items || [];
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-
-      if (item.type && item.type.indexOf('image') !== -1) {
-        e.preventDefault();
-
-        const file = item.getAsFile();
-        if (!file) {
-          alert('image file 변환 실패');
-          return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = function (event) {
-          notePreview.innerHTML = '';
-
-          const img = document.createElement('img');
-          img.src = event.target.result;
-          img.style.maxWidth = '100%';
-          img.style.maxHeight = '400px';
-          img.style.border = '1px solid #d9dee3';
-          img.style.marginTop = '10px';
-          img.style.display = 'block';
-
-          notePreview.appendChild(img);
-        };
-
-        reader.readAsDataURL(file);
-        return;
-      }
-    }
-
-    alert('클립보드에 이미지 없음');
-  };
-})();
+});
 
 </script>
 
