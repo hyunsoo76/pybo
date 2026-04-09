@@ -883,53 +883,94 @@ $(function(){
 
 const editor = document.getElementById('note_editor');
 const hiddenInput = document.getElementById('chamjo1_hidden');
+const detailForm = document.getElementById('detail_input_form');
 
-// 붙여넣기 (이미지 포함)
-editor.addEventListener('paste', function (e) {
-  const items = e.clipboardData.items;
+function editorHasRealContent(el) {
+  if (!el) return false;
 
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
+  const hasImage = el.querySelector('img') !== null;
+  const text = (el.textContent || '').replace(/\u00a0/g, ' ').trim();
 
-    if (item.type.indexOf('image') !== -1) {
-      e.preventDefault();
-
-      const file = item.getAsFile();
-      const reader = new FileReader();
-
-      reader.onload = function (event) {
-        const img = document.createElement('img');
-        img.src = event.target.result;
-        img.style.maxWidth = '100%';
-        img.style.marginTop = '10px';
-
-        editor.appendChild(img);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  }
-});
-
-// 저장 시 html 넣기
-document.getElementById('detail_input_form').addEventListener('submit', function () {
-  hiddenInput.value = editor.innerHTML;
-});
-
-const createEditor = document.getElementById('note_editor');
-
-function toggleCreateEditorPlaceholder() {
-    if (!createEditor) return;
-    const hasContent = createEditor.innerHTML.replace(/<br\s*\/?>/gi, '').replace(/&nbsp;/gi, '').trim() !== '';
-    createEditor.classList.toggle('is-empty', !hasContent);
+  return hasImage || text !== '';
 }
 
-if (createEditor) {
-    toggleCreateEditorPlaceholder();
+function syncEditorToHidden() {
+  if (!editor || !hiddenInput) return;
+  hiddenInput.value = editor.innerHTML;
+}
 
-    createEditor.addEventListener('focus', toggleCreateEditorPlaceholder);
-    createEditor.addEventListener('input', toggleCreateEditorPlaceholder);
-    createEditor.addEventListener('blur', toggleCreateEditorPlaceholder);
+function refreshEditorPlaceholder() {
+  if (!editor) return;
+
+  if (editorHasRealContent(editor)) {
+    editor.classList.remove('is-empty');
+  } else {
+    editor.classList.add('is-empty');
+  }
+}
+
+if (editor) {
+  refreshEditorPlaceholder();
+
+  editor.addEventListener('focus', function () {
+    editor.classList.remove('is-empty');
+  });
+
+  editor.addEventListener('click', function () {
+    editor.classList.remove('is-empty');
+  });
+
+  editor.addEventListener('input', function () {
+    syncEditorToHidden();
+    refreshEditorPlaceholder();
+  });
+
+  editor.addEventListener('paste', function (e) {
+    const items = e.clipboardData.items;
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+
+      if (item.type.indexOf('image') !== -1) {
+        e.preventDefault();
+        editor.classList.remove('is-empty');
+
+        const file = item.getAsFile();
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          img.style.maxWidth = '100%';
+          img.style.marginTop = '10px';
+
+          editor.appendChild(img);
+          syncEditorToHidden();
+          refreshEditorPlaceholder();
+        };
+
+        reader.readAsDataURL(file);
+        return;
+      }
+    }
+
+    setTimeout(function () {
+      syncEditorToHidden();
+      refreshEditorPlaceholder();
+    }, 0);
+  });
+
+  editor.addEventListener('blur', function () {
+    syncEditorToHidden();
+    refreshEditorPlaceholder();
+  });
+}
+
+if (detailForm) {
+  detailForm.addEventListener('submit', function () {
+    syncEditorToHidden();
+    refreshEditorPlaceholder();
+  });
 }
 
 
