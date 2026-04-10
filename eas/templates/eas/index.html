@@ -172,155 +172,159 @@
                 </tbody>
             </table>
             {% else %}
-            <style>
-                .approval-list-wrap{
-                    border: 1px solid #e5e7eb;
-                    border-radius: 14px;
-                    overflow: hidden;
-                    background: #fff;
-                }
+    <style>
+    /* ===== 전체 래퍼 ===== */
+    .approval-list-wrap{
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #ffffff;
+    }
 
-                .approval-list-table{
-                    width: 100%;
-                    margin-bottom: 0;
-                    table-layout: fixed;
-                    border-collapse: collapse;
-                }
+    /* ===== 테이블 ===== */
+    .approval-list-table{
+        width: 100%;
+        margin-bottom: 0;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
 
-                .approval-list-table thead th{
-                    background: #111827;
-                    color: #fff;
-                    font-size: 13px;
-                    font-weight: 600;
-                    padding: 13px 14px;
-                    text-align: center;
-                    vertical-align: middle;
-                    border-bottom: 0;
-                }
+    /* ===== 헤더 ===== */
+    .approval-list-table thead th{
+        background: #111827;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 12px 12px;
+        text-align: center;
+        vertical-align: middle;
+        border-bottom: 0;
+    }
 
-                .approval-list-table tbody td{
-                    padding: 14px 14px;
-                    font-size: 14px;
-                    color: #111827;
-                    border-top: 1px solid #eef2f7;
-                    vertical-align: middle;
-                }
+    /* ===== 본문 ===== */
+    .approval-list-table tbody td{
+        padding: 12px 12px;
+        font-size: 14px;
+        color: #111827;
+        border-top: 1px solid #eef2f7;
+        vertical-align: middle;
+    }
 
-                .approval-list-table tbody tr:hover{
-                    background: #f8fafc;
-                }
+    /* ===== hover ===== */
+    .approval-list-table tbody tr:hover{
+        background: #f8fafc;
+    }
 
-                .approval-list-table .col-no{ width: 7%; }
-                .approval-list-table .col-title{ width: 41%; }
-                .approval-list-table .col-amount{ width: 13%; }
-                .approval-list-table .col-step{ width: 10%; }
-                .approval-list-table .col-date{ width: 9%; }
+    /* ===== 컬럼 너비 ===== */
+    .approval-list-table .col-no{ width: 6%; }
+    .approval-list-table .col-title{ width: 44%; }
+    .approval-list-table .col-amount{ width: 13%; }
+    .approval-list-table .col-step{ width: 9%; }
+    .approval-list-table .col-date{ width: 10%; }
 
-                .approval-list-table .cell-center{
-                    text-align: center;
-                }
+    /* ===== 정렬 ===== */
+    .approval-list-table .cell-center{
+        text-align: center;
+    }
+    .approval-list-table .cell-right{
+        text-align: right;
+    }
 
-                .approval-list-table .cell-right{
-                    text-align: right;
-                }
+    /* ===== 제목 ===== */
+    .approval-title-link{
+        display: block;
+        color: #111827;
+        text-decoration: none;
+    }
+    .approval-title-link:hover{
+        text-decoration: none;
+    }
 
-                .approval-title-link{
-                    display: block;
-                    color: #111827;
-                    text-decoration: none;
-                }
+    .approval-title-main{
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 1.4;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-                .approval-title-link:hover{
-                    text-decoration: none;
-                }
+    /* 제목 옆 +숫자 */
+    .approval-inline-count{
+        margin-left: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #6b7280;
+    }
 
-                .approval-title-main{
-                    display: block;
-                    font-weight: 700;
-                    font-size: 15px;
-                    line-height: 1.35;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
+    /* ===== 금액 ===== */
+    .approval-amount{
+        font-weight: 700;
+        font-size: 15px;
+        color: #111827;
+        white-space: nowrap;
+    }
 
-                .approval-title-sub{
-                    display: block;
-                    margin-top: 4px;
-                    font-size: 12px;
-                    color: #6b7280;
-                }
+    /* ===== 날짜 ===== */
+    .approval-date{
+        font-size: 13px;
+        color: #6b7280;
+        white-space: nowrap;
+    }
 
-                .approval-amount{
-                    font-weight: 700;
-                    font-size: 15px;
-                    color: #111827;
-                    white-space: nowrap;
-                }
+    /* ===== 상태 뱃지 (이미지 스타일) ===== */
+    .status-badge{
+        display: inline-block;
+        min-width: 58px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+        border: 1.5px solid;
+        background: #ffffff;
+        white-space: nowrap;
+    }
 
-                .approval-date{
-                    font-size: 13px;
-                    color: #6b7280;
-                    white-space: nowrap;
-                }
+    /* ===== 상태 색상 ===== */
 
-                .status-badge{
-                    display: inline-block;
-                    min-width: 56px;
-                    padding: 6px 10px;
-                    border-radius: 999px;
-                    font-size: 12px;
-                    font-weight: 700;
-                    line-height: 1;
-                    text-align: center;
-                    border: 1px solid transparent;
-                    white-space: nowrap;
-                }
+    /* 기안 */
+    .status-draft{
+        color: #6b7280;
+        border-color: #9ca3af;
+    }
 
-                .status-draft{
-                    background: #f3f4f6;
-                    color: #4b5563;
-                    border-color: #e5e7eb;
-                }
+    /* 승인 */
+    .status-approved{
+        color: #16a34a;
+        border-color: #16a34a;
+    }
 
-                .status-approved{
-                    background: #ecfdf3;
-                    color: #047857;
-                    border-color: #a7f3d0;
-                }
+    /* 반려 */
+    .status-rejected{
+        color: #dc2626;
+        border-color: #dc2626;
+    }
 
-                .status-rejected{
-                    background: #fef2f2;
-                    color: #dc2626;
-                    border-color: #fecaca;
-                }
+    /* 대결 */
+    .status-proxy{
+        color: #2563eb;
+        border-color: #2563eb;
+    }
 
-                .status-proxy{
-                    background: #eff6ff;
-                    color: #2563eb;
-                    border-color: #bfdbfe;
-                }
+    /* 전결 */
+    .status-delegated{
+        color: #4f46e5;
+        border-color: #4f46e5;
+    }
 
-                .status-delegated{
-                    background: #eef2ff;
-                    color: #4338ca;
-                    border-color: #c7d2fe;
-                }
-
-                .status-empty{
-                    background: #f8fafc;
-                    color: #94a3b8;
-                    border-color: #e2e8f0;
-                }
-
-                .approval-inline-count{
-                    margin-left: 6px;
-                    font-size: 12px;
-                    font-weight: 600;
-                    color: #6b7280;
-                }
-            </style>
-
+    /* 대기 */
+    .status-empty{
+        color: #9ca3af;
+        border-color: #d1d5db;
+    }
+    </style>
             <div class="approval-list-wrap">
                 <table class="table approval-list-table">
                     <thead>
