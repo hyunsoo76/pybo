@@ -15,20 +15,18 @@
               padding: 14px 0;
           }
 
-          /* 아래 index 표 폭과 맞춤 */
-          .eas-nav-inner{
+          .eas-navbar-grid{
               width: 100%;
-              max-width: 1080px;
-              margin: 0 auto;
-              padding: 0 12px;
           }
 
-          .eas-nav-row{
+          .eas-navbar-main{
               display: flex;
               align-items: center;
               justify-content: space-between;
               gap: 16px;
-              min-height: 54px;
+              min-height: 56px;
+              padding-left: 0;
+              padding-right: 0;
           }
 
           .eas-nav-left,
@@ -49,6 +47,7 @@
               letter-spacing: 0.02em;
               text-decoration: none;
               line-height: 1;
+              white-space: nowrap;
           }
 
           .eas-brand:hover{
@@ -139,16 +138,16 @@
           }
 
           @media (max-width: 991.98px){
-              .eas-nav-inner{
-                  max-width: 100%;
-                  padding-left: 12px;
-                  padding-right: 12px;
+              .eas-navbar{
+                  padding: 10px 0;
               }
 
-              .eas-nav-row{
+              .eas-navbar-main{
                   flex-direction: column;
                   align-items: stretch;
                   gap: 12px;
+                  padding-left: 12px;
+                  padding-right: 12px;
               }
 
               .eas-nav-left,
@@ -180,35 +179,43 @@
 
   <body>
     <nav class="eas-navbar">
-        <div class="eas-nav-inner">
-            <div class="eas-nav-row">
-                <div class="eas-nav-left">
-                    <a class="eas-brand" href="{% url 'eas:index' %}" accesskey="j">EAS</a>
-                    <a class="eas-nav-create-btn" href="{% url 'eas:Request_create' %}" accesskey="w">작성하기</a>
-                    <a class="d-none" href="{% url 'eas:Request_create_24' %}" accesskey="R">write</a>
-                    <a class="d-none" href="/hometax" accesskey="h">hometax</a>
+        <div class="container-fluid eas-navbar-grid">
+            <div class="row justify-content-between">
+                <div class="col-1 d-none d-sm-block"></div>
+
+                <div class="col-lg-9 col-md-12 col-sm-12">
+                    <div class="eas-navbar-main">
+                        <div class="eas-nav-left">
+                            <a class="eas-brand" href="{% url 'eas:index' %}" accesskey="j">EAS</a>
+                            <a class="eas-nav-create-btn" href="{% url 'eas:Request_create' %}" accesskey="w">작성하기</a>
+                            <a class="d-none" href="{% url 'eas:Request_create_24' %}" accesskey="R">write</a>
+                            <a class="d-none" href="/hometax" accesskey="h">hometax</a>
+                        </div>
+
+                        <div class="eas-nav-right">
+                            <form id="navbarSearchForm" class="eas-nav-search" method="get" action="{% url 'eas:index' %}">
+                                <input
+                                    type="text"
+                                    id="navbar_search_kw"
+                                    name="kw"
+                                    class="form-control eas-search-input"
+                                    accesskey="a"
+                                    value="{{ kw|default_if_none:'' }}"
+                                    placeholder="상세검색"
+                                >
+                                <input type="hidden" name="page" value="1">
+                                <button class="eas-search-btn" type="submit">검색</button>
+                                <button
+                                    class="eas-outline-btn"
+                                    type="button"
+                                    onclick="window.open('http://3.37.211.248/eas/account.html','window_name','width=730,height=195,left=710,top=86,location=no,status=no,scrollbars=yes');"
+                                    accesskey="q">계좌조회</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="eas-nav-right">
-                    <form id="navbarSearchForm" class="eas-nav-search" method="get" action="{% url 'eas:index' %}">
-                        <input
-                            type="text"
-                            id="navbar_search_kw"
-                            name="kw"
-                            class="form-control eas-search-input"
-                            accesskey="a"
-                            value="{{ kw|default_if_none:'' }}"
-                            placeholder="상세검색"
-                        >
-                        <input type="hidden" name="page" value="1">
-                        <button class="eas-search-btn" type="submit">검색</button>
-                        <button
-                            class="eas-outline-btn"
-                            type="button"
-                            onclick="window.open('http://3.37.211.248/eas/account.html','window_name','width=730,height=195,left=710,top=86,location=no,status=no,scrollbars=yes');"
-                            accesskey="q">계좌조회</button>
-                    </form>
-                </div>
+                <div class="col-1 d-none d-sm-block"></div>
             </div>
         </div>
     </nav>
