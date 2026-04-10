@@ -5,17 +5,35 @@
 
 <div class="container my-3">
 
-    <style>
+<style>
     /* ===== 공통 ===== */
     .eas-page-wrap{
         width: 100%;
     }
 
+    .desktop-table-wrap{
+        width: 100%;
+    }
+
+    .approval-list-wrap,
+    .approval-list-table,
+    .search-result-table{
+        width: 100% !important;
+    }
+
+    .approval-list-wrap{
+        display: block;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #ffffff;
+    }
+
     /* ===== 데스크톱: 상세검색 결과 테이블 ===== */
     .search-result-table{
-        width: 100%;
         table-layout: fixed;
         border-collapse: collapse;
+        margin-bottom: 0;
     }
 
     .search-result-table thead th{
@@ -53,6 +71,7 @@
     .search-result-table .text-center{
         text-align: center;
     }
+
     .search-result-table .text-end{
         text-align: right;
     }
@@ -62,6 +81,7 @@
         text-decoration: none;
         font-weight: 600;
     }
+
     .search-result-table .doc-link:hover{
         text-decoration: underline;
     }
@@ -104,15 +124,7 @@
     }
 
     /* ===== 데스크톱: 일반 결재 리스트 ===== */
-    .approval-list-wrap{
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        overflow: hidden;
-        background: #ffffff;
-    }
-
     .approval-list-table{
-        width: 100%;
         margin-bottom: 0;
         table-layout: fixed;
         border-collapse: collapse;
@@ -151,20 +163,25 @@
     .approval-list-table .cell-center{
         text-align: center;
     }
+
     .approval-list-table .cell-right{
         text-align: right;
     }
 
     .approval-title-link{
         display: block;
+        width: 100%;
         color: #111827;
         text-decoration: none;
     }
+
     .approval-title-link:hover{
         text-decoration: none;
     }
 
     .approval-title-main{
+        display: block;
+        width: 100%;
         font-weight: 700;
         font-size: 15px;
         line-height: 1.4;
@@ -195,11 +212,13 @@
 
     .status-badge{
         display: inline-block;
+        min-width: 54px;
         padding: 5px 10px;
         border-radius: 6px;
         font-size: 12px;
         font-weight: 600;
         line-height: 1;
+        text-align: center;
         white-space: nowrap;
     }
 
@@ -346,6 +365,27 @@
         color: #fff;
     }
 
+    /* ===== 데스크톱 안정화 ===== */
+    @media (min-width: 768px){
+        .desktop-table-wrap{
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .approval-list-wrap{
+            width: 100% !important;
+        }
+
+        .approval-list-table,
+        .search-result-table{
+            width: 100% !important;
+        }
+
+        .mobile-card-list{
+            display: none !important;
+        }
+    }
+
     /* ===== 모바일 전환 ===== */
     @media (max-width: 767.98px){
         .container.my-3{
@@ -358,7 +398,7 @@
         }
 
         .mobile-card-list{
-            display: block;
+            display: block !important;
         }
 
         .pagination{
@@ -372,7 +412,7 @@
             border-radius: 10px !important;
         }
     }
-    </style>
+</style>
 
     <div class="row justify-content-between my-3 eas-page-wrap">
         <div class="col-1 d-none d-sm-block"></div>
