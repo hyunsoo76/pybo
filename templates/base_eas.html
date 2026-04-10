@@ -30,59 +30,71 @@
           }
 
           .eas-nav-left,
-          .eas-nav-right{
-              display: flex;
-              align-items: center;
-              gap: 10px;
-          }
+            .eas-nav-right{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
 
-          .eas-brand{
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              height: 38px;
-              padding: 0 14px;
-              margin: 0;
-              border-radius: 8px;
-              border: 1px solid rgba(255,255,255,0.25);
-              background: transparent;
-              color: #ffffff !important;
-              font-size: 18px;
-              font-weight: 800;
-              letter-spacing: 0.02em;
-              text-decoration: none;
-              line-height: 1;
-              white-space: nowrap;
-              transition: background 0.15s ease, border-color 0.15s ease;
-          }
+            .eas-nav-left{
+                gap: 0;
+            }
 
-          .eas-brand:hover{
-              color: #ffffff !important;
-              text-decoration: none;
-              background: rgba(255,255,255,0.08);
-              border-color: rgba(255,255,255,0.4);
-          }
+          .eas-brand-group{
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 6px;
+    border: 2px solid rgba(255,255,255,0.92);
+    border-radius: 24px;
+    background: transparent;
+}
+
+    .eas-brand{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 52px;
+        padding: 0 26px 0 18px;
+        margin: 0;
+        color: #ffffff !important;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        line-height: 1;
+        white-space: nowrap;
+        background: transparent;
+        border: 0;
+        border-radius: 18px 0 0 18px;
+    }
+
+    .eas-brand:hover{
+        color: #ffffff !important;
+        text-decoration: none;
+    }
           .eas-nav-create-btn{
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              height: 38px;
-              padding: 0 14px;
-              border-radius: 8px;
-              background: #ffffff;
-              color: #0f172a;
-              font-size: 14px;
-              font-weight: 700;
-              text-decoration: none;
-              border: 1px solid #ffffff;
-              white-space: nowrap;
-          }
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 52px;
+            padding: 0 34px;
+            margin-left: 4px;
+            border-radius: 18px;
+            background: #ffffff;
+            color: #0f172a;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 0;
+            white-space: nowrap;
+        }
 
-          .eas-nav-create-btn:hover{
-              color: #0f172a;
-              background: #f8fafc;
-              text-decoration: none;
-          }
+        .eas-nav-create-btn:hover{
+            color: #0f172a;
+            background: #f8fafc;
+            text-decoration: none;
+        }
 
           .eas-nav-search{
               display: flex;
@@ -193,8 +205,10 @@
                 <div class="col-lg-9 col-md-12 col-sm-12">
                     <div class="eas-navbar-main">
                         <div class="eas-nav-left">
-                            <a class="eas-brand" href="{% url 'eas:index' %}" accesskey="j">EAS</a>
-                            <a class="eas-nav-create-btn" href="{% url 'eas:Request_create' %}" accesskey="w">작성하기</a>
+                            <div class="eas-brand-group">
+                                <a class="eas-brand" href="{% url 'eas:index' %}" accesskey="j">EAS</a>
+                                <a class="eas-nav-create-btn" href="{% url 'eas:Request_create' %}" accesskey="w">작성하기</a>
+                            </div>
                             <a class="d-none" href="{% url 'eas:Request_create_24' %}" accesskey="R">write</a>
                             <a class="d-none" href="/hometax" accesskey="h">hometax</a>
                         </div>
