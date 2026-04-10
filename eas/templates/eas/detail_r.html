@@ -23,14 +23,14 @@
     background: #fff;
   }
 
-    .approval-cell.head{
-        background: #6c757d !important;
-        color: #fff !important;
-        font-weight: 600;
-        min-height: 34px;
-        justify-content: center;
-        text-align: center;
-    }
+  .approval-cell.head{
+    background: #6c757d !important;
+    color: #fff !important;
+    font-weight: 600;
+    min-height: 34px;
+    justify-content: center;
+    text-align: center;
+  }
 
   .approval-cell.no{
     background: #f1f3f5 !important;
@@ -59,199 +59,200 @@
     line-height: 1.35;
   }
 
-  .approval-cell.wrap {
+  .approval-cell.wrap{
     white-space: normal;
     word-break: break-all;
     overflow-wrap: break-word;
     font-size: 14px;
-    line-height: 1.2;}
-    
-    .note-view img{
-        max-width: 100%;
-        height: auto;
-        cursor: zoom-in;
+    line-height: 1.2;
+  }
+
+  .note-view img{
+    max-width: 100%;
+    height: auto;
+    cursor: zoom-in;
+  }
+
+  .note-lightbox{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+
+  .note-lightbox img{
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+  }
+
+  .detail-top-title{
+    letter-spacing: 0.08em;
+  }
+
+  .detail-total-box{
+    border: 1px solid #d9dee3;
+    border-radius: 12px;
+    background: #fff;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 52px;
+  }
+
+  .detail-total-label{
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .detail-total-value{
+    color: #111827;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .mobile-approval-list{
+    display: none;
+  }
+
+  .mobile-approval-card{
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    margin-bottom: 10px;
+  }
+
+  .mobile-approval-row-top{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .mobile-approval-left{
+    min-width: 0;
+    flex: 1;
+  }
+
+  .mobile-approval-no{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: #f3f4f6;
+    color: #111827;
+    font-size: 13px;
+    font-weight: 800;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .mobile-approval-vendor{
+    font-size: 15px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.45;
+    word-break: break-word;
+  }
+
+  .mobile-approval-amount{
+    font-size: 17px;
+    font-weight: 800;
+    color: #111827;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .mobile-approval-note{
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+
+  .mobile-note-wrap{
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .mobile-note-head{
+    padding: 10px 14px;
+    background: #111827;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .mobile-note-body{
+    padding: 14px;
+  }
+
+  @media (max-width: 767.98px){
+    .container{
+      padding-left: 12px;
+      padding-right: 12px;
     }
 
-.note-lightbox{
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.88);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  cursor: zoom-out;
-}
+    .detail-top-title{
+      font-size: 1.5rem;
+    }
 
-.note-lightbox img{
-  max-width: 95vw;
-  max-height: 95vh;
-  object-fit: contain;
-}
+    .desktop-approval-table{
+      display: none !important;
+    }
 
-.print-btn-wrap{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    justify-content:flex-start;
-    margin-top:12px;
-    flex-wrap:wrap;
-}
+    .mobile-approval-list{
+      display: block;
+    }
 
-@media print {
+    .detail-mobile-hide{
+      display: none !important;
+    }
 
-  @page {
-    size: A4;
-    margin: 12mm;
+    .mobile-top-spacing{
+      margin-top: 10px;
+    }
+
+    .detail-total-value{
+      font-size: 20px;
+    }
+
+    .input-group-text{
+      font-size: 13px;
+      padding-left: 10px;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    #input_subject1{
+      font-size: 14px;
+      line-height: 1.45;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      min-height: 44px;
+      word-break: break-word;
+    }
   }
-
-  body {
-    background: #fff !important;
-    font-size: 12px;
-    color: #000 !important;
-  }
-
-  /* 숨길 것들 */
-  .modal,
-  .modal-backdrop,
-  .note-lightbox,
-  .print-hide,
-  script {
-    display: none !important;
-  }
-
-  /* 상단 헤더 제거 (1차) */
-  header,
-  nav,
-  .navbar,
-  .topbar,
-  .site-header,
-  .search-area,
-  .search-wrap,
-  .header-line {
-    display: none !important;
-  }
-
-  /* 컨테이너 */
-  .container {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  hr {
-    margin: 8px 0 12px 0 !important;
-  }
-
-  /* ===== 핵심: 헤더/본문 동일 그리드 ===== */
-  .approval-grid{
-    display: grid !important;
-    grid-template-columns: 7% 16% 18% 8% 17% 11% 8% 15% !important;
-    width: 100% !important;
-    margin: 0 !important;
-  }
-
-    .approval-grid-note{
-    display: grid !important;
-    grid-template-columns: 8% 92% !important;
-  }
-
-  .approval-grid > div{
-    width: 100% !important;
-    max-width: 100% !important;
-    float: none !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  /* 부트스트랩 영향 제거 */
-  .approval-grid > [class*="col-"]{
-    flex: none !important;
-  }
-
-  /* 셀 기본 */
-  .approval-cell{
-    border: 1px solid #999 !important;
-    background: #fff !important;
-    color: #000 !important;
-    min-height: 34px !important;
-    padding: 6px 8px !important;
-    font-size: 12px !important;
-    overflow: visible !important;
-    box-sizing: border-box !important;
-  }
-
-  .approval-cell.head{
-    background: #f3f3f3 !important;
-    font-weight: 700 !important;
-  }
-
-  .approval-cell.no{
-    background: #f8f8f8 !important;
-  }
-
-  .approval-cell.wrap{
-    white-space: normal !important;
-    word-break: break-word !important;
-    line-height: 1.35 !important;
-  }
-
-  /* ===== 핵심: 줄바꿈 금지 + 안잘림 ===== */
-
-  /* 계좌번호 */
-  .approval-grid > div:nth-child(3){
-    white-space: nowrap !important;
-    word-break: keep-all !important;
-    font-size: 10.5px !important;
-    letter-spacing: -0.2px !important;
-  }
-
-  /* 금액 */
-  .approval-grid > div:nth-child(6){
-    white-space: nowrap !important;
-    text-align: right !important;
-    justify-content: flex-end !important;
-    font-size: 10.5px !important;
-    letter-spacing: -0.2px !important;
-  }
-
-  /* 은행/계좌명 약간 축소 */
-  .approval-grid > div:nth-child(4),
-  .approval-grid > div:nth-child(5){
-    font-size: 10.5px !important;
-  }
-
-  /* 구분/적요 더 작게 */
-  .approval-grid > div:nth-child(7),
-  .approval-grid > div:nth-child(8){
-    font-size: 10px !important;
-  }
-
-  /* 텍스트 잘림 방지 */
-  .approval-cell span{
-    overflow: visible !important;
-    text-overflow: clip !important;
-  }
-
-  /* 줄 분리 방지 */
-  .row, .approval-grid {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  table {
-    page-break-inside: avoid;
-  }
-
-  img {
-    max-width: 100% !important;
-    height: auto !important;
-  }
-}
-
-
 </style>
 
 <p></p>
@@ -259,30 +260,29 @@
 
     <!-- 결재란 -->
     <div class="row">
-        <div class="col-6 align=middle">
+        <div class="col-12 col-md-6">
             <br>
             <br>
-
-            <h3 align="center"><strong>품 &nbsp; 의 &nbsp; 서</strong></h3>
+            <h3 align="center" class="detail-top-title"><strong>품 &nbsp; 의 &nbsp; 서</strong></h3>
             <hr>
-            <div class="col align-items-bottom align=middle" id="now_date">{{ new_Request.create_date }}</div>
+            <div class="col align-items-bottom align=middle text-center" id="now_date">{{ new_Request.create_date }}</div>
         </div>
 
-        <div class="col-6">
+        <div class="col-12 col-md-6 mobile-top-spacing">
             <table class="table table-sm table-bordered border-secondary align-middle">
                 <tr class="table-secondary" align="center">
                     <td height="10px">
-                        <button type="button" class="btn btn-outline-secondary btn-sm print-approval-label" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                             <b>&nbsp;담&nbsp;당&nbsp;</b>
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-secondary btn-sm print-approval-label" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                             <b>&nbsp;이&nbsp;사&nbsp;</b>
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-secondary btn-sm print-approval-label" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3">
                             <b>&nbsp;대&nbsp;표&nbsp;</b>
                         </button>
                     </td>
@@ -346,13 +346,9 @@
 
                             {% elif "대결:" in new_Request.aaa %}
                                 <div style="position:relative; height:90px; display:flex; align-items:center; justify-content:center;">
-                                    
-                                    <!-- 왼쪽 고정: 대결 -->
                                     <div style="position:absolute; left:8px; font-size:15px; font-weight:700; color:#1e40af;">
                                         대&nbsp;&nbsp;결
                                     </div>
-
-                                    <!-- 가운데: 도장 -->
                                     <div>
                                         {% if new_Request.manager_name == "경미" %}
                                             <img src="{% static 'img/kyungmi.JPG' %}" style="height:90px;">
@@ -360,12 +356,12 @@
                                             <img src="{% static 'img/hyuckman.JPG' %}" style="height:90px;">
                                         {% endif %}
                                     </div>
-
                                 </div>
 
                             {% else %}
                                 <div id="24_2"></div>
                             {% endif %}
+
                             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -459,27 +455,23 @@
         </div>
     </div>
 
-        <div class="row print-hide" style="height: 50px;" align="center">
-        <div class="col-5">
+    <div class="row align-items-center" style="min-height: 50px;">
+        <div class="col-md-5 detail-mobile-hide">
             <select class="form-select" aria-label="Default select example">
                 <option value="buy">매입결재</option>
                 <option value="request">품의서</option>
                 <option value="holiday">휴가원</option>
             </select>
         </div>
-        <div class="col-7">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">계</th>
-                        <th scope="col" id="total" align="right">{{ new_Request.total|intcomma }}</th>
-                    </tr>
-                </thead>
-            </table>
+        <div class="col-12 col-md-7">
+            <div class="detail-total-box">
+                <span class="detail-total-label">계</span>
+                <span class="detail-total-value" id="total">{{ new_Request.total|intcomma }}</span>
+            </div>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-12">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="input_subject">제목</span>
@@ -488,191 +480,354 @@
         </div>
     </div>
 
-    <!-- 입력창 타이틀 -->
-   <div class="row g-0 approval-grid">
-        <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">list</div>
-        <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell head">매입처</div>
-        <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell head">계좌번호</div>
-        <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell head">은행</div>
-        <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell head">계좌명</div>
-        <div class="col-lg-1 col-md-5 col-sm-5 d-none d-sm-block approval-cell head">금액</div>
-        <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell head">구분</div>
-        <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block approval-cell head">적요</div>
+    <!-- 데스크톱 리스트 -->
+    <div class="desktop-approval-table">
+        <div class="row g-0 approval-grid">
+            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">list</div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell head">매입처</div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell head">계좌번호</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell head">은행</div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell head">계좌명</div>
+            <div class="col-lg-1 col-md-5 col-sm-5 d-none d-sm-block approval-cell head">금액</div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell head">구분</div>
+            <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block approval-cell head">적요</div>
+        </div>
+
+        <!-- 1 -->
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">1</div>
+
+            <div class="col-lg-2 col-md-3 col-sm-3 approval-cell text-left">
+                <span>{{ new_Request.a_1 }}</span>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell text-left">
+                <span>{{ new_Request.a_2 }}</span>
+            </div>
+
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
+                <span>{{ new_Request.a_3 }}</span>
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
+                <span>{{ new_Request.a_4 }}</span>
+            </div>
+
+            <div class="col-lg-1 col-md-5 col-sm-5 approval-cell text-right">
+                <span>{{ new_Request.a_5|intcomma }}</span>
+            </div>
+
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
+                <span>{{ new_Request.a_6 }}</span>
+            </div>
+
+            <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-left wrap">
+                <span>{{ new_Request.a_7 }}</span>
+            </div>
+        </div>
+
+        <!-- 2 -->
+        {% if new_Request.b_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">2</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.b_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.b_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.b_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.b_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.b_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.b_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.b_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <!-- 3 -->
+        {% if new_Request.c_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">3</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.c_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.c_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.c_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.c_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.c_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.c_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.c_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <!-- 4 -->
+        {% if new_Request.d_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">4</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.d_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.d_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.d_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.d_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.d_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.d_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.d_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <!-- 5 -->
+        {% if new_Request.e_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">5</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.e_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.e_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.e_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.e_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.e_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.e_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.e_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <!-- 6 -->
+        {% if new_Request.f_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">6</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.f_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.f_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.f_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.f_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.f_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.f_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.f_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <!-- 7 -->
+        {% if new_Request.g_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">7</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.g_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.g_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.g_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.g_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.g_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.g_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.g_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <!-- 8 -->
+        {% if new_Request.h_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">8</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.h_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.h_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.h_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.h_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.h_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.h_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.h_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <!-- 9 -->
+        {% if new_Request.i_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">9</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.i_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.i_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.i_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.i_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.i_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.i_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.i_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <!-- 10 -->
+        {% if new_Request.j_1 %}
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">10</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.j_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.j_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.j_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.j_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.j_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.j_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.j_7 }}</span></div>
+        </div>
+        {% endif %}
+
+        <p></p>
+
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
+            <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
+                <div id="chamjo1" class="note-view" style="width:100%;">{{ new_Request.chamjo1|safe }}</div>
+            </div>
+        </div>
     </div>
 
-    <!-- 1 -->
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">1</div>
+    <!-- 모바일 리스트 -->
+    <div class="mobile-approval-list mt-2">
 
-        <div class="col-lg-2 col-md-3 col-sm-3 approval-cell text-left">
-            <span>{{ new_Request.a_1 }}</span>
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">1</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.a_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.a_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.a_7 }}</div>
         </div>
 
-        <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell text-left">
-            <span>{{ new_Request.a_2 }}</span>
+        {% if new_Request.b_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">2</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.b_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.b_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.b_7 }}</div>
         </div>
+        {% endif %}
 
-        <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-            <span>{{ new_Request.a_3 }}</span>
+        {% if new_Request.c_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">3</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.c_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.c_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.c_7 }}</div>
         </div>
+        {% endif %}
 
-        <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-            <span>{{ new_Request.a_4 }}</span>
+        {% if new_Request.d_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">4</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.d_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.d_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.d_7 }}</div>
         </div>
+        {% endif %}
 
-        <div class="col-lg-1 col-md-5 col-sm-5 approval-cell text-right">
-            <span>{{ new_Request.a_5|intcomma }}</span>
+        {% if new_Request.e_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">5</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.e_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.e_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.e_7 }}</div>
         </div>
+        {% endif %}
 
-        <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-            <span>{{ new_Request.a_6 }}</span>
+        {% if new_Request.f_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">6</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.f_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.f_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.f_7 }}</div>
         </div>
+        {% endif %}
 
-        <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-left wrap">
-            <span>{{ new_Request.a_7 }}</span>
+        {% if new_Request.g_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">7</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.g_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.g_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.g_7 }}</div>
         </div>
-    </div>
+        {% endif %}
 
-    <!-- 2 -->
-    {% if new_Request.b_1 %}
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 approval-cell no">2</div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.b_1 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.b_2 }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.b_3 }}</span></div>
-        <div class="col-lg-2 approval-cell"><span>{{ new_Request.b_4 }}</span></div>
-        <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.b_5|intcomma }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.b_6 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.b_7 }}</span></div>
-    </div>
-    {% endif %}
+        {% if new_Request.h_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">8</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.h_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.h_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.h_7 }}</div>
+        </div>
+        {% endif %}
 
-    <!-- 3 -->
-    {% if new_Request.c_1 %}
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 approval-cell no">3</div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.c_1 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.c_2 }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.c_3 }}</span></div>
-        <div class="col-lg-2 approval-cell"><span>{{ new_Request.c_4 }}</span></div>
-        <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.c_5|intcomma }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.c_6 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.c_7 }}</span></div>
-    </div>
-    {% endif %}
+        {% if new_Request.i_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">9</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.i_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.i_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.i_7 }}</div>
+        </div>
+        {% endif %}
 
-    <!-- 4 -->
-    {% if new_Request.d_1 %}
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 approval-cell no">4</div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.d_1 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.d_2 }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.d_3 }}</span></div>
-        <div class="col-lg-2 approval-cell"><span>{{ new_Request.d_4 }}</span></div>
-        <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.d_5|intcomma }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.d_6 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.d_7 }}</span></div>
-    </div>
-    {% endif %}
+        {% if new_Request.j_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">10</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.j_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.j_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.j_7 }}</div>
+        </div>
+        {% endif %}
 
-    <!-- 5 -->
-    {% if new_Request.e_1 %}
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 approval-cell no">5</div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.e_1 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.e_2 }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.e_3 }}</span></div>
-        <div class="col-lg-2 approval-cell"><span>{{ new_Request.e_4 }}</span></div>
-        <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.e_5|intcomma }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.e_6 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.e_7 }}</span></div>
-    </div>
-    {% endif %}
-
-    <!-- 6 -->
-    {% if new_Request.f_1 %}
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 approval-cell no">6</div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.f_1 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.f_2 }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.f_3 }}</span></div>
-        <div class="col-lg-2 approval-cell"><span>{{ new_Request.f_4 }}</span></div>
-        <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.f_5|intcomma }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.f_6 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.f_7 }}</span></div>
-    </div>    {% endif %}
-
-    <!-- 7 -->
-    {% if new_Request.g_1 %}
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 approval-cell no">7</div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.g_1 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.g_2 }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.g_3 }}</span></div>
-        <div class="col-lg-2 approval-cell"><span>{{ new_Request.g_4 }}</span></div>
-        <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.g_5|intcomma }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.g_6 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.g_7 }}</span></div>
-    </div>    {% endif %}
-
-    <!-- 8 -->
-    {% if new_Request.h_1 %}
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 approval-cell no">8</div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.h_1 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.h_2 }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.h_3 }}</span></div>
-        <div class="col-lg-2 approval-cell"><span>{{ new_Request.h_4 }}</span></div>
-        <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.h_5|intcomma }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.h_6 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.h_7 }}</span></div>
-    </div>    {% endif %}
-
-    <!-- 9 -->
-    {% if new_Request.i_1 %}
-    <div class="row g-0 approval-grid" align="center">
-        <div class="col-lg-1 approval-cell no">9</div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.i_1 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.i_2 }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.i_3 }}</span></div>
-        <div class="col-lg-2 approval-cell"><span>{{ new_Request.i_4 }}</span></div>
-        <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.i_5|intcomma }}</span></div>
-        <div class="col-lg-1 approval-cell"><span>{{ new_Request.i_6 }}</span></div>
-        <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.i_7 }}</span></div>
-    </div>    {% endif %}
-
-    <!-- 10 -->
-    {% if new_Request.j_1 %}
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 approval-cell no">10</div>
-    <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.j_1 }}</span></div>
-    <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.j_2 }}</span></div>
-    <div class="col-lg-1 approval-cell"><span>{{ new_Request.j_3 }}</span></div>
-    <div class="col-lg-2 approval-cell"><span>{{ new_Request.j_4 }}</span></div>
-    <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.j_5|intcomma }}</span></div>
-    <div class="col-lg-1 approval-cell"><span>{{ new_Request.j_6 }}</span></div>
-    <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.j_7 }}</span></div>
-</div>    {% endif %}
-
-    <p></p>
-
-   <div class="row g-0 approval-grid approval-grid-note" align="center">
-        <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
-        <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
-            <div id="chamjo1" class="note-view" style="width:100%;">{{ new_Request.chamjo1|safe }}</div>
+        <div class="mobile-note-wrap mt-3">
+            <div class="mobile-note-head">Note</div>
+            <div class="mobile-note-body">
+                <div id="chamjo1_mobile" class="note-view">{{ new_Request.chamjo1|safe }}</div>
+            </div>
         </div>
     </div>
+
     <div id="noteLightbox" class="note-lightbox">
         <img id="noteLightboxImg" src="" alt="확대 이미지">
     </div>
 
     <p></p>
 
-    <div class="print-btn-wrap print-hide">
-        <button type="button" class="btn btn-sm btn-outline-primary" onclick="printApprovalDoc()">
-            &nbsp;&nbsp;품&nbsp;의&nbsp;서&nbsp;출&nbsp;력&nbsp;&nbsp;
-        </button>
-
+    <div style="display:flex; gap:8px; align-items:center; justify-content:flex-start; margin-top:12px;">
         {% if not new_Request.aaa %}
             <a href="{% url 'eas:Request_modify' new_Request.id %}" class="btn btn-sm btn-outline-success">&nbsp;&nbsp;수&nbsp;정&nbsp;&nbsp;</a>
         {% endif %}
@@ -713,30 +868,24 @@ $(function () {
     });
 });
 
-
-
-
-const noteView = document.getElementById('chamjo1');
 const noteLightbox = document.getElementById('noteLightbox');
 const noteLightboxImg = document.getElementById('noteLightboxImg');
+const noteViews = document.querySelectorAll('.note-view');
 
-if (noteView && noteLightbox && noteLightboxImg) {
-    noteView.addEventListener('click', function (e) {
-        if (e.target.tagName === 'IMG') {
-            noteLightboxImg.src = e.target.src;
-            noteLightbox.style.display = 'flex';
-        }
+if (noteLightbox && noteLightboxImg && noteViews.length) {
+    noteViews.forEach(function(noteView){
+        noteView.addEventListener('click', function (e) {
+            if (e.target.tagName === 'IMG') {
+                noteLightboxImg.src = e.target.src;
+                noteLightbox.style.display = 'flex';
+            }
+        });
     });
 
     noteLightbox.addEventListener('click', function () {
         noteLightbox.style.display = 'none';
         noteLightboxImg.src = '';
     });
-
-}
-
-function printApprovalDoc() {
-    window.print();
 }
 </script>
 

@@ -3,34 +3,32 @@
 {% block content %}
 {% load humanize %}
 
-<!--<p></p>-->
 <div class="container my-3">
 
-    <div class="row justify-content-between my-3">
-        <div class="col-1 d-none d-sm-block"> </div>
-           <div class="col-lg-9 col-md-12 col-sm-12">
-            {% if is_detail_search %}
     <style>
-    /* ===== 전체 테이블 ===== */
+    /* ===== 공통 ===== */
+    .eas-page-wrap{
+        width: 100%;
+    }
+
+    /* ===== 데스크톱: 상세검색 결과 테이블 ===== */
     .search-result-table{
         width: 100%;
         table-layout: fixed;
         border-collapse: collapse;
     }
 
-    /* ===== 헤더 ===== */
     .search-result-table thead th{
         background: #111827;
         color: #fff;
         font-size: 13px;
         font-weight: 600;
         padding: 12px 14px;
-        text-align: center;   /* 헤더 전부 가운데 */
+        text-align: center;
         border-bottom: 0;
         vertical-align: middle;
     }
 
-    /* ===== 본문 ===== */
     .search-result-table tbody td{
         padding: 12px 14px;
         font-size: 14px;
@@ -38,22 +36,20 @@
         border-top: 1px solid #e5e7eb;
         vertical-align: middle;
         line-height: 1.45;
+        background: #fff;
     }
 
-    /* ===== hover ===== */
     .search-result-table tbody tr:hover{
         background: #f9fafb;
     }
 
-    /* ===== 컬럼 너비 ===== */
     .search-result-table .col-no{ width: 6%; }
-    .search-result-table .col-vendor{ width: 27%; }   /* 예금주 줄인 만큼 확대 */
-    .search-result-table .col-name{ width: 13%; }     /* 기존보다 약 70% 수준으로 축소 */
+    .search-result-table .col-vendor{ width: 27%; }
+    .search-result-table .col-name{ width: 13%; }
     .search-result-table .col-amount{ width: 12%; }
     .search-result-table .col-note{ width: 30%; }
     .search-result-table .col-date{ width: 12%; }
 
-    /* ===== 정렬 규칙 ===== */
     .search-result-table .text-center{
         text-align: center;
     }
@@ -61,7 +57,6 @@
         text-align: right;
     }
 
-    /* ===== 링크 ===== */
     .search-result-table .doc-link{
         color: #111827;
         text-decoration: none;
@@ -71,7 +66,6 @@
         text-decoration: underline;
     }
 
-    /* ===== 거래처 / 비고 ===== */
     .search-result-table .ellipsis-2{
         white-space: normal;
         word-break: break-word;
@@ -80,7 +74,6 @@
         overflow: hidden;
     }
 
-    /* ===== 예금주 ===== */
     .search-result-table .name-cell{
         font-size: 13px;
         line-height: 1.35;
@@ -89,91 +82,28 @@
         text-align: center;
     }
 
-    /* ===== 비고 ===== */
     .search-result-table .note-cell{
         color: #374151;
     }
 
-    /* ===== 금액 ===== */
     .search-result-table .amount-text{
         font-weight: 700;
     }
 
-    /* ===== 날짜 ===== */
     .search-result-table .date-text{
         color: #6b7280;
         font-size: 13px;
         white-space: nowrap;
     }
 
-    /* ===== 하이라이트 ===== */
     .search-result-table mark{
         background: #fff3a3;
         color: inherit;
         padding: 0 2px;
         border-radius: 3px;
     }
-    </style>
-            <table class="table table-hover align-middle search-result-table">
-                <thead>
-                <tr class="table-dark">
-                    <th class="col-no">No</th>
-                    <th class="col-vendor">거래처</th>
-                    <th class="col-name">예금주</th>
-                    <th class="col-amount">금액</th>
-                    <th class="col-note">비고</th>
-                    <th class="col-date">작성일</th>
-                </tr>
-                </thead>
-                <tbody>
 
-                {% if Request_list %}
-                {% for Request in Request_list %}
-                <tr>
-                    <!-- No (center) -->
-                    <td class="text-center">
-                        {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
-                    </td>
-
-                    <!-- 거래처 (left) -->
-                    <td>
-                        <a href="/eas/{{ Request.request_id }}/"
-                        class="doc-link ellipsis-2">
-                            {{ Request.vendor|default_if_none:""|highlight:kw|safe }}
-                        </a>
-                    </td>
-                    <!-- 예금주 -->
-                    <td class="name-cell">
-                        {{ Request.account_name|default_if_none:""|highlight:kw|safe }}
-                    </td>
-                    <!-- 금액 (right) -->
-                    <td class="text-end">
-                        {% if Request.amount != None %}
-                            <span class="amount-text">{{ Request.amount|intcomma }}</span>
-                        {% endif %}
-                    </td>
-
-                    <!-- 비고 (left) -->
-                    <td class="note-cell ellipsis-2">
-                        {{ Request.note|default_if_none:""|highlight:kw|safe }}
-                    </td>
-                    <!-- 날짜 (center) -->
-                    <td class="text-center">
-                        <span class="date-text">{{ Request.create_date|date:'y/m/d' }}</span>
-                    </td>
-                </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                    <td colspan="6" class="text-center py-4">검색 결과가 없습니다.</td>
-                </tr>
-                {% endif %}
-
-                </tbody>
-            </table>
-            {% else %}
-    <style>
-    /* ===== 전체 래퍼 ===== */
+    /* ===== 데스크톱: 일반 결재 리스트 ===== */
     .approval-list-wrap{
         border: 1px solid #e5e7eb;
         border-radius: 12px;
@@ -181,7 +111,6 @@
         background: #ffffff;
     }
 
-    /* ===== 테이블 ===== */
     .approval-list-table{
         width: 100%;
         margin-bottom: 0;
@@ -189,7 +118,6 @@
         border-collapse: collapse;
     }
 
-    /* ===== 헤더 ===== */
     .approval-list-table thead th{
         background: #111827;
         color: #ffffff;
@@ -201,28 +129,25 @@
         border-bottom: 0;
     }
 
-    /* ===== 본문 ===== */
     .approval-list-table tbody td{
         padding: 12px 12px;
         font-size: 14px;
         color: #111827;
         border-top: 1px solid #eef2f7;
         vertical-align: middle;
+        background: #fff;
     }
 
-    /* ===== hover ===== */
     .approval-list-table tbody tr:hover{
         background: #f8fafc;
     }
 
-    /* ===== 컬럼 너비 ===== */
     .approval-list-table .col-no{ width: 6%; }
     .approval-list-table .col-title{ width: 44%; }
     .approval-list-table .col-amount{ width: 13%; }
     .approval-list-table .col-step{ width: 9%; }
     .approval-list-table .col-date{ width: 10%; }
 
-    /* ===== 정렬 ===== */
     .approval-list-table .cell-center{
         text-align: center;
     }
@@ -230,7 +155,6 @@
         text-align: right;
     }
 
-    /* ===== 제목 ===== */
     .approval-title-link{
         display: block;
         color: #111827;
@@ -249,7 +173,6 @@
         text-overflow: ellipsis;
     }
 
-    /* 제목 옆 +숫자 */
     .approval-inline-count{
         margin-left: 6px;
         font-size: 12px;
@@ -257,7 +180,6 @@
         color: #6b7280;
     }
 
-    /* ===== 금액 ===== */
     .approval-amount{
         font-weight: 700;
         font-size: 15px;
@@ -265,161 +187,473 @@
         white-space: nowrap;
     }
 
-    /* ===== 날짜 ===== */
     .approval-date{
         font-size: 13px;
         color: #6b7280;
         white-space: nowrap;
     }
 
-    /* ===== 상태 뱃지 (Soft Tag 스타일) ===== */
-.status-badge{
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 6px;        /* 과하게 둥글지 않게 */
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1;
-    white-space: nowrap;
-}
+    .status-badge{
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1;
+        white-space: nowrap;
+    }
 
-/* 기안 */
-.status-draft{
-    background: #f3f4f6;
-    color: #4b5563;
-}
+    .status-draft{
+        background: #f3f4f6;
+        color: #4b5563;
+    }
 
-/* 승인 */
-.status-approved{
-    background: #dcfce7;
-    color: #166534;
-}
+    .status-approved{
+        background: #dcfce7;
+        color: #166534;
+    }
 
-/* 반려 */
-.status-rejected{
-    background: #fee2e2;
-    color: #991b1b;
-}
+    .status-rejected{
+        background: #fee2e2;
+        color: #991b1b;
+    }
 
-/* 대결 */
-.status-proxy{
-    background: #dbeafe;
-    color: #1e40af;
-}
+    .status-proxy{
+        background: #dbeafe;
+        color: #1e40af;
+    }
 
-/* 전결 */
-.status-delegated{
-    background: #e0e7ff;
-    color: #3730a3;
-}
+    .status-delegated{
+        background: #e0e7ff;
+        color: #3730a3;
+    }
 
-/* 대기 */
-.status-empty{
-    background: #f1f5f9;
-    color: #64748b;
-}
+    .status-empty{
+        background: #f1f5f9;
+        color: #64748b;
+    }
+
+    /* ===== 모바일 카드 공통 ===== */
+    .mobile-card-list{
+        display: none;
+    }
+
+    .mobile-result-card{
+        display: block;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 14px;
+        margin-bottom: 12px;
+        text-decoration: none;
+        color: #111827;
+        box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .mobile-result-card:hover{
+        color: #111827;
+        text-decoration: none;
+    }
+
+    .mobile-result-top{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+
+    .mobile-result-no{
+        min-width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: #f3f4f6;
+        color: #111827;
+        font-size: 13px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .mobile-result-title-wrap{
+        flex: 1;
+        min-width: 0;
+    }
+
+    .mobile-result-title{
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1.45;
+        color: #111827;
+        word-break: break-word;
+    }
+
+    .mobile-result-sub{
+        margin-top: 5px;
+        font-size: 12px;
+        color: #6b7280;
+        line-height: 1.4;
+    }
+
+    .mobile-result-amount{
+        margin-top: 2px;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 1;
+        color: #111827;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .mobile-status-row{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .mobile-note-box{
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #f8fafc;
+        color: #334155;
+        font-size: 13px;
+        line-height: 1.5;
+        word-break: break-word;
+    }
+
+    .mobile-empty-box{
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 24px 16px;
+        text-align: center;
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+    /* ===== 페이징 ===== */
+    .pagination .page-link{
+        color: #334155;
+    }
+
+    .pagination .page-item.active .page-link{
+        background: #111827;
+        border-color: #111827;
+        color: #fff;
+    }
+
+    /* ===== 모바일 전환 ===== */
+    @media (max-width: 767.98px){
+        .container.my-3{
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .desktop-table-wrap{
+            display: none !important;
+        }
+
+        .mobile-card-list{
+            display: block;
+        }
+
+        .pagination{
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .pagination .page-link{
+            padding: 0.5rem 0.72rem;
+            font-size: 13px;
+            border-radius: 10px !important;
+        }
+    }
     </style>
-            <div class="approval-list-wrap">
-                <table class="table approval-list-table">
-                    <thead>
-                    <tr>
-                        <th class="col-no">No</th>
-                        <th class="col-title">제목</th>
-                        <th class="col-amount">금액</th>
-                        <th class="col-step">담당</th>
-                        <th class="col-step">이사</th>
-                        <th class="col-step">대표</th>
-                        <th class="col-date">작성일</th>
-                    </tr>
-                    </thead>
-                    <tbody>
 
-                    {% if Request_list %}
-                    {% for Request in Request_list %}
-                    <tr>
-                        <td class="cell-center">
-                            {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
-                        </td>
+    <div class="row justify-content-between my-3 eas-page-wrap">
+        <div class="col-1 d-none d-sm-block"></div>
 
-                       <td>
-                            <a href="/eas/{{ Request.id }}/" class="approval-title-link">
-                                <span class="approval-title-main">
-                                    {{ Request.subject }}
-                                    {% if Request.fff >= 1 %}
-                                        <span class="approval-inline-count">+{{ Request.fff }}</span>
+        <div class="col-lg-9 col-md-12 col-sm-12">
+
+            {% if is_detail_search %}
+
+                <!-- 데스크톱 -->
+                <div class="desktop-table-wrap">
+                    <table class="table table-hover align-middle search-result-table">
+                        <thead>
+                        <tr class="table-dark">
+                            <th class="col-no">No</th>
+                            <th class="col-vendor">거래처</th>
+                            <th class="col-name">예금주</th>
+                            <th class="col-amount">금액</th>
+                            <th class="col-note">비고</th>
+                            <th class="col-date">작성일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% if Request_list %}
+                            {% for Request in Request_list %}
+                            <tr>
+                                <td class="text-center">
+                                    {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
+                                </td>
+
+                                <td>
+                                    <a href="/eas/{{ Request.request_id }}/" class="doc-link ellipsis-2">
+                                        {{ Request.vendor|default_if_none:""|highlight:kw|safe }}
+                                    </a>
+                                </td>
+
+                                <td class="name-cell">
+                                    {{ Request.account_name|default_if_none:""|highlight:kw|safe }}
+                                </td>
+
+                                <td class="text-end">
+                                    {% if Request.amount != None %}
+                                        <span class="amount-text">{{ Request.amount|intcomma }}</span>
                                     {% endif %}
+                                </td>
+
+                                <td class="note-cell ellipsis-2">
+                                    {{ Request.note|default_if_none:""|highlight:kw|safe }}
+                                </td>
+
+                                <td class="text-center">
+                                    <span class="date-text">{{ Request.create_date|date:'y/m/d' }}</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="6" class="text-center py-4">검색 결과가 없습니다.</td>
+                            </tr>
+                        {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 모바일 -->
+                <div class="mobile-card-list">
+                    {% if Request_list %}
+                        {% for Request in Request_list %}
+                        <a href="/eas/{{ Request.request_id }}/" class="mobile-result-card">
+                            <div class="mobile-result-top">
+                                <span class="mobile-result-no">
+                                    {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
                                 </span>
-                            </a>
-                        </td>
 
-                        <td class="cell-right">
-                            <a href="/eas/{{ Request.id }}/" style="text-decoration:none;">
-                                <span class="approval-amount">{{ Request.total|intcomma }}</span>
-                            </a>
-                        </td>
+                                <div class="mobile-result-title-wrap">
+                                    <div class="mobile-result-title">
+                                        {{ Request.vendor|default_if_none:""|highlight:kw|safe }}
+                                    </div>
+                                    <div class="mobile-result-sub">
+                                        예금주 {{ Request.account_name|default_if_none:""|highlight:kw|safe }} · {{ Request.create_date|date:'Y.m.d' }}
+                                    </div>
+                                </div>
 
-                        <td class="cell-center">
-                            {% if Request.ccc == "기안" %}
-                                <span class="status-badge status-draft">기안</span>
-                            {% elif Request.ccc == "승인" %}
-                                <span class="status-badge status-approved">승인</span>
-                            {% elif Request.ccc == "반려" %}
-                                <span class="status-badge status-rejected">반려</span>
-                            {% else %}
-                                <span class="status-badge status-empty">대기</span>
+                                <div class="mobile-result-amount">
+                                    {% if Request.amount != None %}
+                                        {{ Request.amount|intcomma }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            {% if Request.note %}
+                            <div class="mobile-note-box">
+                                {{ Request.note|default_if_none:""|highlight:kw|safe }}
+                            </div>
                             {% endif %}
-                        </td>
-
-                        <td class="cell-center">
-                            {% if Request.ddd == "이사" %}
-                                <span class="status-badge status-draft">기안</span>
-                            {% elif Request.aaa and "대결:" in Request.aaa %}
-                                <span class="status-badge status-proxy">대결</span>
-                            {% elif Request.aaa == "승인" %}
-                                <span class="status-badge status-approved">승인</span>
-                            {% elif Request.aaa == "반려" %}
-                                <span class="status-badge status-rejected">반려</span>
-                            {% elif Request.aaa == "전결" %}
-                                <span class="status-badge status-delegated">전결</span>
-                            {% elif Request.aaa %}
-                                <span class="status-badge status-draft">{{ Request.aaa }}</span>
-                            {% else %}
-                                <span class="status-badge status-empty">대기</span>
-                            {% endif %}
-                        </td>
-
-                        <td class="cell-center">
-                            {% if Request.aaa == "전결" %}
-                                <span class="status-badge status-empty">/</span>
-                            {% elif Request.bbb == "승인" %}
-                                <span class="status-badge status-approved">승인</span>
-                            {% elif Request.bbb == "반려" %}
-                                <span class="status-badge status-rejected">반려</span>
-                            {% elif Request.bbb %}
-                                <span class="status-badge status-draft">{{ Request.bbb }}</span>
-                            {% else %}
-                                <span class="status-badge status-empty">대기</span>
-                            {% endif %}
-                        </td>
-
-                        <td class="cell-center">
-                            <span class="approval-date">{{ Request.create_date|date:'y.m.d' }}</span>
-                        </td>
-                    </tr>
-                    {% endfor %}
+                        </a>
+                        {% endfor %}
                     {% else %}
-                    <tr>
-                        <td colspan="7" class="text-center py-4">결재 리스트가 없습니다.</td>
-                    </tr>
+                        <div class="mobile-empty-box">검색 결과가 없습니다.</div>
                     {% endif %}
+                </div>
 
-                    </tbody>
-                </table>
-            </div>
+            {% else %}
+
+                <!-- 데스크톱 -->
+                <div class="approval-list-wrap desktop-table-wrap">
+                    <table class="table approval-list-table">
+                        <thead>
+                        <tr>
+                            <th class="col-no">No</th>
+                            <th class="col-title">제목</th>
+                            <th class="col-amount">금액</th>
+                            <th class="col-step">담당</th>
+                            <th class="col-step">이사</th>
+                            <th class="col-step">대표</th>
+                            <th class="col-date">작성일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% if Request_list %}
+                            {% for Request in Request_list %}
+                            <tr>
+                                <td class="cell-center">
+                                    {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
+                                </td>
+
+                                <td>
+                                    <a href="/eas/{{ Request.id }}/" class="approval-title-link">
+                                        <span class="approval-title-main">
+                                            {{ Request.subject }}
+                                            {% if Request.fff >= 1 %}
+                                                <span class="approval-inline-count">+{{ Request.fff }}</span>
+                                            {% endif %}
+                                        </span>
+                                    </a>
+                                </td>
+
+                                <td class="cell-right">
+                                    <a href="/eas/{{ Request.id }}/" style="text-decoration:none;">
+                                        <span class="approval-amount">{{ Request.total|intcomma }}</span>
+                                    </a>
+                                </td>
+
+                                <td class="cell-center">
+                                    {% if Request.ccc == "기안" %}
+                                        <span class="status-badge status-draft">기안</span>
+                                    {% elif Request.ccc == "승인" %}
+                                        <span class="status-badge status-approved">승인</span>
+                                    {% elif Request.ccc == "반려" %}
+                                        <span class="status-badge status-rejected">반려</span>
+                                    {% else %}
+                                        <span class="status-badge status-empty">대기</span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="cell-center">
+                                    {% if Request.ddd == "이사" %}
+                                        <span class="status-badge status-draft">기안</span>
+                                    {% elif Request.aaa and "대결:" in Request.aaa %}
+                                        <span class="status-badge status-proxy">대결</span>
+                                    {% elif Request.aaa == "승인" %}
+                                        <span class="status-badge status-approved">승인</span>
+                                    {% elif Request.aaa == "반려" %}
+                                        <span class="status-badge status-rejected">반려</span>
+                                    {% elif Request.aaa == "전결" %}
+                                        <span class="status-badge status-delegated">전결</span>
+                                    {% elif Request.aaa %}
+                                        <span class="status-badge status-draft">{{ Request.aaa }}</span>
+                                    {% else %}
+                                        <span class="status-badge status-empty">대기</span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="cell-center">
+                                    {% if Request.aaa == "전결" %}
+                                        <span class="status-badge status-empty">/</span>
+                                    {% elif Request.bbb == "승인" %}
+                                        <span class="status-badge status-approved">승인</span>
+                                    {% elif Request.bbb == "반려" %}
+                                        <span class="status-badge status-rejected">반려</span>
+                                    {% elif Request.bbb %}
+                                        <span class="status-badge status-draft">{{ Request.bbb }}</span>
+                                    {% else %}
+                                        <span class="status-badge status-empty">대기</span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="cell-center">
+                                    <span class="approval-date">{{ Request.create_date|date:'y.m.d' }}</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="7" class="text-center py-4">결재 리스트가 없습니다.</td>
+                            </tr>
+                        {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 모바일 -->
+                <div class="mobile-card-list">
+                    {% if Request_list %}
+                        {% for Request in Request_list %}
+                        <a href="/eas/{{ Request.id }}/" class="mobile-result-card">
+                            <div class="mobile-result-top">
+                                <span class="mobile-result-no">
+                                    {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
+                                </span>
+
+                                <div class="mobile-result-title-wrap">
+                                    <div class="mobile-result-title">
+                                        {{ Request.subject }}
+                                        {% if Request.fff >= 1 %}
+                                            <span class="approval-inline-count">+{{ Request.fff }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="mobile-result-sub">
+                                        작성일 {{ Request.create_date|date:'Y.m.d' }}
+                                    </div>
+                                </div>
+
+                                <div class="mobile-result-amount">
+                                    {{ Request.total|intcomma }}
+                                </div>
+                            </div>
+
+                            <div class="mobile-status-row">
+                                {% if Request.ccc == "기안" %}
+                                    <span class="status-badge status-draft">담당 기안</span>
+                                {% elif Request.ccc == "승인" %}
+                                    <span class="status-badge status-approved">담당 승인</span>
+                                {% elif Request.ccc == "반려" %}
+                                    <span class="status-badge status-rejected">담당 반려</span>
+                                {% else %}
+                                    <span class="status-badge status-empty">담당 대기</span>
+                                {% endif %}
+
+                                {% if Request.ddd == "이사" %}
+                                    <span class="status-badge status-draft">이사 기안</span>
+                                {% elif Request.aaa and "대결:" in Request.aaa %}
+                                    <span class="status-badge status-proxy">이사 대결</span>
+                                {% elif Request.aaa == "승인" %}
+                                    <span class="status-badge status-approved">이사 승인</span>
+                                {% elif Request.aaa == "반려" %}
+                                    <span class="status-badge status-rejected">이사 반려</span>
+                                {% elif Request.aaa == "전결" %}
+                                    <span class="status-badge status-delegated">이사 전결</span>
+                                {% elif Request.aaa %}
+                                    <span class="status-badge status-draft">이사 {{ Request.aaa }}</span>
+                                {% else %}
+                                    <span class="status-badge status-empty">이사 대기</span>
+                                {% endif %}
+
+                                {% if Request.aaa == "전결" %}
+                                    <span class="status-badge status-empty">대표 /</span>
+                                {% elif Request.bbb == "승인" %}
+                                    <span class="status-badge status-approved">대표 승인</span>
+                                {% elif Request.bbb == "반려" %}
+                                    <span class="status-badge status-rejected">대표 반려</span>
+                                {% elif Request.bbb %}
+                                    <span class="status-badge status-draft">대표 {{ Request.bbb }}</span>
+                                {% else %}
+                                    <span class="status-badge status-empty">대표 대기</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="mobile-empty-box">결재 리스트가 없습니다.</div>
+                    {% endif %}
+                </div>
+
             {% endif %}
-                                    <!-- 페이징처리 시작 -->
+
+            <!-- 페이징처리 시작 -->
             <ul class="pagination justify-content-center mt-3">
-                <!-- 이전페이지 -->
                 {% if Request_list.has_previous %}
                 <li class="page-item">
                     <a class="page-link" data-page="{{ Request_list.previous_page_number }}" href="javascript:void(0)">이전</a>
@@ -429,21 +663,21 @@
                     <a class="page-link" tabindex="-1" aria-disabled="true" href="javascript:void(0)">이전</a>
                 </li>
                 {% endif %}
-                <!-- 페이지리스트 -->
+
                 {% for page_number in Request_list.paginator.page_range %}
-                {% if page_number >= Request_list.number|add:-5 and page_number <= Request_list.number|add:5 %}
-                {% if page_number == Request_list.number %}
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
-                </li>
-                {% else %}
-                <li class="page-item">
-                    <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
-                </li>
-                {% endif %}
-                {% endif %}
+                    {% if page_number >= Request_list.number|add:-5 and page_number <= Request_list.number|add:5 %}
+                        {% if page_number == Request_list.number %}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" data-page="{{ page_number }}" href="javascript:void(0)">{{ page_number }}</a>
+                        </li>
+                        {% endif %}
+                    {% endif %}
                 {% endfor %}
-                <!-- 다음페이지 -->
+
                 {% if Request_list.has_next %}
                 <li class="page-item">
                     <a class="page-link" data-page="{{ Request_list.next_page_number }}" href="javascript:void(0)">다음</a>
@@ -454,38 +688,37 @@
                 </li>
                 {% endif %}
             </ul>
-           </div>
-        <div class="col-1 d-none d-sm-block"> </div>
+        </div>
+
+        <div class="col-1 d-none d-sm-block"></div>
     </div>
 
 </div>
-    <!-- 페이징처리 끝 -->
 
-<!-- 클립보드이미지 붙여넣기-->
 <img id="container"/>
 
-<!-- 검색 -->
-    <form id="searchForm" method="get" action="{% url 'eas:index' %}">
-        <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
-        <input type="hidden" id="page" name="page" value="{{ page }}">
-    </form>
+<form id="searchForm" method="get" action="{% url 'eas:index' %}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+    <input type="hidden" id="page" name="page" value="{{ page }}">
+</form>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 {% endblock %}
-{% block script %}
-    <script type='text/javascript'>
-    const page_elements = document.getElementsByClassName("page-link");
-    Array.from(page_elements).forEach(function(element) {
-        element.addEventListener('click', function() {
-            document.getElementById('page').value = this.dataset.page;
-            document.getElementById('searchForm').submit();
-        });
-    });
 
-    document.onpaste = function(pasteEvent) {
+{% block script %}
+<script type='text/javascript'>
+const page_elements = document.getElementsByClassName("page-link");
+Array.from(page_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        document.getElementById('page').value = this.dataset.page;
+        document.getElementById('searchForm').submit();
+    });
+});
+
+document.onpaste = function(pasteEvent) {
     var item = pasteEvent.clipboardData.items[0];
 
-    if (item.type.indexOf("image") === 0)
+    if (item && item.type.indexOf("image") === 0)
     {
         var blob = item.getAsFile();
 
@@ -497,5 +730,5 @@
         reader.readAsDataURL(blob);
     }
 }
-    </script>
+</script>
 {% endblock %}
