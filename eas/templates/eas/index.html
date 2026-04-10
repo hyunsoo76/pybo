@@ -27,6 +27,7 @@
         border-radius: 12px;
         overflow: hidden;
         background: #ffffff;
+        position: relative;
     }
 
     /* ===== 데스크톱: 상세검색 결과 테이블 ===== */
@@ -381,7 +382,8 @@
         }
 
         .approval-list-wrap{
-            width: 100% !important;
+            width: calc(100% + 12px) !important;
+            margin-right: -12px;
         }
 
         .approval-list-table,
@@ -393,7 +395,7 @@
             display: none !important;
         }
     }
-
+    
     /* ===== 모바일 전환 ===== */
     @media (max-width: 767.98px){
         .container.my-3{
