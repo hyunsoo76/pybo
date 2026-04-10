@@ -160,7 +160,10 @@
                     <!-- 거래처 (left) -->
                     <td>
                         <a href="/eas/{{ Request.request_id }}/"
-                        class="doc-link ellipsis-2">                    </td>
+                        class="doc-link ellipsis-2">
+                            {{ Request.vendor|default_if_none:""|highlight:kw|safe }}
+                        </a>
+                    </td>
                     <!-- 예금주 (left) -->
                     <td class="name-cell">
                         {{ Request.account_name|default_if_none:""|highlight:kw|safe }}
