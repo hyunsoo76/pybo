@@ -32,50 +32,96 @@
            <div class="col-lg-9 col-md-12 col-sm-12">
             {% if is_detail_search %}
             <style>
+                /* ===== 전체 테이블 ===== */
                 .search-result-table{
-                    table-layout: fixed;
                     width: 100%;
+                    table-layout: fixed;
+                    border-collapse: collapse;
                 }
-                .search-result-table th,
-                .search-result-table td{
-                    padding: 10px 12px;
+
+                /* ===== 헤더 ===== */
+                .search-result-table thead th{
+                    background: #111827;
+                    color: #fff;
+                    font-size: 13px;
+                    font-weight: 600;
+                    padding: 12px 14px;
+                    text-align: left; /* 헤더 전부 left */
+                    border-bottom: 0;
+                }
+
+                /* ===== 본문 ===== */
+                .search-result-table tbody td{
+                    padding: 12px 14px;
+                    font-size: 14px;
+                    color: #111827;
+                    border-top: 1px solid #e5e7eb;
                     vertical-align: middle;
-                }
-                .search-result-table td{
                     line-height: 1.45;
                 }
-                .search-result-table .col-no{ width: 6%; }
-                .search-result-table .col-doc{ width: 18%; }
-                .search-result-table .col-vendor{ width: 18%; }
-                .search-result-table .col-name{ width: 12%; }
-                .search-result-table .col-amount{ width: 11%; }
-                .search-result-table .col-note{ width: 25%; }
-                .search-result-table .col-date{ width: 10%; }
 
+                /* ===== hover ===== */
+                .search-result-table tbody tr:hover{
+                    background: #f9fafb;
+                }
+
+                /* ===== 컬럼 너비 ===== */
+                .search-result-table .col-no{ width: 6%; }
+                .search-result-table .col-vendor{ width: 22%; }
+                .search-result-table .col-name{ width: 18%; }
+                .search-result-table .col-amount{ width: 12%; }
+                .search-result-table .col-note{ width: 30%; }
+                .search-result-table .col-date{ width: 12%; }
+
+                /* ===== 정렬 규칙 ===== */
+                .search-result-table .text-center{
+                    text-align: center;
+                }
+                .search-result-table .text-end{
+                    text-align: right;
+                }
+
+                /* ===== 링크 ===== */
                 .search-result-table .doc-link{
-                    color: inherit;
+                    color: #111827;
                     text-decoration: none;
                     font-weight: 600;
                 }
                 .search-result-table .doc-link:hover{
                     text-decoration: underline;
                 }
+
+                /* ===== 비고 ===== */
                 .search-result-table .note-cell{
                     word-break: break-word;
                     white-space: normal;
+                    color: #374151;
                 }
+
+                /* ===== 금액 ===== */
+                .search-result-table .amount-text{
+                    font-weight: 700;
+                }
+
+                /* ===== 날짜 ===== */
+                .search-result-table .date-text{
+                    color: #6b7280;
+                    font-size: 13px;
+                }
+
+                /* ===== 하이라이트 ===== */
                 .search-result-table mark{
                     background: #fff3a3;
+                    color: inherit;
                     padding: 0 2px;
                     border-radius: 3px;
                 }
-            </style>
+                </style>
 
             <table class="table table-hover align-middle search-result-table">
                 <thead>
-                <tr class="table-dark text-center">
+                <tr class="table-dark">
                     <th class="col-no">No</th>
-                    <th class="col-doc">품의서</th>
                     <th class="col-vendor">거래처</th>
                     <th class="col-name">예금주</th>
                     <th class="col-amount">금액</th>
@@ -88,23 +134,39 @@
                 {% if Request_list %}
                 {% for Request in Request_list %}
                 <tr>
+                    <!-- No (center) -->
                     <td class="text-center">
                         {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
                     </td>
-                    <td class="text-start">
+
+                    <!-- 거래처 (left) -->
+                    <td>
                         <a href="/eas/{{ Request.request_id }}/" class="doc-link">
-                            {{ Request.line_no }} {{ Request.subject|default_if_none:""|highlight:kw|safe }}
+                            {{ Request.vendor|default_if_none:""|highlight:kw|safe }}
                         </a>
                     </td>
-                    <td>{{ Request.vendor|default_if_none:""|highlight:kw|safe }}</td>
-                    <td>{{ Request.account_name|default_if_none:""|highlight:kw|safe }}</td>
+
+                    <!-- 예금주 (left) -->
+                    <td>
+                        {{ Request.account_name|default_if_none:""|highlight:kw|safe }}
+                    </td>
+
+                    <!-- 금액 (right) -->
                     <td class="text-end">
                         {% if Request.amount != None %}
-                            {{ Request.amount|intcomma }}
+                            <span class="amount-text">{{ Request.amount|intcomma }}</span>
                         {% endif %}
                     </td>
-                    <td class="note-cell">{{ Request.note|default_if_none:""|highlight:kw|safe }}</td>
-                    <td class="text-center">{{ Request.create_date|date:'y/m/d' }}</td>
+
+                    <!-- 비고 (left) -->
+                    <td class="note-cell">
+                        {{ Request.note|default_if_none:""|highlight:kw|safe }}
+                    </td>
+
+                    <!-- 날짜 (center) -->
+                    <td class="text-center">
+                        <span class="date-text">{{ Request.create_date|date:'y/m/d' }}</span>
+                    </td>
                 </tr>
                 {% endfor %}
             {% else %}
