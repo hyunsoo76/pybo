@@ -194,19 +194,87 @@
     hr:first-of-type {
       display: none !important;
     }
+        .approval-grid{
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
 
-    .approval-grid > .approval-cell:nth-child(3),
-    .approval-grid > .approval-cell:nth-child(6) {
+    .approval-grid > div{
+      float: none !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    /* 출력용 칼럼 비율 재조정 */
+    .approval-grid > .col-lg-1.approval-cell.no{
+      flex: 0 0 7% !important;
+      max-width: 7% !important;
+    }
+
+    .approval-grid > .col-lg-2:nth-child(2){
+      flex: 0 0 16% !important;
+      max-width: 16% !important;
+    }
+
+    .approval-grid > .col-lg-2:nth-child(3){
+      flex: 0 0 18% !important;
+      max-width: 18% !important;
       white-space: nowrap !important;
       word-break: keep-all !important;
       overflow-wrap: normal !important;
-      font-size: 11px !important;
+      font-size: 10.5px !important;
+      letter-spacing: -0.2px !important;
     }
 
-    .approval-cell.text-right{
-      justify-content: flex-end !important;
+    .approval-grid > .col-lg-1:nth-child(4){
+      flex: 0 0 8% !important;
+      max-width: 8% !important;
+      font-size: 10.5px !important;
+    }
+
+    .approval-grid > .col-lg-2:nth-child(5){
+      flex: 0 0 17% !important;
+      max-width: 17% !important;
+      font-size: 10.5px !important;
+    }
+
+    .approval-grid > .col-lg-1:nth-child(6){
+      flex: 0 0 11% !important;
+      max-width: 11% !important;
+      white-space: nowrap !important;
+      word-break: keep-all !important;
+      overflow-wrap: normal !important;
       text-align: right !important;
-      overflow: hidden !important;
+      justify-content: flex-end !important;
+      font-size: 10.5px !important;
+      letter-spacing: -0.2px !important;
+    }
+
+    .approval-grid > .col-lg-1:nth-child(7){
+      flex: 0 0 8% !important;
+      max-width: 8% !important;
+      font-size: 10px !important;
+    }
+
+    .approval-grid > .col-lg-2:nth-child(8){
+      flex: 0 0 15% !important;
+      max-width: 15% !important;
+      font-size: 10px !important;
+      line-height: 1.25 !important;
+    }
+
+    .approval-cell{
+      overflow: visible !important;
+      text-overflow: clip !important;
+      box-sizing: border-box !important;
+    }
+
+    .approval-cell span,
+    .approval-cell .form-control{
+      overflow: visible !important;
+      text-overflow: clip !important;
     }
   }
 </style>
