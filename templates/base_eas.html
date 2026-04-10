@@ -19,79 +19,174 @@
   <body>
   <!-- 네비게이션바 -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style="height:8%">
-        <div class="container-sm">
-            <div>
-            <a class="navbar-brand" href="{% url 'eas:index' %}" accesskey="j" onMouseOver="this.innerHTML='alt+j'" onMouseOut="this.innerHTML='Eas'">Eas</a>
-            <a class="navbar-brand" href="{% url 'eas:Request_create' %}" accesskey="w" onMouseOver="this.innerHTML='alt+w'" onMouseOut="this.innerHTML='write'">write</a>
-            <a class="navbar-brand" style="display:none;" href="{% url 'eas:Request_create_24' %}" accesskey="R">write</a>
-            <a class="navbar-brand" style="display:none;" href="/hometax" accesskey="h">hometax</a>
+    <nav class="navbar navbar-expand-lg eas-navbar">
+    <div class="container-sm">
+        <a class="navbar-brand eas-brand" href="{% url 'eas:index' %}" accesskey="j">EAS</a>
+
+        <button class="navbar-toggler eas-navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex align-items-center gap-2">
+                <a class="eas-nav-create-btn" href="{% url 'eas:Request_create' %}" accesskey="w">작성하기</a>
+                <a class="navbar-brand d-none" href="{% url 'eas:Request_create_24' %}" accesskey="R">write</a>
+                <a class="navbar-brand d-none" href="/hometax" accesskey="h">hometax</a>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          <div class="navbar-collapse collapse justify-content-end align-items-center" id="navbarSupportedContent">
 
-            <form id="navbarSearchForm" class="d-flex align-items-center me-2" method="get" action="{% url 'eas:index' %}">
-                <input
-                    type="text"
-                    id="navbar_search_kw"
-                    name="kw"
-                    class="form-control form-control-sm"
-                    accesskey="a"
-                    value="{{ kw|default_if_none:'' }}"
-                    placeholder="상세검색 alt+a"
-                    style="width: 320px;"
-                >
-                <input type="hidden" name="page" value="1">
-                <button class="btn btn-outline-light btn-sm ms-2" type="submit">검색</button>
-            </form>
+            <div class="ms-auto d-flex align-items-center gap-2 eas-nav-tools">
+                <form id="navbarSearchForm" class="d-flex align-items-center eas-nav-search" method="get" action="{% url 'eas:index' %}">
+                    <input
+                        type="text"
+                        id="navbar_search_kw"
+                        name="kw"
+                        class="form-control eas-search-input"
+                        accesskey="a"
+                        value="{{ kw|default_if_none:'' }}"
+                        placeholder="상세검색"
+                    >
+                    <input type="hidden" name="page" value="1">
+                    <button class="eas-search-btn" type="submit">검색</button>
+                </form>
 
-            <button class="btn btn-outline-light btn-sm" type="button"
+                <button
+                    class="eas-outline-btn"
+                    type="button"
                     onclick="window.open('http://3.37.211.248/eas/account.html','window_name','width=730,height=195,left=710,top=86,location=no,status=no,scrollbars=yes');"
-                    accesskey="q"
-                    onMouseOver="this.innerHTML=' ALT+Q '"
-                    onMouseOut="this.innerHTML='계좌조회'">계좌조회</button>
-
+                    accesskey="q">계좌조회</button>
+            </div>
         </div>
+    </div>
+</nav>
 
-       
+<style>
+    .eas-navbar{
+        background: #0f172a;
+        border-bottom: 1px solid #1e293b;
+        min-height: 64px;
+        padding: 10px 0;
+    }
 
+    .eas-brand{
+        color: #ffffff !important;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        margin-right: 16px;
+    }
 
+    .eas-brand:hover{
+        color: #ffffff !important;
+    }
 
-<!--            <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--                <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--                    <li class="nav-item">-->
-<!--&lt;!&ndash;                        <a class="nav-link" href="#">로그인</a>&ndash;&gt;-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
+    .eas-navbar-toggler{
+        border-color: rgba(255,255,255,0.18);
+    }
 
+    .eas-nav-create-btn{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #0f172a;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid #ffffff;
+    }
 
-    </nav>
+    .eas-nav-create-btn:hover{
+        color: #0f172a;
+        background: #f8fafc;
+        text-decoration: none;
+    }
 
-  <!-- 기본 템플릿 안에 삽입될 내용 Start -->
-  {% block content %}
-  {% endblock %}
-  <!-- 기본 템플릿 안에 삽입될 내용 End -->
+    .eas-nav-tools{
+        gap: 10px;
+    }
 
-  <!-- 자바스크립트 Start -->
-  {% block script %}
-  {% endblock %}
-  <!-- 자바스크립트 End -->
+    .eas-nav-search{
+        gap: 8px;
+        margin-bottom: 0;
+    }
 
-<!--  <script>-->
-<!--      const searchInput = document.getElementById("search_kw");-->
-<!--      const maxLength = 50;-->
+    .eas-search-input{
+        width: 280px;
+        height: 38px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #ffffff;
+        color: #111827;
+        font-size: 14px;
+        padding: 0 12px;
+        box-shadow: none !important;
+    }
 
-<!--      searchInput.addEventListener("focus", e => {-->
-<!--      const el = e.target;-->
-<!--      setTimeout(() => {-->
-<!--        el.setSelectionRange(maxLength, maxLength);-->
-<!--        el.scrollLeft = maxLength * 30;-->
-<!--        }, 0);-->
-<!--      });-->
-<!--  </script>-->
+    .eas-search-input::placeholder{
+        color: #9ca3af;
+    }
+
+    .eas-search-input:focus{
+        border-color: #93c5fd;
+        box-shadow: 0 0 0 3px rgba(147,197,253,0.18) !important;
+    }
+
+    .eas-search-btn{
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #1e293b;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .eas-search-btn:hover{
+        background: #334155;
+    }
+
+    .eas-outline-btn{
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 8px;
+        border: 1px solid #475569;
+        background: transparent;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .eas-outline-btn:hover{
+        background: rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 991.98px){
+        .eas-nav-tools{
+            margin-top: 12px;
+            width: 100%;
+            flex-direction: column;
+            align-items: stretch !important;
+        }
+
+        .eas-nav-search{
+            width: 100%;
+        }
+
+        .eas-search-input{
+            width: 100%;
+        }
+
+        .eas-outline-btn,
+        .eas-search-btn,
+        .eas-nav-create-btn{
+            justify-content: center;
+        }
+    }
+</style>
   </body>
 
 
