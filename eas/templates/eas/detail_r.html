@@ -111,13 +111,25 @@
       color: #000 !important;
     }
 
-    .btn,
-    .modal,
+       .modal,
     .modal-backdrop,
     .note-lightbox,
     .print-hide,
     script {
       display: none !important;
+    }
+
+    .print-approval-label{
+      display: inline-block !important;
+      border: 0 !important;
+      background: transparent !important;
+      color: #000 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+      box-shadow: none !important;
     }
 
     .container {
@@ -170,6 +182,32 @@
       max-width: 100% !important;
       height: auto !important;
     }
+
+    header,
+    nav,
+    .navbar,
+    .topbar,
+    .site-header,
+    .search-area,
+    .search-wrap,
+    .header-line,
+    hr:first-of-type {
+      display: none !important;
+    }
+
+    .approval-grid > .approval-cell:nth-child(3),
+    .approval-grid > .approval-cell:nth-child(6) {
+      white-space: nowrap !important;
+      word-break: keep-all !important;
+      overflow-wrap: normal !important;
+      font-size: 11px !important;
+    }
+
+    .approval-cell.text-right{
+      justify-content: flex-end !important;
+      text-align: right !important;
+      overflow: hidden !important;
+    }
   }
 </style>
 
@@ -191,17 +229,17 @@
             <table class="table table-sm table-bordered border-secondary align-middle">
                 <tr class="table-secondary" align="center">
                     <td height="10px">
-                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        <button type="button" class="btn btn-outline-secondary btn-sm print-approval-label" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                             <b>&nbsp;담&nbsp;당&nbsp;</b>
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                        <button type="button" class="btn btn-outline-secondary btn-sm print-approval-label" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                             <b>&nbsp;이&nbsp;사&nbsp;</b>
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                        <button type="button" class="btn btn-outline-secondary btn-sm print-approval-label" data-bs-toggle="modal" data-bs-target="#exampleModal3">
                             <b>&nbsp;대&nbsp;표&nbsp;</b>
                         </button>
                     </td>
