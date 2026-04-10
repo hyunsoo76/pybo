@@ -153,6 +153,11 @@
     margin: 0 !important;
   }
 
+    .approval-grid-note{
+    display: grid !important;
+    grid-template-columns: 8% 92% !important;
+  }
+
   .approval-grid > div{
     width: 100% !important;
     max-width: 100% !important;
@@ -651,7 +656,7 @@
 
     <p></p>
 
-    <div class="row g-0 approval-grid" align="center">
+   <div class="row g-0 approval-grid approval-grid-note" align="center">
         <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
         <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
             <div id="chamjo1" class="note-view" style="width:100%;">{{ new_Request.chamjo1|safe }}</div>
