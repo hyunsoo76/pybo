@@ -40,15 +40,16 @@
                 gap: 0;
             }
 
-          .eas-brand-group{
-            display: inline-flex;
-            align-items: center;
-            position: relative;
-            padding: 4px;
-            border: 2px solid rgba(255,255,255,0.92);
-            border-radius: 18px;
-            background: transparent;
-        }
+    .eas-brand-group{
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        padding: 4px 0 4px 4px;   /* 오른쪽 패딩 제거 */
+        border: 2px solid rgba(255,255,255,0.92);
+        border-radius: 18px;
+        background: transparent;
+        overflow: hidden;
+    }
 
     .eas-brand{
         display: inline-flex;
@@ -73,21 +74,21 @@
         text-decoration: none;
     }
     .eas-nav-create-btn{
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: 52px;
-        padding: 0 34px;
-        margin-left: 0;
-        border-radius: 14px;
-        background: #ffffff;
-        color: #0f172a;
-        font-size: 14px;
-        font-weight: 700;
-        text-decoration: none;
-        border: 0;
-        white-space: nowrap;
-    }
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+      padding: 0 34px;
+      margin-left: 0;
+      border-radius: 14px 12px 12px 14px;
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 0;
+      white-space: nowrap;
+  }
         .eas-nav-create-btn:hover{
             color: #0f172a;
             background: #f8fafc;
