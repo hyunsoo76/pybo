@@ -272,58 +272,52 @@
         white-space: nowrap;
     }
 
-    /* ===== 상태 뱃지 (이미지 스타일) ===== */
-    .status-badge{
-        display: inline-block;
-        min-width: 58px;
-        padding: 6px 12px;
-        border-radius: 8px;
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 1.2;
-        text-align: center;
-        border: 1.5px solid;
-        background: #ffffff;
-        white-space: nowrap;
-    }
+    /* ===== 상태 뱃지 (Soft Tag 스타일) ===== */
+.status-badge{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;        /* 과하게 둥글지 않게 */
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+}
 
-    /* ===== 상태 색상 ===== */
+/* 기안 */
+.status-draft{
+    background: #f3f4f6;
+    color: #4b5563;
+}
 
-    /* 기안 */
-    .status-draft{
-        color: #6b7280;
-        border-color: #9ca3af;
-    }
+/* 승인 */
+.status-approved{
+    background: #dcfce7;
+    color: #166534;
+}
 
-    /* 승인 */
-    .status-approved{
-        color: #16a34a;
-        border-color: #16a34a;
-    }
+/* 반려 */
+.status-rejected{
+    background: #fee2e2;
+    color: #991b1b;
+}
 
-    /* 반려 */
-    .status-rejected{
-        color: #dc2626;
-        border-color: #dc2626;
-    }
+/* 대결 */
+.status-proxy{
+    background: #dbeafe;
+    color: #1e40af;
+}
 
-    /* 대결 */
-    .status-proxy{
-        color: #2563eb;
-        border-color: #2563eb;
-    }
+/* 전결 */
+.status-delegated{
+    background: #e0e7ff;
+    color: #3730a3;
+}
 
-    /* 전결 */
-    .status-delegated{
-        color: #4f46e5;
-        border-color: #4f46e5;
-    }
-
-    /* 대기 */
-    .status-empty{
-        color: #9ca3af;
-        border-color: #d1d5db;
-    }
+/* 대기 */
+.status-empty{
+    background: #f1f5f9;
+    color: #64748b;
+}
     </style>
             <div class="approval-list-wrap">
                 <table class="table approval-list-table">
