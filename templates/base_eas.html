@@ -16,6 +16,13 @@
               padding: 10px 0;
           }
 
+          /* 인덱스 본문 폭과 비슷하게 중앙 정렬 */
+          .eas-nav-inner{
+              width: 100%;
+              max-width: 75%;
+              margin: 0 auto;
+          }
+
           .eas-brand{
               color: #ffffff !important;
               font-size: 22px;
@@ -116,6 +123,12 @@
           }
 
           @media (max-width: 991.98px){
+              .eas-nav-inner{
+                  max-width: 100%;
+                  padding-left: 12px;
+                  padding-right: 12px;
+              }
+
               .eas-nav-tools{
                   margin-top: 12px;
                   width: 100%;
@@ -142,10 +155,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg eas-navbar">
-        <div class="container-fluid">
-          <div class="row justify-content-between">
-              <div class="col-1 d-none d-sm-block"></div>
-              <div class="col-lg-9 col-md-12 col-sm-12">
+        <div class="eas-nav-inner">
             <a class="navbar-brand eas-brand" href="{% url 'eas:index' %}" accesskey="j">EAS</a>
 
             <button class="navbar-toggler eas-navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -179,12 +189,10 @@
                         type="button"
                         onclick="window.open('http://3.37.211.248/eas/account.html','window_name','width=730,height=195,left=710,top=86,location=no,status=no,scrollbars=yes');"
                         accesskey="q">계좌조회</button>
-                  </div>
-              </div>
-              <div class="col-1 d-none d-sm-block"></div>
-          </div>
-      </div>
-    </nav> 
+                </div>
+            </div>
+        </div>
+    </nav>
 
     {% block content %}
     {% endblock %}
