@@ -36,29 +36,73 @@
         gap: 10px;
     }
 
-    .eas-brand{
-        display: inline-flex;
-        align-items: center;
-        height: 38px;
-        margin: 0;
-        color: #ffffff !important;
-        font-size: 22px;
-        font-weight: 800;
-        letter-spacing: 0.02em;
-        text-decoration: none;
-        line-height: 1;
-        white-space: nowrap;
-        background: transparent;
-        border: 0;
-        padding: 0;
+      .eas-brand{
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          height: 38px;
+          margin: 0;
+          padding: 0 2px;
+          color: #ffffff !important;
+          font-size: 22px;
+          font-weight: 800;
+          letter-spacing: 0.02em;
+          text-decoration: none;
+          line-height: 1;
+          white-space: nowrap;
+          background: transparent;
+          border: 0;
+          position: relative;
+          overflow: hidden;
+          transition:
+              transform 0.22s ease,
+              text-shadow 0.22s ease,
+              opacity 0.22s ease;
+      }
+
+      .eas-brand:hover{
+          color: #ffffff !important;
+          text-decoration: none;
+          transform: scale(1.045);
+          text-shadow:
+              0 0 8px rgba(96,165,250,0.45),
+              0 0 18px rgba(59,130,246,0.28);
+          opacity: 1;
+      }
+
+      .eas-brand::before{
+        content: '';
+        position: absolute;
+        top: -20%;
+        left: -35%;
+        width: 28%;
+        height: 140%;
+        background: linear-gradient(
+            90deg,
+            rgba(255,255,255,0) 0%,
+            rgba(147,197,253,0.18) 45%,
+            rgba(255,255,255,0.55) 50%,
+            rgba(147,197,253,0.18) 55%,
+            rgba(255,255,255,0) 100%
+        );
+        transform: skewX(-20deg);
+        opacity: 0;
+        pointer-events: none;
     }
 
-    .eas-brand:hover{
-        color: #ffffff !important;
-        text-decoration: none;
-        opacity: 0.9;
+    .eas-brand:hover::before{
+        opacity: 1;
+        animation: easBrandShimmer 0.55s ease;
     }
 
+    @keyframes easBrandShimmer{
+        0%{
+            left: -35%;
+        }
+        100%{
+            left: 125%;
+        }
+    }
     .eas-nav-create-btn{
         display: inline-flex;
         align-items: center;
