@@ -8,66 +8,38 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <title>대진산업_전자결재</title>
 
-      <style>
-          .eas-navbar{
-              background: #0f172a;
-              border-bottom: 1px solid #1e293b;
-              padding: 14px 0;
-          }
-
-          .eas-navbar-grid{
-              width: 100%;
-          }
-
-          .eas-navbar-main{
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              gap: 16px;
-              min-height: 56px;
-              padding-left: 2px;
-              padding-right: 2px;
-          }
-
-          .eas-nav-left,
-            .eas-nav-right{
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .eas-nav-left{
-                gap: 0;
-            }
-
-    .eas-brand-group{
-        display: inline-flex;
-        align-items: center;
-        position: relative;
-        background: transparent;
-        line-height: 1;
+<style>
+    .eas-navbar{
+        background: #0f172a;
+        border-bottom: 1px solid #1e293b;
+        padding: 14px 0;
     }
-    .eas-brand-group::before{
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 168px;                 /* EAS 영역 + 버튼 시작 직전까지 */
-        border: 1.5px solid rgba(255,255,255,0.92);
-        border-right: 0;
-        border-radius: 18px 0 0 18px;
-        pointer-events: none;
-        box-sizing: border-box;
+
+    .eas-navbar-grid{
+        width: 100%;
+    }
+
+    .eas-navbar-main{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 56px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .eas-nav-left,
+    .eas-nav-right{
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
     .eas-brand{
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        height: 52px;
-        min-width: 168px;
-        padding: 0 20px 0 18px;
+        height: 38px;
         margin: 0;
         color: #ffffff !important;
         font-size: 22px;
@@ -78,134 +50,135 @@
         white-space: nowrap;
         background: transparent;
         border: 0;
-        border-radius: 18px 0 0 18px;
-        position: relative;
-        z-index: 1;
+        padding: 0;
     }
+
     .eas-brand:hover{
         color: #ffffff !important;
         text-decoration: none;
+        opacity: 0.9;
     }
+
     .eas-nav-create-btn{
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        height: 52px;
-        padding: 0 34px;
-        margin-left: 0;
-        border-radius: 14px;  /* 다시 깔끔하게 */
-        background: #ffffff;
-        color: #0f172a;
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 8px;
+        background: transparent;
+        color: #ffffff;
         font-size: 14px;
         font-weight: 700;
         text-decoration: none;
-        border: 0; 
+        border: 1px solid rgba(255,255,255,0.9);
         white-space: nowrap;
     }
-        .eas-nav-create-btn:hover{
-            color: #0f172a;
-            background: #f8fafc;
-            text-decoration: none;
+
+    .eas-nav-create-btn:hover{
+        color: #ffffff;
+        background: rgba(255,255,255,0.06);
+        text-decoration: none;
+    }
+
+    .eas-nav-search{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .eas-search-input{
+        width: 280px;
+        height: 38px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #ffffff;
+        color: #111827;
+        font-size: 14px;
+        padding: 0 12px;
+        box-shadow: none !important;
+    }
+
+    .eas-search-input::placeholder{
+        color: #9ca3af;
+    }
+
+    .eas-search-input:focus{
+        border-color: #93c5fd;
+        box-shadow: 0 0 0 3px rgba(147,197,253,0.18) !important;
+    }
+
+    .eas-search-btn{
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #1e293b;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .eas-search-btn:hover{
+        background: #334155;
+    }
+
+    .eas-outline-btn{
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 8px;
+        border: 1px solid #475569;
+        background: transparent;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .eas-outline-btn:hover{
+        background: rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 991.98px){
+        .eas-navbar{
+            padding: 10px 0;
         }
 
-          .eas-nav-search{
-              display: flex;
-              align-items: center;
-              gap: 10px;
-              margin: 0;
-          }
+        .eas-navbar-main{
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
 
-          .eas-search-input{
-              width: 280px;
-              height: 38px;
-              border-radius: 8px;
-              border: 1px solid #334155;
-              background: #ffffff;
-              color: #111827;
-              font-size: 14px;
-              padding: 0 12px;
-              box-shadow: none !important;
-          }
+        .eas-nav-left,
+        .eas-nav-right{
+            width: 100%;
+        }
 
-          .eas-search-input::placeholder{
-              color: #9ca3af;
-          }
+        .eas-nav-right{
+            flex-direction: column;
+            align-items: stretch;
+        }
 
-          .eas-search-input:focus{
-              border-color: #93c5fd;
-              box-shadow: 0 0 0 3px rgba(147,197,253,0.18) !important;
-          }
+        .eas-nav-search{
+            width: 100%;
+        }
 
-          .eas-search-btn{
-              height: 38px;
-              padding: 0 14px;
-              border-radius: 8px;
-              border: 1px solid #334155;
-              background: #1e293b;
-              color: #ffffff;
-              font-size: 14px;
-              font-weight: 600;
-              white-space: nowrap;
-          }
+        .eas-search-input{
+            width: 100%;
+        }
 
-          .eas-search-btn:hover{
-              background: #334155;
-          }
-
-          .eas-outline-btn{
-              height: 38px;
-              padding: 0 14px;
-              border-radius: 8px;
-              border: 1px solid #475569;
-              background: transparent;
-              color: #ffffff;
-              font-size: 14px;
-              font-weight: 600;
-              white-space: nowrap;
-          }
-
-          .eas-outline-btn:hover{
-              background: rgba(255,255,255,0.06);
-          }
-
-          @media (max-width: 991.98px){
-              .eas-navbar{
-                  padding: 10px 0;
-              }
-
-              .eas-navbar-main{
-                  flex-direction: column;
-                  align-items: stretch;
-                  gap: 12px;
-                  padding-left: 12px;
-                  padding-right: 12px;
-              }
-
-              .eas-nav-left,
-              .eas-nav-right{
-                  width: 100%;
-              }
-
-              .eas-nav-right{
-                  flex-direction: column;
-                  align-items: stretch;
-              }
-
-              .eas-nav-search{
-                  width: 100%;
-              }
-
-              .eas-search-input{
-                  width: 100%;
-              }
-
-              .eas-search-btn,
-              .eas-outline-btn,
-              .eas-nav-create-btn{
-                  justify-content: center;
-              }
-          }
-      </style>
+        .eas-search-btn,
+        .eas-outline-btn,
+        .eas-nav-create-btn{
+            justify-content: center;
+        }
+    }
+</style>
   </head>
 
   <body>
@@ -216,15 +189,12 @@
 
                 <div class="col-lg-9 col-md-12 col-sm-12">
                     <div class="eas-navbar-main">
-                        <div class="eas-nav-left">
-                            <div class="eas-brand-group">
-                                <a class="eas-brand" href="{% url 'eas:index' %}" accesskey="j">EAS</a>
-                                <a class="eas-nav-create-btn" href="{% url 'eas:Request_create' %}" accesskey="w">작성하기</a>
-                            </div>
-                            <a class="d-none" href="{% url 'eas:Request_create_24' %}" accesskey="R">write</a>
-                            <a class="d-none" href="/hometax" accesskey="h">hometax</a>
-                        </div>
-
+                      <div class="eas-nav-left">
+                          <a class="eas-brand" href="{% url 'eas:index' %}" accesskey="j">EAS</a>
+                          <a class="eas-nav-create-btn" href="{% url 'eas:Request_create' %}" accesskey="w">작성하기</a>
+                          <a class="d-none" href="{% url 'eas:Request_create_24' %}" accesskey="R">write</a>
+                          <a class="d-none" href="/hometax" accesskey="h">hometax</a>
+                      </div>
                         <div class="eas-nav-right">
                             <form id="navbarSearchForm" class="eas-nav-search" method="get" action="{% url 'eas:index' %}">
                                 <input
