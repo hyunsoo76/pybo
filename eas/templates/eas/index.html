@@ -95,28 +95,28 @@
     /* ===== 거래처 / 비고 2줄 제한 + hover 전체보기 ===== */
     .search-result-table .ellipsis-2{
     display: -webkit-box;
-    display: box; /* 표준 대응 (경고 제거용) */
-
+    display: box;
     -webkit-line-clamp: 2;
-    line-clamp: 2; /* 표준 속성 */
-
+    line-clamp: 2;
     -webkit-box-orient: vertical;
-    box-orient: vertical; /* 표준 대응 */
-
+    box-orient: vertical;
     overflow: hidden;
     white-space: normal;
     word-break: break-word;
     line-height: 1.45;
     max-height: calc(1.45em * 2);
-    }
+    text-decoration: none !important;   /* 밑줄 제거 */
+    border-bottom: 0 !important;
+}
 
     /* ===== 예금주: 폭 줄이고, 가능하면 2줄 안 넘게 폰트 살짝 축소 ===== */
     .search-result-table .name-cell{
-        font-size: 13px;
-        line-height: 1.35;
-        word-break: keep-all;
-        overflow-wrap: anywhere;
-    }
+    font-size: 13px;
+    line-height: 1.35;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-align: center;   /* 예금주 내용만 가운데 */
+    }   
 
     /* ===== 비고 ===== */
     .search-result-table .note-cell{
@@ -142,6 +142,42 @@
         padding: 0 2px;
         border-radius: 3px;
     }
+
+    .tooltip-hover{
+    position: relative;
+    cursor: default;
+    }
+
+    .tooltip-hover::after{
+        content: attr(data-tooltip);
+        position: absolute;
+        left: 0;
+        top: 100%;
+        margin-top: 6px;
+        background: rgba(55, 65, 81, 0.96);
+        color: #fff;
+        padding: 8px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        line-height: 1.4;
+        white-space: normal;
+        word-break: break-word;
+        min-width: 120px;
+        max-width: 360px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(4px);
+        transition: opacity 0.08s ease, transform 0.08s ease, visibility 0.08s ease;
+        z-index: 30;
+        pointer-events: none;
+    }
+
+    .tooltip-hover:hover::after{
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
     </style>
             <table class="table table-hover align-middle search-result-table">
                 <thead>
@@ -166,15 +202,16 @@
 
                     <!-- 거래처 (left) -->
                     <td>
-                        <a href="/eas/{{ Request.request_id }}/" class="doc-link ellipsis-2" title="{{ Request.vendor }}">
+                        <a href="/eas/{{ Request.request_id }}/"
+                        class="doc-link ellipsis-2 tooltip-hover"
+                        data-tooltip="{{ Request.vendor }}">
                             {{ Request.vendor|default_if_none:""|highlight:kw|safe }}
                         </a>
                     </td>
                     <!-- 예금주 (left) -->
-                   <td class="name-cell" title="{{ Request.account_name }}">
+                    <td class="name-cell">
                         {{ Request.account_name|default_if_none:""|highlight:kw|safe }}
                     </td>
-
                     <!-- 금액 (right) -->
                     <td class="text-end">
                         {% if Request.amount != None %}
@@ -183,7 +220,7 @@
                     </td>
 
                     <!-- 비고 (left) -->
-                    <td class="note-cell ellipsis-2" title="{{ Request.note }}">
+                    <td class="note-cell ellipsis-2 tooltip-hover" data-tooltip="{{ Request.note }}">
                         {{ Request.note|default_if_none:""|highlight:kw|safe }}
                     </td>
                     <!-- 날짜 (center) -->
