@@ -89,6 +89,88 @@
   max-height: 95vh;
   object-fit: contain;
 }
+
+  .print-btn-wrap{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    justify-content:flex-start;
+    margin-top:12px;
+    flex-wrap:wrap;
+  }
+
+  @media print {
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    body {
+      background: #fff !important;
+      font-size: 12px;
+      color: #000 !important;
+    }
+
+    .btn,
+    .modal,
+    .modal-backdrop,
+    .note-lightbox,
+    .print-hide,
+    script {
+      display: none !important;
+    }
+
+    .container {
+      max-width: 100% !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    hr {
+      margin: 8px 0 12px 0 !important;
+    }
+
+    .approval-cell{
+      border: 1px solid #999 !important;
+      background: #fff !important;
+      color: #000 !important;
+      min-height: 34px !important;
+      padding: 6px 8px !important;
+      font-size: 12px !important;
+    }
+
+    .approval-cell.head{
+      background: #f3f3f3 !important;
+      color: #000 !important;
+      font-weight: 700 !important;
+    }
+
+    .approval-cell.no{
+      background: #f8f8f8 !important;
+    }
+
+    .approval-cell.wrap{
+      white-space: normal !important;
+      word-break: break-word !important;
+      overflow-wrap: break-word !important;
+      line-height: 1.35 !important;
+    }
+
+    table {
+      page-break-inside: avoid;
+    }
+
+    .row, .approval-grid {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+  }
 </style>
 
 <p></p>
@@ -296,7 +378,7 @@
         </div>
     </div>
 
-    <div class="row" style="height: 50px;" align="center">
+        <div class="row print-hide" style="height: 50px;" align="center">
         <div class="col-5">
             <select class="form-select" aria-label="Default select example">
                 <option value="buy">매입결재</option>
@@ -505,7 +587,11 @@
 
     <p></p>
 
-    <div style="display:flex; gap:8px; align-items:center; justify-content:flex-start; margin-top:12px;">
+    <div class="print-btn-wrap print-hide">
+        <button type="button" class="btn btn-sm btn-outline-primary" onclick="printApprovalDoc()">
+            &nbsp;&nbsp;품&nbsp;의&nbsp;서&nbsp;출&nbsp;력&nbsp;&nbsp;
+        </button>
+
         {% if not new_Request.aaa %}
             <a href="{% url 'eas:Request_modify' new_Request.id %}" class="btn btn-sm btn-outline-success">&nbsp;&nbsp;수&nbsp;정&nbsp;&nbsp;</a>
         {% endif %}
@@ -565,6 +651,11 @@ if (noteView && noteLightbox && noteLightboxImg) {
         noteLightbox.style.display = 'none';
         noteLightboxImg.src = '';
     });
+
+}
+
+function printApprovalDoc() {
+    window.print();
 }
 </script>
 
