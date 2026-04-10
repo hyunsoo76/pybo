@@ -90,193 +90,163 @@
   object-fit: contain;
 }
 
-  .print-btn-wrap{
+.print-btn-wrap{
     display:flex;
     gap:8px;
     align-items:center;
     justify-content:flex-start;
     margin-top:12px;
     flex-wrap:wrap;
+}
+
+@media print {
+
+  @page {
+    size: A4;
+    margin: 12mm;
   }
 
-  @media print {
-    @page {
-      size: A4;
-      margin: 12mm;
-    }
-
-    body {
-      background: #fff !important;
-      font-size: 12px;
-      color: #000 !important;
-    }
-
-       .modal,
-    .modal-backdrop,
-    .note-lightbox,
-    .print-hide,
-    script {
-      display: none !important;
-    }
-
-    .print-approval-label{
-      display: inline-block !important;
-      border: 0 !important;
-      background: transparent !important;
-      color: #000 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      font-size: 13px !important;
-      font-weight: 700 !important;
-      line-height: 1.2 !important;
-      box-shadow: none !important;
-    }
-
-    .container {
-      max-width: 100% !important;
-      width: 100% !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-
-    hr {
-      margin: 8px 0 12px 0 !important;
-    }
-
-    .approval-cell{
-      border: 1px solid #999 !important;
-      background: #fff !important;
-      color: #000 !important;
-      min-height: 34px !important;
-      padding: 6px 8px !important;
-      font-size: 12px !important;
-    }
-
-    .approval-cell.head{
-      background: #f3f3f3 !important;
-      color: #000 !important;
-      font-weight: 700 !important;
-    }
-
-    .approval-cell.no{
-      background: #f8f8f8 !important;
-    }
-
-    .approval-cell.wrap{
-      white-space: normal !important;
-      word-break: break-word !important;
-      overflow-wrap: break-word !important;
-      line-height: 1.35 !important;
-    }
-
-    table {
-      page-break-inside: avoid;
-    }
-
-    .row, .approval-grid {
-      break-inside: avoid;
-      page-break-inside: avoid;
-    }
-
-    img {
-      max-width: 100% !important;
-      height: auto !important;
-    }
-
-    header,
-    nav,
-    .navbar,
-    .topbar,
-    .site-header,
-    .search-area,
-    .search-wrap,
-    .header-line,
-    hr:first-of-type {
-      display: none !important;
-    }
-        .approval-grid{
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      width: 100% !important;
-      margin: 0 !important;
-    }
-
-    .approval-grid > div{
-      float: none !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-
-    /* 출력용 칼럼 비율 재조정 */
-    .approval-grid > .col-lg-1.approval-cell.no{
-      flex: 0 0 7% !important;
-      max-width: 7% !important;
-    }
-
-    .approval-grid > .col-lg-2:nth-child(2){
-      flex: 0 0 16% !important;
-      max-width: 16% !important;
-    }
-
-    .approval-grid > .col-lg-2:nth-child(3){
-      flex: 0 0 18% !important;
-      max-width: 18% !important;
-      white-space: nowrap !important;
-      word-break: keep-all !important;
-      overflow-wrap: normal !important;
-      font-size: 10.5px !important;
-      letter-spacing: -0.2px !important;
-    }
-
-    .approval-grid > .col-lg-1:nth-child(4){
-      flex: 0 0 8% !important;
-      max-width: 8% !important;
-      font-size: 10.5px !important;
-    }
-
-    .approval-grid > .col-lg-2:nth-child(5){
-      flex: 0 0 17% !important;
-      max-width: 17% !important;
-      font-size: 10.5px !important;
-    }
-
-    .approval-grid > .col-lg-1:nth-child(6){
-      flex: 0 0 11% !important;
-      max-width: 11% !important;
-      white-space: nowrap !important;
-      word-break: keep-all !important;
-      overflow-wrap: normal !important;
-      text-align: right !important;
-      justify-content: flex-end !important;
-      font-size: 10.5px !important;
-      letter-spacing: -0.2px !important;
-    }
-
-    .approval-grid > .col-lg-1:nth-child(7){
-      flex: 0 0 8% !important;
-      max-width: 8% !important;
-      font-size: 10px !important;
-    }
-
-    .approval-grid > .col-lg-2:nth-child(8){
-      flex: 0 0 15% !important;
-      max-width: 15% !important;
-      font-size: 10px !important;
-      line-height: 1.25 !important;
-    }
-
-    .approval-cell{
-      overflow: visible !important;
-      text-overflow: clip !important;
-      box-sizing: border-box !important;
-    }
-
-    .approval-cell span,
-    .approval-cell .form-control{
-      overflow: visible !important;
-      text-overflow: clip !important;
-    }
+  body {
+    background: #fff !important;
+    font-size: 12px;
+    color: #000 !important;
   }
+
+  /* 숨길 것들 */
+  .modal,
+  .modal-backdrop,
+  .note-lightbox,
+  .print-hide,
+  script {
+    display: none !important;
+  }
+
+  /* 상단 헤더 제거 (1차) */
+  header,
+  nav,
+  .navbar,
+  .topbar,
+  .site-header,
+  .search-area,
+  .search-wrap,
+  .header-line {
+    display: none !important;
+  }
+
+  /* 컨테이너 */
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  hr {
+    margin: 8px 0 12px 0 !important;
+  }
+
+  /* ===== 핵심: 헤더/본문 동일 그리드 ===== */
+  .approval-grid{
+    display: grid !important;
+    grid-template-columns: 7% 16% 18% 8% 17% 11% 8% 15% !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .approval-grid > div{
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* 부트스트랩 영향 제거 */
+  .approval-grid > [class*="col-"]{
+    flex: none !important;
+  }
+
+  /* 셀 기본 */
+  .approval-cell{
+    border: 1px solid #999 !important;
+    background: #fff !important;
+    color: #000 !important;
+    min-height: 34px !important;
+    padding: 6px 8px !important;
+    font-size: 12px !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  .approval-cell.head{
+    background: #f3f3f3 !important;
+    font-weight: 700 !important;
+  }
+
+  .approval-cell.no{
+    background: #f8f8f8 !important;
+  }
+
+  .approval-cell.wrap{
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.35 !important;
+  }
+
+  /* ===== 핵심: 줄바꿈 금지 + 안잘림 ===== */
+
+  /* 계좌번호 */
+  .approval-grid > div:nth-child(3){
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    font-size: 10.5px !important;
+    letter-spacing: -0.2px !important;
+  }
+
+  /* 금액 */
+  .approval-grid > div:nth-child(6){
+    white-space: nowrap !important;
+    text-align: right !important;
+    justify-content: flex-end !important;
+    font-size: 10.5px !important;
+    letter-spacing: -0.2px !important;
+  }
+
+  /* 은행/계좌명 약간 축소 */
+  .approval-grid > div:nth-child(4),
+  .approval-grid > div:nth-child(5){
+    font-size: 10.5px !important;
+  }
+
+  /* 구분/적요 더 작게 */
+  .approval-grid > div:nth-child(7),
+  .approval-grid > div:nth-child(8){
+    font-size: 10px !important;
+  }
+
+  /* 텍스트 잘림 방지 */
+  .approval-cell span{
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  /* 줄 분리 방지 */
+  .row, .approval-grid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  table {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+
 </style>
 
 <p></p>
