@@ -312,6 +312,13 @@
                     color: #94a3b8;
                     border-color: #e2e8f0;
                 }
+
+                .approval-inline-count{
+                    margin-left: 6px;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #6b7280;
+                }
             </style>
 
             <div class="approval-list-wrap">
@@ -336,16 +343,12 @@
                             {{ Request_list.paginator.count|sub:Request_list.start_index|sub:forloop.counter0|add:1 }}
                         </td>
 
-                        <td>
+                       <td>
                             <a href="/eas/{{ Request.id }}/" class="approval-title-link">
                                 <span class="approval-title-main">
                                     {{ Request.subject }}
-                                </span>
-                                <span class="approval-title-sub">
                                     {% if Request.fff >= 1 %}
-                                        추가 항목 {{ Request.fff }}건
-                                    {% else %}
-                                        결재 문서
+                                        <span class="approval-inline-count">+{{ Request.fff }}</span>
                                     {% endif %}
                                 </span>
                             </a>
