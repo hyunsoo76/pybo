@@ -828,7 +828,7 @@
     <p></p>
 
     <div style="display:flex; gap:8px; align-items:center; justify-content:flex-start; margin-top:12px;">
-        {% if not new_Request.aaa %}
+        {% if new_Request.aaa != "승인" and new_Request.aaa != "전결" %}
             <a href="{% url 'eas:Request_modify' new_Request.id %}" class="btn btn-sm btn-outline-success">&nbsp;&nbsp;수&nbsp;정&nbsp;&nbsp;</a>
         {% endif %}
 
