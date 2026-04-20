@@ -220,31 +220,57 @@ def Request_create(request):
 
 def Request_create_24(request):
     if request.method == 'POST':
-        form = RequestForm(request.POST)
+        form = RequestForm(request.POST, request.FILES)
         if form.is_valid():
-            new_Request = form.save(commit=False)
-            new_Request.create_date = timezone.now()
-            temp_24 = request.POST.get('24_check')
-            new_Request.ddd = temp_24
-            new_Request.save()
-            totals = [new_Request.a_5, new_Request.b_5, new_Request.c_5,
-                      new_Request.d_5, new_Request.e_5, new_Request.f_5,
-                      new_Request.g_5, new_Request.h_5, new_Request.i_5,
-                      new_Request.j_5]
+            cleaned = form.cleaned_data.copy()
+            cleaned['create_date'] = timezone.now()
+            cleaned['manager_name'] = request.POST.get('manager_name') or '혁만'
+
+            new_Request = Request(**cleaned)
+            new_Request.note_image = request.FILES.get('note_image')
+            new_Request.ddd = request.POST.get('24_check') or '이사'
+
+            # 외 몇개의 매입처인지 표기하기 위해
+            if new_Request.j_1:
+                new_Request.fff = 9
+            elif new_Request.i_1:
+                new_Request.fff = 8
+            elif new_Request.h_1:
+                new_Request.fff = 7
+            elif new_Request.g_1:
+                new_Request.fff = 6
+            elif new_Request.f_1:
+                new_Request.fff = 5
+            elif new_Request.e_1:
+                new_Request.fff = 4
+            elif new_Request.d_1:
+                new_Request.fff = 3
+            elif new_Request.c_1:
+                new_Request.fff = 2
+            elif new_Request.b_1:
+                new_Request.fff = 1
+
+            totals = [
+                new_Request.a_5, new_Request.b_5, new_Request.c_5,
+                new_Request.d_5, new_Request.e_5, new_Request.f_5,
+                new_Request.g_5, new_Request.h_5, new_Request.i_5,
+                new_Request.j_5
+            ]
             totalsum = 0
             for total in totals:
-                if total != None:
-                    totalsum = totalsum + total
+                if total is not None:
+                    totalsum += total
 
             new_Request.total = totalsum
             new_Request.save()
             return redirect('eas:detail_r', Request_id=new_Request.id)
-    else:
-        form = RequestForm()
+
         context = {'form': form}
         return render(request, 'eas/detail_24.html', context)
-    return redirect('eas:index')
 
+    form = RequestForm()
+    context = {'form': form}
+    return render(request, 'eas/detail_24.html', context)
 
 # 상신버튼클릭시 push 보내기위해서
 
