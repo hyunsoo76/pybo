@@ -230,6 +230,9 @@ def Request_create_24(request):
             new_Request.note_image = request.FILES.get('note_image')
             new_Request.ddd = request.POST.get('24_check') or '이사'
 
+            # ✅ Note 에디터 HTML 강제 저장
+            new_Request.chamjo1 = request.POST.get('chamjo1', '')
+
             # 외 몇개의 매입처인지 표기하기 위해
             if new_Request.j_1:
                 new_Request.fff = 9
@@ -249,6 +252,8 @@ def Request_create_24(request):
                 new_Request.fff = 2
             elif new_Request.b_1:
                 new_Request.fff = 1
+            else:
+                new_Request.fff = None
 
             totals = [
                 new_Request.a_5, new_Request.b_5, new_Request.c_5,
@@ -367,6 +372,10 @@ def Request_modify(request, new_Request_id):
         form = RequestForm(request.POST, request.FILES, instance=new_Request)
         if form.is_valid():
             new_Request = form.save(commit=False)
+
+            # ✅ Note 에디터 HTML 강제 저장
+            new_Request.chamjo1 = request.POST.get('chamjo1', '')
+
             new_Request.create_date = timezone.now()
             new_Request.manager_name = request.POST.get('manager_name', new_Request.manager_name or '혁만')
 
