@@ -1,6 +1,14 @@
 {% extends 'base_eas.html' %}
 {% block content %}
-{% load humanize %}
+
+<style>
+#chamjo1 img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+</style>
         <p></p>
 <!--            {% if messages %}-->
 <!--              <ul class="absoulte top-0 right-0 left-0 flex justify-center">-->
@@ -30,7 +38,11 @@
 <!--                      <td height = "10px"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a></td>-->
                       <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1"><B>&nbsp;이&nbsp;사&nbsp;</b></button></td>
 <!--                      <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap"><b>&nbsp;이&nbsp;사&nbsp;</b></button></td>-->
-                      <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap"><b>&nbsp;대&nbsp;표&nbsp;</b></button>
+                      <td>
+    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap">
+        <b>&nbsp;대&nbsp;표&nbsp;</b>
+    </button>
+</td>
                     </tr>
 <!-- 결재란-->
                   <tbody>
@@ -231,7 +243,7 @@
             <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">적요</div>
         </div>
 <!--   입력창      -->
-        <div class="row"  align="center" style="border: 1px solid #D8D8D8 border-collapse:collapse;">
+        <div class="row"  align="center" style="border: 1px solid #D8D8D8; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">1</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
                 <span class="form-control form-control-sm" id="a_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap; border-collapse:collapse;">{{ new_Request.a_1 }}</span>
@@ -256,7 +268,7 @@
             </div>
         </div>
         {% if new_Request.b_1 %}
-        <div class="row"  align="center" style="border: 1px solid #D8D8D8 border-collapse:collapse;">
+        <div class="row"  align="center" style="border: 1px solid #D8D8D8; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">2</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
                 <span class="form-control form-control-sm" id="b_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap; border-collapse:collapse;">{{ new_Request.b_1 }}</span>
@@ -282,7 +294,7 @@
         </div>
         {% endif %}
         {% if new_Request.c_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8 border-collapse:collapse;">
+        <div class="row" align="center" style="border: 1px solid #D8D8D8; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">3</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
                 <span class="form-control form-control-sm" id="c_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.c_1 }}</span>
@@ -308,7 +320,7 @@
         </div>
         {% endif %}
         {% if new_Request.d_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8 border-collapse:collapse;">
+        <div class="row" align="center" style="border: 1px solid #D8D8D8; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">4</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
                 <span class="form-control form-control-sm" id="d_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.d_1 }}</span>
@@ -334,7 +346,7 @@
         </div>
         {% endif %}
         {% if new_Request.e_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">5</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
                 <span class="form-control form-control-sm" id="e_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.e_1 }}</span>
@@ -360,7 +372,7 @@
         </div>
         {% endif %}
         {% if new_Request.f_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">6</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
                 <span class="form-control form-control-sm" id="f_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.f_1 }}</span>
@@ -386,7 +398,7 @@
         </div>
         {% endif %}
         {% if new_Request.g_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">7</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
                 <span class="form-control form-control-sm" id="g_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.g_1 }}</span>
@@ -412,7 +424,7 @@
         </div>
         {% endif %}
         {% if new_Request.h_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">8</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
                 <span class="form-control form-control-sm" id="h_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.h_1 }}</span>
@@ -438,7 +450,7 @@
         </div>
         {% endif %}
         {% if new_Request.i_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">9</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
                 <span class="form-control form-control-sm" id="i_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.i_1 }}</span>
@@ -464,7 +476,7 @@
         </div>
         {% endif %}
         {% if new_Request.j_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8 display:table border-collapse:collapse;">
+        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
             <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">10</div>
             <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
                 <span class="form-control form-control-sm"  id="j_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.j_1 }}</span>
@@ -491,19 +503,13 @@
         {% endif %}
         <p></p>
         <div class="row" align="center">
-            <div class="col-12">
-                  <div class="mb-3 bg-secondary text-white">
-                  <label for="chamjo1" class="form-label">참조사항</label>
-                  <span class="form-control" id="chamjo1">{{ new_Request.chamjo1}}</span>
-                  </div>
-            </div>
-<!--            <div class="col-6">-->
-<!--              <div class="mb-3 bg-secondary text-white">-->
-<!--              <label for="jisi1" class="form-label">지시사항</label>-->
-<!--              <span class="form-control" id="jisi1">{{ new_Request.jisi1}}</span>-->
-<!--              </div>-->
-<!--            </div>-->
+    <div class="col-12">
+        <div class="mb-3 bg-secondary text-white">
+            <label for="chamjo1" class="form-label">참조사항</label>
+            <div class="form-control text-start" id="chamjo1" style="min-height:120px; white-space:normal;">{{ new_Request.chamjo1|safe }}</div>
         </div>
+    </div>
+</div>
         <!--수정버튼-->
 <!--        <div class="my-3">-->
 <!--                {% if not new_Request.aaa %}-->
@@ -531,109 +537,45 @@
 <!--            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");-->
 <!--            xhttp.send("t="+escape(title)+"&m="+escape(message)+"&s="+sound+"&v="+vibration+"&i="+icon+"&c="+iconcolor+"&d="+device+"&u="+escape(url)+"&ut="+escape(urltitle)+"&k="+V7n0lT68dTeoYJU6YQiW);-->
 <!--        </script>-->
-             <script>
-<!--&lt;!&ndash;  담당 모달창 닫힐때 이벤트&ndash;&gt;-->
-<!--                $(document).ready(function(){-->
-<!--                    $('#exampleModal1').on('hidden.bs.modal', function () {-->
-<!--                            if($("#first_comfirm").css("display") != "none"){-->
-<!--                              alert("전송완료");-->
-<!--                            }-->
-<!--                    });-->
-<!--                });-->
-<!--&lt;!&ndash;이사결재란 모달 닫힐때 이벤트&ndash;&gt;-->
-<!--                $(document).ready(function(){-->
-<!--                    $('#exampleModal2').on('hidden.bs.modal', function () {-->
-<!--                                alert("전송완료");-->
-<!--                    });-->
-<!--                });-->
+<script>
+    $(function(){
+        $('#24_send').click(function(){
+            if($("#24").css("display") && $("#24_1").css("display") == "none"){
+                $('#24').show();
+            }
+        });
+    });
 
-<!--                $(document).ready(function(){-->
-<!--                    $('#exampleModal2').on('hidden.bs.modal', function () {-->
-<!--                                alert("전송완료");-->
-<!--                    });-->
-<!--                });-->
-<!--대표결제란 모달 닫힐때 이벤트-->
-<!--                $(document).ready(function(){-->
-<!--                    $('#exampleModal3').on('hidden.bs.modal', function () {-->
-<!--                            if($("#director").css("display")!= "none"){-->
-<!--                                alert("전송완료");-->
-<!--                                }-->
-                    });
-                });
+    $(function(){
+        $('#send2').click(function(){
+            if($("#24_1").css("display") && $("#24").css("display") == "none"){
+                $('#24_1').show();
+            }
+        });
+    });
 
-<!--                $(document).ready(function(){-->
-<!--                    $('#exampleModal3').on('hidden.bs.modal', function () {-->
-<!--                            if($("#director_1").css("display") != "none"){-->
-<!--                                alert("전송완료");-->
-<!--                                }-->
-<!--                    });-->
+    $(function(){
+        $('#first_check').click(function(){
+            if($("#first_comfirm").css("display") == "none"){
+                $('#first_comfirm').show();
+            }
+        });
+    });
 
-<!--                });-->
+    $(function(){
+        $('#final').click(function(){
+            if($("#director").css("display") && $("#director_1").css("display") == "none"){
+                $('#director').show();
+            }
+        });
+    });
 
-
-
-
-
-<!-- 이사 모달창 버튼 클릭시 이벤트-->
-
-                $(function(){
-                    $('#24_send').click(function(){
-                        if($("#24").css("display") && $("#24_1").css("display") == "none"){
-                            $('#24').show();
-                        }
-                    });
-                });
-
-                $(function(){
-                    $('#send2').click(function(){
-                        if($("#24_1").css("display") && $("#24").css("display") == "none"){
-                            $('#24_1').show();
-
-                        }
-                    });
-                });
-<!-- 담당 모달창 버튼 클릭시 이벤트-->
-                $(function(){
-                    $('#first_check').click(function(){
-                        if($("#first_comfirm").css("display") == "none"){
-                            $('#first_comfirm').show();
-
-                        }
-                    });
-                });
-<!-- 대표 모달창 버튼 클릭시 이벤트-->
-                $(function(){
-                    $('#final').click(function(){
-<!--                                alert("전송완료");-->
-<!--                                var xhttp;-->
-<!--                                if (window.XMLHttpRequest) {-->
-<!--                                    xhttp = new XMLHttpRequest();-->
-<!--                                    } else {-->
-<!--                                    xhttp = new ActiveXObject("Microsoft.XMLHTTP");-->
-<!--                                }-->
-<!--                                xhttp.open("POST", "https://www.pushsafer.com/api", true);-->
-<!--                                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");-->
-<!--                                xhttp.send("t="+escape(title)+"&m="+escape(message)+"&s="+11+"&v="+3+"&i="+33+"&c="+#FF0000+"&d="+a+"&u="+escape(url)+"&ut="+escape(urltitle)+"&k="+V7n0lT68dTeoYJU6YQiW);-->
-
-                        if($("#director").css("display") && $("#director_1").css("display") == "none"){
-                            $('#director').show();
-                        }
-                    });
-                });
-
-                $(function(){
-                    $('#reject_2').click(function(){
-                        if($("#director_1").css("display") && $("#director").css("display") == "none"){
-                            $('#director_1').show();
-
-                        }
-                    });
-                });
-
-
-
-
-             </script>
-
-
+    $(function(){
+        $('#reject_2').click(function(){
+            if($("#director_1").css("display") && $("#director").css("display") == "none"){
+                $('#director_1').show();
+            }
+        });
+    });
+</script>
 {% endblock %}
