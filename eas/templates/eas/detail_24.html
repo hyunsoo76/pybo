@@ -1,19 +1,156 @@
 {% extends 'base_eas.html' %}
+{% load static %}
 {% block content %}
-        <p></p>
-<!--         {% if messages %}-->
-<!--            <ul class="absoulte top-0 right-0 left-0 flex justify-center">-->
-<!--        {% for message in messages %}-->
-<!--            <li class="z-20 message py-3 px-5 text-white rounded-lg font-bold text-lg {% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</li>-->
-<!--        {% endfor %}-->
-<!--            </ul>-->
-<!--        {% endif %}-->
 
-        <p></p>
+<style>
+#note_editor{
+    position: relative;
+}
+
+#note_editor.is-empty::before{
+    content: attr(data-placeholder);
+    color: #6c757d;
+    pointer-events: none;
+}
+
+.approval-grid .row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.approval-grid > .row > div{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.approval-cell{
+    border: 1px solid #d9dee3 !important;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    background: #fff;
+}
+
+.approval-cell.head{
+    background: #6c757d !important;
+    color: #fff !important;
+    font-weight: 600;
+    min-height: 34px;
+    justify-content: center;
+    text-align: center;
+}
+
+.approval-cell.no{
+    background: #f1f3f5 !important;
+    font-weight: 600;
+}
+
+.approval-cell.text-left{
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.approval-cell.text-right{
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.approval-cell span.form-control,
+.approval-cell .form-control{
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.approval-cell.wrap{
+    white-space: normal;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.detail-top-title{
+    letter-spacing: 0.08em;
+}
+
+.detail-total-box{
+    border: 1px solid #d9dee3;
+    border-radius: 12px;
+    background: #fff;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 52px;
+}
+
+.detail-total-label{
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.detail-total-value{
+    color: #111827;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.detail-mobile-hide{
+    display: block;
+}
+
+.mobile-top-spacing{
+    margin-top: 0;
+}
+
+@media (max-width: 767.98px){
+    .container{
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .detail-top-title{
+        font-size: 1.5rem;
+    }
+
+    .detail-mobile-hide{
+        display: none !important;
+    }
+
+    .mobile-top-spacing{
+        margin-top: 10px;
+    }
+
+    .detail-total-value{
+        font-size: 20px;
+    }
+
+    .input-group-text{
+        font-size: 13px;
+        padding-left: 10px;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+}
+</style>
+
+<p></p>
 <div class="container">
-    <form method="post" onkeydown="return event.key != 'Enter';">
+    <form id="detail_input_form" method="post" name="detail_input" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
-        <!-- 오류표시 Start -->
+        <!-- create_24 전용: 이사결재 문서 표시 -->
+        <input type="hidden" name="24_check" value="이사">
+
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
             {% for field in form %}
@@ -26,181 +163,149 @@
             {% endfor %}
         </div>
         {% endif %}
-        <!-- 오류표시 End -->
 
         <!-- 결재란 -->
-            <div class="row">
-                <div class="col-6 align=middle">
-                    <br>
-                    <br>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <br>
+                <br>
+                <h3 align="center" class="detail-top-title"><strong>품 &nbsp; 의 &nbsp; 서</strong></h3>
+                <hr>
+                <div class="col align-items-bottom align=middle text-center" id="now_date"></div>
+            </div>
 
-                    <h3 align="center">품 의 서</h3>
-            <hr>
-                <div class="col align-items-bottom align=middle" id="now_date"></div>
-                </div>
+            <div class="col-12 col-md-6 mobile-top-spacing">
+                <table class="table table-sm table-bordered border-secondary align-middle">
+                    <tr class="table-secondary" align="center">
+                        <td height="10px">
+                            <button type="button"
+                                    class="btn btn-outline-secondary btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1"
+                                    accesskey="z">
+                                <b>&nbsp;이&nbsp;사&nbsp;[alt+z]</b>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button"
+                                    class="btn btn-outline-secondary btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal3">
+                                <b>&nbsp;대&nbsp;표&nbsp;</b>
+                            </button>
+                        </td>
+                    </tr>
 
-                <div class="col-6">
-                    <table class="table table-sm table-bordered border-secondary align-middle">
-                         <tr  class="table-secondary" align="center" >
-                          <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1" accesskey="z"><B>&nbsp;이&nbsp;사&nbsp;[alt+z]</b></button></td>
-<!--                          <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap"><b>&nbsp;이&nbsp;사&nbsp;</b></button></td>-->
-                          <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap"><b>&nbsp;대&nbsp;표&nbsp;</b></button></td>
-                        </tr>
-    <!-- 결재란-->
-                      <tbody>
-                        <tr align="center">
-                          <td height = "80px" width = "150px" bgcolor="#D8D8D8">
-    <!--                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>-->
-    <!--                          <div class="collapse collapse-horizontal" id="collapseWidthExample">-->
-    <!--                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">-->
-                              <div id="first_comfirm" style="display: none"><img src="/static/img/24.JPG" class="img-fluid" alt="first_comfirm" id="firstcheck"></div>
-    <!--                          </div>-->
-
-                              <!-- Button trigger modal -->
-    <!--                        <div>-->
-    <!--                            <button type="button" class="btn btn-outline-secondary btn-sm" id="noneDiv" data-bs-toggle="modal" data-bs-target="#exampleModal1">-->
-    <!--                          담당-->
-    <!--                        </button>-->
-    <!--                        </div>-->
-    <!--                         -->
-
-    <!--                        &lt;!&ndash; Modal &ndash;&gt;-->
-                            <div class="modal fade modal-auto-clear" data-timer="3000" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel1">결재 전송하기</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    저장 후 다시 결재버튼 상신 후 전송
-                                  </div>
-                                  <div class="modal-footer">
-
-    <!--                                <button type="submit" class="btn btn-secondary btn-lg"  data-bs-target="#collapseWidthExample" id="btntest">취소</button>-->
-                                    <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">취소</button>
-                                    <div><button type="submit" class="btn-success btn-lg" data-bs-dismiss="modal" id="first_check_ready">저장</button></div>
-
-<!--                                        <input name="sangsin" type="hidden" value="상신">-->
-<!--                                    <div><button type="submit" class="btn btn-danger btn-lg" data-bs-dismiss="modal" name="first_check" value="상신">상신</button></div>-->
-<!--                                    </form>-->
-    <!--                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="send">날인</button>-->
-                                  </div>
-                                </div>
-                              </div>
+                    <tbody>
+                    <tr align="center">
+                        <!-- 이사 -->
+                        <td height="80px" width="150px" bgcolor="#D8D8D8">
+                            <div id="first_comfirm" style="display: none">
+                                <img src="/static/img/24.JPG" class="img-fluid" alt="first_comfirm" id="firstcheck">
                             </div>
 
-
-<!--    &lt;!&ndash;이사 결재란&ndash;&gt;-->
-<!--                          </td>-->
-<!--                          <td width = "150px">-->
-<!--                               <div id="24" style="display: none"><img src="/static/img/hyunsoo.JPG" class="img-fluid" alt="24" id="secondcheck"></div>-->
-<!--                               <div id="24_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="24_1" id="secondcheck1"></div>-->
-<!--                                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--                                  <div class="modal-dialog">-->
-<!--                                    <div class="modal-content">-->
-<!--                                      <div class="modal-header">-->
-<!--                                        <h5 class="modal-title" id="exampleModalLabel2">결제전송하기</h5>-->
-<!--                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                                      </div>-->
-<!--                                      <div class="modal-footer row-3 ">-->
-<!--                                        <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="send2">반려</button></div>-->
-<!--                                        <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" >취소</button></div>-->
-<!--                                        <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="24_send">승인</button></div>-->
-<!--                                      </div>-->
-<!--                                      <div class="modal-body1">-->
-<!--                                          <p>검토 후 재가 바랍니다.</p>-->
-<!--                                        <form>-->
-<!--                                          <div class="mb-3">-->
-<!--                                            <label class="col-form-label">지시사항 및 결제의견</label>-->
-<!--                                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="chamjo1" name="chamjo1" value="{{ form.chamjo1.value|default_if_none:'' }}">-->
-<!--                                          </div>-->
-<!--                                        </form>-->
-<!--                                      </div>-->
-<!--                                    </div>-->
-<!--                                  </div>-->
-<!--                                </div></td>-->
-    <!--   대표이사 결재란-->
-                          <td width = "150px">
-                                <div id="director" style="display: none"><img src="/static/img/taewon.JPG" class="img-fluid" alt="director"></div>
-                                <div id="director_1" style="display: none"><img src="/static/img/reject_img.jpg" class="img-fluid" alt="director_1"></div>
-    <!--                          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap">반려</button>-->
-    <!--                                          &nbsp;<button type="button" class="btn btn-outline-secondary btn-sm">승인</button>-->
-                                <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
+                            <div class="modal fade modal-auto-clear" data-timer="3000" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">결제전송하기</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-footer row-3 ">
-                                        <div><button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button></div>
-                                        <div><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button></div>
-                                        <div><button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="final">승인</button></div>
-                                      </div>
-                                      <div class="modal-body">
-                                          <p>검토 후 재가 바랍니다.</p>
-<!--                                        <form>-->
-                                          <div class="mb-3">
-<!--                                            <label for="message-text" class="col-form-label">지시사항 및 결제의견</label>-->
-<!--                                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label="" id="jisi1" name="jisi1" value="{{ form.jisi1.value|default_if_none:'' }}">-->
-                                          </div>
-<!--                                        </form>-->
-                                      </div>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel1">결재 전송하기</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            저장 후 다시 결재버튼 상신 후 전송
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" id="sendbtn">취소</button>
+                                            <div>
+                                                <button type="submit" class="btn-success btn-lg" data-bs-dismiss="modal" id="first_check_ready">저장</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
-                                </div></td>
-                        </tr>
-                        <tr align="center" bgcolor="#E6E6E6">
-                          <td id="data1"></td>
-                          <td id="data2"></td>
-<!--                          <td id="data3"></td>-->
-                        </tr>
-                      </tbody>
-                    </table>
+                                </div>
+                            </div>
+                        </td>
 
-                </div>
+                        <!-- 대표 -->
+                        <td width="150px">
+                            <div id="director" style="display: none">
+                                <img src="/static/img/taewon.JPG" class="img-fluid" alt="director">
+                            </div>
+                            <div id="director_1" style="display: none">
+                                <img src="/static/img/reject_img.jpg" class="img-fluid" alt="director_1">
+                            </div>
 
+                            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel3">결제전송하기</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
 
-            </div>
+                                        <div class="modal-footer row-3">
+                                            <div>
+                                                <button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" id="reject_2">반려</button>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">취소</button>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="final">승인</button>
+                                            </div>
+                                        </div>
 
-
-
-
-
-
-            <div class="row" style="height: 50px;" align="center">
-              <div class="col-4">
-                <select class="form-select" aria-label="Default select example" onchange="location.href=this.value">
-                  <option value="buy">매입결재</option>
-                  <option value="request">품의서</option>
-                  <option value="http://3.37.211.248/eas/monthly_holiday/">휴가품의서</option>
-                </select>
-              </div>
-              <div class="col-8">
-                 <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">계</th>
-                      <th scope="col" id="total"></th>
+                                        <div class="modal-body">
+                                            <p>검토 후 재가 바랍니다.</p>
+                                            <div class="mb-3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
-                  </thead>
-                 </table>
-              </div>
 
+                    <tr align="center" bgcolor="#E6E6E6">
+                        <td id="data1"></td>
+                        <td id="data3"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="row">
-              <div class="col-12">
-                  <div class="input-group mb-3">
-                  <span class="input-group-text" id="input_subject">제목</span>
-                  <input type="text" class="form-control" name="subject" id="subject"
-                   value="{{ form.subject.value|default_if_none:'' }}" accesskey="s" autofocus placeholder="alt+s">
-<!--                  <textarea class="form-control" id="input_subject1" rows="1"></textarea>-->
-                  </div>
-              </div>
+        </div>
 
+        <!-- 상단 합계/분류 -->
+        <div class="row align-items-center" style="min-height: 50px;">
+            <div class="col-md-5 detail-mobile-hide">
+                <select class="form-select" aria-label="Default select example" onchange="location.href=this.value">
+                    <option value="buy">매입결재</option>
+                    <option value="request">품의서</option>
+                    <option value="http://3.37.211.248/eas/monthly_holiday/">휴가품의서</option>
+                </select>
             </div>
+            <div class="col-12 col-md-7">
+                <div class="detail-total-box">
+                    <span class="detail-total-label">계</span>
+                    <span class="detail-total-value" id="total"></span>
+                </div>
+            </div>
+        </div>
 
+        <!-- 제목 -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="input_subject">제목</span>
+                    <input type="text"
+                           class="form-control"
+                           name="subject"
+                           id="subject"
+                           value="{{ form.subject.value|default_if_none:'' }}"
+                           accesskey="s"
+                           autofocus
+                           placeholder="alt+s">
+                </div>
+            </div>
+        </div>
     <!--입력창 타이틀-->
             <div class="row text-white" align="center">
                 <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">list</div>
