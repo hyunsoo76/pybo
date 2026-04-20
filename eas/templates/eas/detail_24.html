@@ -708,7 +708,8 @@
                     class="form-control"
                     data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
                     style="min-height:120px; overflow:auto;"></div>
-                <textarea id="note_initial_html" style="display:none;">{{ form.chamjo1.value|default_if_none:'' }}</textarea>
+
+                <div id="note_initial_html" style="display:none;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
                 <input type="hidden" name="chamjo1" id="chamjo1_hidden">
             </div>
         </div>
@@ -783,10 +784,10 @@ const noteLightboxImg = document.getElementById('noteLightboxImg');
 const noteInitialHtml = document.getElementById('note_initial_html');
 
 if (editor && noteInitialHtml) {
-  editor.innerHTML = noteInitialHtml.value;
+  editor.innerHTML = noteInitialHtml.innerHTML;
 }
 if (hiddenInput && noteInitialHtml) {
-  hiddenInput.value = noteInitialHtml.value;
+  hiddenInput.value = noteInitialHtml.innerHTML;
 }
 
 function editorHasRealContent(el) {
@@ -842,17 +843,31 @@ if (editor) {
         const file = item.getAsFile();
         const reader = new FileReader();
 
-        reader.onload = function (event) {
-          const img = document.createElement('img');
-          img.src = event.target.result;
-          img.style.maxWidth = '100%';
-          img.style.marginTop = '10px';
-          editor.appendChild(img);
+reader.onload = function (event) {
+  const img = document.createElement('img');
+  img.src = event.target.result;
+  img.style.maxWidth = '100%';
+  img.style.height = 'auto';
+  img.style.marginTop = '10px';
+  img.style.display = 'block';
 
-          syncEditorToHidden();
-          refreshEditorPlaceholder();
-        };
+  const selection = window.getSelection();
+  if (selection && selection.rangeCount > 0) {
+    const range = selection.getRangeAt(0);
+    range.deleteContents();
+    range.insertNode(img);
 
+    range.setStartAfter(img);
+    range.setEndAfter(img);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else {
+    editor.appendChild(img);
+  }
+
+  syncEditorToHidden();
+  refreshEditorPlaceholder();
+};
         reader.readAsDataURL(file);
         return;
       }
