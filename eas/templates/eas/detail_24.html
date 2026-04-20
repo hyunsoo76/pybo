@@ -696,17 +696,22 @@
                 <div class="mobile-approval-note"><input class="form-control" type="text" id="m_j_7" value="{{ form.j_7.value|default_if_none:'' }}"></div>
             </div>
 
-            <div class="mobile-note-wrap mt-3">
-                <div class="mobile-note-head">Note</div>
-                <div class="mobile-note-body">
-                    <div id="note_editor_mobile"
-                        contenteditable="true"
-                        class="form-control"
-                        data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-                        style="min-height:120px; overflow:auto;"></div>
-                </div>
-            </div>
-        </div>
+<p></p>
+
+                <div class="row" align="center">
+                    <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">
+                        Note
+                    </div>
+                    <div class="col">
+                        <div id="note_editor"
+                            contenteditable="true"
+                            class="form-control"
+                            data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
+                            style="min-height:120px; overflow:auto;"></div>
+                        <input type="hidden" name="chamjo1" id="chamjo1_hidden">
+                    </div>
+                </div>  
+               
 
         <p></p>
 
@@ -807,7 +812,6 @@ if (hiddenInput && editor) {
 }
 
 const editor = document.getElementById('note_editor');
-const editorMobile = document.getElementById('note_editor_mobile');
 const hiddenInput = document.getElementById('chamjo1_hidden');
 const detailForm = document.getElementById('detail_input_form');
 const totalTarget = document.getElementById('total');
@@ -821,54 +825,43 @@ function editorHasRealContent(el) {
   return hasImage || text !== '';
 }
 
-function syncEditorToHidden(sourceEditor) {
-  if (!sourceEditor || !hiddenInput) return;
-  hiddenInput.value = sourceEditor.innerHTML;
+function syncEditorToHidden() {
+  if (!editor || !hiddenInput) return;
+  hiddenInput.value = editor.innerHTML;
 }
 
-function mirrorEditors(source, target) {
-  if (!source || !target) return;
-  if (target.innerHTML !== source.innerHTML) {
-    target.innerHTML = source.innerHTML;
-  }
-}
-
-function refreshEditorPlaceholder(el) {
-  if (!el) return;
-  if (editorHasRealContent(el)) {
-    el.classList.remove('is-empty');
+function refreshEditorPlaceholder() {
+  if (!editor) return;
+  if (editorHasRealContent(editor)) {
+    editor.classList.remove('is-empty');
   } else {
-    el.classList.add('is-empty');
+    editor.classList.add('is-empty');
   }
 }
 
-function bindEditor(source, target) {
-  if (!source) return;
+if (editor) {
+  refreshEditorPlaceholder();
 
-  refreshEditorPlaceholder(source);
-
-  source.addEventListener('focus', function () {
-    source.classList.remove('is-empty');
+  editor.addEventListener('focus', function () {
+    editor.classList.remove('is-empty');
   });
 
-  source.addEventListener('click', function () {
-    source.classList.remove('is-empty');
+  editor.addEventListener('click', function () {
+    editor.classList.remove('is-empty');
   });
 
-  source.addEventListener('input', function () {
-    mirrorEditors(source, target);
-    syncEditorToHidden(source);
-    refreshEditorPlaceholder(source);
-    refreshEditorPlaceholder(target);
+  editor.addEventListener('input', function () {
+    syncEditorToHidden();
+    refreshEditorPlaceholder();
   });
 
-  source.addEventListener('paste', function (e) {
+  editor.addEventListener('paste', function (e) {
     const items = e.clipboardData && e.clipboardData.items ? e.clipboardData.items : [];
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       if (item.type.indexOf('image') !== -1) {
         e.preventDefault();
-        source.classList.remove('is-empty');
+        editor.classList.remove('is-empty');
 
         const file = item.getAsFile();
         const reader = new FileReader();
@@ -878,12 +871,10 @@ function bindEditor(source, target) {
           img.src = event.target.result;
           img.style.maxWidth = '100%';
           img.style.marginTop = '10px';
-          source.appendChild(img);
+          editor.appendChild(img);
 
-          mirrorEditors(source, target);
-          syncEditorToHidden(source);
-          refreshEditorPlaceholder(source);
-          refreshEditorPlaceholder(target);
+          syncEditorToHidden();
+          refreshEditorPlaceholder();
         };
 
         reader.readAsDataURL(file);
@@ -892,23 +883,37 @@ function bindEditor(source, target) {
     }
 
     setTimeout(function () {
-      mirrorEditors(source, target);
-      syncEditorToHidden(source);
-      refreshEditorPlaceholder(source);
-      refreshEditorPlaceholder(target);
+      syncEditorToHidden();
+      refreshEditorPlaceholder();
     }, 0);
   });
 
-  source.addEventListener('blur', function () {
-    mirrorEditors(source, target);
-    syncEditorToHidden(source);
-    refreshEditorPlaceholder(source);
-    refreshEditorPlaceholder(target);
+  editor.addEventListener('blur', function () {
+    syncEditorToHidden();
+    refreshEditorPlaceholder();
+  });
+
+  editor.addEventListener('click', function(e){
+    if (e.target.tagName === 'IMG' && noteLightbox && noteLightboxImg) {
+      noteLightboxImg.src = e.target.src;
+      noteLightbox.style.display = 'flex';
+    }
   });
 }
 
-bindEditor(editor, editorMobile);
-bindEditor(editorMobile, editor);
+if (noteLightbox) {
+  noteLightbox.addEventListener('click', function () {
+    noteLightbox.style.display = 'none';
+    if (noteLightboxImg) noteLightboxImg.src = '';
+  });
+}
+
+if (detailForm) {
+  detailForm.addEventListener('submit', function () {
+    syncEditorToHidden();
+    refreshEditorPlaceholder();
+  });
+}
 
 function parseNumber(value){
     if (value === null || value === undefined) return 0;
