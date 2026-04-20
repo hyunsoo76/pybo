@@ -698,35 +698,17 @@
 
 <p></p>
 
-                <div class="row" align="center">
-                    <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">
-                        Note
-                    </div>
-                    <div class="col">
-                        <div id="note_editor"
-                            contenteditable="true"
-                            class="form-control"
-                            data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-                            style="min-height:120px; overflow:auto;"></div>
-                        <input type="hidden" name="chamjo1" id="chamjo1_hidden">
-                    </div>
-                </div>  
-               
-
-        <p></p>
-
-        <div class="row g-0 approval-grid" align="center">
-            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
-            <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
-                <div id="note_editor"
-                    contenteditable="true"
-                    class="form-control"
-                    data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-                    style="min-height:120px; overflow:auto;"></div>
-                <textarea id="note_initial_html" style="display:none;">{{ form.chamjo1.value|default_if_none:'' }}</textarea>
-                <input type="hidden" name="chamjo1" id="chamjo1_hidden">
-            </div>
-        </div>
+<div class="row g-0 approval-grid" align="center">
+    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
+    <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
+        <div id="note_editor"
+             contenteditable="true"
+             class="form-control"
+             data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
+             style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
+        <input type="hidden" name="chamjo1" id="chamjo1_hidden">
+    </div>
+</div>
     </form>
 </div>
 
@@ -787,29 +769,6 @@ $(function(){
     });
 });
 
-const initialHtmlSource = document.getElementById('note_initial_html');
-
-function setInitialEditorContent() {
-    const initialHtml = initialHtmlSource ? initialHtmlSource.value : '';
-
-    if (editor) {
-        editor.innerHTML = initialHtml;
-    }
-    if (editorMobile) {
-        editorMobile.innerHTML = initialHtml;
-    }
-    if (hiddenInput) {
-        hiddenInput.value = initialHtml;
-    }
-}
-
-setInitialEditorContent();
-if (editor && editorMobile && editorMobile.innerHTML !== editor.innerHTML) {
-    editorMobile.innerHTML = editor.innerHTML;
-}
-if (hiddenInput && editor) {
-    hiddenInput.value = editor.innerHTML;
-}
 
 const editor = document.getElementById('note_editor');
 const hiddenInput = document.getElementById('chamjo1_hidden');
@@ -840,14 +799,20 @@ function refreshEditorPlaceholder() {
 }
 
 if (editor) {
+  syncEditorToHidden();
   refreshEditorPlaceholder();
 
   editor.addEventListener('focus', function () {
     editor.classList.remove('is-empty');
   });
 
-  editor.addEventListener('click', function () {
+  editor.addEventListener('click', function (e) {
     editor.classList.remove('is-empty');
+
+    if (e.target.tagName === 'IMG' && noteLightbox && noteLightboxImg) {
+      noteLightboxImg.src = e.target.src;
+      noteLightbox.style.display = 'flex';
+    }
   });
 
   editor.addEventListener('input', function () {
@@ -861,7 +826,6 @@ if (editor) {
       const item = items[i];
       if (item.type.indexOf('image') !== -1) {
         e.preventDefault();
-        editor.classList.remove('is-empty');
 
         const file = item.getAsFile();
         const reader = new FileReader();
@@ -892,13 +856,6 @@ if (editor) {
     syncEditorToHidden();
     refreshEditorPlaceholder();
   });
-
-  editor.addEventListener('click', function(e){
-    if (e.target.tagName === 'IMG' && noteLightbox && noteLightboxImg) {
-      noteLightboxImg.src = e.target.src;
-      noteLightbox.style.display = 'flex';
-    }
-  });
 }
 
 if (noteLightbox) {
@@ -913,105 +870,6 @@ if (detailForm) {
     syncEditorToHidden();
     refreshEditorPlaceholder();
   });
-}
-
-function parseNumber(value){
-    if (value === null || value === undefined) return 0;
-    const cleaned = String(value).replace(/,/g, '').trim();
-    if (cleaned === '') return 0;
-    const num = Number(cleaned);
-    return isNaN(num) ? 0 : num;
-}
-
-function formatNumber(value){
-    return value.toLocaleString('ko-KR');
-}
-
-function calcTotal(){
-    const ids = ['a_5','b_5','c_5','d_5','e_5','f_5','g_5','h_5','i_5','j_5'];
-    let sum = 0;
-    ids.forEach(function(id){
-        const el = document.getElementById(id);
-        if (el) sum += parseNumber(el.value);
-    });
-    if (totalTarget) totalTarget.textContent = formatNumber(sum);
-}
-
-['a_5','b_5','c_5','d_5','e_5','f_5','g_5','h_5','i_5','j_5'].forEach(function(id){
-    const el = document.getElementById(id);
-    if (el){
-        el.addEventListener('input', calcTotal);
-    }
-});
-
-calcTotal();
-
-function bindMobileMirror(desktopId, mobileId){
-    const desktop = document.getElementById(desktopId);
-    const mobile = document.getElementById(mobileId);
-    if (!desktop || !mobile) return;
-
-    mobile.addEventListener('input', function(){
-        desktop.value = mobile.value;
-        if (desktopId.endsWith('_5')) calcTotal();
-    });
-
-    desktop.addEventListener('input', function(){
-        mobile.value = desktop.value;
-    });
-}
-
-[
- ['a_1','m_a_1'], ['a_5','m_a_5'], ['a_7','m_a_7'],
- ['b_1','m_b_1'], ['b_5','m_b_5'], ['b_7','m_b_7'],
- ['c_1','m_c_1'], ['c_5','m_c_5'], ['c_7','m_c_7'],
- ['d_1','m_d_1'], ['d_5','m_d_5'], ['d_7','m_d_7'],
- ['e_1','m_e_1'], ['e_5','m_e_5'], ['e_7','m_e_7'],
- ['f_1','m_f_1'], ['f_5','m_f_5'], ['f_7','m_f_7'],
- ['g_1','m_g_1'], ['g_5','m_g_5'], ['g_7','m_g_7'],
- ['h_1','m_h_1'], ['h_5','m_h_5'], ['h_7','m_h_7'],
- ['i_1','m_i_1'], ['i_5','m_i_5'], ['i_7','m_i_7'],
- ['j_1','m_j_1'], ['j_5','m_j_5'], ['j_7','m_j_7']
-].forEach(function(pair){
-    bindMobileMirror(pair[0], pair[1]);
-});
-
-document.querySelectorAll('#note_editor img, #note_editor_mobile img').forEach(function(img){
-    img.addEventListener('click', function(){
-        noteLightboxImg.src = img.src;
-        noteLightbox.style.display = 'flex';
-    });
-});
-
-if (editor) {
-    editor.addEventListener('click', function(e){
-        if (e.target.tagName === 'IMG') {
-            noteLightboxImg.src = e.target.src;
-            noteLightbox.style.display = 'flex';
-        }
-    });
-}
-
-if (editorMobile) {
-    editorMobile.addEventListener('click', function(e){
-        if (e.target.tagName === 'IMG') {
-            noteLightboxImg.src = e.target.src;
-            noteLightbox.style.display = 'flex';
-        }
-    });
-}
-
-if (noteLightbox) {
-    noteLightbox.addEventListener('click', function () {
-        noteLightbox.style.display = 'none';
-        noteLightboxImg.src = '';
-    });
-}
-
-if (detailForm) {
-    detailForm.addEventListener('submit', function () {
-        syncEditorToHidden(editor || editorMobile);
-    });
 }
 </script>
 
