@@ -700,10 +700,11 @@
                 <div class="mobile-note-head">Note</div>
                 <div class="mobile-note-body">
                     <div id="note_editor_mobile"
-                         contenteditable="true"
-                         class="form-control"
-                         data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-                         style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
+                        contenteditable="true"
+                        class="form-control"
+                        data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
+                        data-initial="{{ form.chamjo1.value|default_if_none:''|escapejs }}"
+                        style="min-height:120px; overflow:auto;"></div>
                 </div>
             </div>
         </div>
@@ -714,10 +715,11 @@
             <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
             <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
                 <div id="note_editor"
-                     contenteditable="true"
-                     class="form-control"
-                     data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-                     style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
+                    contenteditable="true"
+                    class="form-control"
+                    data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
+                    data-initial="{{ form.chamjo1.value|default_if_none:''|escapejs }}"
+                    style="min-height:120px; overflow:auto;"></div>
                 <input type="hidden" name="chamjo1" id="chamjo1_hidden">
             </div>
         </div>
@@ -780,6 +782,28 @@ $(function(){
         }
     });
 });
+
+function decodeHtml(html) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html || '';
+    return txt.value;
+}
+
+function setInitialEditorContent(el) {
+    if (!el) return;
+    const raw = el.dataset.initial || '';
+    el.innerHTML = decodeHtml(raw);
+}
+
+setInitialEditorContent(editor);
+setInitialEditorContent(editorMobile);
+
+if (editor && editorMobile && editorMobile.innerHTML !== editor.innerHTML) {
+    editorMobile.innerHTML = editor.innerHTML;
+}
+if (hiddenInput && editor) {
+    hiddenInput.value = editor.innerHTML;
+}
 
 const editor = document.getElementById('note_editor');
 const editorMobile = document.getElementById('note_editor_mobile');
