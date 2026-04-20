@@ -77,6 +77,30 @@
     line-height: 1.2;
 }
 
+.note-view img{
+    max-width: 100%;
+    height: auto;
+    cursor: zoom-in;
+}
+
+.note-lightbox{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+}
+
+.note-lightbox img{
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+}
+
 .detail-top-title{
     letter-spacing: 0.08em;
 }
@@ -105,6 +129,98 @@
     line-height: 1;
 }
 
+.desktop-approval-table{
+    display: block;
+}
+
+.mobile-approval-list{
+    display: none;
+}
+
+.mobile-approval-card{
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    margin-bottom: 10px;
+}
+
+.mobile-approval-row-top{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.mobile-approval-left{
+    min-width: 0;
+    flex: 1;
+}
+
+.mobile-approval-no{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: #f3f4f6;
+    color: #111827;
+    font-size: 13px;
+    font-weight: 800;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.mobile-approval-vendor{
+    font-size: 15px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+.mobile-approval-amount{
+    font-size: 17px;
+    font-weight: 800;
+    color: #111827;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 2px;
+}
+
+.mobile-approval-note{
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.mobile-note-wrap{
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.mobile-note-head{
+    padding: 10px 14px;
+    background: #111827;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.mobile-note-body{
+    padding: 14px;
+}
+
 .detail-mobile-hide{
     display: block;
 }
@@ -121,6 +237,14 @@
 
     .detail-top-title{
         font-size: 1.5rem;
+    }
+
+    .desktop-approval-table{
+        display: none !important;
+    }
+
+    .mobile-approval-list{
+        display: block;
     }
 
     .detail-mobile-hide{
@@ -148,7 +272,6 @@
 <div class="container">
     <form id="detail_input_form" method="post" name="detail_input" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
-        <!-- create_24 전용: 이사결재 문서 표시 -->
         <input type="hidden" name="24_check" value="이사">
 
         {% if form.errors %}
@@ -306,301 +429,309 @@
                 </div>
             </div>
         </div>
-<!-- 입력창 타이틀 -->
-<div class="row g-0 approval-grid">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">list</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell head">매입처</div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell head">계좌번호 [alt+No]</div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell head">은행</div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell head">계좌명</div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell head">금액</div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell head">구분</div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell head">적요</div>
+
+        <!-- 데스크톱 리스트 -->
+        <div class="desktop-approval-table">
+            <div class="row g-0 approval-grid">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">list</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell head">매입처</div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell head">계좌번호 [alt+No]</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell head">은행</div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell head">계좌명</div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell head">금액</div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell head">구분</div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell head">적요</div>
+            </div>
+
+            <!-- 1 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">1</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="a_1" name="a_1" value="{{ form.a_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="a_2" name="a_2" value="{{ form.a_2.value|default_if_none:'' }}" accesskey="1"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="a_3" name="a_3" value="{{ form.a_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="a_4" name="a_4" value="{{ form.a_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="a_5" name="a_5" value="{{ form.a_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="a_6" name="a_6" value="{{ form.a_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="a_7" name="a_7" value="{{ form.a_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 2 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">2</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="b_1" name="b_1" value="{{ form.b_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="b_2" name="b_2" value="{{ form.b_2.value|default_if_none:'' }}" accesskey="2"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="b_3" name="b_3" value="{{ form.b_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="b_4" name="b_4" value="{{ form.b_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="b_5" name="b_5" value="{{ form.b_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="b_6" name="b_6" value="{{ form.b_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="b_7" name="b_7" value="{{ form.b_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 3 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">3</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="c_1" name="c_1" value="{{ form.c_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="c_2" name="c_2" value="{{ form.c_2.value|default_if_none:'' }}" accesskey="3"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="c_3" name="c_3" value="{{ form.c_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="c_4" name="c_4" value="{{ form.c_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="c_5" name="c_5" value="{{ form.c_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="c_6" name="c_6" value="{{ form.c_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="c_7" name="c_7" value="{{ form.c_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 4 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">4</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="d_1" name="d_1" value="{{ form.d_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="d_2" name="d_2" value="{{ form.d_2.value|default_if_none:'' }}" accesskey="4"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="d_3" name="d_3" value="{{ form.d_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="d_4" name="d_4" value="{{ form.d_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="d_5" name="d_5" value="{{ form.d_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="d_6" name="d_6" value="{{ form.d_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="d_7" name="d_7" value="{{ form.d_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 5 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">5</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="e_1" name="e_1" value="{{ form.e_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="e_2" name="e_2" value="{{ form.e_2.value|default_if_none:'' }}" accesskey="5"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="e_3" name="e_3" value="{{ form.e_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="e_4" name="e_4" value="{{ form.e_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="e_5" name="e_5" value="{{ form.e_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="e_6" name="e_6" value="{{ form.e_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="e_7" name="e_7" value="{{ form.e_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 6 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">6</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="f_1" name="f_1" value="{{ form.f_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="f_2" name="f_2" value="{{ form.f_2.value|default_if_none:'' }}" accesskey="6"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="f_3" name="f_3" value="{{ form.f_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="f_4" name="f_4" value="{{ form.f_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="f_5" name="f_5" value="{{ form.f_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="f_6" name="f_6" value="{{ form.f_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="f_7" name="f_7" value="{{ form.f_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 7 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">7</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="g_1" name="g_1" value="{{ form.g_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="g_2" name="g_2" value="{{ form.g_2.value|default_if_none:'' }}" accesskey="7"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="g_3" name="g_3" value="{{ form.g_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="g_4" name="g_4" value="{{ form.g_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="g_5" name="g_5" value="{{ form.g_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="g_6" name="g_6" value="{{ form.g_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="g_7" name="g_7" value="{{ form.g_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 8 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">8</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="h_1" name="h_1" value="{{ form.h_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="h_2" name="h_2" value="{{ form.h_2.value|default_if_none:'' }}" accesskey="8"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="h_3" name="h_3" value="{{ form.h_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="h_4" name="h_4" value="{{ form.h_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="h_5" name="h_5" value="{{ form.h_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="h_6" name="h_6" value="{{ form.h_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="h_7" name="h_7" value="{{ form.h_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 9 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">9</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="i_1" name="i_1" value="{{ form.i_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="i_2" name="i_2" value="{{ form.i_2.value|default_if_none:'' }}" accesskey="9"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="i_3" name="i_3" value="{{ form.i_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="i_4" name="i_4" value="{{ form.i_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="i_5" name="i_5" value="{{ form.i_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="i_6" name="i_6" value="{{ form.i_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="i_7" name="i_7" value="{{ form.i_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <!-- 10 -->
+            <div class="row g-0 approval-grid" align="center">
+                <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">10</div>
+                <div class="col-lg-2 col-md-3 col-sm-3 approval-cell"><input class="form-control" type="text" id="j_1" name="j_1" value="{{ form.j_1.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="j_2" name="j_2" value="{{ form.j_2.value|default_if_none:'' }}" accesskey="-"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="j_3" name="j_3" value="{{ form.j_3.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="j_4" name="j_4" value="{{ form.j_4.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right"><input class="form-control text-end" type="text" id="j_5" name="j_5" value="{{ form.j_5.value|default_if_none:'' }}"></div>
+                <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><input class="form-control" type="text" id="j_6" name="j_6" value="{{ form.j_6.value|default_if_none:'' }}"></div>
+                <div class="col-lg-2 col-md-5 col-sm-5 approval-cell"><input class="form-control" type="text" id="j_7" name="j_7" value="{{ form.j_7.value|default_if_none:'' }}"></div>
+            </div>
+        </div>
+
+        <!-- 모바일 리스트 -->
+        <div class="mobile-approval-list mt-2">
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">1</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_a_1" name="a_1" value="{{ form.a_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_a_5" name="a_5" value="{{ form.a_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_a_7" name="a_7" value="{{ form.a_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">2</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_b_1" name="b_1" value="{{ form.b_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_b_5" name="b_5" value="{{ form.b_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_b_7" name="b_7" value="{{ form.b_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">3</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_c_1" name="c_1" value="{{ form.c_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_c_5" name="c_5" value="{{ form.c_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_c_7" name="c_7" value="{{ form.c_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">4</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_d_1" name="d_1" value="{{ form.d_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_d_5" name="d_5" value="{{ form.d_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_d_7" name="d_7" value="{{ form.d_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">5</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_e_1" name="e_1" value="{{ form.e_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_e_5" name="e_5" value="{{ form.e_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_e_7" name="e_7" value="{{ form.e_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">6</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_f_1" name="f_1" value="{{ form.f_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_f_5" name="f_5" value="{{ form.f_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_f_7" name="f_7" value="{{ form.f_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">7</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_g_1" name="g_1" value="{{ form.g_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_g_5" name="g_5" value="{{ form.g_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_g_7" name="g_7" value="{{ form.g_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">8</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_h_1" name="h_1" value="{{ form.h_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_h_5" name="h_5" value="{{ form.h_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_h_7" name="h_7" value="{{ form.h_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">9</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_i_1" name="i_1" value="{{ form.i_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_i_5" name="i_5" value="{{ form.i_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_i_7" name="i_7" value="{{ form.i_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-approval-card">
+                <div class="mobile-approval-row-top">
+                    <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                        <span class="mobile-approval-no">10</span>
+                        <div class="mobile-approval-left">
+                            <div class="mobile-approval-vendor"><input class="form-control" type="text" id="m_j_1" name="j_1" value="{{ form.j_1.value|default_if_none:'' }}"></div>
+                        </div>
+                    </div>
+                    <div class="mobile-approval-amount"><input class="form-control text-end" type="text" id="m_j_5" name="j_5" value="{{ form.j_5.value|default_if_none:'' }}"></div>
+                </div>
+                <div class="mobile-approval-note"><input class="form-control" type="text" id="m_j_7" name="j_7" value="{{ form.j_7.value|default_if_none:'' }}"></div>
+            </div>
+
+            <div class="mobile-note-wrap mt-3">
+                <div class="mobile-note-head">Note</div>
+                <div class="mobile-note-body">
+                    <div id="note_editor_mobile"
+                         contenteditable="true"
+                         class="form-control"
+                         data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
+                         style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <p></p>
+
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
+            <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
+                <div id="note_editor"
+                     contenteditable="true"
+                     class="form-control"
+                     data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
+                     style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
+                <input type="hidden" name="chamjo1" id="chamjo1_hidden">
+            </div>
+        </div>
+    </form>
 </div>
 
-<!-- 1 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">1</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="a_1" name="a_1" value="{{ form.a_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="a_2" name="a_2" value="{{ form.a_2.value|default_if_none:'' }}" accesskey="1">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="a_3" name="a_3" value="{{ form.a_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="a_4" name="a_4" value="{{ form.a_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="a_5" name="a_5" value="{{ form.a_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="a_6" name="a_6" value="{{ form.a_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="a_7" name="a_7" value="{{ form.a_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 2 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">2</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="b_1" name="b_1" value="{{ form.b_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="b_2" name="b_2" value="{{ form.b_2.value|default_if_none:'' }}" accesskey="2">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="b_3" name="b_3" value="{{ form.b_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="b_4" name="b_4" value="{{ form.b_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="b_5" name="b_5" value="{{ form.b_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="b_6" name="b_6" value="{{ form.b_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="b_7" name="b_7" value="{{ form.b_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 3 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">3</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="c_1" name="c_1" value="{{ form.c_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="c_2" name="c_2" value="{{ form.c_2.value|default_if_none:'' }}" accesskey="3">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="c_3" name="c_3" value="{{ form.c_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="c_4" name="c_4" value="{{ form.c_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="c_5" name="c_5" value="{{ form.c_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="c_6" name="c_6" value="{{ form.c_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="c_7" name="c_7" value="{{ form.c_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 4 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">4</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="d_1" name="d_1" value="{{ form.d_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="d_2" name="d_2" value="{{ form.d_2.value|default_if_none:'' }}" accesskey="4">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="d_3" name="d_3" value="{{ form.d_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="d_4" name="d_4" value="{{ form.d_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="d_5" name="d_5" value="{{ form.d_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="d_6" name="d_6" value="{{ form.d_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="d_7" name="d_7" value="{{ form.d_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 5 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">5</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="e_1" name="e_1" value="{{ form.e_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="e_2" name="e_2" value="{{ form.e_2.value|default_if_none:'' }}" accesskey="5">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="e_3" name="e_3" value="{{ form.e_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="e_4" name="e_4" value="{{ form.e_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="e_5" name="e_5" value="{{ form.e_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="e_6" name="e_6" value="{{ form.e_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="e_7" name="e_7" value="{{ form.e_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 6 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">6</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="f_1" name="f_1" value="{{ form.f_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="f_2" name="f_2" value="{{ form.f_2.value|default_if_none:'' }}" accesskey="6">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="f_3" name="f_3" value="{{ form.f_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="f_4" name="f_4" value="{{ form.f_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="f_5" name="f_5" value="{{ form.f_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="f_6" name="f_6" value="{{ form.f_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="f_7" name="f_7" value="{{ form.f_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 7 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">7</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="g_1" name="g_1" value="{{ form.g_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="g_2" name="g_2" value="{{ form.g_2.value|default_if_none:'' }}" accesskey="7">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="g_3" name="g_3" value="{{ form.g_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="g_4" name="g_4" value="{{ form.g_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="g_5" name="g_5" value="{{ form.g_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="g_6" name="g_6" value="{{ form.g_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="g_7" name="g_7" value="{{ form.g_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 8 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">8</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="h_1" name="h_1" value="{{ form.h_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="h_2" name="h_2" value="{{ form.h_2.value|default_if_none:'' }}" accesskey="8">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="h_3" name="h_3" value="{{ form.h_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="h_4" name="h_4" value="{{ form.h_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="h_5" name="h_5" value="{{ form.h_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="h_6" name="h_6" value="{{ form.h_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="h_7" name="h_7" value="{{ form.h_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 9 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">9</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="i_1" name="i_1" value="{{ form.i_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="i_2" name="i_2" value="{{ form.i_2.value|default_if_none:'' }}" accesskey="9">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="i_3" name="i_3" value="{{ form.i_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="i_4" name="i_4" value="{{ form.i_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="i_5" name="i_5" value="{{ form.i_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="i_6" name="i_6" value="{{ form.i_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="i_7" name="i_7" value="{{ form.i_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<!-- 10 -->
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">10</div>
-    <div class="col-lg-2 col-md-3 col-sm-3 approval-cell">
-        <input class="form-control" type="text" id="j_1" name="j_1" value="{{ form.j_1.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="j_2" name="j_2" value="{{ form.j_2.value|default_if_none:'' }}" accesskey="-">
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="j_3" name="j_3" value="{{ form.j_3.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-3 col-sm-3 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="j_4" name="j_4" value="{{ form.j_4.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-right">
-        <input class="form-control text-end" type="text" id="j_5" name="j_5" value="{{ form.j_5.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell">
-        <input class="form-control" type="text" id="j_6" name="j_6" value="{{ form.j_6.value|default_if_none:'' }}">
-    </div>
-    <div class="col-lg-2 col-md-5 col-sm-5 approval-cell">
-        <input class="form-control" type="text" id="j_7" name="j_7" value="{{ form.j_7.value|default_if_none:'' }}">
-    </div>
-</div>
-
-<p></p>
-
-<div class="row" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">
-        Note
-    </div>
-    <div class="col">
-        <div id="note_editor"
-             contenteditable="true"
-             class="form-control"
-             data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-             style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
-        <input type="hidden" name="chamjo1" id="chamjo1_hidden">
-    </div>
-</div>
-
-<input name="24_check" type="hidden" value="이사">
-</form>
+<div id="noteLightbox" class="note-lightbox">
+    <img id="noteLightboxImg" src="" alt="확대 이미지">
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
 <script>
 $(document).ready(function(){
     $('#exampleModal1').on('hidden.bs.modal', function () {
@@ -627,71 +758,232 @@ $(document).ready(function(){
 });
 
 $(function(){
-    $('#reject_2').click(function(){
-        if($("#director_1").css("display") && $("#director").css("display") == "none"){
-            $('#director_1').show();
+    $('#first_check_ready').click(function(){
+        if ($("#first_comfirm").css("display") == "none") {
+            $('#first_comfirm').show();
         }
     });
 });
 
 $(function(){
     $('#final').click(function(){
-        if($("#director").css("display") && $("#director_1").css("display") == "none"){
+        if ($("#director").css("display") && $("#director_1").css("display") == "none") {
             $('#director').show();
         }
     });
 });
 
-const noteEditor = document.getElementById('note_editor');
-const chamjoHidden = document.getElementById('chamjo1_hidden');
+$(function(){
+    $('#reject_2').click(function(){
+        if ($("#director_1").css("display") && $("#director").css("display") == "none") {
+            $('#director_1').show();
+        }
+    });
+});
 
-function syncNoteEditor(){
-    if (noteEditor && chamjoHidden){
-        chamjoHidden.value = noteEditor.innerHTML.trim();
-    }
+const editor = document.getElementById('note_editor');
+const editorMobile = document.getElementById('note_editor_mobile');
+const hiddenInput = document.getElementById('chamjo1_hidden');
+const detailForm = document.getElementById('detail_input_form');
+const totalTarget = document.getElementById('total');
+const noteLightbox = document.getElementById('noteLightbox');
+const noteLightboxImg = document.getElementById('noteLightboxImg');
+
+function editorHasRealContent(el) {
+  if (!el) return false;
+  const hasImage = el.querySelector('img') !== null;
+  const text = (el.textContent || '').replace(/\u00a0/g, ' ').trim();
+  return hasImage || text !== '';
 }
 
-function updateNotePlaceholder(){
-    if (!noteEditor) return;
-    if (noteEditor.innerHTML.replace(/<br\s*\/?>/gi, '').replace(/&nbsp;/g, '').trim() === '') {
-        noteEditor.classList.add('is-empty');
-    } else {
-        noteEditor.classList.remove('is-empty');
-    }
+function syncEditorToHidden(sourceEditor) {
+  if (!sourceEditor || !hiddenInput) return;
+  hiddenInput.value = sourceEditor.innerHTML;
 }
 
-if (noteEditor){
-    updateNotePlaceholder();
+function mirrorEditors(source, target) {
+  if (!source || !target) return;
+  if (target.innerHTML !== source.innerHTML) {
+    target.innerHTML = source.innerHTML;
+  }
+}
 
-    noteEditor.addEventListener('input', function(){
-        syncNoteEditor();
-        updateNotePlaceholder();
+function refreshEditorPlaceholder(el) {
+  if (!el) return;
+  if (editorHasRealContent(el)) {
+    el.classList.remove('is-empty');
+  } else {
+    el.classList.add('is-empty');
+  }
+}
+
+function bindEditor(source, target) {
+  if (!source) return;
+
+  refreshEditorPlaceholder(source);
+
+  source.addEventListener('focus', function () {
+    source.classList.remove('is-empty');
+  });
+
+  source.addEventListener('click', function () {
+    source.classList.remove('is-empty');
+  });
+
+  source.addEventListener('input', function () {
+    mirrorEditors(source, target);
+    syncEditorToHidden(source);
+    refreshEditorPlaceholder(source);
+    refreshEditorPlaceholder(target);
+  });
+
+  source.addEventListener('paste', function (e) {
+    const items = e.clipboardData && e.clipboardData.items ? e.clipboardData.items : [];
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.type.indexOf('image') !== -1) {
+        e.preventDefault();
+        source.classList.remove('is-empty');
+
+        const file = item.getAsFile();
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          img.style.maxWidth = '100%';
+          img.style.marginTop = '10px';
+          source.appendChild(img);
+
+          mirrorEditors(source, target);
+          syncEditorToHidden(source);
+          refreshEditorPlaceholder(source);
+          refreshEditorPlaceholder(target);
+        };
+
+        reader.readAsDataURL(file);
+        return;
+      }
+    }
+
+    setTimeout(function () {
+      mirrorEditors(source, target);
+      syncEditorToHidden(source);
+      refreshEditorPlaceholder(source);
+      refreshEditorPlaceholder(target);
+    }, 0);
+  });
+
+  source.addEventListener('blur', function () {
+    mirrorEditors(source, target);
+    syncEditorToHidden(source);
+    refreshEditorPlaceholder(source);
+    refreshEditorPlaceholder(target);
+  });
+}
+
+bindEditor(editor, editorMobile);
+bindEditor(editorMobile, editor);
+
+function parseNumber(value){
+    if (value === null || value === undefined) return 0;
+    const cleaned = String(value).replace(/,/g, '').trim();
+    if (cleaned === '') return 0;
+    const num = Number(cleaned);
+    return isNaN(num) ? 0 : num;
+}
+
+function formatNumber(value){
+    return value.toLocaleString('ko-KR');
+}
+
+function calcTotal(){
+    const ids = ['a_5','b_5','c_5','d_5','e_5','f_5','g_5','h_5','i_5','j_5'];
+    let sum = 0;
+    ids.forEach(function(id){
+        const el = document.getElementById(id);
+        if (el) sum += parseNumber(el.value);
+    });
+    if (totalTarget) totalTarget.textContent = formatNumber(sum);
+}
+
+['a_5','b_5','c_5','d_5','e_5','f_5','g_5','h_5','i_5','j_5'].forEach(function(id){
+    const el = document.getElementById(id);
+    if (el){
+        el.addEventListener('input', calcTotal);
+    }
+});
+
+calcTotal();
+
+function bindMobileMirror(desktopId, mobileId){
+    const desktop = document.getElementById(desktopId);
+    const mobile = document.getElementById(mobileId);
+    if (!desktop || !mobile) return;
+
+    mobile.addEventListener('input', function(){
+        desktop.value = mobile.value;
+        if (desktopId.endsWith('_5')) calcTotal();
     });
 
-    noteEditor.addEventListener('paste', function(e){
-        const items = (e.clipboardData || window.clipboardData).items;
-        if (!items) return;
+    desktop.addEventListener('input', function(){
+        mobile.value = desktop.value;
+    });
+}
 
-        for (let i = 0; i < items.length; i++) {
-            if (items[i].type.indexOf('image') !== -1) {
-                e.preventDefault();
-                const file = items[i].getAsFile();
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    document.execCommand('insertImage', false, event.target.result);
-                    syncNoteEditor();
-                    updateNotePlaceholder();
-                };
-                reader.readAsDataURL(file);
-                break;
-            }
+[
+ ['a_1','m_a_1'], ['a_5','m_a_5'], ['a_7','m_a_7'],
+ ['b_1','m_b_1'], ['b_5','m_b_5'], ['b_7','m_b_7'],
+ ['c_1','m_c_1'], ['c_5','m_c_5'], ['c_7','m_c_7'],
+ ['d_1','m_d_1'], ['d_5','m_d_5'], ['d_7','m_d_7'],
+ ['e_1','m_e_1'], ['e_5','m_e_5'], ['e_7','m_e_7'],
+ ['f_1','m_f_1'], ['f_5','m_f_5'], ['f_7','m_f_7'],
+ ['g_1','m_g_1'], ['g_5','m_g_5'], ['g_7','m_g_7'],
+ ['h_1','m_h_1'], ['h_5','m_h_5'], ['h_7','m_h_7'],
+ ['i_1','m_i_1'], ['i_5','m_i_5'], ['i_7','m_i_7'],
+ ['j_1','m_j_1'], ['j_5','m_j_5'], ['j_7','m_j_7']
+].forEach(function(pair){
+    bindMobileMirror(pair[0], pair[1]);
+});
+
+document.querySelectorAll('#note_editor img, #note_editor_mobile img').forEach(function(img){
+    img.addEventListener('click', function(){
+        noteLightboxImg.src = img.src;
+        noteLightbox.style.display = 'flex';
+    });
+});
+
+if (editor) {
+    editor.addEventListener('click', function(e){
+        if (e.target.tagName === 'IMG') {
+            noteLightboxImg.src = e.target.src;
+            noteLightbox.style.display = 'flex';
         }
     });
 }
 
-document.getElementById('detail_input_form').addEventListener('submit', function(){
-    syncNoteEditor();
-});
+if (editorMobile) {
+    editorMobile.addEventListener('click', function(e){
+        if (e.target.tagName === 'IMG') {
+            noteLightboxImg.src = e.target.src;
+            noteLightbox.style.display = 'flex';
+        }
+    });
+}
+
+if (noteLightbox) {
+    noteLightbox.addEventListener('click', function () {
+        noteLightbox.style.display = 'none';
+        noteLightboxImg.src = '';
+    });
+}
+
+if (detailForm) {
+    detailForm.addEventListener('submit', function () {
+        syncEditorToHidden(editor || editorMobile);
+    });
+}
 </script>
 
+<script src="{% static 'eas/vendor_autocomplete.js' %}"></script>
 {% endblock %}
