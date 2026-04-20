@@ -1,14 +1,270 @@
 {% extends 'base_eas.html' %}
-{% load humanize %}
+{% load humanize static %}
 {% block content %}
 
 <style>
-#chamjo1 img{
+  .approval-grid .row{
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .approval-grid > .row > div{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .approval-cell{
+    border: 1px solid #d9dee3 !important;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    background: #fff;
+  }
+
+  .approval-cell.head{
+    background: #6c757d !important;
+    color: #fff !important;
+    font-weight: 600;
+    min-height: 34px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .approval-cell.no{
+    background: #f1f3f5 !important;
+    font-weight: 600;
+  }
+
+  .approval-cell.text-left{
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .approval-cell.text-right{
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .approval-cell span.form-control,
+  .approval-cell .form-control{
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .approval-cell.wrap{
+    white-space: normal;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .note-view img{
     max-width: 100%;
     height: auto;
+    cursor: zoom-in;
+  }
+
+  .note-lightbox{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+
+  .note-lightbox img{
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+  }
+
+  .detail-top-title{
+    letter-spacing: 0.08em;
+  }
+
+  .detail-total-box{
+    border: 1px solid #d9dee3;
+    border-radius: 12px;
+    background: #fff;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 52px;
+  }
+
+  .detail-total-label{
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .detail-total-value{
+    color: #111827;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .desktop-approval-table{
     display: block;
-    margin-top: 10px;
-}
+  }
+
+  .mobile-approval-list{
+    display: none;
+  }
+
+  .mobile-approval-card{
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    margin-bottom: 10px;
+  }
+
+  .mobile-approval-row-top{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .mobile-approval-left{
+    min-width: 0;
+    flex: 1;
+  }
+
+  .mobile-approval-no{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: #f3f4f6;
+    color: #111827;
+    font-size: 13px;
+    font-weight: 800;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .mobile-approval-vendor{
+    font-size: 15px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.45;
+    word-break: break-word;
+  }
+
+  .mobile-approval-amount{
+    font-size: 17px;
+    font-weight: 800;
+    color: #111827;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .mobile-approval-note{
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+
+  .mobile-note-wrap{
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .mobile-note-head{
+    padding: 10px 14px;
+    background: #111827;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .mobile-note-body{
+    padding: 14px;
+  }
+
+  .detail-mobile-hide{
+    display: block;
+  }
+
+  .mobile-top-spacing{
+    margin-top: 0;
+  }
+
+  @media (max-width: 767.98px){
+    .container{
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .detail-top-title{
+      font-size: 1.5rem;
+    }
+
+    .desktop-approval-table{
+      display: none !important;
+    }
+
+    .mobile-approval-list{
+      display: block;
+    }
+
+    .detail-mobile-hide{
+      display: none !important;
+    }
+
+    .mobile-top-spacing{
+      margin-top: 10px;
+    }
+
+    .detail-total-value{
+      font-size: 20px;
+    }
+
+    .input-group-text{
+      font-size: 13px;
+      padding-left: 10px;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    #input_subject1{
+      font-size: 14px;
+      line-height: 1.45;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      min-height: 44px;
+      word-break: break-word;
+    }
+  }
 </style>
         <p></p>
 <!--            {% if messages %}-->
@@ -232,286 +488,318 @@
 
         </div>
 
-<!--입력창 타이틀-->
-        <div class="row text-white" align="center">
-            <div class="col-lg-1 col-md-1 col-sm-1 bg-secondary text-white" style="border: 1px solid white" align="center">list</div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">매입처</div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">계좌번호</div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">은행</div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">계좌명</div>
-            <div class="col-lg-1 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">금액</div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">구분</div>
-            <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block bg-secondary text-white" style="border: 1px solid white" align="center">적요</div>
+    <!-- 데스크톱 리스트 -->
+    <div class="desktop-approval-table">
+        <div class="row g-0 approval-grid">
+            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">list</div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell head">매입처</div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell head">계좌번호</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell head">은행</div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell head">계좌명</div>
+            <div class="col-lg-1 col-md-5 col-sm-5 d-none d-sm-block approval-cell head">금액</div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell head">구분</div>
+            <div class="col-lg-2 col-md-5 col-sm-5 d-none d-sm-block approval-cell head">적요</div>
         </div>
-<!--   입력창      -->
-        <div class="row"  align="center" style="border: 1px solid #D8D8D8; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">1</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="a_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap; border-collapse:collapse;">{{ new_Request.a_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="a_2" style="border:0; outline:0;">{{ new_Request.a_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="a_3" style="border:0; outline:0;">{{ new_Request.a_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap; border-collapse:collapse;"  align="center" >
-                <span class="form-control form-control-sm" id="a_4" style="border:0; outline:0;">{{ new_Request.a_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="a_5" style="text-align:right; border:0; outline:0;">{{ new_Request.a_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="a_6" style="border:0; outline:0;">{{ new_Request.a_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="a_7" style="border:0; outline:0;">{{ new_Request.a_7 }}</span>
-            </div>
+
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell no">1</div>
+            <div class="col-lg-2 col-md-3 col-sm-3 approval-cell text-left"><span>{{ new_Request.a_1 }}</span></div>
+            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block approval-cell text-left"><span>{{ new_Request.a_2 }}</span></div>
+            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block approval-cell"><span>{{ new_Request.a_3 }}</span></div>
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block approval-cell"><span>{{ new_Request.a_4 }}</span></div>
+            <div class="col-lg-1 col-md-5 col-sm-5 approval-cell text-right"><span>{{ new_Request.a_5|intcomma }}</span></div>
+            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block approval-cell"><span>{{ new_Request.a_6 }}</span></div>
+            <div class="col-lg-2 col-md-5 col-sm-5 approval-cell text-left wrap"><span>{{ new_Request.a_7 }}</span></div>
         </div>
+
         {% if new_Request.b_1 %}
-        <div class="row"  align="center" style="border: 1px solid #D8D8D8; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">2</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="b_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap; border-collapse:collapse;">{{ new_Request.b_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="b_2" style="border:0; outline:0;">{{ new_Request.b_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="b_3" style="border:0; outline:0;">{{ new_Request.b_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap; border-collapse:collapse;"  align="center" >
-                <span class="form-control form-control-sm" id="b_4" style="border:0; outline:0;">{{ new_Request.b_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="b_5" style="text-align:right; border:0; outline:0;">{{ new_Request.b_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="b_6" style="border:0; outline:0;">{{ new_Request.b_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="b_7" style="border:0; outline:0;">{{ new_Request.b_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">2</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.b_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.b_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.b_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.b_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.b_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.b_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.b_7 }}</span></div>
         </div>
         {% endif %}
+
         {% if new_Request.c_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">3</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="c_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.c_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="c_2" style="border:0; outline:0;">{{ new_Request.c_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8; overflow:hidden; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="c_3" style="border:0; outline:0;">{{ new_Request.c_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="c_4" style="border:0; outline:0;">{{ new_Request.c_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="c_5" style="text-align:right; border:0; outline:0;">{{ new_Request.c_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="c_6" style="border:0; outline:0;">{{ new_Request.c_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="c_7" style="border:0; outline:0;">{{ new_Request.c_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">3</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.c_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.c_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.c_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.c_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.c_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.c_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.c_7 }}</span></div>
         </div>
         {% endif %}
+
         {% if new_Request.d_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">4</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="d_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.d_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="d_2" style="border:0; outline:0;">{{ new_Request.d_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="d_3" style="border:0; outline:0;">{{ new_Request.d_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="d_4" style="border:0; outline:0;">{{ new_Request.d_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="d_5" style="text-align:right; border:0; outline:0;">{{ new_Request.d_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="d_6" style="border:0; outline:0;">{{ new_Request.d_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="d_7" style="border:0; outline:0;">{{ new_Request.d_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">4</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.d_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.d_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.d_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.d_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.d_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.d_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.d_7 }}</span></div>
         </div>
         {% endif %}
+
         {% if new_Request.e_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">5</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="e_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.e_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="e_2" style="border:0; outline:0;">{{ new_Request.e_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="e_3" style="border:0; outline:0;">{{ new_Request.e_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="e_4" style="border:0; outline:0;">{{ new_Request.e_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="e_5" style="text-align:right; border:0; outline:0;">{{ new_Request.e_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="e_6" style="border:0; outline:0;">{{ new_Request.e_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="e_7" style="border:0; outline:0;">{{ new_Request.e_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">5</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.e_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.e_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.e_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.e_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.e_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.e_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.e_7 }}</span></div>
         </div>
         {% endif %}
+
         {% if new_Request.f_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">6</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="f_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.f_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="f_2" style="border:0; outline:0;">{{ new_Request.f_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="f_3" style="border:0; outline:0;">{{ new_Request.f_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="f_4" style="border:0; outline:0;">{{ new_Request.f_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="f_5" style="text-align:right; border:0; outline:0;">{{ new_Request.f_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="f_6" style="border:0; outline:0;">{{ new_Request.f_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm"  id="f_7" style="border:0; outline:0;">{{ new_Request.f_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">6</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.f_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.f_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.f_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.f_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.f_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.f_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.f_7 }}</span></div>
         </div>
         {% endif %}
+
         {% if new_Request.g_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">7</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="g_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.g_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="g_2" style="border:0; outline:0;">{{ new_Request.g_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="g_3" style="border:0; outline:0;">{{ new_Request.g_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="g_4" style="border:0; outline:0;">{{ new_Request.g_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="g_5" style="text-align:right; border:0; outline:0;">{{ new_Request.g_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="g_6" style="border:0; outline:0;">{{ new_Request.g_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="g_7" style="border:0; outline:0;">{{ new_Request.g_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">7</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.g_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.g_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.g_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.g_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.g_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.g_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.g_7 }}</span></div>
         </div>
         {% endif %}
+
         {% if new_Request.h_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">8</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="h_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.h_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="h_2" style="border:0; outline:0;">{{ new_Request.h_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="h_3" style="border:0; outline:0;">{{ new_Request.h_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm" id="h_4" style="border:0; outline:0;">{{ new_Request.h_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="h_5" style="text-align:right; border:0; outline:0;">{{ new_Request.h_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="h_6" style="border:0; outline:0;">{{ new_Request.h_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm" id="h_7" style="border:0; outline:0;">{{ new_Request.h_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">8</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.h_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.h_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.h_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.h_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.h_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.h_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.h_7 }}</span></div>
         </div>
         {% endif %}
+
         {% if new_Request.i_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">9</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm" id="i_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.i_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="i_2" style="border:0; outline:0;">{{ new_Request.i_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="i_3" style="border:0; outline:0;">{{ new_Request.i_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="i_4" style="border:0; outline:0;">{{ new_Request.i_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="i_5" style="text-align:right; border:0; outline:0;">{{ new_Request.i_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="i_6" style="border:0; outline:0;">{{ new_Request.i_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm"  id="i_7" style="border:0; outline:0;">{{ new_Request.i_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">9</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.i_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.i_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.i_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.i_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.i_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.i_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.i_7 }}</span></div>
         </div>
         {% endif %}
+
         {% if new_Request.j_1 %}
-        <div class="row" align="center" style="border: 1px solid #D8D8D8; display:table; border-collapse:collapse;">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="background-color: #E6E6E6; border: 1px solid #D8D8D8" align="center">10</div>
-            <div class="col-lg-2 col-md-3 col-sm-3" style="border: 1px solid #D8D8D8; border-collapse:collapse;" align="center">
-                <span class="form-control form-control-sm"  id="j_1" style="border:0; outline:0; overflow:hidden; white-space:nowrap;">{{ new_Request.j_1 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-4 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="j_2" style="border:0; outline:0;">{{ new_Request.j_2 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="j_3" style="border:0; outline:0;">{{ new_Request.j_3 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="j_4" style="border:0; outline:0;">{{ new_Request.j_4 }}</span>
-            </div>
-            <div class="col-lg-1 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="j_5" style="text-align:right; border:0; outline:0;">{{ new_Request.j_5|default_if_none:""|intcomma }}</span>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-2 d-none d-sm-block" style="border: 1px solid #D8D8D8" align="center">
-                <span class="form-control form-control-sm"  id="j_6" style="border:0; outline:0;">{{ new_Request.j_6 }}</span>
-            </div>
-            <div class="col-lg-2 col-md-5 col-sm-5" style="border: 1px solid #D8D8D8; overflow:visible; white-space:nowrap;" align="center">
-                <span class="form-control form-control-sm"  id="j_7" style="border:0; outline:0;">{{ new_Request.j_7 }}</span>
-            </div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 approval-cell no">10</div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.j_1 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left"><span>{{ new_Request.j_2 }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.j_3 }}</span></div>
+            <div class="col-lg-2 approval-cell"><span>{{ new_Request.j_4 }}</span></div>
+            <div class="col-lg-1 approval-cell text-right"><span>{{ new_Request.j_5|intcomma }}</span></div>
+            <div class="col-lg-1 approval-cell"><span>{{ new_Request.j_6 }}</span></div>
+            <div class="col-lg-2 approval-cell text-left wrap"><span>{{ new_Request.j_7 }}</span></div>
         </div>
         {% endif %}
+
         <p></p>
-        <div class="row" align="center">
-    <div class="col-12">
-        <div class="mb-3 bg-secondary text-white">
-            <label for="chamjo1" class="form-label">참조사항</label>
-            <div class="form-control text-start" id="chamjo1" style="min-height:120px; white-space:normal;">{{ new_Request.chamjo1|safe }}</div>
+
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
+            <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
+                <div id="chamjo1" class="note-view" style="width:100%;">{{ new_Request.chamjo1|safe }}</div>
+            </div>
         </div>
     </div>
-</div>
-        <!--수정버튼-->
+
+    <!-- 모바일 리스트 -->
+    <div class="mobile-approval-list mt-2">
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">1</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.a_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.a_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.a_7 }}</div>
+        </div>
+
+        {% if new_Request.b_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">2</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.b_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.b_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.b_7 }}</div>
+        </div>
+        {% endif %}
+
+        {% if new_Request.c_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">3</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.c_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.c_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.c_7 }}</div>
+        </div>
+        {% endif %}
+
+        {% if new_Request.d_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">4</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.d_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.d_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.d_7 }}</div>
+        </div>
+        {% endif %}
+
+        {% if new_Request.e_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">5</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.e_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.e_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.e_7 }}</div>
+        </div>
+        {% endif %}
+
+        {% if new_Request.f_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">6</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.f_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.f_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.f_7 }}</div>
+        </div>
+        {% endif %}
+
+        {% if new_Request.g_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">7</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.g_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.g_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.g_7 }}</div>
+        </div>
+        {% endif %}
+
+        {% if new_Request.h_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">8</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.h_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.h_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.h_7 }}</div>
+        </div>
+        {% endif %}
+
+        {% if new_Request.i_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">9</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.i_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.i_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.i_7 }}</div>
+        </div>
+        {% endif %}
+
+        {% if new_Request.j_1 %}
+        <div class="mobile-approval-card">
+            <div class="mobile-approval-row-top">
+                <div style="display:flex; align-items:flex-start; min-width:0; flex:1;">
+                    <span class="mobile-approval-no">10</span>
+                    <div class="mobile-approval-left">
+                        <div class="mobile-approval-vendor">{{ new_Request.j_1 }}</div>
+                    </div>
+                </div>
+                <div class="mobile-approval-amount">{{ new_Request.j_5|intcomma }}</div>
+            </div>
+            <div class="mobile-approval-note">{{ new_Request.j_7 }}</div>
+        </div>
+        {% endif %}
+
+        <div class="mobile-note-wrap mt-3">
+            <div class="mobile-note-head">Note</div>
+            <div class="mobile-note-body">
+                <div id="chamjo1_mobile" class="note-view">{{ new_Request.chamjo1|safe }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="noteLightbox" class="note-lightbox">
+        <img id="noteLightboxImg" src="" alt="확대 이미지">
+    </div>        <!--수정버튼-->
 <!--        <div class="my-3">-->
 <!--                {% if not new_Request.aaa %}-->
 <!--                <a href="{% url 'eas:Request_modify' new_Request.id  %}"-->
@@ -578,5 +866,25 @@
             }
         });
     });
+
+    const noteLightbox = document.getElementById('noteLightbox');
+    const noteLightboxImg = document.getElementById('noteLightboxImg');
+    const noteViews = document.querySelectorAll('.note-view');
+
+    if (noteLightbox && noteLightboxImg && noteViews.length) {
+        noteViews.forEach(function(noteView){
+            noteView.addEventListener('click', function (e) {
+                if (e.target.tagName === 'IMG') {
+                    noteLightboxImg.src = e.target.src;
+                    noteLightbox.style.display = 'flex';
+                }
+            });
+        });
+
+        noteLightbox.addEventListener('click', function () {
+            noteLightbox.style.display = 'none';
+            noteLightboxImg.src = '';
+        });
+    }
 </script>
 {% endblock %}
