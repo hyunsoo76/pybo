@@ -696,21 +696,22 @@
                 <div class="mobile-approval-note"><input class="form-control" type="text" id="m_j_7" value="{{ form.j_7.value|default_if_none:'' }}"></div>
             </div>
         </div>
-            
+
 
 <p></p>
 
-<div class="row g-0 approval-grid" align="center">
-    <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
-    <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
-        <div id="note_editor"
-             contenteditable="true"
-             class="form-control"
-             data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-             style="min-height:120px; overflow:auto;">{{ form.chamjo1.value|default_if_none:''|safe }}</div>
-        <input type="hidden" name="chamjo1" id="chamjo1_hidden">
-    </div>
-</div>
+        <div class="row g-0 approval-grid" align="center">
+            <div class="col-lg-1 col-md-1 col-sm-1 approval-cell head">Note</div>
+            <div class="col-lg-11 col-md-11 col-sm-11 approval-cell text-left wrap">
+                <div id="note_editor"
+                    contenteditable="true"
+                    class="form-control"
+                    data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
+                    style="min-height:120px; overflow:auto;"></div>
+                <textarea id="note_initial_html" style="display:none;">{{ form.chamjo1.value|default_if_none:'' }}</textarea>
+                <input type="hidden" name="chamjo1" id="chamjo1_hidden">
+            </div>
+        </div>
     </form>
 </div>
 
@@ -778,6 +779,15 @@ const detailForm = document.getElementById('detail_input_form');
 const totalTarget = document.getElementById('total');
 const noteLightbox = document.getElementById('noteLightbox');
 const noteLightboxImg = document.getElementById('noteLightboxImg');
+
+const noteInitialHtml = document.getElementById('note_initial_html');
+
+if (editor && noteInitialHtml) {
+  editor.innerHTML = noteInitialHtml.value;
+}
+if (hiddenInput && noteInitialHtml) {
+  hiddenInput.value = noteInitialHtml.value;
+}
 
 function editorHasRealContent(el) {
   if (!el) return false;
