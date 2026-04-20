@@ -703,7 +703,6 @@
                         contenteditable="true"
                         class="form-control"
                         data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-                        data-initial="{{ form.chamjo1.value|default_if_none:''|escapejs }}"
                         style="min-height:120px; overflow:auto;"></div>
                 </div>
             </div>
@@ -718,8 +717,8 @@
                     contenteditable="true"
                     class="form-control"
                     data-placeholder="텍스트 또는 스샷이미지 붙여넣기"
-                    data-initial="{{ form.chamjo1.value|default_if_none:''|escapejs }}"
                     style="min-height:120px; overflow:auto;"></div>
+                <textarea id="note_initial_html" style="display:none;">{{ form.chamjo1.value|default_if_none:'' }}</textarea>
                 <input type="hidden" name="chamjo1" id="chamjo1_hidden">
             </div>
         </div>
@@ -783,21 +782,23 @@ $(function(){
     });
 });
 
-function decodeHtml(html) {
-    const txt = document.createElement('textarea');
-    txt.innerHTML = html || '';
-    return txt.value;
+const initialHtmlSource = document.getElementById('note_initial_html');
+
+function setInitialEditorContent() {
+    const initialHtml = initialHtmlSource ? initialHtmlSource.value : '';
+
+    if (editor) {
+        editor.innerHTML = initialHtml;
+    }
+    if (editorMobile) {
+        editorMobile.innerHTML = initialHtml;
+    }
+    if (hiddenInput) {
+        hiddenInput.value = initialHtml;
+    }
 }
 
-function setInitialEditorContent(el) {
-    if (!el) return;
-    const raw = el.dataset.initial || '';
-    el.innerHTML = decodeHtml(raw);
-}
-
-setInitialEditorContent(editor);
-setInitialEditorContent(editorMobile);
-
+setInitialEditorContent();
 if (editor && editorMobile && editorMobile.innerHTML !== editor.innerHTML) {
     editorMobile.innerHTML = editor.innerHTML;
 }
