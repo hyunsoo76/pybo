@@ -246,7 +246,7 @@
             </div>
             <div class="input-group">
               <span class="input-group-text">품의내용</span>
-              <textarea class="form-control" rows="10" name="nomal"></textarea>
+              <textarea class="form-control" rows="10" name="nomal" id="nomal_editor"></textarea>
             </div>
             <div class="input-group">
               <input type="hidden" class="form-control" id="c_1" name="c_1" aria-describedby="basic-addon1" value="일반품의">
@@ -261,6 +261,7 @@
 
 
                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+               <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>  
                  <script>
     <!--  담당 모달창 닫힐때 이벤트-->
                     $(document).ready(function(){
@@ -442,6 +443,37 @@ document.addEventListener('DOMContentLoaded', function () {
         setWriterType('이사작성');
     });
     setWriterType('담당작성');
+    tinymce.init({
+    selector: '#nomal_editor',
+    height: 500,
+    menubar: false,
+
+    plugins: [
+        'lists',
+        'link',
+        'image',
+        'table',
+        'code',
+        'paste'
+    ],
+
+    toolbar:
+        'undo redo | ' +
+        'fontsize | bold italic underline | ' +
+        'forecolor backcolor | ' +
+        'alignleft aligncenter alignright alignjustify | ' +
+        'bullist numlist | ' +
+        'image table link | ' +
+        'code',
+
+    paste_data_images: true,
+
+    image_title: true,
+    automatic_uploads: false,
+
+    content_style:
+        'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+});
 });
 </script>
 
