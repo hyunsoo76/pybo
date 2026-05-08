@@ -345,6 +345,79 @@
 <!--                    });-->
 
 
-                 </script>
+const writerTypeInput = document.getElementById('writer_type');
+const writerStaffBtn = document.getElementById('writer_staff_btn');
+const writerDirectorBtn = document.getElementById('writer_director_btn');
+const approvalLineHint = document.getElementById('approval_line_hint');
+
+function setWriterType(type) {
+    if (!writerTypeInput) return;
+
+    writerTypeInput.value = type;
+
+    if (type === '담당작성') {
+
+        writerStaffBtn.classList.remove('btn-outline-dark');
+        writerStaffBtn.classList.add('btn-dark');
+
+        writerDirectorBtn.classList.remove('btn-dark');
+        writerDirectorBtn.classList.add('btn-outline-dark');
+
+        approvalLineHint.innerText = '결재라인: 담당 → 이사 → 대표';
+
+    } else {
+
+        writerStaffBtn.classList.remove('btn-dark');
+        writerStaffBtn.classList.add('btn-outline-dark');
+
+        writerDirectorBtn.classList.remove('btn-outline-dark');
+        writerDirectorBtn.classList.add('btn-dark');
+
+        approvalLineHint.innerText = '결재라인: 이사 → 대표';
+    }
+}
+
+writerStaffBtn.addEventListener('click', function(){
+    setWriterType('담당작성');
+});
+
+writerDirectorBtn.addEventListener('click', function(){
+    setWriterType('이사작성');
+});
+
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const writerTypeInput = document.getElementById('writer_type');
+    const writerStaffBtn = document.getElementById('writer_staff_btn');
+    const writerDirectorBtn = document.getElementById('writer_director_btn');
+    const approvalLineHint = document.getElementById('approval_line_hint');
+
+    function setWriterType(type) {
+        if (!writerTypeInput || !writerStaffBtn || !writerDirectorBtn || !approvalLineHint) return;
+
+        writerTypeInput.value = type;
+
+        if (type === '담당작성') {
+            writerStaffBtn.className = 'btn btn-dark';
+            writerDirectorBtn.className = 'btn btn-outline-dark';
+            approvalLineHint.innerText = '결재라인: 담당 → 이사 → 대표';
+        } else {
+            writerStaffBtn.className = 'btn btn-outline-dark';
+            writerDirectorBtn.className = 'btn btn-dark';
+            approvalLineHint.innerText = '결재라인: 이사 → 대표';
+        }
+    }
+
+    writerStaffBtn.addEventListener('click', function () {
+        setWriterType('담당작성');
+    });
+
+    writerDirectorBtn.addEventListener('click', function () {
+        setWriterType('이사작성');
+    });
+});
+</script>
 
 {% endblock %}
