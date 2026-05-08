@@ -350,10 +350,22 @@ quill.root.addEventListener('paste', function (e) {
 });
 
 const form = document.querySelector('form');
+const nomalHidden = document.getElementById('nomal_hidden');
+
+function syncQuillToHidden() {
+    if (nomalHidden && quill) {
+        nomalHidden.value = quill.root.innerHTML;
+    }
+}
 
 form.addEventListener('submit', function () {
-    document.getElementById('nomal_hidden').value =
-        quill.root.innerHTML;
+    syncQuillToHidden();
+});
+
+document.querySelectorAll('button[type="submit"]').forEach(function(btn){
+    btn.addEventListener('click', function () {
+        syncQuillToHidden();
+    });
 });
 
     
