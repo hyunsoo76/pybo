@@ -261,6 +261,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill-image-drop-module@1.0.3/image-drop.min.js"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -303,9 +304,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setWriterType('담당작성');
 
+    Quill.register('modules/imageDrop', ImageDrop.ImageDrop);
+
     const quill = new Quill('#nomal_editor', {
     theme: 'snow',
     modules: {
+        imageDrop: true,
         toolbar: [
             [{ 'header': [1, 2, 3, false] }],
             [{ 'size': ['small', false, 'large', 'huge'] }],
