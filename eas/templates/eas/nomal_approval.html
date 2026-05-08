@@ -14,6 +14,7 @@
 <!--    <form method="post" onkeydown="return event.key != 'Enter';">-->
     <form method="post">
         {% csrf_token %}
+        <input type="hidden" name="writer_type" id="writer_type" value="담당작성">
         <!-- 오류표시 Start -->
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
@@ -201,6 +202,19 @@
               </div>
 
             </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="btn-group w-100" role="group" aria-label="작성자 구분">
+                    <button type="button" class="btn btn-dark" id="writer_staff_btn">담당 작성</button>
+                    <button type="button" class="btn btn-outline-dark" id="writer_director_btn">이사 작성</button>
+                    </div>
+                </div>
+                </div>
+
+                <div class="alert alert-light border small" id="approval_line_hint">
+                    결재라인: 담당 → 이사 → 대표
+                </div>
 
     <!--입력창 타이틀-->
             <div class="row text-white" align="center">

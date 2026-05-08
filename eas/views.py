@@ -539,13 +539,23 @@ def nomal_approval(request):
         form = RequestForm(request.POST)
         if form.is_valid():
             new_Request = form.save(commit=False)
+
             temp = request.POST.get('nomal')
+            writer_type = request.POST.get('writer_type') or '담당작성'
+
             new_Request.jisi1 = temp
-            new_Request.aaa = '기안'
+            new_Request.eee = writer_type
+            new_Request.c_1 = '일반품의'
             new_Request.create_date = timezone.now()
+
+            if writer_type == '담당작성':
+                new_Request.ccc = '기안'
+                new_Request.aaa = ''
+            else:
+                new_Request.ccc = ''
+                new_Request.aaa = '기안'
+
             new_Request.save()
-            # context = {'new_Request': new_Request}
-            # return render(request, 'eas/monthly_holiday_r.html', context)
             return redirect('eas:index')
     else:
         form = RequestForm()
