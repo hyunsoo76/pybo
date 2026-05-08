@@ -253,9 +253,11 @@
               <span class="input-group-text">품의자명</span>
               <span class="form-control" id="a_1" aria-describedby="basic-addon1">{{ new_Request.a_1 }}</span>
             </div>
-            <div class="input-group">
-              <span class="input-group-text">품의내용</span>
-              <textarea class="form-control" rows="10" aria-describedby="basic-addon1">{{ new_Request.jisi1 }}</textarea>
+            <div class="mb-3">
+                <label class="form-label fw-bold">품의내용</label>
+                <div class="form-control" style="min-height:300px; white-space:normal; word-break:break-word;">
+                    {{ new_Request.jisi1|safe }}
+                </div>
             </div>
 
     </form>
