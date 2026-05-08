@@ -43,15 +43,33 @@
 
                 <div class="col-4">
                     <table class="table table-sm table-bordered border-secondary align-middle">
-                         <tr  class="table-secondary" align="center" >
-    <!--                      <td height = "10px"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a></td>-->
-<!--                          <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1"><B>&nbsp;담&nbsp;당&nbsp;</b></button></td>-->
-                          <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap"><b>&nbsp;이&nbsp;사&nbsp;</b></button></td>
-                          <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap"><b>&nbsp;대&nbsp;표&nbsp;</b></button></td>
+                         <tr class="table-secondary" align="center">
+                            <td height="10px" class="staff-approval-cell">
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <b>&nbsp;담&nbsp;당&nbsp;</b>
+                                </button>
+                            </td>
+
+                            <td height="10px">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap">
+                                    <b>&nbsp;이&nbsp;사&nbsp;</b>
+                                </button>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap">
+                                    <b>&nbsp;대&nbsp;표&nbsp;</b>
+                                </button>
+                            </td>
                         </tr>
     <!-- 결재란-->
                       <tbody>
                         <tr align="center">
+                            <td height="80px" width="150px" class="staff-approval-cell">
+                                <div id="first_comfirm">
+                                    <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="first_comfirm">
+                                </div>
+                            </td>
 <!--                          <td height = "80px" width = "150px" bgcolor="#D8D8D8">-->
 <!--    &lt;!&ndash;                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>&ndash;&gt;-->
 <!--    &lt;!&ndash;                          <div class="collapse collapse-horizontal" id="collapseWidthExample">&ndash;&gt;-->
@@ -154,9 +172,9 @@
                           </td>
                         </tr>
                         <tr align="center" bgcolor="#E6E6E6">
-<!--                          <td id="data1"></td>-->
-                          <td id="data2"></td>
-                          <td id="data3"></td>
+                            <td id="data1" class="staff-approval-cell"></td>
+                            <td id="data2"></td>
+                            <td id="data3"></td>
                         </tr>
                       </tbody>
                     </table>
@@ -400,10 +418,16 @@ document.addEventListener('DOMContentLoaded', function () {
         writerTypeInput.value = type;
 
         if (type === '담당작성') {
+            document.querySelectorAll('.staff-approval-cell').forEach(function(el){
+                el.style.display = '';
+            });
             writerStaffBtn.className = 'btn btn-dark';
             writerDirectorBtn.className = 'btn btn-outline-dark';
             approvalLineHint.innerText = '결재라인: 담당 → 이사 → 대표';
         } else {
+            document.querySelectorAll('.staff-approval-cell').forEach(function(el){
+                el.style.display = 'none';
+            });
             writerStaffBtn.className = 'btn btn-outline-dark';
             writerDirectorBtn.className = 'btn btn-dark';
             approvalLineHint.innerText = '결재라인: 이사 → 대표';
@@ -417,6 +441,7 @@ document.addEventListener('DOMContentLoaded', function () {
     writerDirectorBtn.addEventListener('click', function () {
         setWriterType('이사작성');
     });
+    setWriterType('담당작성');
 });
 </script>
 
