@@ -576,7 +576,9 @@
                                     {% elif Request.ccc == "반려" %}
                                         <span class="status-badge status-rejected">반려</span>
                                     {% else %}
-                                        <span class="status-badge status-empty">대기</span>
+                                        {% if Request.ddd != "이사" %}
+                                            <span class="status-badge status-empty">대기</span>
+                                        {% endif %}
                                     {% endif %}
                                 </td>
 
@@ -662,7 +664,9 @@
                                 {% elif Request.ccc == "반려" %}
                                     <span class="status-badge status-rejected">담당 반려</span>
                                 {% else %}
-                                    <span class="status-badge status-empty">담당 대기</span>
+                                    {% if Request.ddd != "이사" %}
+                                        <span class="status-badge status-empty">담당 대기</span>
+                                    {% endif %}
                                 {% endif %}
 
                                 {% if Request.ddd == "이사" %}
