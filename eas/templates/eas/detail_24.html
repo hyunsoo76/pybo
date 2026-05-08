@@ -430,6 +430,43 @@
             </div>
         </div>
 
+                <!-- 이전 이사결재 불러오기 -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <button type="button"
+                        class="btn btn-outline-primary btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#directorCopyModal">
+                    이전 이사결재 불러오기
+                </button>
+            </div>
+        </div>
+
+        <div class="modal fade" id="directorCopyModal" tabindex="-1" aria-labelledby="directorCopyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="directorCopyModalLabel">이전 이사결재 불러오기</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <input type="text"
+                                   class="form-control"
+                                   id="directorCopyKeyword"
+                                   placeholder="제목 / 매입처 / 계좌번호 검색">
+                            <button type="button" class="btn btn-outline-secondary" id="directorCopySearchBtn">검색</button>
+                        </div>
+
+                        <div id="directorCopyResult" style="max-height:420px; overflow:auto;">
+                            <div class="text-muted small">검색어를 입력하거나 검색 버튼을 누르면 최근 이사결재가 표시됩니다.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 데스크톱 리스트 -->
         <div class="desktop-approval-table">
             <div class="row g-0 approval-grid">
@@ -896,6 +933,126 @@ if (detailForm) {
   detailForm.addEventListener('submit', function () {
     syncEditorToHidden();
     refreshEditorPlaceholder();
+  });
+}
+
+const directorCopyKeyword = document.getElementById('directorCopyKeyword');
+const directorCopySearchBtn = document.getElementById('directorCopySearchBtn');
+const directorCopyResult = document.getElementById('directorCopyResult');
+
+function setInputValue(id, value) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.value = value === null || value === undefined ? '' : value;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+}
+
+function setDesktopAndMobileValue(fieldName, value) {
+  setInputValue(fieldName, value);
+  setInputValue('m_' + fieldName, value);
+}
+
+function renderDirectorCopyItems(items) {
+  if (!directorCopyResult) return;
+
+  if (!items || items.length === 0) {
+    directorCopyResult.innerHTML = '<div class="text-muted small">검색 결과가 없습니다.</div>';
+    return;
+  }
+
+  directorCopyResult.innerHTML = items.map(function(item, idx){
+    const firstVendor = item.a_1 || '';
+    const total = item.total || '';
+    return `
+      <div class="border rounded p-2 mb-2 bg-white">
+        <div class="d-flex justify-content-between align-items-start gap-2">
+          <div style="min-width:0;">
+            <div style="font-weight:800; word-break:break-word;">${item.subject || '(제목 없음)'}</div>
+            <div class="small text-muted">${item.create_date || ''} · ${firstVendor}</div>
+            <div class="small text-muted">합계: ${total}</div>
+          </div>
+          <button type="button" class="btn btn-sm btn-primary director-copy-apply" data-index="${idx}">
+            불러오기
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  document.querySelectorAll('.director-copy-apply').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const index = Number(btn.dataset.index);
+      applyDirectorCopy(items[index]);
+    });
+  });
+}
+
+function fetchDirectorCopyItems() {
+  if (!directorCopyResult) return;
+
+  const q = directorCopyKeyword ? directorCopyKeyword.value.trim() : '';
+  directorCopyResult.innerHTML = '<div class="text-muted small">불러오는 중...</div>';
+
+  fetch("{% url 'eas:director_approval_copy' %}?q=" + encodeURIComponent(q))
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      renderDirectorCopyItems(data.items || []);
+    })
+    .catch(function(){
+      directorCopyResult.innerHTML = '<div class="text-danger small">불러오기 중 오류가 발생했습니다.</div>';
+    });
+}
+
+function applyDirectorCopy(item) {
+  if (!item) return;
+
+  setInputValue('subject', item.subject || '');
+
+  const slots = ['a','b','c','d','e','f','g','h','i','j'];
+
+  slots.forEach(function(slot){
+    for (let n = 1; n <= 7; n++) {
+      const fieldName = slot + '_' + n;
+      setDesktopAndMobileValue(fieldName, item[fieldName] || '');
+    }
+  });
+
+  if (editor) {
+    editor.innerHTML = item.chamjo1 || '';
+    syncEditorToHidden();
+    refreshEditorPlaceholder();
+  }
+
+  if (typeof sum === 'function') {
+    sum();
+  }
+
+  const modalEl = document.getElementById('directorCopyModal');
+  if (modalEl) {
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+  }
+}
+
+if (directorCopySearchBtn) {
+  directorCopySearchBtn.addEventListener('click', fetchDirectorCopyItems);
+}
+
+if (directorCopyKeyword) {
+  directorCopyKeyword.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      fetchDirectorCopyItems();
+    }
+  });
+}
+
+const directorCopyModal = document.getElementById('directorCopyModal');
+if (directorCopyModal) {
+  directorCopyModal.addEventListener('shown.bs.modal', function(){
+    fetchDirectorCopyItems();
+    if (directorCopyKeyword) directorCopyKeyword.focus();
   });
 }
 </script>
