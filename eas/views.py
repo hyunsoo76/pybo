@@ -554,6 +554,7 @@ def nomal_approval(request):
             else:
                 new_Request.ccc = ''
                 new_Request.aaa = '기안'
+                new_Request.date1 = timezone.now()
 
             new_Request.save()
             return redirect('eas:index')
