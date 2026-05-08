@@ -41,16 +41,46 @@
 
                 <div class="col-4">
                     <table class="table table-sm table-bordered border-secondary align-middle">
-                         <tr  class="table-secondary" align="center" >
-    <!--                      <td height = "10px"><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a></td>-->
-<!--                          <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1"><B>&nbsp;담&nbsp;당&nbsp;</b></button></td>-->
-                          <td height = "10px"><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap"><b>&nbsp;이&nbsp;사&nbsp;</b></button></td>
-                          <td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap"><b>&nbsp;대&nbsp;표&nbsp;</b></button></td>
+                         <tr class="table-secondary" align="center">
+                            {% if new_Request.eee == "담당작성" %}
+                            <td height="10px">
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <b>&nbsp;담&nbsp;당&nbsp;</b>
+                                </button>
+                            </td>
+                            {% endif %}
+
+                            <td height="10px">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap">
+                                    <b>&nbsp;이&nbsp;사&nbsp;</b>
+                                </button>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@getbootstrap">
+                                    <b>&nbsp;대&nbsp;표&nbsp;</b>
+                                </button>
+                            </td>
                         </tr>
     <!-- 결재란-->
                       <tbody>
                         <tr align="center">
 <!--                          <td height = "80px" width = "150px" bgcolor="#D8D8D8">-->
+                                                {% if new_Request.eee == "담당작성" %}
+                        <td height="80px" width="150px">
+                            {% if new_Request.ccc == "기안" or new_Request.ccc == "승인" %}
+                                <div id="first_comfirm">
+                                    <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="first_comfirm">
+                                </div>
+                            {% elif new_Request.ccc == "반려" %}
+                                <div id="first_reject">
+                                    <img src="/static/img/reject_img.jpg" class="img-fluid" alt="first_reject">
+                                </div>
+                            {% else %}
+                                <div id="first_empty"></div>
+                            {% endif %}
+                        </td>
+                        {% endif %}
 <!--    &lt;!&ndash;                          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">담당</a>&ndash;&gt;-->
 <!--    &lt;!&ndash;                          <div class="collapse collapse-horizontal" id="collapseWidthExample">&ndash;&gt;-->
 <!--    &lt;!&ndash;                            <img src="/static/img/hyuckman.JPG" class="img-fluid" alt="hyuckman" id="firstcheck">&ndash;&gt;-->
@@ -163,9 +193,11 @@
                                 </div></td>
                         </tr>
                         <tr align="center" bgcolor="#E6E6E6">
-<!--                          <td id="data1"></td>-->
-                          <td id="data2">{{new_Request.create_date|date:'n/d g:i'}}</td>
-                          <td id="data3">{{new_Request.date2|date:'n/d g:i'}}</td>
+                            {% if new_Request.eee == "담당작성" %}
+                                <td id="data1">{{ new_Request.create_date|date:'n/d g:i' }}</td>
+                            {% endif %}
+                            <td id="data2">{{ new_Request.date1|date:'n/d g:i' }}</td>
+                            <td id="data3">{{ new_Request.date2|date:'n/d g:i' }}</td>
                         </tr>
                       </tbody>
                     </table>
