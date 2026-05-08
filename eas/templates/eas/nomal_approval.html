@@ -443,7 +443,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setWriterType('이사작성');
     });
     setWriterType('담당작성');
-    tinymce.init({
     selector: '#nomal_editor',
     height: 500,
     menubar: false,
@@ -474,7 +473,6 @@ document.addEventListener('DOMContentLoaded', function () {
     content_style:
         'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
 });
-});
 </script>
 
 <script>
@@ -484,15 +482,29 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+});
+
+
+</script>
+
+<script>
+window.addEventListener('load', function () {
+    if (!window.tinymce) {
+        alert('TinyMCE 로드 실패');
+        return;
+    }
+
+    tinymce.remove('#nomal_editor');
+
     tinymce.init({
         selector: '#nomal_editor',
         height: 500,
         menubar: false,
+        branding: false,
         plugins: 'lists link image table code',
-        toolbar: 'undo redo | fontsize | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | image table link | code',
+        toolbar: 'undo redo | fontsize | bold italic underline | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | image table link | code',
         paste_data_images: true,
-        automatic_uploads: false,
-        branding: false
+        automatic_uploads: false
     });
 });
 </script>
