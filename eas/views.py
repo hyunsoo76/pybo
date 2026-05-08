@@ -667,3 +667,44 @@ def Request_delete(request, new_Request_id):
         return redirect('eas:detail_r', Request_id=new_Request.id)
 
     return redirect('eas:detail_r', Request_id=new_Request.id)
+
+@require_GET
+def director_approval_copy(request):
+    q = (request.GET.get("q") or "").strip()
+    limit = int(request.GET.get("limit") or "20")
+
+    vendor_slots = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+
+    qs = Request.objects.filter(ddd="이사").order_by("-create_date")
+
+    if q:
+        cond = Q(subject__icontains=q)
+        for s in vendor_slots:
+            cond |= Q(**{f"{s}_1__icontains": q})
+            cond |= Q(**{f"{s}_2__icontains": q})
+            cond |= Q(**{f"{s}_3__icontains": q})
+            cond |= Q(**{f"{s}_4__icontains": q})
+            cond |= Q(**{f"{s}_5__icontains": q})
+            cond |= Q(**{f"{s}_7__icontains": q})
+        qs = qs.filter(cond).distinct()
+
+    items = []
+
+    for r in qs[:limit]:
+        data = {
+            "id": r.id,
+            "subject": r.subject or "",
+            "total": r.total or 0,
+            "create_date": r.create_date.strftime("%Y-%m-%d") if r.create_date else "",
+            "chamjo1": r.chamjo1 or "",
+        }
+
+        for s in vendor_slots:
+            for n in range(1, 8):
+                field_name = f"{s}_{n}"
+                value = getattr(r, field_name, "")
+                data[field_name] = "" if value is None else value
+
+        items.append(data)
+
+    return JsonResponse({"items": items})

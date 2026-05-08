@@ -40,6 +40,7 @@ urlpatterns = [
 
     # ✅ 자동완성 API
     path("api/vendor-suggest/", views.vendor_suggest, name="vendor_suggest"),
+    path("api/director-approval-copy/", views.director_approval_copy, name="director_approval_copy"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
