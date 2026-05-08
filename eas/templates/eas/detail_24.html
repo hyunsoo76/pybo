@@ -1030,9 +1030,20 @@ function applyDirectorCopy(item) {
 
   const modalEl = document.getElementById('directorCopyModal');
   if (modalEl) {
-    const modal = bootstrap.Modal.getInstance(modalEl);
-    if (modal) modal.hide();
+    let modal = bootstrap.Modal.getInstance(modalEl);
+    if (!modal) {
+      modal = new bootstrap.Modal(modalEl);
+    }
+    modal.hide();
   }
+
+  // ✅ Bootstrap 모달 배경/잠금 강제 해제
+  document.querySelectorAll('.modal-backdrop').forEach(function(backdrop){
+    backdrop.remove();
+  });
+  document.body.classList.remove('modal-open');
+  document.body.style.removeProperty('overflow');
+  document.body.style.removeProperty('padding-right');
 }
 
 if (directorCopySearchBtn) {
