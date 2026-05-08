@@ -557,6 +557,9 @@ def nomal_approval(request):
 
             new_Request.save()
             return redirect('eas:index')
+        else:
+            context = {'form': form}
+            return render(request, 'eas/nomal_approval.html', context)
     else:
         form = RequestForm()
         context = {'form': form}
