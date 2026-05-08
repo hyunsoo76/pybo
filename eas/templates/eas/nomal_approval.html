@@ -304,12 +304,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setWriterType('담당작성');
 
-    Quill.register('modules/imageDrop', ImageDrop.ImageDrop);
 
     const quill = new Quill('#nomal_editor', {
     theme: 'snow',
     modules: {
-        imageDrop: true,
         toolbar: [
             [{ 'header': [1, 2, 3, false] }],
             [{ 'size': ['small', false, 'large', 'huge'] }],
