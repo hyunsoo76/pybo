@@ -569,7 +569,9 @@
                                 </td>
 
                                 <td class="cell-center">
-                                    {% if Request.ccc == "기안" %}
+                                    {% if Request.eee == "이사작성" %}
+    
+                                    {% elif Request.ccc == "기안" %}
                                         <span class="status-badge status-draft">기안</span>
                                     {% elif Request.ccc == "승인" %}
                                         <span class="status-badge status-approved">승인</span>
@@ -657,7 +659,9 @@
                             </div>
 
                             <div class="mobile-status-row">
-                                {% if Request.ccc == "기안" %}
+                                {% if Request.eee == "이사작성" %}
+
+                                {% elif Request.ccc == "기안" %}
                                     <span class="status-badge status-draft">담당 기안</span>
                                 {% elif Request.ccc == "승인" %}
                                     <span class="status-badge status-approved">담당 승인</span>
