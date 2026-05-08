@@ -1041,9 +1041,15 @@ function applyDirectorCopy(item) {
   document.querySelectorAll('.modal-backdrop').forEach(function(backdrop){
     backdrop.remove();
   });
+
   document.body.classList.remove('modal-open');
   document.body.style.removeProperty('overflow');
   document.body.style.removeProperty('padding-right');
+
+  // ✅ 모달 닫힌 뒤 스크롤 잠금 강제 해제
+  document.documentElement.style.removeProperty('overflow');
+  document.documentElement.style.removeProperty('padding-right');
+  document.body.style.overflow = 'auto';
 }
 
 if (directorCopySearchBtn) {
