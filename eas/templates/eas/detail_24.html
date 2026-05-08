@@ -1038,18 +1038,9 @@ function applyDirectorCopy(item) {
   }
 
   // ✅ Bootstrap 모달 배경/잠금 강제 해제
-  document.querySelectorAll('.modal-backdrop').forEach(function(backdrop){
-    backdrop.remove();
-  });
-
-  document.body.classList.remove('modal-open');
-  document.body.style.removeProperty('overflow');
-  document.body.style.removeProperty('padding-right');
-
-  // ✅ 모달 닫힌 뒤 스크롤 잠금 강제 해제
-  document.documentElement.style.removeProperty('overflow');
-  document.documentElement.style.removeProperty('padding-right');
-  document.body.style.overflow = 'auto';
+  forceUnlockPageScroll();
+  setTimeout(forceUnlockPageScroll, 150);
+  setTimeout(forceUnlockPageScroll, 400);
 }
 
 if (directorCopySearchBtn) {
@@ -1071,6 +1062,28 @@ if (directorCopyModal) {
     fetchDirectorCopyItems();
     if (directorCopyKeyword) directorCopyKeyword.focus();
   });
+
+  directorCopyModal.addEventListener('hidden.bs.modal', function(){
+    forceUnlockPageScroll();
+    setTimeout(forceUnlockPageScroll, 150);
+    setTimeout(forceUnlockPageScroll, 400);
+  });
+}
+
+function forceUnlockPageScroll() {
+  document.querySelectorAll('.modal-backdrop').forEach(function(backdrop){
+    backdrop.remove();
+  });
+
+  document.body.classList.remove('modal-open');
+  document.body.removeAttribute('style');
+
+  document.documentElement.classList.remove('modal-open');
+  document.documentElement.style.removeProperty('overflow');
+  document.documentElement.style.removeProperty('padding-right');
+
+  document.body.style.overflowY = 'auto';
+  document.documentElement.style.overflowY = 'auto';
 }
 </script>
 
