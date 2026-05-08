@@ -477,4 +477,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof tinymce === 'undefined') {
+        alert('TinyMCE 로드 실패');
+        return;
+    }
+
+    tinymce.init({
+        selector: '#nomal_editor',
+        height: 500,
+        menubar: false,
+        plugins: 'lists link image table code',
+        toolbar: 'undo redo | fontsize | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | image table link | code',
+        paste_data_images: true,
+        automatic_uploads: false,
+        branding: false
+    });
+});
+</script>
+
 {% endblock %}
